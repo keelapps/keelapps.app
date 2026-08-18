@@ -1,0 +1,243 @@
+/* Manual pages: documentation and legal text. Two columns on a wide screen —
+   a sticky index on the left, the plate itself on the right — collapsing to a
+   single column below 64em, where the masthead carries navigation instead.
+
+   Chapter numbers are set as station labels, the same device the home page
+   uses for hulls: monospaced, thinned ink, leading zero. On a builder's
+   drawing these mark frame positions; here they mark sections. */
+
+.manual {
+  display: grid;
+  gap: var(--space-x-large);
+  margin-inline: auto;
+  max-width: var(--measure-wide);
+  padding: var(--space-large) var(--gutter) 0;
+  width: 100%;
+}
+
+@media (min-width: 64em) {
+  .manual {
+    align-items: start;
+    column-gap: var(--space-xx-large);
+    grid-template-columns: 14rem minmax(0, 1fr);
+  }
+}
+
+
+/* Index. */
+
+.manual__toc {
+  display: none;
+}
+
+@media (min-width: 64em) {
+
+  .manual__toc {
+    display: block;
+    font-size: var(--font-size-small);
+    max-height: calc(100dvh - 4rem);
+    overflow-y: auto;
+    position: sticky;
+    scrollbar-width: thin;
+    top: var(--space-large);
+  }
+
+}
+
+.manual__toc-title {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-small);
+  text-transform: uppercase;
+}
+
+/* Sibling pages sit above the chapter list so no page is a dead end —
+   arriving on the privacy policy from a Marketplace listing has to lead
+   somewhere. */
+
+.manual__toc-pages {
+  border-bottom: var(--rule-gauge) solid var(--color-rule);
+  display: grid;
+  gap: var(--space-x-small);
+  list-style: none;
+  margin-bottom: var(--space-medium);
+  padding: 0 0 var(--space-medium);
+}
+
+.manual__toc-pages li {
+  margin: 0;
+}
+
+.manual__toc-chapters {
+  counter-reset: chapter;
+  display: grid;
+  gap: var(--space-x-small);
+  list-style: none;
+  padding: 0;
+}
+
+.manual__toc-chapters li {
+  counter-increment: chapter;
+  display: flex;
+  gap: 1.1ch;
+  margin: 0;
+}
+
+.manual__toc-chapters li::before {
+  color: var(--color-ink-faint);
+  content: counter(chapter, decimal-leading-zero);
+  flex: none;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  line-height: 1.7;
+}
+
+.manual__toc a {
+  color: var(--color-ink-muted);
+  text-decoration-color: transparent;
+}
+
+.manual__toc a:hover,
+.manual__toc a[aria-current="page"] {
+  color: var(--color-ink);
+}
+
+.manual__toc a[aria-current="page"] {
+  font-weight: 600;
+}
+
+
+/* Content. */
+
+.manual__content {
+  max-width: 42em;
+  min-width: 0;
+  padding-bottom: var(--space-large);
+}
+
+.manual__content h1 {
+  margin-bottom: var(--space-medium);
+}
+
+.manual__content h2 {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  margin-top: var(--space-x-large);
+  padding-top: var(--space-large);
+}
+
+/* Section numbers hang in the left margin where there is room, and sit above
+   the heading where there is not. */
+
+.manual__content h2 {
+  counter-increment: section;
+  position: relative;
+}
+
+.manual__content h2::before {
+  color: var(--color-ink-faint);
+  content: counter(section, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: 0.6em;
+  font-weight: 400;
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: 0.4em;
+}
+
+.manual__content {
+  counter-reset: section;
+}
+
+.manual__content h3 {
+  margin-top: var(--space-large);
+}
+
+.manual__content > * + p,
+.manual__content > * + ul,
+.manual__content > * + ol,
+.manual__content > * + .table-wrap,
+.manual__content > * + .aside {
+  margin-top: var(--space-medium);
+}
+
+.manual__content h2 + p,
+.manual__content h3 + p {
+  margin-top: var(--space-small);
+}
+
+
+/* The lede sits above the first rule and carries the summary. */
+
+.manual__lede {
+  font-size: var(--font-size-large);
+}
+
+.manual__meta {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-top: var(--space-small);
+  text-transform: uppercase;
+}
+
+
+/* Print. An auditor reading a privacy policy tends to print it, and a
+   reviewer attaching one to an evidence pack certainly does. Drop the
+   navigation, force ink on paper regardless of scheme, and spell out link
+   destinations that a printed page would otherwise swallow. */
+
+@media print {
+
+  :root {
+    --rgb-canvas: 255 255 255;
+    --rgb-ink: 0 0 0;
+    --color-ink-muted: rgb(0 0 0 / 0.75);
+    --color-ink-faint: rgb(0 0 0 / 0.6);
+    --color-rule: rgb(0 0 0 / 0.3);
+    --color-rule-strong: rgb(0 0 0 / 0.5);
+    --color-surface: transparent;
+  }
+
+  .skip,
+  .masthead,
+  .manual__toc,
+  .manual__pagination,
+  .footer__links,
+  .trail {
+    display: none;
+  }
+
+  .manual {
+    display: block;
+    max-width: none;
+    padding: 0;
+  }
+
+  .manual__content {
+    max-width: none;
+  }
+
+  .manual__content h1,
+  .manual__content h2,
+  .manual__content h3 {
+    break-after: avoid;
+  }
+
+  .aside,
+  .table-wrap,
+  tr {
+    break-inside: avoid;
+  }
+
+  /* A printed link that only says "report privately" is a dead end. */
+  .manual__content a[href^="http"]::after,
+  .manual__content a[href^="mailto"]::after {
+    content: " (" attr(href) ")";
+    font-size: 85%;
+    word-break: break-all;
+  }
+
+}

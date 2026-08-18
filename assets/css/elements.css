@@ -1,0 +1,180 @@
+/* Element baseline. Everything here is unclassed — a page that loads only
+   reset + root + elements is already readable and on-brand. Components layer
+   arrangement on top; none of them restate colour or type. */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* Headings. Words are cargo: stowed low, packed tight. */
+
+h1, h2, h3, h4 {
+  color: var(--color-ink);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--line-height-tight);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--font-size-title); }
+h2 { font-size: var(--font-size-heading); }
+h3 { font-size: var(--font-size-large); line-height: var(--line-height-snug); }
+h4 { font-size: 100%; }
+
+p {
+  text-wrap: pretty;
+}
+
+
+/* Links carry no colour of their own — coral is reserved for the ballast bulb.
+   The underline is the signal, drawn at the same gauge as every other line on
+   the plate, and it darkens rather than thickens on hover so nothing reflows. */
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--color-rule-strong);
+  text-decoration-thickness: var(--rule-gauge);
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color var(--transition);
+}
+
+@media (hover: hover) {
+  a:hover { text-decoration-color: currentColor; }
+}
+
+a:focus-visible,
+summary:focus-visible {
+  border-radius: var(--radius);
+  outline: var(--rule-gauge) solid currentColor;
+  outline-offset: 0.2em;
+  text-decoration-color: currentColor;
+}
+
+
+b, strong { font-weight: 600; }
+i, em { font-style: italic; }
+small { font-size: var(--font-size-small); }
+
+
+/* Engineer's marginalia: small monospaced station labels, the kind etched
+   beside a frame number on a builder's drawing. */
+
+code, kbd, samp, pre {
+  font-family: var(--font-family-mono);
+}
+
+code {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  font-size: 90%;
+  padding: 0.15em 0.4em;
+}
+
+pre {
+  background: var(--color-surface);
+  border-radius: var(--radius-large);
+  font-size: 90%;
+  line-height: 1.5;
+  overflow-x: auto;
+  padding: var(--space-medium);
+}
+
+pre code {
+  background: none;
+  font-size: 100%;
+  padding: 0;
+  white-space: pre;
+}
+
+
+/* Lists. reset.css strips the markers; prose contexts put them back. */
+
+ul, ol {
+  padding-left: 1.4em;
+}
+
+ul { list-style: disc; }
+ol { list-style: decimal; }
+
+li::marker {
+  color: var(--color-ink-faint);
+}
+
+li + li {
+  margin-top: var(--space-x-small);
+}
+
+
+hr {
+  background: var(--color-rule);
+  border: 0;
+  height: var(--rule-gauge);
+  margin-block: var(--space-large);
+}
+
+
+blockquote {
+  border-left: var(--rule-gauge) solid var(--color-rule-strong);
+  color: var(--color-ink-muted);
+  padding-left: var(--space-medium);
+}
+
+
+table {
+  font-size: var(--font-size-small);
+  width: 100%;
+}
+
+th, td {
+  border-bottom: var(--rule-gauge) solid var(--color-rule);
+  padding: var(--space-small) var(--space-medium) var(--space-small) 0;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  font-weight: 400;
+  letter-spacing: var(--tracking-wide);
+  padding-bottom: var(--space-x-small);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+tbody tr:last-child th,
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+
+/* Selection inverts the plate rather than reaching for coral. */
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-canvas);
+}
