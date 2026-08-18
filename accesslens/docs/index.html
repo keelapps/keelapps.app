@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Documentation — AccessLens for Jira</title>
+    <meta
+      name="description"
+      content="How to use AccessLens for Jira: take a snapshot, answer who can access what, compare quarters, and run an access review that produces a signed-off record."
+    />
+    <link rel="canonical" href="https://keelapps.app/accesslens/docs/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/accesslens/docs/" />
+    <meta property="og:title" content="Documentation — AccessLens for Jira" />
+    <meta
+      property="og:description"
+      content="Take a snapshot, answer who can access what, compare quarters, and run an access review that produces a signed-off record."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/accesslens/">AccessLens</a>
+        <a href="https://github.com/keelapps/support/issues">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="AccessLens pages and sections">
+        <p class="manual__toc-title">AccessLens for Jira</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/accesslens/">Product</a></li>
+          <li><a href="/accesslens/docs/" aria-current="page">Documentation</a></li>
+          <li><a href="/accesslens/privacy/">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#where-to-find-it">Where to find it</a></li>
+          <li><a href="#start-with-a-snapshot">Start with a snapshot</a></li>
+          <li><a href="#who-can-access-what">Answer “who can access what”</a></li>
+          <li><a href="#compare-two-quarters">Compare two quarters</a></li>
+          <li><a href="#run-an-access-review">Run an access review</a></li>
+          <li><a href="#schedule-scans">Schedule scans</a></li>
+          <li><a href="#retention">Retention</a></li>
+          <li><a href="#cannot-see-everything">When AccessLens cannot see everything</a></li>
+          <li><a href="#exports">Exports</a></li>
+          <li><a href="#permissions">Permissions the app requests</a></li>
+          <li><a href="#support">Support</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/accesslens/">AccessLens</a><span>/</span>Documentation
+        </p>
+
+        <h1>AccessLens for Jira — documentation</h1>
+
+        <h2 id="where-to-find-it">Where to find it</h2>
+        <p>
+          After installing, open <strong>Jira → Settings → Apps → AccessLens</strong>. The app has a
+          single admin page with four tabs: Explore, Snapshots, Reviews and Settings. Jira restricts
+          this page to site administrators.
+        </p>
+
+        <h2 id="start-with-a-snapshot">Start with a snapshot</h2>
+        <p>
+          Every answer AccessLens gives comes from a snapshot, so take one first: <strong>Snapshots →
+          Take snapshot now</strong>.
+        </p>
+        <p>
+          This is not a workaround. Answering “which projects can this group reach?” requires reading
+          every project's permission scheme anyway, and a point-in-time answer is the one an audit can
+          use — “who had access on 30 September” is a question live data cannot answer at all.
+        </p>
+        <p>
+          A scan reads every project's permission scheme and roles, then expands group membership.
+          Large sites are split into shards that run in parallel, with a progress bar showing projects
+          scanned, shards complete and an estimate. A scan that runs long re-queues itself and resumes
+          where it left off rather than starting over.
+        </p>
+        <div class="aside" data-label="Note">
+          <p>
+            <strong>Only one scan runs at a time.</strong> If a scan is already in progress, Take
+            snapshot now is disabled until it finishes or you cancel it. Cancelling keeps whatever was
+            already collected and marks the snapshot <code>cancelled</code>, so partial data can never
+            be mistaken for a complete picture.
+          </p>
+        </div>
+
+        <h2 id="who-can-access-what">Answer “who can access what”</h2>
+        <p>The <strong>Explore</strong> tab offers three directions, all against a chosen snapshot:</p>
+        <ul>
+          <li><strong>By group</strong> — every project the group can reach, and with what</li>
+          <li><strong>By user</strong> — including access inherited through group membership</li>
+          <li><strong>By project</strong> — everyone who can reach it, flattened</li>
+        </ul>
+        <p>
+          Access held through project roles and group membership is expanded for you, so what you see
+          is <em>effective</em> access rather than what the scheme literally says. Each result carries
+          a provenance line naming the snapshot and when it was taken.
+        </p>
+
+        <h2 id="compare-two-quarters">Compare two quarters</h2>
+        <p>
+          <strong>Snapshots → Compare two snapshots</strong>. Pick any two and you get one row per
+          real change, not a stream of events.
+        </p>
+        <p>
+          Order does not matter — AccessLens compares by capture time, so selecting them the wrong way
+          round will not invert “granted” and “revoked”. A subject that was only renamed is reported
+          as a rename rather than as one subject losing access and another gaining it.
+        </p>
+
+        <h2 id="run-an-access-review">Run an access review</h2>
+        <ol>
+          <li><strong>Reviews → Start a review</strong>, choose a completed snapshot and give it a title.</li>
+          <li>
+            Walk the project list. For each one, <strong>Confirm</strong> the access or flag it for
+            <strong>Remediate</strong>, with an optional note. Projects with risk findings sort first.
+          </li>
+          <li>
+            <strong>Sign off</strong> once nothing is pending. Sign-off is refused while any project is
+            undecided, so a signed record cannot claim a completeness it does not have.
+          </li>
+          <li><strong>Export sign-off record</strong> for the evidence pack.</li>
+        </ol>
+        <p>
+          Every decision records the reviewer's Atlassian account id and a server-side UTC timestamp.
+          Both come from the Forge invocation context rather than the browser, so attribution cannot
+          be forged. Changing a decision keeps the previous one, and superseded decisions appear in
+          the exported record — a reversal is visible rather than silently overwritten.
+        </p>
+        <div class="aside" data-label="Important">
+          <p>
+            <strong>Signing off is permanent.</strong> The review freezes: no decision or note can be
+            changed afterwards, by anyone. That is what makes the exported record hold up, and it is
+            why there is no way to reopen it. Export before you sign if you are unsure.
+          </p>
+        </div>
+
+        <h2 id="schedule-scans">Schedule scans</h2>
+        <p>
+          <strong>Settings</strong> → set the cadence to weekly or monthly and pick the day. Scheduled
+          scans run in UTC. A scheduled run that collides with a manual one is skipped rather than
+          queued, so two scans never race.
+        </p>
+
+        <h2 id="retention">Retention</h2>
+        <p>
+          Snapshots are kept until you delete them, up to a limit you set (default 12).
+          <strong>At the limit, AccessLens refuses a new snapshot rather than deleting an old
+          one.</strong> Audit evidence is never discarded automatically — export and delete a snapshot
+          yourself to make room.
+        </p>
+
+        <h2 id="cannot-see-everything">When AccessLens cannot see everything</h2>
+        <p>
+          Some sites do not permit reading group members. When that happens the capability probe
+          detects it and the snapshot is marked <code>groups not expanded</code>. Group-level answers
+          stay complete; per-user answers cover only permissions granted to that user directly, and
+          the app says so in the UI and in every export rather than quietly under-reporting.
+        </p>
+        <p>
+          Separately, a project whose permission scheme could not be read is recorded as
+          <strong>partial</strong> and marked in results and exports, rather than being dropped from
+          the snapshot.
+        </p>
+
+        <h2 id="exports">Exports</h2>
+        <p>
+          Lookups, snapshots, diffs and sign-off records all export to CSV. Files are generated in
+          your browser as UTF-8 with a byte-order mark and CRLF line endings, so non-ASCII project
+          names survive a round trip through Excel. Every export carries a provenance header naming
+          the snapshot, the scan window, and any degraded capability.
+        </p>
+        <div class="aside" data-label="Note">
+          <p>
+            A full-site scan is not transactional. Permissions changed <em>during</em> the scan window
+            may be captured inconsistently, and the export header says so — an auditor should know the
+            window, not just the timestamp.
+          </p>
+        </div>
+
+        <h2 id="permissions">Permissions the app requests</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Scope</th><th>What it is for</th></tr></thead>
+            <tbody>
+              <tr><td><code>read:jira-work</code></td><td>Enumerate projects; read project roles and permission schemes</td></tr>
+              <tr><td><code>read:jira-user</code></td><td>Resolve user display names</td></tr>
+              <tr><td><code>manage:jira-configuration</code></td><td>Read group members. The app writes no configuration and issues no write requests at all; this is the only path to group membership, and without it “which projects can this person reach” is unanswerable.</td></tr>
+              <tr><td><code>storage:app</code></td><td>Store snapshots and reviews in Atlassian-hosted app storage</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          There is no <code>external</code> permission, so Forge blocks outbound calls at the platform
+          level. See the <a href="/accesslens/privacy/">privacy policy</a> for what is stored and where.
+        </p>
+
+        <h2 id="support">Support</h2>
+        <p>
+          Questions, bug reports and feature requests:
+          <a href="https://github.com/keelapps/support/issues">github.com/keelapps/support</a>.
+        </p>
+        <p>
+          Security issues:
+          <a href="https://github.com/keelapps/support/security/advisories/new">report privately</a>,
+          not in a public issue.
+        </p>
+        <p>
+          Privacy or data requests: use the address on the
+          <a href="/accesslens/privacy/">privacy policy</a>.
+        </p>
+
+        <nav class="manual__pagination">
+          <span><a href="/accesslens/">← Product page</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/accesslens/privacy/">Privacy policy →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://github.com/keelapps/support/issues">Support</a>
+        <a href="https://github.com/keelapps/support/security/advisories/new">Security</a>
+        <a href="https://github.com/keelapps">GitHub</a>
+      </p>
+      <p class="footer__fine">
+        AccessLens for Jira is published by Keelapps. Not affiliated with Atlassian. Jira is
+        a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>

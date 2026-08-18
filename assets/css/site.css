@@ -1,0 +1,186 @@
+/* Site chrome: masthead, breadcrumb, footer. This markup is repeated verbatim
+   in every page — there is no build step to share it — so it is kept short
+   enough to copy without thinking. */
+
+.skip {
+  background: var(--color-canvas);
+  border-radius: var(--radius);
+  color: var(--color-ink);
+  left: var(--space-small);
+  padding: var(--space-small) var(--space-medium);
+  position: absolute;
+  top: var(--space-small);
+  transform: translateY(-200%);
+  transition: transform var(--transition);
+  z-index: 2;
+}
+
+.skip:focus {
+  transform: translateY(0);
+}
+
+
+/* Masthead. The hierarchy is absolute: mark, then name, then whisper. */
+
+.masthead {
+  align-items: baseline;
+  border-bottom: var(--rule-gauge) solid var(--color-rule);
+  column-gap: var(--space-large);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-inline: auto;
+  max-width: var(--measure-wide);
+  padding: var(--space-medium) var(--gutter);
+  row-gap: var(--space-small);
+  width: 100%;
+}
+
+.masthead__home {
+  align-items: center;
+  display: flex;
+  font-weight: 600;
+  gap: 0.55em;
+  letter-spacing: var(--tracking-tight);
+  text-decoration: none;
+}
+
+.masthead__home:hover .masthead__wordmark {
+  text-decoration-color: currentColor;
+}
+
+.masthead__wordmark {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: var(--rule-gauge);
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color var(--transition);
+}
+
+/* The mark is inline SVG so it inherits ink and costs no request. Only the
+   ballast bulb carries its own colour. */
+
+.mark {
+  color: var(--color-ink);
+  flex: none;
+  height: 1.05em;
+  width: auto;
+}
+
+.masthead__nav {
+  color: var(--color-ink-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--font-size-small);
+  gap: var(--space-medium);
+}
+
+
+/* Breadcrumb, set as a station label. */
+
+.trail {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-large);
+  text-transform: uppercase;
+}
+
+.trail a {
+  color: var(--color-ink-muted);
+}
+
+.trail span {
+  padding-inline: 0.5em;
+}
+
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table-wrap table {
+  min-width: 24em;
+}
+
+
+/* Marginalia. There is no semantic colour to reach for — coral is spoken for
+   and the palette has nothing else — so an aside is distinguished by a rule,
+   an indent, and a monospaced label, the way a note is added to a drawing. */
+
+.aside {
+  border-left: var(--rule-gauge) solid var(--color-rule-strong);
+  padding-left: var(--space-medium);
+}
+
+.aside::before {
+  color: var(--color-ink-muted);
+  content: attr(data-label);
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-x-small);
+  text-transform: uppercase;
+}
+
+.aside p + p {
+  margin-top: var(--space-small);
+}
+
+
+/* Footer. */
+
+.footer {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  margin-inline: auto;
+  margin-top: var(--space-x-large);
+  max-width: var(--measure-wide);
+  padding: var(--space-large) var(--gutter) var(--space-x-large);
+  width: 100%;
+}
+
+.footer > * + * {
+  margin-top: var(--space-medium);
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-medium);
+}
+
+.footer__fine {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-x-small);
+  max-width: var(--measure);
+}
+
+
+/* Prev / next, and the way back up. */
+
+.manual__pagination {
+  align-items: baseline;
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  display: grid;
+  gap: var(--space-medium);
+  grid-template-columns: 1fr auto 1fr;
+  margin-top: var(--space-x-large);
+  padding-top: var(--space-large);
+}
+
+.manual__pagination-mid {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.manual__pagination-next {
+  text-align: right;
+}
