@@ -1,0 +1,44 @@
+.gitignore
+  h_95e33fbd4ab2d9 1
+CNAME
+  h_95e33fbd4ab2d9 1
+README.md
+  h_95e33fbd4ab2d9 1-101
+accesslens/docs/index.html
+  h_95e33fbd4ab2d9 1-262
+accesslens/index.html
+  h_95e33fbd4ab2d9 1-234
+accesslens/privacy/index.html
+  h_95e33fbd4ab2d9 1-207
+assets/css/elements.css
+  h_95e33fbd4ab2d9 1-180
+assets/css/home.css
+  h_95e33fbd4ab2d9 1-185
+assets/css/manual.css
+  h_95e33fbd4ab2d9 1-243
+assets/css/product.css
+  h_95e33fbd4ab2d9 1-201
+assets/css/reset.css
+  h_95e33fbd4ab2d9 1-50
+assets/css/root.css
+  h_95e33fbd4ab2d9 1-123
+assets/css/site.css
+  h_95e33fbd4ab2d9 1-186
+index.html
+  h_95e33fbd4ab2d9 1-173
+tools/check-contrast.js
+  h_95e33fbd4ab2d9 1-34
+tools/check-legal-text
+  h_95e33fbd4ab2d9 1-100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "1ddfdb1ef2b63fcab91b604c5fe2234d571e78f4",
+  "prompts": {},
+  "humans": {
+    "h_95e33fbd4ab2d9": {
+      "author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
