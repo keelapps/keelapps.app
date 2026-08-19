@@ -1,0 +1,76 @@
+tools/check-contrast.js
+  s_ce59446483bc76::t_592343cdcbe086 1-34
+assets/css/home.css
+  s_ce59446483bc76::t_6b29144b7664d3 7
+  s_ce59446483bc76::t_a33a021f3c7bf0 147,175
+  s_ce59446483bc76::t_93292f1edfccb9 1-6,8-19,21-60,63-64,66-95,97-98,106-146,148-174,176-185
+  s_ce59446483bc76::t_f98bf853a1ba21 20
+  s_ce59446483bc76::t_b60c52490426fa 61-62,65
+  s_ce59446483bc76::t_1f9994f24bf6f1 96,99-105
+accesslens/index.html
+  s_ce59446483bc76::t_354b1aa87476fd 48-49
+  s_ce59446483bc76::t_353b050a15619d 14-30,33-47,50-58,68,72-73,75-78,81-127,129,131-134,137-138,141-142,145-146,149-154,156-210,213-219,221-225,227-230,232
+  s_ce59446483bc76::t_fb54bcf6b521ee 6-8,155
+assets/css/reset.css
+  s_ce59446483bc76::t_64c60244d2b3f9 1-50
+README.md
+  s_ce59446483bc76::t_f73eaf4e21515f 3-4,6-8,21-25,30-101
+accesslens/docs/index.html
+  s_ce59446483bc76::t_fb54bcf6b521ee 6-8,211
+  s_ce59446483bc76::t_92a33210fbe47f 15-30,33-47,49,51-52,54-75,77-80,82,84,86-88,91-114,116-127,129-138,140-165,167-210,212-254,256-258,260
+  s_ce59446483bc76::t_354b1aa87476fd 48
+  s_ce59446483bc76::t_ff96b0c683573e 14
+index.html
+  s_ce59446483bc76::t_ba8cfb4ec9572d 121-124,126
+  s_ce59446483bc76::t_d6dfbdb981d94b 9-30,33-120,125,127-164,166-169,171
+  s_ce59446483bc76::t_fb54bcf6b521ee 6-8
+assets/css/root.css
+  s_ce59446483bc76::t_c50bc83f221dcf 1-33,40-91,99-123
+  s_ce59446483bc76::t_4431e8727ba53e 92-98
+  s_ce59446483bc76::t_43fab68f156af4 34-39
+assets/css/site.css
+  s_ce59446483bc76::t_bdcacee85824c5 140
+  s_ce59446483bc76::t_a33a021f3c7bf0 82,118,157,176
+  s_ce59446483bc76::t_e6909874bec0ac 108-117,119-132
+  s_ce59446483bc76::t_80ad12fc320d7f 99-107
+  s_ce59446483bc76::t_94e34a0c3db344 161-175,177-186
+  s_ce59446483bc76::t_6b29144b7664d3 34,142
+  s_ce59446483bc76::t_5e3d1a69dd081d 1-33,35-81,83-98,133-139,141,143-156,158-160
+tools/check-legal-text
+  s_ce59446483bc76::t_e2aa71019be357 1-100
+assets/css/manual.css
+  s_ce59446483bc76::t_15d4e8d2d67db3 1-47,49-177,179-184
+  s_ce59446483bc76::t_8878a7aeb6dbab 185-243
+  s_ce59446483bc76::t_a33a021f3c7bf0 48,178
+assets/css/product.css
+  s_ce59446483bc76::t_a33a021f3c7bf0 20,67,191
+  s_ce59446483bc76::t_2eecec7dab20a0 1-19,21-66,68-190,192-201
+accesslens/privacy/index.html
+  s_ce59446483bc76::t_354b1aa87476fd 48
+  s_ce59446483bc76::t_2f690edc86f0b6 80-85,87,185
+  s_ce59446483bc76::t_fb54bcf6b521ee 6-8,103
+  s_ce59446483bc76::t_a8f15280301f95 15-30,33,35-47,49-52,54-73,75-78,86,89-96,98-102,104-136,138-143,145-151,153-178,180-184,186-205
+  s_ce59446483bc76::t_2f25a2e021802f 14
+assets/css/elements.css
+  s_ce59446483bc76::t_404ca6fe4fbe9f 1-101,103-174,177,180
+  s_ce59446483bc76::t_e1854f155263d3 102
+  s_ce59446483bc76::t_67fe426b089763 175-176,178-179
+.gitignore
+  s_ce59446483bc76::t_25b67056a58701 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "ae80f7420f5504238d936629340df68d562dd9c0",
+  "prompts": {},
+  "sessions": {
+    "s_ce59446483bc76": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a52eb525-5680-4eef-bf75-8e4c9b0db3bc",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
