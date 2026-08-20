@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Privacy policy — Recur for Jira</title>
+    <meta
+      name="description"
+      content="Recur for Jira stores template configuration and run history only in Atlassian-hosted Forge storage inside your own tenant. The app declares no external network access."
+    />
+    <link rel="canonical" href="https://keelapps.app/recur/privacy/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/recur/privacy/" />
+    <meta property="og:title" content="Privacy policy — Recur for Jira" />
+    <meta
+      property="og:description"
+      content="Template configuration and run history stay in Atlassian-hosted Forge storage inside your own tenant. No external network access, no vendor copy."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/recur/">Recur</a>
+        <a href="https://github.com/keelapps/support/issues">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Recur pages and sections">
+        <p class="manual__toc-title">Recur for Jira</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/recur/">Product</a></li>
+          <li><a href="/recur/docs/">Documentation</a></li>
+          <li><a href="/recur/privacy/" aria-current="page">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#short-version">The short version</a></li>
+          <li><a href="#what-the-app-stores">What the app stores</a></li>
+          <li><a href="#what-is-never-stored">What is never stored</a></li>
+          <li><a href="#who-can-see-it">Who can see it</a></li>
+          <li><a href="#retention-and-deletion">Retention and deletion</a></li>
+          <li><a href="#data-residency">Data residency</a></li>
+          <li><a href="#sub-processors">Sub-processors</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/recur/">Recur</a><span>/</span>Privacy policy
+        </p>
+
+        <!-- legal:begin
+             In-force text. This document is filed with the Atlassian
+             Marketplace. Structure, classes, ids and attributes may change;
+             NOT ONE WORD between these sentinels may. Verify before pushing:
+               tools/check-legal-text  (see README.md)
+        -->
+        <h1>Privacy policy — Recur for Jira</h1>
+        <p class="manual__meta">Last updated: <time datetime="2026-08-20">20 August 2026</time></p>
+
+        <h2 id="short-version">The short version</h2>
+        <p class="manual__lede">
+          Recur does not send your data anywhere. It runs entirely on Atlassian Forge,
+          inside Atlassian's infrastructure. The app declares no external network
+          permissions, which Atlassian enforces at the platform level — it
+          <em>cannot</em> make an outbound call even if it tried. The issues it creates are
+          ordinary Jira issues on your own site.
+        </p>
+
+        <h2 id="what-the-app-stores">What the app stores</h2>
+        <p>
+          Everything is stored in Forge app storage (Atlassian-hosted KVS) inside your own
+          Atlassian tenant region.
+        </p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Data</th><th>Examples</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Templates</td>
+                <td>name, issue type, title/description templates with <code>{{date}}</code> and <code>{{n}}</code>, recurrence rule, timezone, pile-up policy</td>
+                <td>to know what to create and when</td>
+              </tr>
+              <tr>
+                <td>Runtime state</td>
+                <td>next run time, run count, last issue key, held occurrences</td>
+                <td>scheduling</td>
+              </tr>
+              <tr>
+                <td>Run history</td>
+                <td>per-run result (created/skipped/waiting/failed), issue key, reason for skips</td>
+                <td>so “why was there no issue” always has an answer</td>
+              </tr>
+              <tr>
+                <td>Creator/owner references</td>
+                <td>Atlassian account ids and display names of who created a template, who is assigned or in the rotation</td>
+                <td>attribution and assignee selection</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Recur never stores issue content beyond what the template itself contains. It does
+          not read or retain descriptions, comments, attachments, or email addresses.
+        </p>
+
+        <h2 id="what-is-never-stored">What is never stored</h2>
+        <ul>
+          <li>Issue descriptions or comments (beyond the template text you wrote)</li>
+          <li>Email addresses</li>
+          <li>IP addresses, usage analytics, or behavioural tracking</li>
+        </ul>
+
+        <h2 id="who-can-see-it">Who can see it</h2>
+        <p>
+          Template management is restricted to project administrators for their own
+          projects, checked as the calling user (<code>asUser</code>) — never assumed from the UI.
+          Site-wide lists are visible to Jira administrators only. Every mutating resolver
+          runs the same permission check.
+        </p>
+
+        <h2 id="retention-and-deletion">Retention and deletion</h2>
+        <ul>
+          <li>Deleting a template deletes its configuration and run history.</li>
+          <li>Held occurrences older than 30 days are dropped automatically.</li>
+          <li>Uninstalling the app removes all Forge storage.</li>
+        </ul>
+
+        <h2 id="data-residency">Data residency</h2>
+        <p>
+          Whatever your Atlassian site's residency is. Recur adds no storage outside Forge
+          and therefore introduces no additional residency considerations.
+        </p>
+
+        <h2 id="sub-processors">Sub-processors</h2>
+        <p>None. Atlassian hosts everything; there is no other party involved.</p>
+
+        <h2 id="changes">Changes</h2>
+        <p>
+          Material changes to what is stored or where will be reflected here and in the
+          Marketplace listing before they ship.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          <a href="mailto:support@keelapps.app">support@keelapps.app</a> — for questions
+          about this policy, and for data access, correction or deletion requests.
+        </p>
+        <!-- legal:end -->
+
+        <nav class="manual__pagination">
+          <span><a href="/recur/docs/">← Documentation</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/recur/">Product page →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://github.com/keelapps/support/issues">Support</a>
+        <a href="https://github.com/keelapps/support/security/advisories/new">Security</a>
+        <a href="https://github.com/keelapps">GitHub</a>
+      </p>
+      <p class="footer__fine">
+        Recur for Jira is published by Keelapps. Not affiliated with Atlassian. Jira is
+        a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>

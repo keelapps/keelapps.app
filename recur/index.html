@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Recur for Jira — the work that has to happen every month, happening every month</title>
+    <meta
+      name="description"
+      content="Create Jira issues on a schedule: weekly reports, monthly maintenance, quarterly reviews. Correct across daylight saving, with a per-template rule for what happens when the last one is still open."
+    />
+    <link rel="canonical" href="https://keelapps.app/recur/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://keelapps.app/recur/" />
+    <meta property="og:title" content="Recur for Jira — the work that has to happen every month, happening every month" />
+    <meta
+      property="og:description"
+      content="Scheduled issue creation for Jira Cloud, built on Forge. Nothing leaves Atlassian."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/product.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/recur/">Recur</a>
+        <a href="https://github.com/keelapps/support/issues">Support</a>
+      </nav>
+    </header>
+
+    <main class="product" id="main">
+      <section class="lede-block">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Recur
+        </p>
+        <p class="eyebrow">For Jira Cloud teams with work on a calendar</p>
+        <h1>The work that has to happen every month, happening every month.</h1>
+        <p class="lede">
+          Weekly reports, monthly patching, quarterly access reviews, certificate renewals.
+          Recur creates the issue on schedule, in the time zone you picked, and tells you
+          exactly what it did — including the times it deliberately did nothing.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#availability">Coming to the Atlassian Marketplace</a>
+          <span class="note-inline">Runs on Atlassian. Nothing leaves your tenant.</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="aside" data-label="The gap this fills">
+          <p>
+            Recurring issues have been requested in Jira Cloud since 2011
+            (<code>JRACLOUD-5185</code>) and Atlassian closed the request as
+            <strong>Won't Do</strong>. Automation for Jira is the usual suggestion, but it
+            reacts to events — when this happens, do that. A calendar is not an event, and
+            "create it unless last month's is still open" is not a rule it expresses.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Never pile up the same task twice</h3>
+            <p>
+              Decide per template what happens when the last issue is still open: create
+              anyway, skip this round, or hold it and create it the moment the previous one
+              closes. Every skip is recorded with its reason.
+            </p>
+          </div>
+          <div class="card">
+            <h3>See the next ten runs before you save</h3>
+            <p>
+              The editor previews ten occurrences as you type, in the template's own time
+              zone. Nothing surprises you after you save.
+            </p>
+          </div>
+          <div class="card">
+            <h3>09:00 stays 09:00</h3>
+            <p>
+              Each template picks an IANA time zone. Occurrences are built as local calendar
+              dates and converted last, so a daylight saving change moves the UTC instant and
+              not your morning.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Month ends that behave</h3>
+            <p>
+              Monthly on the 31st runs on 28 February, or the 29th in a leap year. First
+              Monday, last Friday and every-N-months are all first-class.
+            </p>
+          </div>
+          <div class="card">
+            <h3>An account of every run</h3>
+            <p>
+              Created, skipped, waiting or failed — with the issue key, or the reason there
+              is none. Failed runs retry in one click, and a failure never stops the series.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Rotate the duty</h3>
+            <p>
+              The assignee can walk a list and wrap around, so the same person is not on the
+              hook every week. Deactivated accounts are skipped with a warning rather than
+              silently assigned.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>The Monday morning report, end to end</h2>
+        <ol class="steps">
+          <li>
+            <h3>Start from a sample</h3>
+            <p>Weekly report, monthly maintenance or quarterly review — project, issue type and time zone already filled in.</p>
+          </li>
+          <li>
+            <h3>Write the issue once</h3>
+            <p>Summary and description take <code>{{date}}</code> and <code>{{n}}</code>, so each issue names its own week and counts itself.</p>
+          </li>
+          <li>
+            <h3>Check the ten-run preview</h3>
+            <p>Against a real calendar, in the template's zone, before anything is saved.</p>
+          </li>
+          <li>
+            <h3>Read the history when someone asks</h3>
+            <p>Every Monday accounted for: the issue it created, or why it did not.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>Against what you have today</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Native Jira</th>
+                <th>Recur</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Create an issue every Monday at 09:00?</td>
+                <td class="absent">Closed as Won't Do</td>
+                <td><span class="answer">Yes</span></td>
+              </tr>
+              <tr>
+                <td>Still 09:00 after the clocks change?</td>
+                <td class="absent">Not applicable</td>
+                <td><span class="answer">Yes</span></td>
+              </tr>
+              <tr>
+                <td>Skip it if last month's is still open?</td>
+                <td class="absent">Not supported</td>
+                <td><span class="answer">Per template</span></td>
+              </tr>
+              <tr>
+                <td>Monthly on the 31st, in February?</td>
+                <td class="absent">Not supported</td>
+                <td><span class="answer">Last day</span></td>
+              </tr>
+              <tr>
+                <td>Why was no issue created?</td>
+                <td class="absent">Not recorded</td>
+                <td><span class="answer">Recorded</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 id="availability">Availability</h2>
+        <div class="prose">
+          <p>
+            Recur is built and deployed on Atlassian Forge. It declares no external network
+            access, so there is nothing extra for a vendor security review to look at. It is
+            going through Atlassian Marketplace review; this page will link to the listing as
+            soon as it is live.
+          </p>
+          <p>
+            Sites with ten users or fewer are free, with every feature.
+          </p>
+          <p>
+            Questions, bug reports and feature requests:
+            <a href="https://github.com/keelapps/support/issues">open an issue</a>.
+          </p>
+          <p>
+            Found a security issue? Please
+            <a href="https://github.com/keelapps/support/security/advisories/new">report it privately</a>
+            rather than in a public issue.
+          </p>
+        </div>
+
+        <nav class="manual__pagination">
+          <span><a href="/">← All apps</a></span>
+          <span class="manual__pagination-mid"><a href="/recur/docs/">Documentation</a></span>
+          <span class="manual__pagination-next"><a href="/recur/privacy/">Privacy policy →</a></span>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://github.com/keelapps/support/issues">Support</a>
+        <a href="https://github.com/keelapps/support/security/advisories/new">Security</a>
+        <a href="https://github.com/keelapps">GitHub</a>
+      </p>
+      <p class="footer__fine">
+        Recur for Jira is an Atlassian Forge app. It runs entirely inside your Atlassian
+        tenant and declares no external network access — nothing it stores is sent to us or
+        to anyone else. Not affiliated with Atlassian. Jira is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
