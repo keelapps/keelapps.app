@@ -23,7 +23,10 @@ import subprocess
 import sys
 from pathlib import Path
 
-PAGES = ["accesslens/privacy/index.html"]
+PAGES = [
+    "accesslens/privacy/index.html",
+    "recur/privacy/index.html",
+]
 
 ROOT = Path(__file__).resolve().parent.parent
 
