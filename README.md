@@ -24,6 +24,10 @@ therefore every URL already handed to Atlassian, stayed exactly as they were.
 **These four URLs are filed with Atlassian and must not move:**
 `/`, `/accesslens/`, `/accesslens/docs/`, `/accesslens/privacy/`.
 
+Recur's three — `/recur/`, `/recur/docs/`, `/recur/privacy/` — go into its
+listing when it is submitted, and are frozen from that point on. Treat them as
+filed already: the listing is written against them.
+
 ## Adding a page
 
 Drop an `index.html` at the right path and push. There is nothing to build.
@@ -82,13 +86,16 @@ tools/check-contrast.js         # paste into a devtools console, both schemes
 Returns every text node below WCAG AA for its size, resolving alpha against what
 it is actually painted on. Empty array is clean.
 
-The site chrome should stay byte-identical across the three app pages, so drift
-is greppable:
+The site chrome should stay byte-identical across an app's three pages, so drift
+is greppable. The masthead differs *between* apps — its second link points at the
+app you are on — so check one app at a time:
 
 ```sh
-for f in accesslens/index.html accesslens/docs/index.html accesslens/privacy/index.html; do
-  awk '/<header class="masthead">/,/<\/header>/' "$f" | shasum | cut -d' ' -f1
-done | sort -u | wc -l          # must print 1
+for app in accesslens recur; do
+  for f in $app/index.html $app/docs/index.html $app/privacy/index.html; do
+    awk '/<header class="masthead">/,/<\/header>/' "$f" | shasum | cut -d' ' -f1
+  done | sort -u | wc -l        # must print 1, once per app
+done
 ```
 
 ## Local preview
