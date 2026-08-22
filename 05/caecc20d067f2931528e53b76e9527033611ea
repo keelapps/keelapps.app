@@ -1,0 +1,19 @@
+recur/index.html
+  s_f580f725469e63::t_9a62bebc48f9d7 93,182-186
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.23",
+  "base_commit_sha": "05caecc20d067f2931528e53b76e9527033611ea",
+  "prompts": {},
+  "sessions": {
+    "s_f580f725469e63": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf46cf3c-fd86-453c-a5d9-2c7cf3055100",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
