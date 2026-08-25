@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Security policy — keelapps</title>
+    <meta
+      name="description"
+      content="How to report a vulnerability in a keelapps product privately, what happens after you do, and what is in scope."
+    />
+    <link rel="canonical" href="https://keelapps.app/security/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/security/" />
+    <meta property="og:title" content="Security policy — keelapps" />
+    <meta
+      property="og:description"
+      content="Report vulnerabilities privately. Acknowledged within 3 working days, confirmed or disputed within 10."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="https://github.com/keelapps/support/issues">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Sections">
+        <p class="manual__toc-title">keelapps</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/">All apps</a></li>
+          <li><a href="/security/" aria-current="page">Security policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#reporting">Reporting a vulnerability</a></li>
+          <li><a href="#what-happens-next">What happens next</a></li>
+          <li><a href="#scope">Scope</a></li>
+          <li><a href="#good-faith">Good faith</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Security policy
+        </p>
+
+        <!-- legal:begin
+             In-force text. This document's URL is filed with the Atlassian
+             Marketplace as the partner security policy. Structure, classes,
+             ids and attributes may change; NOT ONE WORD between these
+             sentinels may. Verify before pushing:
+               tools/check-legal-text  (see README.md)
+        -->
+        <h1>Security policy</h1>
+        <p class="manual__meta">Last updated: <time datetime="2026-08-19">19 August 2026</time></p>
+
+        <h2 id="reporting">Reporting a vulnerability</h2>
+        <p class="manual__lede">
+          <strong>Do not open a public issue for a security vulnerability.</strong>
+        </p>
+        <p>
+          Our Atlassian apps handle permission data, content metadata, and scheduled
+          automation inside customer Jira and Confluence sites. A publicly posted
+          vulnerability report is actionable by anyone who reads it before we have shipped
+          a fix.
+        </p>
+        <p>
+          Report it privately through
+          <a href="https://github.com/keelapps/support/security/advisories/new">GitHub private vulnerability reporting</a>,
+          or by email to
+          <a href="mailto:support@keelapps.app">support@keelapps.app</a>.
+        </p>
+        <p>
+          Please include what you found, how to reproduce it, and what an attacker could do
+          with it. If you have a proof of concept, keep it to the minimum needed to
+          demonstrate the issue.
+        </p>
+
+        <h2 id="what-happens-next">What happens next</h2>
+        <ul>
+          <li>We acknowledge within <strong>3 working days</strong>.</li>
+          <li>We confirm or dispute the finding, with reasoning, within <strong>10 working days</strong>.</li>
+          <li>
+            Confirmed vulnerabilities are fixed and released as a priority. Our Atlassian
+            apps run on Atlassian Forge, so a fix reaches every installation without
+            customer action.
+          </li>
+          <li>
+            We will tell you when the fix is live, and we are happy to credit you by name
+            unless you prefer otherwise.
+          </li>
+        </ul>
+
+        <h2 id="scope">Scope</h2>
+        <p>
+          In scope: the keelapps products distributed through the Atlassian Marketplace,
+          and this organisation's public repositories.
+        </p>
+        <p>Out of scope, because they are not ours to fix:</p>
+        <ul>
+          <li>
+            Vulnerabilities in Atlassian Jira, Confluence, or the Forge platform — report
+            those to
+            <a href="https://www.atlassian.com/trust/security/report-vulnerability">Atlassian</a>.
+          </li>
+          <li>
+            Findings that require an already-compromised administrator account.
+          </li>
+        </ul>
+
+        <h2 id="good-faith">Good faith</h2>
+        <p>
+          We will not pursue legal action against anyone who reports a vulnerability in
+          good faith, stays within the scope above, and gives us reasonable time to fix it
+          before disclosing publicly. We do not currently run a paid bounty programme.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          Security reports:
+          <a href="https://github.com/keelapps/support/security/advisories/new">private vulnerability reporting</a>
+          or <a href="mailto:support@keelapps.app">support@keelapps.app</a>.
+          Anything else: <a href="https://github.com/keelapps/support/issues">the support tracker</a>.
+        </p>
+        <!-- legal:end -->
+
+        <nav class="manual__pagination">
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://github.com/keelapps/support/issues">Support</a>
+        <a href="/security/">Security</a>
+        <a href="https://github.com/keelapps">GitHub</a>
+      </p>
+      <p class="footer__fine">
+        Keelapps builds administration and compliance apps for Atlassian Cloud, and Keelhaven
+        for macOS. Not affiliated with Atlassian. Jira and Confluence are trademarks of
+        Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
