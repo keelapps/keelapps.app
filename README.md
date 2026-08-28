@@ -43,5 +43,5 @@ changing anything structural.
 ## Support
 
 Questions and bug reports for the apps themselves go to
-[`keelapps/support`](https://github.com/keelapps/support/issues). Security
+the [Keelapps support portal](https://keelapps.atlassian.net/helpcenter/support). Security
 issues: [report privately](https://github.com/keelapps/support/security/advisories/new).
