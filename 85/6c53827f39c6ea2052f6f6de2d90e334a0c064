@@ -1,0 +1,33 @@
+accesslens/docs/index.html
+  s_446278b7863e0c::t_9e131c61847931 59,239,261
+accesslens/index.html
+  s_446278b7863e0c::t_7b41b363d9ef8a 59,219,238
+accesslens/privacy/index.html
+  s_446278b7863e0c::t_9ce1f25e3b0b1d 59,206
+index.html
+  s_446278b7863e0c::t_39d2c2b7f16639 142,165
+recur/docs/index.html
+  s_446278b7863e0c::t_8533520f5d5d63 59,329,352
+recur/index.html
+  s_446278b7863e0c::t_3c5d34ea6c22c7 59,234,253
+recur/privacy/index.html
+  s_446278b7863e0c::t_c94450e51c6e35 59,200
+security/index.html
+  s_446278b7863e0c::t_f8458d2ef07d0d 58,159,171
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "856c53827f39c6ea2052f6f6de2d90e334a0c064",
+  "prompts": {},
+  "sessions": {
+    "s_446278b7863e0c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6154527d-fa8a-4c98-a18f-ab988f7743a8",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
