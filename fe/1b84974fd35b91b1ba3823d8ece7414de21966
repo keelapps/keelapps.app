@@ -1,0 +1,35 @@
+README.md
+  s_446278b7863e0c::t_8f3f29771ca3a2 46
+accesslens/docs/index.html
+  s_446278b7863e0c::t_1e594a8e54cf20 59,239,261
+accesslens/index.html
+  s_446278b7863e0c::t_e372a68111266a 59,219,238
+accesslens/privacy/index.html
+  s_446278b7863e0c::t_2ed8059dd2dd73 59,206
+index.html
+  s_446278b7863e0c::t_a5240ca4f1049a 142,165
+recur/docs/index.html
+  s_446278b7863e0c::t_da865e1d079df5 59,329,352
+recur/index.html
+  s_446278b7863e0c::t_f5d1f540e7b4b0 59,234,253
+recur/privacy/index.html
+  s_446278b7863e0c::t_863455a19c6cb5 59,200
+security/index.html
+  s_446278b7863e0c::t_8d48e62d63341d 58,159,171
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "fe1b84974fd35b91b1ba3823d8ece7414de21966",
+  "prompts": {},
+  "sessions": {
+    "s_446278b7863e0c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6154527d-fa8a-4c98-a18f-ab988f7743a8",
+        "model": "claude-fable-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
