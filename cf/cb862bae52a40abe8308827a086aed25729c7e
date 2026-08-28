@@ -1,0 +1,25 @@
+accesslens/privacy/index.html
+  s_446278b7863e0c::t_d395befe21e34d 191
+recur/docs/index.html
+  s_446278b7863e0c::t_b6500c4b3f7ca3 330
+recur/privacy/index.html
+  s_446278b7863e0c::t_6f4fe697f205de 185
+security/index.html
+  s_446278b7863e0c::t_69f081f3b309eb 107,158
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "cfcb862bae52a40abe8308827a086aed25729c7e",
+  "prompts": {},
+  "sessions": {
+    "s_446278b7863e0c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6154527d-fa8a-4c98-a18f-ab988f7743a8",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
