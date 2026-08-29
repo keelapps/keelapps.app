@@ -1,0 +1,37 @@
+index.html
+  s_f837db32c071ce::t_7abff95b3d4142 153-154
+accesslens/index.html
+  s_f837db32c071ce::t_7abff95b3d4142 223-224
+security/index.html
+  s_f837db32c071ce::t_63b2521bfb3873 131
+  s_f837db32c071ce::t_3556556b20dc39 155
+  s_f837db32c071ce::t_cd36b410708ae0 104
+recur/docs/index.html
+  s_f837db32c071ce::t_7abff95b3d4142 334-335
+digest/index.html
+  s_f837db32c071ce::t_7abff95b3d4142 252-253
+digest/docs/index.html
+  s_f837db32c071ce::t_7abff95b3d4142 320-321
+recur/index.html
+  s_f837db32c071ce::t_7abff95b3d4142 238-239
+README.md
+  s_f837db32c071ce::t_b6049fa355de44 47
+accesslens/docs/index.html
+  s_f837db32c071ce::t_7abff95b3d4142 243-244
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "c23228451b255071d7e61a54974125c3520eb968",
+  "prompts": {},
+  "sessions": {
+    "s_f837db32c071ce": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b5c19a50-b1c3-457c-997a-97230392d9c3",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
