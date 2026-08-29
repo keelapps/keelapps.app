@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Signoff for Confluence — page approvals that cannot lie</title>
+    <meta
+      name="description"
+      content="Version-aware page approvals for Confluence Cloud: request sign-off in one click, approvals pin the exact page version, policies bind spaces by reference. Nothing leaves Atlassian."
+    />
+    <link rel="canonical" href="https://keelapps.app/signoff/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://keelapps.app/signoff/" />
+    <meta property="og:title" content="Signoff for Confluence — page approvals that cannot lie" />
+    <meta
+      property="og:description"
+      content="Approvals pin the exact page version they covered; editing the page degrades the badge on its own. One policy for every space, nothing copied. Runs on Forge, zero egress."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/product.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/signoff/">Signoff</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">Support</a>
+      </nav>
+    </header>
+
+    <main class="product" id="main">
+      <section class="lede-block">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Signoff
+        </p>
+        <p class="eyebrow">For teams whose pages need a real sign-off</p>
+        <h1>Who approved this version of this page — and is that still good?</h1>
+        <p class="lede">
+          Confluence cannot answer that question. Signoff can, because its approvals pin the
+          exact page version they covered: edit the page and the badge degrades to
+          “Approved&nbsp;·&nbsp;page changed” on its own, computed live against the page and
+          never stored. Policies are defined once and bound to spaces by reference — govern
+          three hundred spaces without copying a workflow into any of them.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#availability">Coming to the Atlassian Marketplace</a>
+          <span class="note-inline">Zero egress. Approval records never leave your Atlassian tenant.</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="aside" data-label="The gap this fills">
+          <p>
+            Quality manuals, SOPs, release notes, legal copy — pages whose whole value is
+            that someone stood behind a specific version of them. The native page has no
+            approval concept at all, and the apps that add one are heavyweight workflow
+            engines configured space by space by hand, with records held on servers outside
+            Atlassian.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Sign-off in one click</h3>
+            <p>
+              Request approval from the page itself: approvers come from the space's policy
+              or your own pick, any-one or all-must-approve, with an optional note to the
+              approvers.
+            </p>
+          </div>
+          <div class="card">
+            <h3>A badge that cannot lie</h3>
+            <p>
+              An approval names the page version it covered. The badge compares that against
+              the live page every time it renders — “Approved · v12” becomes “page changed”
+              the moment anyone edits, with re-approval one click away.
+            </p>
+          </div>
+          <div class="card">
+            <h3>One policy, every space</h3>
+            <p>
+              Define approvers, mode and validity once. Spaces bind by reference or simply
+              inherit the site default; editing the policy updates every bound space at
+              once. Nothing is ever copied.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Approvals that expire</h3>
+            <p>
+              A policy can give approvals a validity of 3 to 24 months. A daily scan
+              surfaces everything due for re-approval — site-wide for admins, and in each
+              signer's own inbox.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Notified by Confluence itself</h3>
+            <p>
+              Approvers are @-mentioned in a page comment, so requests reach them through
+              Confluence's own bell and email — and the approval trail is visible on the
+              page. Admins can switch the comments off.
+            </p>
+          </div>
+          <div class="card">
+            <h3>An audit trail an auditor can use</h3>
+            <p>
+              Every request, decision and cancellation, exportable as CSV: who approved
+              which version of which page, and when. Built on Forge, zero external calls.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>An SOP review, end to end</h2>
+        <ol class="steps">
+          <li>
+            <h3>The policy exists already</h3>
+            <p>
+              The site admin defined “Quality documents” once: two named approvers, everyone
+              must approve, valid for twelve months. The QMS space inherits it without any
+              setup.
+            </p>
+          </li>
+          <li>
+            <h3>The author requests sign-off</h3>
+            <p>
+              One click on the page. The approvers are @-mentioned in a comment and the
+              request lands in their approvals inbox; the badge reads “In review”.
+            </p>
+          </li>
+          <li>
+            <h3>Approvers decide from the queue</h3>
+            <p>
+              Approve or request changes right from the inbox, with a comment. The moment
+              the request settles, the badge reads “Approved · v7, valid until next August”.
+            </p>
+          </li>
+          <li>
+            <h3>The truth maintains itself</h3>
+            <p>
+              Someone edits the page in March — the badge degrades to “page changed” by
+              itself. Next August the approval expires and the page appears on the due
+              list. Nobody had to remember anything.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>Against what you have today</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Native Confluence</th>
+                <th>Workflow suites</th>
+                <th>Signoff</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Who approved this exact version?</td>
+                <td class="absent">No approval concept</td>
+                <td>Sometimes, buried in a workflow</td>
+                <td><span class="answer">On the page</span></td>
+              </tr>
+              <tr>
+                <td>Page edited after approval — does the status notice?</td>
+                <td class="absent">—</td>
+                <td class="absent">Often stays “approved”</td>
+                <td><span class="answer">Degrades by itself</span></td>
+              </tr>
+              <tr>
+                <td>Same rules across 300 spaces?</td>
+                <td class="absent">—</td>
+                <td class="absent">Copy the workflow 300 times</td>
+                <td><span class="answer">One policy, bound by reference</span></td>
+              </tr>
+              <tr>
+                <td>Approvals that expire on a compliance calendar?</td>
+                <td class="absent">—</td>
+                <td>In the heavyweight tiers</td>
+                <td><span class="answer">3–24 months, built in</span></td>
+              </tr>
+              <tr>
+                <td>Audit export for the auditor?</td>
+                <td class="absent">Page history only</td>
+                <td>Varies</td>
+                <td><span class="answer">CSV, one click</span></td>
+              </tr>
+              <tr>
+                <td>Do approval records leave Atlassian?</td>
+                <td>—</td>
+                <td class="absent">Usually — vendor servers</td>
+                <td><span class="answer">Never</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 id="availability">Availability</h2>
+        <div class="prose">
+          <p>
+            Signoff is built and deployed on Atlassian Forge. It is going through Atlassian
+            Marketplace review; this page will link to the listing as soon as it is live.
+          </p>
+          <p>
+            Licensing is handled by Atlassian. Sites with 10 users or fewer pay nothing at
+            all; paid tiers are priced per user, at a fraction of the heavyweight suites.
+          </p>
+          <p>
+            Questions, bug reports and feature requests:
+            <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">raise a support request</a>.
+          </p>
+          <p>
+            Found a security issue? Please
+            <a href="/security/">report it privately</a>
+            rather than in a public channel.
+          </p>
+        </div>
+
+        <nav class="manual__pagination">
+          <span><a href="/">← All apps</a></span>
+          <span class="manual__pagination-mid"><a href="/signoff/docs/">Documentation</a></span>
+          <span class="manual__pagination-next"><a href="/signoff/privacy/">Privacy policy →</a></span>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Signoff is an Atlassian Forge app. It runs entirely inside your Atlassian tenant and
+        declares no external network access — your data is never sent to us or to anyone
+        else. Not affiliated with Atlassian. Confluence is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
