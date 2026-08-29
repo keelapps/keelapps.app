@@ -45,7 +45,23 @@
   margin-top: var(--space-large);
 }
 
-/* .btn lives in site.css — the home page borrows it for the support CTA. */
+/* The one filled element on the page. It inverts the plate rather than
+   introducing a colour. */
+
+.btn {
+  background: var(--color-ink);
+  border-radius: var(--radius);
+  color: var(--color-canvas);
+  display: inline-block;
+  font-size: var(--font-size-small);
+  padding: 0.7em 1.1em;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
 
 .note-inline {
   color: var(--color-ink-muted);
