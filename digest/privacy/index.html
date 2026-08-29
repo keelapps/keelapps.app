@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Privacy policy — Digest for Jira</title>
+    <meta
+      name="description"
+      content="Digest for Jira stores subscriptions and digest bodies only in Atlassian-hosted Forge storage inside your own tenant. The app declares no external network access."
+    />
+    <link rel="canonical" href="https://keelapps.app/digest/privacy/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/digest/privacy/" />
+    <meta property="og:title" content="Privacy policy — Digest for Jira" />
+    <meta
+      property="og:description"
+      content="Subscriptions, digests and the inbox stay in Atlassian-hosted Forge storage inside your own tenant. No external network access, no vendor copy."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/digest/">Digest</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Digest pages and sections">
+        <p class="manual__toc-title">Digest for Jira</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/digest/">Product</a></li>
+          <li><a href="/digest/docs/">Documentation</a></li>
+          <li><a href="/digest/privacy/" aria-current="page">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#short-version">The short version</a></li>
+          <li><a href="#what-the-app-stores">What the app stores</a></li>
+          <li><a href="#what-is-never-stored">What is never stored</a></li>
+          <li><a href="#who-can-see-it">Who can see it</a></li>
+          <li><a href="#retention-and-deletion">Retention and deletion</a></li>
+          <li><a href="#data-residency">Data residency</a></li>
+          <li><a href="#sub-processors">Sub-processors</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/digest/">Digest</a><span>/</span>Privacy policy
+        </p>
+
+        <!-- legal:begin
+             In-force text. This document was submitted to the Atlassian
+             Marketplace. Structure, classes, ids and attributes may change;
+             NOT ONE WORD between these sentinels may. Verify before pushing:
+               tools/check-legal-text  (see README.md)
+        -->
+        <h1>Privacy policy — Digest for Jira</h1>
+        <p class="manual__meta">Last updated: <time datetime="2026-08-29">29 August 2026</time></p>
+
+        <h2 id="short-version">The short version</h2>
+        <p class="manual__lede">
+          Digest does not send your data anywhere. It runs entirely on Atlassian Forge,
+          inside Atlassian's infrastructure. The app declares no external network
+          permissions, which Atlassian enforces at the platform level. The optional
+          Jira-notification channel is delivered by Jira's own notification service — there
+          is no external email provider, no vendor server, no third party.
+        </p>
+
+        <h2 id="what-the-app-stores">What the app stores</h2>
+        <p>
+          Everything is stored in Forge app storage (Atlassian-hosted KVS) inside your own
+          Atlassian tenant region.
+        </p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Data</th><th>Examples</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Subscriptions</td>
+                <td>JQL, cadence, timezone, grouping, owner account id</td>
+                <td>to know what to roll up and when</td>
+              </tr>
+              <tr>
+                <td>Digest bodies</td>
+                <td>issue keys, truncated summaries, short change labels (“Status: To Do → In Progress”)</td>
+                <td>the content you asked for</td>
+              </tr>
+              <tr>
+                <td>Inbox</td>
+                <td>a ring buffer of your recent digests</td>
+                <td>so you can read them in-app</td>
+              </tr>
+              <tr>
+                <td>Site counters</td>
+                <td>number of subscriptions, deliveries, suppressed empty periods</td>
+                <td>the admin page shows counts only</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Digest bodies deliberately never contain issue descriptions, comment bodies, or
+          ADF. Personal data is limited to Atlassian account ids (the subscription owner,
+          and accounts that @mention them).
+        </p>
+
+        <h2 id="what-is-never-stored">What is never stored</h2>
+        <ul>
+          <li>Issue descriptions, comment bodies, or rich-text content</li>
+          <li>
+            Email addresses — unless you enable the optional Jira-notification channel,
+            in which case delivery is handled entirely by Atlassian's infrastructure
+          </li>
+          <li>IP addresses, usage analytics, or behavioural tracking</li>
+        </ul>
+
+        <h2 id="who-can-see-it">Who can see it</h2>
+        <p>
+          Digests are generated with app permissions and re-filtered against the viewer's
+          own permissions when they are opened. Anything the viewer cannot see is stripped
+          and counted — the check fails closed. The admin page shows counters only: no
+          queries, no names, no account ids, no issue data.
+        </p>
+
+        <h2 id="retention-and-deletion">Retention and deletion</h2>
+        <ul>
+          <li>The inbox is a ring buffer: older digests are replaced by newer ones.</li>
+          <li>Deleting a subscription deletes its digests.</li>
+          <li>Uninstalling the app removes all Forge storage.</li>
+        </ul>
+
+        <h2 id="data-residency">Data residency</h2>
+        <p>
+          Whatever your Atlassian site's residency is. Digest adds no storage outside Forge
+          and therefore introduces no additional residency considerations.
+        </p>
+
+        <h2 id="sub-processors">Sub-processors</h2>
+        <p>None. Atlassian hosts everything; there is no other party involved.</p>
+
+        <h2 id="changes">Changes</h2>
+        <p>
+          Material changes to what is stored or where will be reflected here and in the
+          Marketplace listing before they ship.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a> — for questions about
+          this policy, and for data access, correction or deletion requests.
+        </p>
+        <!-- legal:end -->
+
+        <nav class="manual__pagination">
+          <span><a href="/digest/docs/">← Documentation</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/digest/">Product page →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">Support</a>
+        <a href="/security/">Security</a>
+        <a href="https://github.com/keelapps">GitHub</a>
+      </p>
+      <p class="footer__fine">
+        Digest for Jira is published by Keelapps. Not affiliated with Atlassian. Jira is
+        a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
