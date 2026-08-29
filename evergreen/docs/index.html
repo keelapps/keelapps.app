@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Documentation — Evergreen for Confluence</title>
+    <meta
+      name="description"
+      content="How Evergreen for Confluence works: the freshness model, thresholds and overrides, the space dashboard, bulk actions, exclusions, the review list, and the permissions the app requests."
+    />
+    <link rel="canonical" href="https://keelapps.app/evergreen/docs/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/evergreen/docs/" />
+    <meta property="og:title" content="Documentation — Evergreen for Confluence" />
+    <meta
+      property="og:description"
+      content="The freshness model, thresholds, the space dashboard, bulk actions, exclusions and permissions — everything Evergreen does, in one page."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/evergreen/">Evergreen</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Evergreen pages and sections">
+        <p class="manual__toc-title">Evergreen for Confluence</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/evergreen/">Product</a></li>
+          <li><a href="/evergreen/docs/" aria-current="page">Documentation</a></li>
+          <li><a href="/evergreen/privacy/">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#getting-started">Getting started</a></li>
+          <li><a href="#the-freshness-model">The freshness model</a></li>
+          <li><a href="#the-page-byline">The page byline</a></li>
+          <li><a href="#the-space-dashboard">The space dashboard</a></li>
+          <li><a href="#bulk-actions">Bulk actions and the review list</a></li>
+          <li><a href="#thresholds">Thresholds and overrides</a></li>
+          <li><a href="#exclusions">Exclusions</a></li>
+          <li><a href="#scanning">Scanning</a></li>
+          <li><a href="#restricted-pages">Restricted pages</a></li>
+          <li><a href="#administration">Administration</a></li>
+          <li><a href="#permissions">Permissions the app requests</a></li>
+          <li><a href="#not-in-this-release">Not in this release</a></li>
+          <li><a href="#support">Support</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/evergreen/">Evergreen</a><span>/</span>Documentation
+        </p>
+
+        <h1>Evergreen for Confluence — documentation</h1>
+
+        <p class="manual__lede">
+          Evergreen gives every Confluence page a freshness status — Fresh, Aging or Stale —
+          based on when it was last edited and when someone last confirmed it was still
+          correct. Confirming takes one click and never modifies the page. That is the whole
+          product: no archiving, no approval workflow, no email.
+        </p>
+        <p>
+          Evergreen is built on Atlassian Forge and declares no external network access — no
+          data leaves Atlassian's infrastructure, so there is nothing extra for a vendor
+          security review to look at.
+        </p>
+
+        <h2 id="getting-started">Getting started</h2>
+        <ol>
+          <li>Install Evergreen from the Atlassian Marketplace.</li>
+          <li>
+            Accept the defaults: pages turn <strong>Aging</strong> after 90 days and
+            <strong>Stale</strong> after 180. Site admins can change both under
+            <strong>Confluence administration → Evergreen</strong>.
+          </li>
+          <li>
+            The nightly scan indexes every team space. To see results immediately, open
+            <strong>Space settings → Evergreen</strong> and hit
+            <strong>Rebuild from scratch</strong>, or trigger every space at once from the
+            admin page.
+          </li>
+          <li>
+            From then on, every page shows its status in the byline, and each space's
+            dashboard lists what needs attention.
+          </li>
+        </ol>
+
+        <h2 id="the-freshness-model">The freshness model</h2>
+        <p>One rule decides everything:</p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Age of last activity</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Less than the aging threshold</td><td><strong>Fresh</strong></td></tr>
+              <tr><td>Between the two thresholds</td><td><strong>Aging</strong></td></tr>
+              <tr><td>Past the stale threshold</td><td><strong>Stale</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          “Last activity” is whichever is more recent: the page's last edit, or the last time
+          someone hit <strong>Mark as fresh</strong>. A confirmation counts as activity — that
+          is what lets a page stay Fresh for years without anyone touching its content.
+        </p>
+        <p>
+          A page whose edit date Confluence will not reveal is shown as Stale with an explicit
+          “no edit date available” note — not silently hidden, and not presented as Fresh,
+          because nobody has vouched for it.
+        </p>
+        <p>
+          <strong>Exempt</strong> is a fourth state, not a threshold: a page excluded by
+          label, by space rule or individually still has its age computed and shown, but is
+          left out of the stale list and the counts.
+        </p>
+
+        <h2 id="the-page-byline">The page byline</h2>
+        <p>
+          Under every page title, Evergreen shows the status badge. Opening it reveals when
+          the page was last confirmed and by whom, the thresholds in force, and three
+          actions:
+        </p>
+        <ul>
+          <li>
+            <strong>Mark as fresh</strong> — records who confirmed and when. It writes a
+            content property beside the page: no new version, no entry in page history, no
+            watcher notified.
+          </li>
+          <li>
+            <strong>Exclude from tracking</strong> — takes this one page out of freshness
+            tracking (and back in, with the same button).
+          </li>
+          <li>
+            <strong>Set page thresholds</strong> — overrides the aging/stale days for this
+            page alone.
+          </li>
+        </ul>
+        <p>
+          These actions are available to everyone who can view the page, deliberately: the
+          person best placed to say “this is still correct” is often a reader, not an editor.
+          Every confirmation is attributed by name and can be corrected by anyone else with
+          one more click.
+        </p>
+
+        <h2 id="the-space-dashboard">The space dashboard</h2>
+        <p>
+          <strong>Space settings → Evergreen</strong>, visible to space admins. Four tabs:
+        </p>
+        <ul>
+          <li>
+            <strong>Overview</strong> — fresh/aging/stale/exempt counts, the thresholds in
+            force, when the space was last scanned, and buttons to scan for changes, rebuild
+            from scratch, or recalculate statuses after a threshold change.
+          </li>
+          <li>
+            <strong>Needs attention</strong> — every aging and stale page, worst first, with
+            filters by status and owner, paging, and multi-select for bulk actions.
+          </li>
+          <li>
+            <strong>Review list</strong> — pages someone was asked to look at: who was
+            assigned, when, with a way to take entries off the list once dealt with.
+          </li>
+          <li>
+            <strong>Settings</strong> — space-level threshold overrides, space-level exempt
+            labels, and a switch to turn tracking off for this space entirely.
+          </li>
+        </ul>
+
+        <h2 id="bulk-actions">Bulk actions and the review list</h2>
+        <p>
+          Select pages in the “Needs attention” list and act on up to 200 at once:
+        </p>
+        <ul>
+          <li><strong>Mark as fresh</strong> — confirm a whole section in one go.</li>
+          <li>
+            <strong>Exclude from tracking</strong> — behind a confirmation dialog, because it
+            changes what the app tracks rather than just recording a date.
+          </li>
+          <li>
+            <strong>Add to review list</strong> — pick a person and put the selected pages on
+            the space's review list for them to judge.
+          </li>
+        </ul>
+        <p>
+          Bulk actions run in the background; the dashboard reports progress, how many pages
+          succeeded, and names the ones that failed. Selections beyond 200 pages are refused
+          loudly, never silently truncated.
+        </p>
+
+        <h2 id="thresholds">Thresholds and overrides</h2>
+        <p>Three layers, most specific wins, each value inheritable separately:</p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Layer</th><th>Set by</th><th>Where</th></tr></thead>
+            <tbody>
+              <tr><td>Site defaults (90 / 180)</td><td>Site admins</td><td>Confluence administration → Evergreen</td></tr>
+              <tr><td>Space override</td><td>Space admins</td><td>Space settings → Evergreen → Settings</td></tr>
+              <tr><td>Page override</td><td>Anyone who can view the page</td><td>The page byline</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          A partial override that would flip the pair (aging ≥ stale) is clamped and reported
+          rather than silently producing a status nobody can explain. Threshold changes take
+          effect with <strong>Recalculate statuses</strong> — a local recomputation that makes
+          no API calls at all.
+        </p>
+
+        <h2 id="exclusions">Exclusions</h2>
+        <ul>
+          <li>
+            <strong>By label</strong> — pages carrying <code>evergreen-exempt</code> (the
+            default; site and space admins can change the list).
+          </li>
+          <li><strong>By space</strong> — from the global excluded list, or a space turning itself off.</li>
+          <li><strong>By page</strong> — the byline's “Exclude from tracking”.</li>
+          <li><strong>Templates</strong> — never tracked at all.</li>
+          <li><strong>Blog posts</strong> — excluded unless “Also track blog posts” is on.</li>
+        </ul>
+
+        <h2 id="scanning">Scanning</h2>
+        <p>
+          A nightly scan finds what changed in each space; a weekly full rebuild reconciles
+          what an incremental scan cannot see (deleted pages, new restrictions). Long scans
+          split themselves into resumable chunks, so a fifty-thousand-page space is simply a
+          longer chain — and the dashboard keeps serving the previous scan's numbers until
+          the new ones are complete. Statuses are recomputed locally after every scan, which
+          is what keeps the API footprint small enough for large sites.
+        </p>
+
+        <h2 id="restricted-pages">Restricted pages</h2>
+        <p>
+          Evergreen reads Confluence as itself, not as any user. A page restricted away from
+          the app is invisible to it — such pages are excluded from all counts, and the
+          dashboard states how many it found rather than quietly omitting them. The count is
+          a floor: Confluence answers identically for a deleted page and a restricted one in
+          most cases, so Evergreen only claims what it can prove.
+        </p>
+
+        <h2 id="administration">Administration</h2>
+        <p>
+          <strong>Confluence administration → Evergreen</strong>, visible to site admins:
+          site-default thresholds, the site-wide exempt label list, excluded space keys,
+          the blog-post switch, and <strong>Rescan every space now</strong>. Pages that go
+          stale are listed on each space dashboard's “Newly stale” section — Confluence
+          exposes no API for apps to send in-product notifications, and Evergreen sends no
+          email, ever.
+        </p>
+
+        <h2 id="permissions">Permissions the app requests</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Scope</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td><code>read:page:confluence</code></td><td>list pages per space; page titles, versions and owners</td></tr>
+              <tr><td><code>read:space:confluence</code></td><td>enumerate spaces for the nightly scan</td></tr>
+              <tr><td><code>read:label:confluence</code></td><td>resolve exempt labels to the pages carrying them</td></tr>
+              <tr><td><code>read:content.property:confluence</code></td><td>read each page's confirmation record</td></tr>
+              <tr><td><code>write:content.property:confluence</code></td><td>write who confirmed and when</td></tr>
+              <tr><td><code>write:page:confluence</code></td><td>required by Confluence's v2 API to create or update a content property — the app never writes page content, and a page's version history proves it</td></tr>
+              <tr><td><code>read:user:confluence</code></td><td>show “Confirmed by Jane Doe” instead of a bare account id</td></tr>
+              <tr><td><code>storage:app</code></td><td>the page index, thresholds and scan state, in Atlassian-hosted storage</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          There is no <code>permissions.external</code> block: the app cannot make an
+          outbound call even if it tried to, which Atlassian enforces at the platform level.
+        </p>
+
+        <h2 id="not-in-this-release">Not in this release</h2>
+        <ul>
+          <li>Archiving, moving or deleting pages — deliberately, and permanently.</li>
+          <li>Approval workflows.</li>
+          <li>Email or Slack notifications.</li>
+          <li>Filtering the dashboard by label.</li>
+          <li>Cross-site reporting.</li>
+        </ul>
+
+        <h2 id="support">Support</h2>
+        <p>
+          Questions, bug reports and feature requests:
+          <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">raise a support request</a>.
+          Security issues: <a href="/security/">report privately</a>.
+        </p>
+
+        <nav class="manual__pagination">
+          <span><a href="/evergreen/">← Product page</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/evergreen/privacy/">Privacy policy →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Evergreen for Confluence is published by Keelapps. Not affiliated with Atlassian.
+        Confluence is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
