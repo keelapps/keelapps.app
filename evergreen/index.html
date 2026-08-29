@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Evergreen for Confluence — know what's gone stale</title>
+    <meta
+      name="description"
+      content="Every Confluence page carries a Fresh / Aging / Stale badge, and owners vouch for the ones that are still right — in one click, without touching page content. Runs on Forge, no egress."
+    />
+    <link rel="canonical" href="https://keelapps.app/evergreen/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://keelapps.app/evergreen/" />
+    <meta property="og:title" content="Evergreen for Confluence — know what's gone stale" />
+    <meta
+      property="og:description"
+      content="A freshness badge on every page, a dashboard of the worst offenders per space, and a one-click confirmation that never edits the page. Runs on Forge, no egress."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/product.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/evergreen/">Evergreen</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">Support</a>
+      </nav>
+    </header>
+
+    <main class="product" id="main">
+      <section class="lede-block">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Evergreen
+        </p>
+        <p class="eyebrow">For teams whose knowledge base is quietly rotting</p>
+        <h1>A page that was right two years ago still looks right today.</h1>
+        <p class="lede">
+          Knowledge bases rot silently — outdated runbooks look exactly as authoritative as
+          current ones, and nobody can tell the difference from the outside. Evergreen gives
+          every Confluence page a freshness status, and gives owners a one-click way to say
+          “I checked, it's still correct” — without editing the page, creating a version, or
+          pinging a single watcher.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#availability">Coming to the Atlassian Marketplace</a>
+          <span class="note-inline">No egress. Runs entirely on Forge — nothing leaves your Atlassian tenant.</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="aside" data-label="The gap this fills">
+          <p>
+            The tools in this category are full content-lifecycle suites: archiving workflows,
+            approval chains, automated clean-up jobs. They have proved teams will pay to keep a
+            knowledge base from rotting — and they are a lot of machinery when all that was
+            wanted is a red/yellow/green signal and a button that says it's still fine.
+            Evergreen deliberately stops there.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>A badge on every page</h3>
+            <p>
+              Fresh, Aging or Stale — right in the byline, based on when the page was last
+              edited and when someone last vouched for it. Readers see at a glance whether to
+              trust what they're reading.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Confirm in one click</h3>
+            <p>
+              “Mark as fresh” records who checked and when. It does not edit the page, does
+              not create a new version, and does not notify watchers — the confirmation lives
+              beside the page, not in it.
+            </p>
+          </div>
+          <div class="card">
+            <h3>A dashboard per space</h3>
+            <p>
+              How many pages are fresh, aging and stale; the pages needing attention sorted
+              worst-first; filters by status and owner; and bulk actions for confirming or
+              excluding a whole section at once.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Thresholds that layer</h3>
+            <p>
+              Site defaults (90 / 180 days), overridable per space by space admins, and per
+              page from the byline. The most specific layer wins; everything else inherits.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Exclusions that make sense</h3>
+            <p>
+              A label (<code>evergreen-exempt</code> by default), a whole space, or a single
+              page from its byline. Templates are never tracked at all.
+            </p>
+          </div>
+          <div class="card">
+            <h3>It will not touch your pages</h3>
+            <p>
+              No archiving, no moving, no deleting, no approval workflow, no email. The
+              biggest objection to lifecycle tools — “it will quietly bury something we
+              need” — cannot happen here.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>From install to a trustworthy space, end to end</h2>
+        <ol class="steps">
+          <li>
+            <h3>Install and accept the defaults</h3>
+            <p>
+              Aging after 90 days, stale after 180. The nightly scan indexes every space it
+              can see; there is nothing to model and nobody to train.
+            </p>
+          </li>
+          <li>
+            <h3>Open the space dashboard</h3>
+            <p>
+              Space settings → Evergreen. The counts say how bad it is; the “Needs attention”
+              list says exactly where to start, worst first.
+            </p>
+          </li>
+          <li>
+            <h3>Work the list</h3>
+            <p>
+              Pages that are still right get confirmed — one click each, or two hundred at a
+              time with a bulk action. Pages that shouldn't be tracked get excluded. Pages
+              someone else must judge go on the review list.
+            </p>
+          </li>
+          <li>
+            <h3>Let the badge do the talking</h3>
+            <p>
+              From then on, every reader sees the status on the page itself, and every
+              confirmation resets the clock. The dashboard stays quiet until something
+              actually goes stale.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>Against what you have today</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Doing nothing</th>
+                <th>Lifecycle suites</th>
+                <th>Evergreen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Can a reader tell a stale page from a current one?</td>
+                <td class="absent">No</td>
+                <td>After configuration</td>
+                <td><span class="answer">Badge on every page</span></td>
+              </tr>
+              <tr>
+                <td>Can an owner vouch for a page without editing it?</td>
+                <td class="absent">Fake edits, “bump” comments</td>
+                <td class="absent">Usually a workflow step</td>
+                <td><span class="answer">One click</span></td>
+              </tr>
+              <tr>
+                <td>Time from install to first insight?</td>
+                <td class="absent">—</td>
+                <td class="absent">Days of setup</td>
+                <td><span class="answer">One nightly scan</span></td>
+              </tr>
+              <tr>
+                <td>Can it archive or delete something you still need?</td>
+                <td>No</td>
+                <td class="absent">Yes — the top complaint</td>
+                <td><span class="answer">Cannot; no such code</span></td>
+              </tr>
+              <tr>
+                <td>Does page data leave Atlassian?</td>
+                <td>No</td>
+                <td class="absent">Sometimes — external servers</td>
+                <td><span class="answer">Never</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 id="availability">Availability</h2>
+        <div class="prose">
+          <p>
+            Evergreen is built and deployed on Atlassian Forge. It is going through Atlassian
+            Marketplace review; this page will link to the listing as soon as it is live.
+          </p>
+          <p>
+            Licensing is handled by Atlassian. Sites with 10 users or fewer pay nothing at
+            all, with every feature included — there is no feature gate anywhere in the code.
+          </p>
+          <p>
+            Questions, bug reports and feature requests:
+            <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">raise a support request</a>.
+          </p>
+          <p>
+            Found a security issue? Please
+            <a href="/security/">report it privately</a>
+            rather than in a public channel.
+          </p>
+        </div>
+
+        <nav class="manual__pagination">
+          <span><a href="/">← All apps</a></span>
+          <span class="manual__pagination-mid"><a href="/evergreen/docs/">Documentation</a></span>
+          <span class="manual__pagination-next"><a href="/evergreen/privacy/">Privacy policy →</a></span>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Evergreen is an Atlassian Forge app. It runs entirely inside your Atlassian tenant and
+        declares no external network access — your data is never sent to us or to anyone
+        else. Not affiliated with Atlassian. Confluence is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
