@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Digest for Jira — a period of changes, one summary</title>
+    <meta
+      name="description"
+      content="Fold a day or a week of Jira changes into one digest: issues created, status transitions, assignments to you, mentions. Read-only scopes, delivered to an in-app inbox you read when you choose."
+    />
+    <link rel="canonical" href="https://keelapps.app/digest/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://keelapps.app/digest/" />
+    <meta property="og:title" content="Digest for Jira — a period of changes, one summary" />
+    <meta
+      property="og:description"
+      content="One subscription, one summary — a day or a week of Jira changes folded into a digest you read when you choose. Runs on Forge, read-only, no egress."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/product.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/digest/">Digest</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">Support</a>
+      </nav>
+    </header>
+
+    <main class="product" id="main">
+      <section class="lede-block">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Digest
+        </p>
+        <p class="eyebrow">For people who want the week's changes, not every event</p>
+        <h1>Six emails about one issue, folded into one summary.</h1>
+        <p class="lede">
+          Jira notifies per event: one issue is commented on three times, changes status twice
+          and mentions you once, and you have six emails. Digest folds everything that changed
+          in a period into one structured summary — grouped how you choose, delivered to an
+          in-app inbox, read when you choose. It never filters, rewrites or intercepts Jira's
+          own notifications.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#availability">Coming to the Atlassian Marketplace</a>
+          <span class="note-inline">No egress. Read-only scopes — nothing leaves your Atlassian tenant.</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="aside" data-label="The gap this fills">
+          <p>
+            Jira's personal notification settings can silence email, but only event by event —
+            there is no native way to ask for “everything that changed against this JQL, once a
+            week, in my time zone”. The usual workaround is a reporting suite: dashboards,
+            gadgets, sometimes an external server, when all that was wanted was a summary that
+            arrives on its own.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>One subscription, one summary</h3>
+            <p>
+              Pick a JQL query, a cadence — daily at your own hour, or weekly on a chosen day —
+              a time zone and a grouping. From then on, each period folds into a single digest.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Everything that changed, classified</h3>
+            <p>
+              Issues created, status transitions, assignments to you, priority changes, and
+              comments that @mention you — each listed once, grouped by project, assignee or
+              status.
+            </p>
+          </div>
+          <div class="card">
+            <h3>See only what you may see</h3>
+            <p>
+              Digests are re-filtered against your own permissions the moment you open them.
+              Anything you cannot see is stripped and counted — the check fails closed, never
+              leaks.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Honest about silence</h3>
+            <p>
+              A period with no changes delivers nothing, unless you ask for empty digests.
+              Broken JQL pauses the subscription and shows Jira's own error message rather than
+              failing silently.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Truncates honestly</h3>
+            <p>
+              When more than 50 issues changed, the digest shows the 50 most notable and says
+              “and N more”, with a deep link that opens the full result in the issue navigator.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Runs entirely on Atlassian infrastructure</h3>
+            <p>
+              Built on Forge with read-only Jira scopes and no external calls. The app cannot
+              change an issue and cannot send your data anywhere.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>The Monday-morning status summary, end to end</h2>
+        <ol class="steps">
+          <li>
+            <h3>Subscribe once</h3>
+            <p>
+              One JQL query for the team's project, weekly on Monday at 08:00 in your own time
+              zone, grouped by status.
+            </p>
+          </li>
+          <li>
+            <h3>The week rolls itself up</h3>
+            <p>
+              Each run covers the window since the last successful one — created, moved,
+              assigned, mentioned — so a late run covers the gap instead of dropping it.
+            </p>
+          </li>
+          <li>
+            <h3>Open the inbox before standup</h3>
+            <p>
+              What reached Done, what is stuck, who was assigned what, where you were mentioned
+              — one page instead of a week of emails, read before anyone asks.
+            </p>
+          </li>
+          <li>
+            <h3>Everyone reads their own version</h3>
+            <p>
+              A digest re-filters itself against each reader's permissions when opened. Entries
+              a reader may not see are stripped and counted, never leaked.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>Against what you have today</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Jira notifications</th>
+                <th>Reporting suites</th>
+                <th>Digest</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>One issue changes six times in a week?</td>
+                <td class="absent">Six emails</td>
+                <td class="absent">Not addressed</td>
+                <td><span class="answer">One entry</span></td>
+              </tr>
+              <tr>
+                <td>Everything that changed against a JQL, as one list?</td>
+                <td class="absent">Not supported</td>
+                <td class="absent">A dashboard you go and check</td>
+                <td><span class="answer">Delivered</span></td>
+              </tr>
+              <tr>
+                <td>Your own cadence, your own time zone?</td>
+                <td class="absent">As events happen</td>
+                <td class="absent">Whenever you look</td>
+                <td><span class="answer">Per subscription</span></td>
+              </tr>
+              <tr>
+                <td>Comments that @mention you, called out?</td>
+                <td class="absent">One email each</td>
+                <td class="absent">Not tracked</td>
+                <td><span class="answer">Own category</span></td>
+              </tr>
+              <tr>
+                <td>A quiet week — deliberate or broken?</td>
+                <td class="absent">Cannot tell</td>
+                <td class="absent">Cannot tell</td>
+                <td><span class="answer">Counted</span></td>
+              </tr>
+              <tr>
+                <td>Does issue data leave Atlassian?</td>
+                <td>No</td>
+                <td class="absent">Often — external servers</td>
+                <td><span class="answer">Never</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 id="availability">Availability</h2>
+        <div class="prose">
+          <p>
+            Digest is built and deployed on Atlassian Forge. It is going through Atlassian
+            Marketplace review; this page will link to the listing as soon as it is live.
+          </p>
+          <p>
+            Licensing is handled by Atlassian. One subscription is free forever, with every
+            cadence and every grouping; a paid license raises the limit to 25 subscriptions per
+            person. Sites with 10 users or fewer pay nothing at all.
+          </p>
+          <p>
+            Questions, bug reports and feature requests:
+            <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">raise a support request</a>.
+          </p>
+          <p>
+            Found a security issue? Please
+            <a href="https://github.com/keelapps/support/security/advisories/new">report it privately</a>
+            rather than in a public issue.
+          </p>
+        </div>
+
+        <nav class="manual__pagination">
+          <span><a href="/">← All apps</a></span>
+          <span class="manual__pagination-mid"><a href="/digest/docs/">Documentation</a></span>
+          <span class="manual__pagination-next"><a href="/digest/privacy/">Privacy policy →</a></span>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/contact-us">Support</a>
+        <a href="/security/">Security</a>
+        <a href="https://github.com/keelapps">GitHub</a>
+      </p>
+      <p class="footer__fine">
+        Digest is an Atlassian Forge app. It runs entirely inside your Atlassian tenant and
+        declares no external network access — your data is never sent to us or to anyone
+        else. Not affiliated with Atlassian. Jira is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
