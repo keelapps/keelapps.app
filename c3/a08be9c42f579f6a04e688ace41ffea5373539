@@ -1,0 +1,30 @@
+assets/css/root.css
+  s_f837db32c071ce::t_56854ac2fef8ed 46-54
+  s_f837db32c071ce::t_407101c2f88d73 3
+  s_f837db32c071ce::t_878b89601f8319 130-136
+assets/css/site.css
+  s_f837db32c071ce::t_6d29f6bc9886ca 133-135,138-139,141-144,153,159-162
+assets/css/home.css
+  s_f837db32c071ce::t_8cd7c763f648f3 163-164
+  s_f837db32c071ce::t_9f5e1ea2708325 12-14,17-21,26-27,32,34,41-43,45-47
+  s_f837db32c071ce::t_30a7f69ae41ae5 54
+  s_f837db32c071ce::t_57fabfd5a130e6 151
+  s_f837db32c071ce::t_f5aa8d7e1dc4b2 122-123
+  s_f837db32c071ce::t_9ef4d64e9e38b9 75,83
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "c3a08be9c42f579f6a04e688ace41ffea5373539",
+  "prompts": {},
+  "sessions": {
+    "s_f837db32c071ce": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b5c19a50-b1c3-457c-997a-97230392d9c3",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
