@@ -96,6 +96,39 @@
 }
 
 
+/* The filled element that inverts the plate. Shared chrome: the product CTA
+   and the home support route both draw it. The quiet variant keeps the shape
+   but speaks the site's line language instead of filling. */
+
+.btn {
+  background: var(--color-ink);
+  border-radius: var(--radius);
+  color: var(--color-canvas);
+  display: inline-block;
+  font-size: var(--font-size-small);
+  padding: 0.7em 1.1em;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn--quiet {
+  background: none;
+  border: var(--rule-gauge) solid var(--color-rule-strong);
+  color: var(--color-ink);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.btn--quiet:hover {
+  background: var(--color-surface);
+  border-color: currentColor;
+  opacity: 1;
+}
+
+
 .table-wrap {
   overflow-x: auto;
 }
@@ -130,18 +163,16 @@
 }
 
 
-/* Footer. The one place the plate inverts: a band of the other material closes
-   the page the way the masthead rule opens it. Full bleed, with the content
-   held to the same column as everything above it. */
+/* Footer. */
 
 .footer {
-  background: var(--color-band);
-  color: var(--color-band-ink-muted);
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  color: var(--color-ink-muted);
   font-size: var(--font-size-small);
-  margin-top: var(--space-xx-large);
-  padding: var(--space-x-large)
-    max(var(--gutter), calc((100% - var(--measure-wide)) / 2 + var(--gutter)))
-    var(--space-xx-large);
+  margin-inline: auto;
+  margin-top: var(--space-x-large);
+  max-width: var(--measure-wide);
+  padding: var(--space-large) var(--gutter) var(--space-x-large);
   width: 100%;
 }
 
@@ -150,17 +181,13 @@
 }
 
 .footer__links {
-  color: var(--color-band-ink);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-medium);
 }
 
-.footer a {
-  text-decoration-color: var(--color-band-rule);
-}
-
 .footer__fine {
+  color: var(--color-ink-muted);
   font-size: var(--font-size-x-small);
   max-width: var(--measure);
 }
