@@ -96,6 +96,26 @@
 }
 
 
+/* The one filled element on a page. It inverts the plate rather than
+   introducing a colour. Shared chrome: the product CTA and the home support
+   route both draw it. */
+
+.btn {
+  background: var(--color-ink);
+  border-radius: var(--radius);
+  color: var(--color-canvas);
+  display: inline-block;
+  font-size: var(--font-size-small);
+  padding: 0.7em 1.1em;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+
 .table-wrap {
   overflow-x: auto;
 }
