@@ -130,16 +130,18 @@
 }
 
 
-/* Footer. */
+/* Footer. The one place the plate inverts: a band of the other material closes
+   the page the way the masthead rule opens it. Full bleed, with the content
+   held to the same column as everything above it. */
 
 .footer {
-  border-top: var(--rule-gauge) solid var(--color-rule);
-  color: var(--color-ink-muted);
+  background: var(--color-band);
+  color: var(--color-band-ink-muted);
   font-size: var(--font-size-small);
-  margin-inline: auto;
-  margin-top: var(--space-x-large);
-  max-width: var(--measure-wide);
-  padding: var(--space-large) var(--gutter) var(--space-x-large);
+  margin-top: var(--space-xx-large);
+  padding: var(--space-x-large)
+    max(var(--gutter), calc((100% - var(--measure-wide)) / 2 + var(--gutter)))
+    var(--space-xx-large);
   width: 100%;
 }
 
@@ -148,13 +150,17 @@
 }
 
 .footer__links {
+  color: var(--color-band-ink);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-medium);
 }
 
+.footer a {
+  text-decoration-color: var(--color-band-rule);
+}
+
 .footer__fine {
-  color: var(--color-ink-muted);
   font-size: var(--font-size-x-small);
   max-width: var(--measure);
 }

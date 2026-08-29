@@ -9,39 +9,49 @@
 }
 
 
-/* Above the datum. */
+/* Above the datum. The lockup is a signature, not the statement: mark and
+   wordmark sit together at reading size, and the tagline carries the display
+   weight — the same hierarchy every product page opens with. */
 
 .hero {
-  padding-block: var(--space-xxx-large) var(--space-xx-large);
+  align-items: center;
+  column-gap: 0.6em;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  padding-block: var(--space-xx-large);
 }
 
 .hero__mark {
   color: var(--color-ink);
-  height: clamp(3.5rem, 2.4rem + 4.4vw, 5.75rem);
-  margin-bottom: var(--space-large);
+  grid-column: 1;
+  height: 2.4rem;
   width: auto;
 }
 
 .hero__word {
-  font-size: var(--font-size-display);
+  font-size: var(--font-size-x-large);
   font-weight: 600;
+  grid-column: 2;
   letter-spacing: var(--tracking-tight);
   line-height: 1;
 }
 
 .hero__tagline {
   color: var(--color-ink);
-  font-size: var(--font-size-title);
+  font-size: var(--font-size-display);
+  font-weight: 600;
+  grid-column: 1 / -1;
   letter-spacing: var(--tracking-tight);
-  line-height: var(--line-height-snug);
-  margin-top: var(--space-medium);
-  max-width: 18em;
+  line-height: var(--line-height-tight);
+  margin-top: var(--space-x-large);
+  max-width: 13em;
   text-wrap: balance;
 }
 
 .hero__lede {
   color: var(--color-ink-muted);
   font-size: var(--font-size-large);
+  grid-column: 1 / -1;
   margin-top: var(--space-large);
   max-width: var(--measure);
 }
@@ -62,7 +72,7 @@
    the hero breathes, everything under the waterline packs together. */
 
 .plate {
-  padding-block: var(--space-x-large);
+  padding-block: var(--space-xx-large);
 }
 
 .plate + .plate {
@@ -70,7 +80,7 @@
 }
 
 .plate__title {
-  font-size: var(--font-size-heading);
+  font-size: var(--font-size-title);
   margin-bottom: var(--space-x-small);
 }
 
@@ -109,6 +119,8 @@
 .fleet__item {
   border-top: var(--rule-gauge) solid var(--color-rule);
   counter-increment: station;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding-top: var(--space-medium);
 }
@@ -136,7 +148,7 @@
 .fleet__links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-medium);
+  gap: var(--space-x-small) var(--space-medium);
   font-size: var(--font-size-small);
   margin-top: var(--space-small);
 }
@@ -148,7 +160,8 @@
   font-family: var(--font-family-mono);
   font-size: var(--font-size-x-small);
   letter-spacing: var(--tracking-wide);
-  margin-top: var(--space-small);
+  margin-top: auto;
+  padding-top: var(--space-small);
   text-transform: uppercase;
 }
 

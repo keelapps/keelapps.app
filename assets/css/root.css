@@ -1,6 +1,6 @@
 /* Design tokens. No selectors beyond :root — see elements.css for the baseline.
 
-   The palette is the one defined in keelapps/.github brand/README.md: two
+   The palette is the one defined in the Keelapps brand guide: two
    materials and one signal. Navy and cream swap between figure and ground
    depending on the light, which is why dark mode here is a role swap rather
    than a second palette. Coral marks the ballast bulb in the mark and nothing
@@ -42,6 +42,15 @@
   --color-rule: rgb(var(--rgb-ink) / 0.16);
   --color-rule-strong: rgb(var(--rgb-ink) / 0.32);
   --color-surface: rgb(var(--rgb-ink) / 0.045);
+
+  /* Band: the plate inverted, for chrome that frames the page — the same two
+     materials trading places, not a third colour. muted is measured against
+     the navy ground and clears 7:1 at the footer's small sizes. */
+
+  --color-band: var(--color-ink);
+  --color-band-ink: var(--color-canvas);
+  --color-band-ink-muted: rgb(var(--rgb-canvas) / 0.72);
+  --color-band-rule: rgb(var(--rgb-canvas) / 0.28);
 
   /* Stroke gauge is a class rule: one weight for every line on the plate. */
 
@@ -118,6 +127,13 @@
     --color-rule: rgb(var(--rgb-ink) / 0.14);
     --color-rule-strong: rgb(var(--rgb-ink) / 0.28);
     --color-surface: rgb(var(--rgb-ink) / 0.06);
+
+    /* On the dark plate the band steps up to the above-waterline tint rather
+       than flipping to cream — a full swap would glow at night. */
+    --color-band: var(--color-tint);
+    --color-band-ink: var(--color-ink);
+    --color-band-ink-muted: rgb(var(--rgb-ink) / 0.72);
+    --color-band-rule: rgb(var(--rgb-ink) / 0.28);
   }
 
 }
