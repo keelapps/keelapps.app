@@ -25,6 +25,7 @@ from pathlib import Path
 
 PAGES = [
     "accesslens/privacy/index.html",
+    "digest/privacy/index.html",
     "recur/privacy/index.html",
     "security/index.html",
 ]
