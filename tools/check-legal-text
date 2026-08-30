@@ -1,0 +1,106 @@
+#!/usr/bin/env python3
+"""Verify that in-force legal text has not changed.
+
+The privacy policy is a published legal document: its URL is filed with the
+Atlassian Marketplace and buyers read the live copy. Restyling it is fine.
+Rewording it by accident is an incident.
+
+Every page carrying such text wraps it in `<!-- legal:begin -->` /
+`<!-- legal:end -->` sentinels. This script extracts the text between them,
+strips all markup, normalises whitespace, and compares against the same
+extraction from a git ref. Structure, classes, ids and attributes may move
+freely; the words may not.
+
+    tools/check-legal-text              # working tree vs HEAD
+    tools/check-legal-text origin/main  # working tree vs a specific ref
+
+Exits non-zero if any word changed.
+"""
+
+import html
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+PAGES = [
+    "accesslens/privacy/index.html",
+    "digest/privacy/index.html",
+    "evergreen/privacy/index.html",
+    "recur/privacy/index.html",
+    "security/index.html",
+]
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def extract(markup: str) -> str:
+    """Return the sentinel-delimited prose, stripped to bare words.
+
+    Falls back to <main>/<article> when the sentinels are absent, so a
+    pre-sentinel baseline can still be compared against.
+    """
+    m = re.search(r"legal:begin.*?-->(.*?)<!--\s*legal:end", markup, re.S)
+    if m:
+        body = m.group(1)
+    else:
+        m = re.search(r"<(?:main|article)\b[^>]*>(.*?)</(?:main|article)>", markup, re.S)
+        if not m:
+            return ""
+        body = m.group(1)
+
+    body = re.sub(r"(?s)<(script|style)\b.*?</\1>", " ", body)
+    body = re.sub(r"(?s)<!--.*?-->", " ", body)
+    body = re.sub(r"<[^>]+>", " ", body)
+    return " ".join(html.unescape(body).split())
+
+
+def baseline(ref: str, path: str) -> str:
+    out = subprocess.run(
+        ["git", "show", f"{ref}:{path}"],
+        cwd=ROOT, capture_output=True, text=True,
+    )
+    if out.returncode != 0:
+        print(f"  ! cannot read {path} at {ref}: {out.stderr.strip()}")
+        return ""
+    return out.stdout
+
+
+def main() -> int:
+    ref = sys.argv[1] if len(sys.argv) > 1 else "HEAD"
+    failed = False
+
+    for page in PAGES:
+        current = extract((ROOT / page).read_text(encoding="utf-8"))
+        previous = extract(baseline(ref, page))
+
+        if not current:
+            print(f"FAIL  {page}: no legal text found — sentinels missing?")
+            failed = True
+            continue
+
+        if current == previous:
+            print(f"ok    {page}: {len(current.split())} words unchanged vs {ref}")
+            continue
+
+        failed = True
+        print(f"FAIL  {page}: legal text differs from {ref}")
+
+        import difflib
+        diff = difflib.unified_diff(
+            previous.split(), current.split(),
+            fromfile=f"{ref}", tofile="working tree", lineterm="", n=6,
+        )
+        for line in list(diff)[:60]:
+            print("      " + line)
+
+    if failed:
+        print("\nIn-force text changed. If that was deliberate, the Marketplace")
+        print("listing and docs/privacy-policy.md have to change with it.")
+        return 1
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

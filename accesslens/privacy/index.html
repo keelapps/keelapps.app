@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Privacy policy — AccessLens for Jira</title>
+    <meta
+      name="description"
+      content="AccessLens for Jira stores permission audit data only in Atlassian-hosted Forge storage inside your own tenant. The app declares no external network access."
+    />
+    <link rel="canonical" href="https://keelapps.app/accesslens/privacy/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/accesslens/privacy/" />
+    <meta property="og:title" content="Privacy policy — AccessLens for Jira" />
+    <meta
+      property="og:description"
+      content="Permission audit data stays in Atlassian-hosted Forge storage inside your own tenant. No external network access, no vendor copy."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/accesslens/">AccessLens</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="AccessLens pages and sections">
+        <p class="manual__toc-title">AccessLens for Jira</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/accesslens/">Product</a></li>
+          <li><a href="/accesslens/docs/">Documentation</a></li>
+          <li><a href="/accesslens/privacy/" aria-current="page">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#short-version">The short version</a></li>
+          <li><a href="#what-the-app-stores">What the app stores</a></li>
+          <li><a href="#what-is-never-stored">What is never stored</a></li>
+          <li><a href="#who-can-see-it">Who can see it</a></li>
+          <li><a href="#retention-and-deletion">Retention and deletion</a></li>
+          <li><a href="#data-residency">Data residency</a></li>
+          <li><a href="#sub-processors">Sub-processors</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/accesslens/">AccessLens</a><span>/</span>Privacy policy
+        </p>
+
+        <!-- legal:begin
+             In-force text. This document was submitted to the Atlassian
+             Marketplace. Structure, classes, ids and attributes may change;
+             NOT ONE WORD between these sentinels may. Verify before pushing:
+               tools/check-legal-text  (see README.md)
+        -->
+        <h1>Privacy policy — AccessLens for Jira</h1>
+        <p class="manual__meta">Last updated: <time datetime="2026-08-19">19 August 2026</time></p>
+
+        <h2 id="short-version">The short version</h2>
+        <p class="manual__lede">
+          AccessLens does not send your data anywhere. It runs entirely on Atlassian Forge,
+          inside Atlassian's infrastructure. The app declares no external network
+          permissions, which Atlassian enforces at the platform level — it
+          <em>cannot</em> make an outbound call even if it tried. CSV files are generated
+          in your browser, so exported data never traverses a vendor server either.
+        </p>
+
+        <h2 id="what-the-app-stores">What the app stores</h2>
+        <p>
+          Everything is stored in Forge app storage (Atlassian-hosted KVS) inside your own
+          Atlassian tenant region. The vendor operates no infrastructure and holds no copy.
+        </p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Data</th><th>Examples</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Project references</td>
+                <td>project id, key, name</td>
+                <td>to answer “who can access what”</td>
+              </tr>
+              <tr>
+                <td>Permission state</td>
+                <td>permission scheme grants, project role membership, group names and member account ids</td>
+                <td>the content of snapshots and diffs</td>
+              </tr>
+              <tr>
+                <td>Review records</td>
+                <td>the reviewer's Atlassian account id, a server-side UTC timestamp, the note, and the snapshot it was judged against</td>
+                <td>the audit artefact</td>
+              </tr>
+              <tr>
+                <td>Settings</td>
+                <td>snapshot retention limit, schedule</td>
+                <td>app configuration</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Personal data is limited to Atlassian account ids and display names as returned
+          by the Jira API. AccessLens does not store issue content, attachments, email
+          addresses, or any data you have not explicitly asked it to audit.
+        </p>
+
+        <h2 id="what-is-never-stored">What is never stored</h2>
+        <ul>
+          <li>Issue descriptions, comments, or attachments</li>
+          <li>Email addresses</li>
+          <li>IP addresses, usage analytics, or behavioural tracking</li>
+        </ul>
+
+        <h2 id="who-can-see-it">Who can see it</h2>
+        <p>
+          The only UI surface is an admin page, which Jira restricts to site
+          administrators. Review sign-off carries the reviewer's Atlassian account id taken
+          from the Forge invocation context — never from the browser — so attribution
+          cannot be forged.
+        </p>
+
+        <h2 id="retention-and-deletion">Retention and deletion</h2>
+        <ul>
+          <li>
+            Snapshots are retained until an administrator deletes them, capped at a
+            configurable limit (default 12). At the limit the app refuses a new snapshot
+            rather than evicting an old one: audit evidence is never discarded
+            automatically.
+          </li>
+          <li>Review records persist until deleted by an administrator.</li>
+          <li>Uninstalling the app removes all Forge storage.</li>
+        </ul>
+
+        <h2 id="data-residency">Data residency</h2>
+        <p>
+          Whatever your Atlassian site's residency is. AccessLens adds no storage outside
+          Forge and therefore introduces no additional residency considerations.
+        </p>
+
+        <h2 id="sub-processors">Sub-processors</h2>
+        <p>None. Atlassian hosts everything; there is no other party involved.</p>
+
+        <h2 id="changes">Changes</h2>
+        <p>
+          Material changes to what is stored or where will be reflected here and in the
+          Marketplace listing before they ship.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a>. For
+          data access, correction or deletion requests, contact the same address.
+        </p>
+        <!-- legal:end -->
+
+        <nav class="manual__pagination">
+          <span><a href="/accesslens/docs/">← Documentation</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/accesslens/">Product page →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        AccessLens for Jira is published by Keelapps. Not affiliated with Atlassian. Jira is
+        a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,205 @@
+/* Home page. The composition is a cross-section: a hero of mostly empty water,
+   a single horizontal datum, and everything that does the real work below it. */
+
+.home {
+  margin-inline: auto;
+  max-width: var(--measure-wide);
+  padding-inline: var(--gutter);
+  width: 100%;
+}
+
+
+/* Above the datum. The lockup is a signature, not the statement: mark and
+   wordmark sit together at reading size, and the tagline carries the display
+   weight — the same hierarchy every product page opens with. */
+
+.hero {
+  align-items: center;
+  column-gap: 0.6em;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  padding-block: var(--space-xx-large);
+}
+
+.hero__mark {
+  color: var(--color-ink);
+  grid-column: 1;
+  height: 2.4rem;
+  width: auto;
+}
+
+.hero__word {
+  font-size: var(--font-size-x-large);
+  font-weight: 600;
+  grid-column: 2;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+}
+
+.hero__tagline {
+  color: var(--color-ink);
+  font-size: var(--font-size-display);
+  font-weight: 600;
+  grid-column: 1 / -1;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--line-height-tight);
+  margin-top: var(--space-x-large);
+  max-width: 13em;
+  text-wrap: balance;
+}
+
+.hero__lede {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-large);
+  grid-column: 1 / -1;
+  margin-top: var(--space-large);
+  max-width: var(--measure);
+}
+
+
+/* The datum itself. One line, drawn at the class gauge, full bleed to the
+   column edges — the only rule on the page that is not a section boundary. */
+
+.waterline {
+  background: var(--color-rule-strong);
+  border: 0;
+  height: var(--rule-gauge);
+  margin: 0;
+}
+
+
+/* Below the datum: concentrated form. The rhythm deliberately tightens here —
+   the hero breathes, everything under the waterline packs together. */
+
+.plate {
+  padding-block: var(--space-xx-large);
+}
+
+.plate + .plate {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+}
+
+.plate__title {
+  font-size: var(--font-size-title);
+  margin-bottom: var(--space-x-small);
+}
+
+.plate__note {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  margin-bottom: var(--space-large);
+  max-width: var(--measure);
+}
+
+
+/* Fleet listing. Station labels number the hulls the way a builder's drawing
+   numbers frames — the same device the manual pages use for chapters. */
+
+.fleet {
+  counter-reset: station;
+  display: grid;
+  gap: var(--space-large);
+  list-style: none;
+  padding: 0;
+}
+
+@media (min-width: 44em) {
+  .fleet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-x-large);
+  }
+}
+
+@media (min-width: 64em) {
+  .fleet {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.fleet__item {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  counter-increment: station;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-top: var(--space-medium);
+}
+
+.fleet__item::before {
+  color: var(--color-ink-faint);
+  content: "st." counter(station, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-small);
+}
+
+.fleet__name {
+  font-size: var(--font-size-large);
+}
+
+.fleet__what {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  margin-top: var(--space-x-small);
+}
+
+.fleet__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-x-small) var(--space-medium);
+  font-size: var(--font-size-small);
+  margin-top: var(--space-small);
+}
+
+/* Apps with no pages yet say so in the same voice as the station label. */
+
+.fleet__status {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-top: auto;
+  padding-top: var(--space-small);
+  text-transform: uppercase;
+}
+
+
+/* Support routing. Purpose first, destination second — the same split the
+   privacy policy and the support repo already describe. */
+
+.routes {
+  display: grid;
+  gap: var(--space-large);
+  list-style: none;
+  padding: 0;
+}
+
+@media (min-width: 48em) {
+  .routes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.routes li {
+  margin: 0;
+}
+
+.routes__for {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-x-small);
+  text-transform: uppercase;
+}
+
+.routes__where {
+  font-size: var(--font-size-small);
+  overflow-wrap: anywhere;
+}
+
+.routes__note {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  margin-top: var(--space-small);
+}

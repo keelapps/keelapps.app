@@ -1,0 +1,185 @@
+/* Product page. Same plate as the home page, more cargo on it.
+
+   The old page leaned on semantic colour — a red problem callout, green "yes"
+   badges. Neither survives contact with a two-material palette, and coral is
+   spoken for. Emphasis here is carried by inversion, rule, and label instead. */
+
+.product {
+  margin-inline: auto;
+  max-width: var(--measure-wide);
+  padding-inline: var(--gutter);
+  width: 100%;
+}
+
+
+.lede-block {
+  padding-block: var(--space-xx-large) var(--space-x-large);
+}
+
+.eyebrow {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-medium);
+  text-transform: uppercase;
+}
+
+.lede-block h1 {
+  font-size: var(--font-size-display);
+  max-width: 16em;
+}
+
+.lede {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-large);
+  margin-top: var(--space-large);
+  max-width: var(--measure);
+}
+
+.cta-row {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-medium);
+  margin-top: var(--space-large);
+}
+
+/* .btn lives in site.css — the home page draws it for the support route. */
+
+.note-inline {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+}
+
+
+/* Sections below the fold repeat the home page rhythm. */
+
+.section {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  padding-block: var(--space-x-large);
+}
+
+.section > h2 {
+  margin-bottom: var(--space-large);
+  max-width: 20em;
+}
+
+
+/* Capability grid. No card chrome — a rule above each entry, the way the
+   fleet listing is drawn. */
+
+.grid {
+  display: grid;
+  gap: var(--space-large);
+}
+
+@media (min-width: 44em) {
+  .grid {
+    column-gap: var(--space-x-large);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64em) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.card {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  padding-top: var(--space-medium);
+}
+
+.card h3 {
+  font-size: var(--font-size-large);
+}
+
+.card p {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  margin-top: var(--space-x-small);
+}
+
+
+/* Walkthrough. Steps are numbered as stations, matching every other numbered
+   sequence on the site. */
+
+.steps {
+  counter-reset: step;
+  display: grid;
+  gap: var(--space-large);
+  list-style: none;
+  padding: 0;
+}
+
+@media (min-width: 44em) {
+  .steps {
+    column-gap: var(--space-x-large);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64em) {
+  .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.steps li {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  counter-increment: step;
+  margin: 0;
+  padding-top: var(--space-medium);
+}
+
+.steps li::before {
+  color: var(--color-ink-faint);
+  content: "st." counter(step, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-small);
+}
+
+.steps h3 {
+  font-size: 100%;
+}
+
+.steps p {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  margin-top: var(--space-x-small);
+}
+
+
+/* Comparison table. The answer column is inverted rather than coloured. */
+
+.compare th:first-child { width: 45%; }
+
+.compare td:last-child,
+.compare th:last-child { text-align: left; }
+
+.answer {
+  background: var(--color-ink);
+  border-radius: var(--radius);
+  color: var(--color-canvas);
+  display: inline-block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  padding: 0.3em 0.6em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.absent {
+  color: var(--color-ink-muted);
+}
+
+
+.prose > * + * {
+  margin-top: var(--space-medium);
+}
+
+.prose {
+  max-width: var(--measure);
+}
