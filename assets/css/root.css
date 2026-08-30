@@ -1,0 +1,123 @@
+/* Design tokens. No selectors beyond :root — see elements.css for the baseline.
+
+   The palette is the one defined in the Keelapps brand guide: two
+   materials and one signal. Navy and cream swap between figure and ground
+   depending on the light, which is why dark mode here is a role swap rather
+   than a second palette. Coral marks the ballast bulb in the mark and nothing
+   else — never links, buttons, or emphasis. */
+
+:root {
+
+  /* Materials. Space-separated components so rgb() can take an alpha slash. */
+
+  --rgb-navy: 15 37 54;          /* #0F2536 — water at forty fathoms */
+  --rgb-navy-soft: 28 58 82;     /* #1C3A52 — above-waterline tint on dark */
+  --rgb-cream: 244 239 230;      /* #F4EFE6 — chart paper */
+  --rgb-cream-soft: 229 222 207; /* #E5DECF — above-waterline tint on light */
+  --rgb-coral: 232 102 74;       /* #E8664A — the ballast bulb, one drop only */
+
+  /* Roles. Light is the default plate: cream ground, navy ink. */
+
+  --rgb-canvas: var(--rgb-cream);
+  --rgb-ink: var(--rgb-navy);
+  --rgb-tint: var(--rgb-cream-soft);
+
+  --color-canvas: rgb(var(--rgb-canvas));
+  --color-ink: rgb(var(--rgb-ink));
+  --color-tint: rgb(var(--rgb-tint));
+  --color-coral: rgb(var(--rgb-coral));
+
+  /* Ink at fixed dilutions. Marginalia, rules, and secondary copy are the same
+     ink thinned down — not separate greys, which would break the two-material
+     rule the moment the ground changes. */
+
+  /* Measured against the light plate, which is the binding case — cream on
+     navy runs higher throughout. muted is 5.2:1 and carries text. faint is
+     2.8:1 and DOES NOT: it is for generated station numbers and list markers,
+     which repeat what the text beside them already says. Putting a sentence
+     in faint is a bug; the contrast harness in tools/ will catch it. */
+
+  --color-ink-muted: rgb(var(--rgb-ink) / 0.68);
+  --color-ink-faint: rgb(var(--rgb-ink) / 0.46);
+  --color-rule: rgb(var(--rgb-ink) / 0.16);
+  --color-rule-strong: rgb(var(--rgb-ink) / 0.32);
+  --color-surface: rgb(var(--rgb-ink) / 0.045);
+
+  /* Stroke gauge is a class rule: one weight for every line on the plate. */
+
+  --rule-gauge: max(1px, 0.0625em);
+  --radius: 0.25em;
+  --radius-large: 0.5em;
+
+  /* Type. Brand faces lead each stack — a machine with Outfit or Geist Mono
+     installed renders the real thing; everyone else lands on the nearest
+     system face. Nothing is fetched either way. */
+
+  --font-family: Outfit, "Avenir Next", "Segoe UI Variable Display", system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-family-mono: "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono",
+    "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --font-size-x-small: 72%;
+  --font-size-small: 84%;
+  --font-size-large: 115%;
+  --font-size-x-large: 130%;
+
+  /* Display sizes carry the marketing pages. Fluid between a phone and a wide
+     desktop so there is no breakpoint where the hero looks stranded. */
+
+  --font-size-display: clamp(2.25rem, 1.1rem + 4.8vw, 4.5rem);
+  --font-size-title: clamp(1.75rem, 1.25rem + 2.1vw, 2.75rem);
+  --font-size-heading: clamp(1.3rem, 1.12rem + 0.75vw, 1.6rem);
+
+  --line-height: 1.6;
+  --line-height-tight: 1.15;
+  --line-height-snug: 1.35;
+
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.08em;
+
+  /* Interval, not repetition. em-based so the rhythm scales with the type. */
+
+  --space-x-small: 0.5em;
+  --space-small: 0.75em;
+  --space-medium: 1.25em;
+  --space-large: 2em;
+  --space-x-large: 3em;
+  --space-xx-large: 4.5em;
+  --space-xxx-large: 6.5em;
+
+  /* Prose measure follows the type, so it stays em. Page containers must not:
+     a footer set at 84% would otherwise sit in a narrower column than the main
+     content above it and fall out of alignment. */
+
+  --measure: 34em;         /* prose column */
+  --measure-wide: 64rem;   /* page container */
+  --gutter: 1.5rem;
+
+  --transition: 0.15s cubic-bezier(0.33, 1, 0.68, 1);
+
+  color-scheme: light dark;
+
+}
+
+
+/* Dark plate: the same two materials, swapped. */
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --rgb-canvas: var(--rgb-navy);
+    --rgb-ink: var(--rgb-cream);
+    --rgb-tint: var(--rgb-navy-soft);
+
+    /* Cream on navy sits optically heavier than navy on cream; thin the rules
+       slightly so the plate does not read as a grid. */
+    --color-rule: rgb(var(--rgb-ink) / 0.14);
+    --color-rule-strong: rgb(var(--rgb-ink) / 0.28);
+    --color-surface: rgb(var(--rgb-ink) / 0.06);
+  }
+
+}

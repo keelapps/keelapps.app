@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>AccessLens for Jira — prove who can access what</title>
+    <meta
+      name="description"
+      content="Answer 'which projects can this group access?' in Jira Cloud. Point-in-time permission snapshots, diffs between quarters, and access reviews with signed-off evidence."
+    />
+    <link rel="canonical" href="https://keelapps.app/accesslens/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://keelapps.app/accesslens/" />
+    <meta property="og:title" content="AccessLens for Jira — prove who can access what" />
+    <meta
+      property="og:description"
+      content="Point-in-time permission snapshots, diffs between quarters, and access reviews with signed-off evidence. Runs on Forge, no egress."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/product.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/accesslens/">AccessLens</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <main class="product" id="main">
+      <section class="lede-block">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>AccessLens
+        </p>
+        <p class="eyebrow">For Jira Cloud admins in regulated industries</p>
+        <h1>Prove who can access what in Jira — at a point in time.</h1>
+        <p class="lede">
+          Jira can tell you who is in a project. It cannot tell you which projects a group can
+          reach, and it cannot show you what permissions looked like on the last day of the
+          quarter. AccessLens does both, and turns the answer into audit evidence.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="https://marketplace.atlassian.com/apps/4182244448/accesslens-for-jira">Get it on the Atlassian Marketplace</a>
+          <span class="note-inline">No egress. Your permission data never leaves Atlassian.</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="aside" data-label="The gap this fills">
+          <p>
+            Reverse permission lookup has been an open Jira Cloud request since 2019
+            (<a href="https://jira.atlassian.com/browse/JRACLOUD-71967"><code>JRACLOUD-71967</code></a>, over a thousand votes) and is still unresolved.
+            Meanwhile the native audit log retains 180 days and is an event stream — it cannot
+            reconstruct who held access on a given date, or show that anyone signed off on it.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Reverse lookup, three ways</h3>
+            <p>
+              Pick a group, a user, or a project. Get the flattened answer — including access
+              inherited through project roles and group membership, expanded for you.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Point-in-time snapshots</h3>
+            <p>
+              Capture the whole site's permission state on a schedule. A snapshot is the evidence:
+              it does not decay, and it does not expire after 180 days.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Quarter-over-quarter diff</h3>
+            <p>
+              Compare two snapshots and get exactly what changed — “the Contractors group gained
+              admin on Payments” — not a wall of raw events to read.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Access reviews with sign-off</h3>
+            <p>
+              Walk the project list, mark each one confirmed or needs-remediation, and export a
+              record carrying the reviewer's account and a UTC timestamp.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Public-access alarms</h3>
+            <p>
+              Any project readable by anonymous users, or granted to every licensed user, is flagged
+              as a risk finding rather than buried in a scheme.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Everything exports to CSV</h3>
+            <p>
+              Lookups, snapshots, diffs and sign-off records. Generated in your browser, UTF-8, opens
+              cleanly in Excel.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>The quarterly SOX access review, end to end</h2>
+        <ol class="steps">
+          <li>
+            <h3>Snapshot on the last day of the quarter</h3>
+            <p>Scheduled monthly or weekly, so the evidence exists before anyone asks for it.</p>
+          </li>
+          <li>
+            <h3>Diff against last quarter</h3>
+            <p>Every access grant and revocation since the last review, listed once each.</p>
+          </li>
+          <li>
+            <h3>Reviewers walk the list</h3>
+            <p>Highest-risk projects first. Confirm, or flag for remediation with a note.</p>
+          </li>
+          <li>
+            <h3>Export the sign-off record</h3>
+            <p>Reviewer account id, UTC timestamp, and the snapshot it was judged against.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>Against what you have today</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Native Jira</th>
+                <th>AccessLens</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Which projects can this group access?</td>
+                <td class="absent">Not supported</td>
+                <td><span class="answer">Yes</span></td>
+              </tr>
+              <tr>
+                <td>What could this user reach on 30 September?</td>
+                <td class="absent">Not supported</td>
+                <td><span class="answer">Yes</span></td>
+              </tr>
+              <tr>
+                <td>What changed since last quarter?</td>
+                <td class="absent">180-day event stream</td>
+                <td><span class="answer">Diff</span></td>
+              </tr>
+              <tr>
+                <td>Who signed off on the review?</td>
+                <td class="absent">Not recorded</td>
+                <td><span class="answer">Recorded</span></td>
+              </tr>
+              <tr>
+                <td>Which projects are publicly readable?</td>
+                <td class="absent">Scheme-by-scheme</td>
+                <td><span class="answer">Flagged</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 id="availability">Availability</h2>
+        <div class="prose">
+          <p>
+            AccessLens is live on the
+            <a href="https://marketplace.atlassian.com/apps/4182244448/accesslens-for-jira">Atlassian Marketplace</a>. It is built and deployed on
+            Atlassian Forge and installs into your Jira Cloud site straight from the
+            listing.
+          </p>
+          <p>
+            Licensing is handled by Atlassian. Sites with 10 users or fewer are free with every
+            feature; paid tiers start above that.
+          </p>
+          <p>
+            Questions, bug reports and feature requests:
+            <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
+          </p>
+          <p>
+            Found a security issue? Please
+            <a href="/security/">report it privately</a>
+            rather than in a public channel.
+          </p>
+        </div>
+
+        <nav class="manual__pagination">
+          <span><a href="/">← All apps</a></span>
+          <span class="manual__pagination-mid"><a href="/accesslens/docs/">Documentation</a></span>
+          <span class="manual__pagination-next"><a href="/accesslens/privacy/">Privacy policy →</a></span>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        AccessLens is an Atlassian Forge app. It runs entirely inside your Atlassian tenant and
+        declares no external network access — permission data is never sent to us or to anyone
+        else. Not affiliated with Atlassian. Jira is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>

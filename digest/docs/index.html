@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Documentation — Digest for Jira</title>
+    <meta
+      name="description"
+      content="How to use Digest for Jira: create a subscription with a JQL query, cadence, time zone and grouping; read the in-app inbox; understand the permission model and the limits."
+    />
+    <link rel="canonical" href="https://keelapps.app/digest/docs/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/digest/docs/" />
+    <meta property="og:title" content="Documentation — Digest for Jira" />
+    <meta
+      property="og:description"
+      content="Create a subscription with a JQL query, cadence, time zone and grouping; read the in-app inbox; understand the permission model and the limits."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/digest/">Digest</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Digest pages and sections">
+        <p class="manual__toc-title">Digest for Jira</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/digest/">Product</a></li>
+          <li><a href="/digest/docs/" aria-current="page">Documentation</a></li>
+          <li><a href="/digest/privacy/">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#getting-started">Getting started</a></li>
+          <li><a href="#what-a-subscription-contains">What a subscription contains</a></li>
+          <li><a href="#what-goes-into-a-digest">What goes into a digest</a></li>
+          <li><a href="#the-inbox">The inbox</a></li>
+          <li><a href="#schedules-and-time-zones">Schedules and time zones</a></li>
+          <li><a href="#who-sees-what">Who sees what</a></li>
+          <li><a href="#when-something-goes-wrong">When something goes wrong</a></li>
+          <li><a href="#limits">Limits</a></li>
+          <li><a href="#administration">Administration</a></li>
+          <li><a href="#permissions">Permissions the app requests</a></li>
+          <li><a href="#data-and-licensing">Data, privacy and licensing</a></li>
+          <li><a href="#not-in-this-release">Not in this release</a></li>
+          <li><a href="#support">Support</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/digest/">Digest</a><span>/</span>Documentation
+        </p>
+
+        <h1>Digest for Jira — documentation</h1>
+
+        <p class="manual__lede">
+          Digest folds a period's worth of Jira changes into one structured summary — issues
+          created, status transitions, assignments to you, priority changes, comments that
+          @mention you — delivered to an in-app inbox you read when you choose. It is not a
+          notification rules engine: it does not filter, rewrite or intercept Jira's own
+          notifications.
+        </p>
+        <p>
+          Digest is built on Atlassian Forge. This release requests read-only Jira scopes, and
+          there are no external servers — no data leaves Atlassian's infrastructure, so there
+          is nothing extra for a vendor security review to look at.
+        </p>
+
+        <h2 id="getting-started">Getting started</h2>
+        <ol>
+          <li>
+            Open <strong>Apps → Digests</strong> in Jira.
+          </li>
+          <li>
+            Create a subscription: a JQL query, a cadence — daily at a chosen time, or weekly
+            on a chosen day — a time zone, and a grouping (by project, assignee or status).
+          </li>
+          <li>
+            Hit <strong>Run now</strong> to see the first digest immediately instead of
+            waiting for the schedule. It lands in the inbox on the same page.
+          </li>
+          <li>
+            From then on, each period folds into one digest, delivered within the hour it is
+            due.
+          </li>
+        </ol>
+        <p>
+          Subscriptions are strictly personal. You create and manage your own; nobody else's
+          subscriptions appear in your list, and yours appear in nobody else's.
+        </p>
+
+        <h2 id="what-a-subscription-contains">What a subscription contains</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Field</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><strong>JQL query</strong></td><td>Anything you could run in the issue navigator. A broken query pauses the subscription with Jira's own error message.</td></tr>
+              <tr><td><strong>Cadence</strong></td><td>Daily at a chosen time, or weekly on a chosen day.</td></tr>
+              <tr><td><strong>Time zone</strong></td><td>Your own IANA time zone. “Daily at 09:00” means your 09:00, not the server's.</td></tr>
+              <tr><td><strong>Grouping</strong></td><td>By project, assignee or status — how the digest arranges its entries.</td></tr>
+              <tr><td><strong>Empty digests</strong></td><td>Off by default. A period with no changes delivers nothing unless you tick <em>Send even when nothing changed</em>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="what-goes-into-a-digest">What goes into a digest</h2>
+        <p>Each run collects what changed in the window and classifies it:</p>
+        <ul>
+          <li>Issues created</li>
+          <li>Status transitions</li>
+          <li>Assignments to you</li>
+          <li>Priority changes</li>
+          <li>Comments that @mention you</li>
+        </ul>
+        <p>
+          An entry is an issue key, a truncated summary and short change labels like
+          <em>Status: To Do → In Progress</em> — never descriptions, comment bodies or rich
+          text. That restraint is a privacy property as much as a layout one: see
+          <a href="/digest/privacy/">what the app stores</a>.
+        </p>
+        <p>
+          When more than 50 issues changed in the window, the digest shows the 50 most notable
+          and says “and N more”, with a deep link that opens the full result in the issue
+          navigator.
+        </p>
+
+        <h2 id="the-inbox">The inbox</h2>
+        <p>
+          Digests are delivered to the inbox under <strong>Apps → Digests</strong>: newest
+          first, with unread counts and a <strong>mark all read</strong> control. Nothing is
+          emailed; you read the summary when you choose to.
+        </p>
+        <p>
+          The inbox keeps your 50 most recent digests across all of your subscriptions, oldest
+          out first. Deleting a subscription deletes its digests.
+        </p>
+
+        <h2 id="schedules-and-time-zones">Schedules and time zones</h2>
+        <p>
+          Every subscription picks one IANA time zone, and the cadence is evaluated in it. Two
+          people in different time zones each asking for 09:00 get different instants, each of
+          which is 09:00 local to them — on both sides of a daylight saving change.
+        </p>
+        <p>
+          Digests arrive within the hour they are due. Digest wakes up hourly and Atlassian
+          spreads those wake-ups across the hour, so a digest due at 09:00 typically appears a
+          few minutes past the hour rather than exactly on it.
+        </p>
+        <p>
+          <strong>Windows tile.</strong> A run's window opens at the previous successful run,
+          not at “now minus 24 hours”, so a late run covers the gap instead of dropping it. The
+          look-back is clamped to two nominal periods, so an outage cannot produce a
+          three-month digest.
+        </p>
+
+        <h2 id="who-sees-what">Who sees what</h2>
+        <p>
+          Scheduled runs have no user context, so digests are generated with the app's own
+          permissions. When you open one, it is re-filtered against your own Jira permissions
+          at that moment: anything you cannot see is stripped and replaced by a count —
+          “N items hidden”, never the items themselves.
+        </p>
+        <p>
+          The check fails closed. If your access to an issue cannot be confirmed, the entry is
+          treated as hidden rather than shown.
+        </p>
+        <div class="aside" data-label="Why this matters">
+          <p>
+            A digest is a stored copy of what a query once saw. Re-filtering at read time means
+            losing access to a project also means losing access to its history in your digests
+            — the copy never outlives the permission.
+          </p>
+        </div>
+
+        <h2 id="when-something-goes-wrong">When something goes wrong</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Situation</th><th>Behaviour</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Jira rejects the JQL, or forbids it</td>
+                <td>The subscription shows <em>Needs attention</em> and the inbox carries Jira's own error message. Editing the subscription clears the fault and resumes the schedule.</td>
+              </tr>
+              <tr>
+                <td>The owner's account is deactivated</td>
+                <td>Their subscriptions move to <em>Disabled</em> and stop running.</td>
+              </tr>
+              <tr>
+                <td>Rate limits or a Jira outage</td>
+                <td>Retried with backoff, then deferred to the next hour, up to three times. The window is left untouched, so the next successful run covers the same period and nothing is lost.</td>
+              </tr>
+              <tr>
+                <td>Nothing changed in the period</td>
+                <td>Nothing is delivered, and the site's <em>empty periods suppressed</em> counter goes up — silence is recorded, not accidental.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="limits">Limits</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Limit</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Subscriptions per person</td><td>1 on the free tier, 25 with a paid license. Nothing else is gated — every cadence and grouping is in the free tier.</td></tr>
+              <tr><td>Issues per digest</td><td>50, then “and N more” with a deep link to the issue navigator.</td></tr>
+              <tr><td>@mention detection</td><td>Scans the 25 most notable issues in the window — each check reads that issue's comments.</td></tr>
+              <tr><td>Inbox depth</td><td>Your 50 most recent digests, oldest evicted first.</td></tr>
+              <tr><td>Empty periods</td><td>Not delivered, unless the subscription opts into empty digests.</td></tr>
+              <tr><td>Look-back window</td><td>At most two nominal periods, however late the run is.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="administration">Administration</h2>
+        <p>
+          Site administrators get <strong>Settings → Apps → Digest for Jira</strong>: counters
+          for subscriptions, deliveries and suppressed empty periods, and site-level toggles.
+          Counters only — no queries, no names, no account ids, no issue data. What a person
+          subscribes to is their business.
+        </p>
+
+        <h2 id="permissions">Permissions the app requests</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Scope</th><th>What it is for</th></tr></thead>
+            <tbody>
+              <tr><td><code>read:jira-work</code></td><td>Run each subscription's JQL, and read changelogs and comments to classify what changed in the window</td></tr>
+              <tr><td><code>read:jira-user</code></td><td>Resolve display names, detect comments that @mention the subscriber, and notice when an owner's account is deactivated</td></tr>
+              <tr><td><code>storage:app</code></td><td>Store subscriptions, digests, the inbox and site counters in Atlassian-hosted app storage</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Every Jira scope is read-only: the app cannot create, edit or transition an issue,
+          and the install prompt says so. There is no <code>external</code> permission, so
+          Forge blocks outbound calls at the platform level. See the
+          <a href="/digest/privacy/">privacy policy</a> for what is stored and where.
+        </p>
+
+        <h2 id="data-and-licensing">Data, privacy and licensing</h2>
+        <p>
+          Everything lives in Forge storage inside your own Atlassian tenant: subscription
+          configuration, digest bodies — issue keys, truncated summaries and short change
+          labels, never descriptions or comment text — the inbox, and site-level counters. No
+          email addresses, IP addresses or analytics. Uninstalling the app removes all of it.
+          Full text: <a href="/digest/privacy/">privacy policy</a>.
+        </p>
+        <p>
+          Licensing is handled by Atlassian. One subscription is free forever, with every
+          cadence and every grouping; a paid license raises the limit to 25 subscriptions per
+          person. Sites with 10 users or fewer pay nothing at all.
+        </p>
+
+        <h2 id="not-in-this-release">Not in this release</h2>
+        <p>
+          Digest does one thing: it folds a period of changes into a summary and delivers it
+          in-app, then tells you honestly when there was nothing to say.
+        </p>
+        <ul>
+          <li>
+            Delivery as a Jira notification — the channel exists in the codebase but is
+            compiled out of this release, because it needs a write scope and 1.0 keeps its
+            install prompt read-only. A later version may ship it; delivery would still be by
+            Atlassian's own notification service.
+          </li>
+          <li>Email sent by us — never. There is no external email provider, in this release or any other.</li>
+          <li>Filtering, rewriting or intercepting Jira's own notifications</li>
+          <li>Slack or Teams delivery</li>
+          <li>Saved filters as a subscription source — JQL only for now</li>
+          <li>AI-written summaries — a digest lists what changed; it does not paraphrase it</li>
+        </ul>
+
+        <h2 id="support">Support</h2>
+        <p>
+          Questions, bug reports and feature requests:
+          <a href="https://keelapps.atlassian.net/helpcenter/support/">keelapps.atlassian.net/helpcenter/support/</a>.
+        </p>
+        <p>
+          Security issues:
+          <a href="/security/">report privately</a>,
+          not in a public channel.
+        </p>
+        <p>
+          Privacy or data requests: use the address on the
+          <a href="/digest/privacy/">privacy policy</a>.
+        </p>
+
+        <nav class="manual__pagination">
+          <span><a href="/digest/">← Product page</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/digest/privacy/">Privacy policy →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Digest for Jira is published by Keelapps. Not affiliated with Atlassian. Jira is
+        a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>

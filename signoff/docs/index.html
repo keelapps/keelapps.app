@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Documentation — Signoff for Confluence</title>
+    <meta
+      name="description"
+      content="How Signoff works: requesting sign-off, deciding, the status ladder, policies, expiry, the approvals inbox and the audit export."
+    />
+    <link rel="canonical" href="https://keelapps.app/signoff/docs/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/signoff/docs/" />
+    <meta property="og:title" content="Documentation — Signoff for Confluence" />
+    <meta
+      property="og:description"
+      content="Requesting sign-off, deciding, the status ladder, policies, expiry, the approvals inbox and the audit export."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/signoff/">Signoff</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Signoff pages and sections">
+        <p class="manual__toc-title">Signoff for Confluence</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/signoff/">Product</a></li>
+          <li><a href="/signoff/docs/" aria-current="page">Documentation</a></li>
+          <li><a href="/signoff/privacy/">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#requesting">Requesting sign-off</a></li>
+          <li><a href="#deciding">Deciding</a></li>
+          <li><a href="#status-ladder">The status ladder</a></li>
+          <li><a href="#policies">Policies</a></li>
+          <li><a href="#expiry">Expiry and re-approval</a></li>
+          <li><a href="#inbox">The approvals inbox</a></li>
+          <li><a href="#notifications">Notifications</a></li>
+          <li><a href="#audit">The audit export</a></li>
+          <li><a href="#permissions">Permissions and scopes</a></li>
+          <li><a href="#faq">Questions we expect</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/signoff/">Signoff</a><span>/</span>Documentation
+        </p>
+
+        <h1>Documentation</h1>
+        <p class="manual__lede">
+          Signoff adds one concept to Confluence: a page-version approval. Everything else —
+          policies, expiry, the inbox, the audit trail — exists to create those approvals
+          honestly and keep them honest afterwards.
+        </p>
+
+        <h2 id="requesting">Requesting sign-off</h2>
+        <p>
+          Open the page and click the Signoff badge in the byline, then
+          <strong>Request approval</strong>. The form offers:
+        </p>
+        <ul>
+          <li>
+            <strong>Approvers</strong> — pre-filled from the space's policy when one applies;
+            otherwise pick anyone. You cannot be the only approver of your own request.
+          </li>
+          <li>
+            <strong>Mode</strong> — <em>any one may approve</em> (first approval settles it) or
+            <em>all must approve</em> (everyone signs; one rejection vetoes immediately).
+          </li>
+          <li><strong>Note</strong> — an optional message carried to the approvers.</li>
+        </ul>
+        <p>
+          The request pins the page's <em>current version number</em>. That number is what the
+          eventual approval covers — not “the page”, but “the page as it stood”.
+        </p>
+
+        <h2 id="deciding">Deciding</h2>
+        <p>
+          Approvers act from the page byline or the approvals inbox: <strong>Approve</strong>
+          or <strong>Request changes</strong>, optionally with a comment. Only listed
+          approvers can decide, each decides once, and the requester may cancel an open
+          request at any time. Every action is recorded in the page's history.
+        </p>
+
+        <h2 id="status-ladder">The status ladder</h2>
+        <p>
+          The badge is computed fresh on every render by comparing the stored approval with
+          the live page — status is never written down, so it can never go stale:
+        </p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Badge</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Not submitted</td><td>No approval has ever been requested.</td></tr>
+              <tr><td>In review</td><td>A request is open and waiting on approvers.</td></tr>
+              <tr><td>Approved · vN</td><td>The live version equals the approved version.</td></tr>
+              <tr><td>Approved · page changed</td><td>The page has moved past the approved version.</td></tr>
+              <tr><td>Re-approval due</td><td>The approval's validity has run out.</td></tr>
+              <tr><td>Changes requested</td><td>The last request was declined.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Editing a page never deletes an approval record — the badge simply reports that
+          approval is behind, and offers re-approval in one click.
+        </p>
+
+        <h2 id="policies">Policies</h2>
+        <p>
+          A policy names approvers, a mode, and how long an approval stays valid. Site
+          admins define policies once under <strong>Settings → Signoff</strong>; space
+          admins bind their space to one under <strong>Space settings → Signoff</strong> —
+          or do nothing and inherit the site default. Binding is a pointer, never a copy:
+          editing a policy changes every bound space at once.
+        </p>
+        <p>
+          An <strong>enforced</strong> policy locks approvers and mode — requesters cannot
+          change them. Use it for the spaces where the approver list is the point.
+        </p>
+
+        <h2 id="expiry">Expiry and re-approval</h2>
+        <p>
+          A policy can give approvals a validity of 3, 6, 12 or 24 months. Expiry is part of
+          the computed status, so it takes effect the moment the clock passes — and a daily
+          scan additionally maintains a site-wide “due for re-approval” list for admins,
+          plus a personal slice in each signer's inbox.
+        </p>
+
+        <h2 id="inbox">The approvals inbox</h2>
+        <p>
+          <strong>Apps → Approvals</strong> shows three strictly personal lists: requests
+          waiting on you (decide right there), requests you opened, and approvals you signed
+          that have since expired. Site-wide views live with site admins, not here.
+        </p>
+
+        <h2 id="notifications">Notifications</h2>
+        <p>
+          When approval is requested or decided, Signoff posts a footer comment on the page
+          @-mentioning the people who need to know. The mention is what reaches them —
+          through Confluence's own bell and email, honouring each person's notification
+          settings. The comment doubles as a visible approval trail on the page itself.
+          Site admins can switch the comments off; the inbox then carries the load alone.
+        </p>
+
+        <h2 id="audit">The audit export</h2>
+        <p>
+          <strong>Settings → Signoff → Audit export</strong> generates a CSV of every
+          request, decision and cancellation across the site: timestamp, event, page,
+          space, page version, actor, comment. Paste it into the auditor's spreadsheet and
+          be done.
+        </p>
+
+        <h2 id="permissions">Permissions and scopes</h2>
+        <p>The app requests four scopes, and the one write is deliberate:</p>
+        <ul>
+          <li><code>read:page:confluence</code> — page titles and version numbers</li>
+          <li><code>read:user:confluence</code> — display names behind account ids</li>
+          <li><code>write:comment:confluence</code> — the notification comment, and nothing else</li>
+          <li><code>storage:app</code> — approval records, in Forge storage on your site</li>
+        </ul>
+        <p>
+          Signoff never edits page content, never creates page versions, never changes
+          permissions, and declares no external network access.
+        </p>
+
+        <h2 id="faq">Questions we expect</h2>
+        <dl class="faq">
+          <dt>Does approving lock the page?</dt>
+          <dd>
+            No. Signoff records truth; it does not restrict editing. If someone edits an
+            approved page, the badge says so — which in practice is the enforcement most
+            teams actually want.
+          </dd>
+          <dt>What happens if an approver leaves the company?</dt>
+          <dd>
+            Their name stays on past approvals (stored alongside the account id). Open
+            requests they never decided can be cancelled by the requester and re-issued to
+            someone else.
+          </dd>
+          <dt>Can I approve my own page?</dt>
+          <dd>
+            You can be <em>an</em> approver of your own request, but never the only one.
+          </dd>
+          <dt>Does it work with page restrictions?</dt>
+          <dd>
+            Yes. Signoff reads pages with its own app permission and stores only titles and
+            version numbers; who can see the page itself remains entirely Confluence's
+            decision.
+          </dd>
+        </dl>
+
+        <nav class="manual__pagination">
+          <span><a href="/signoff/">← Product page</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/signoff/privacy/">Privacy policy →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Signoff for Confluence is published by Keelapps. Not affiliated with Atlassian.
+        Confluence is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Privacy policy — Evergreen for Confluence</title>
+    <meta
+      name="description"
+      content="Evergreen for Confluence stores confirmation records and a page-metadata index only inside your own Atlassian tenant. The app declares no external network access and never reads page content."
+    />
+    <link rel="canonical" href="https://keelapps.app/evergreen/privacy/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/evergreen/privacy/" />
+    <meta property="og:title" content="Privacy policy — Evergreen for Confluence" />
+    <meta
+      property="og:description"
+      content="Confirmation records and page metadata stay inside your own Atlassian tenant. No external network access, no vendor copy, and page content is never read."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/evergreen/">Evergreen</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Evergreen pages and sections">
+        <p class="manual__toc-title">Evergreen for Confluence</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/evergreen/">Product</a></li>
+          <li><a href="/evergreen/docs/">Documentation</a></li>
+          <li><a href="/evergreen/privacy/" aria-current="page">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#short-version">The short version</a></li>
+          <li><a href="#what-the-app-stores">What the app stores</a></li>
+          <li><a href="#personal-data">Personal data</a></li>
+          <li><a href="#who-can-see-it">Who can see it</a></li>
+          <li><a href="#retention-and-deletion">Retention and deletion</a></li>
+          <li><a href="#sub-processors">Sub-processors</a></li>
+          <li><a href="#data-residency">Data residency</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/evergreen/">Evergreen</a><span>/</span>Privacy policy
+        </p>
+
+        <!-- legal:begin
+             In-force text. This document is what the Atlassian Marketplace
+             listing links to. Structure, classes, ids and attributes may
+             change; NOT ONE WORD between these sentinels may. Verify before
+             pushing: tools/check-legal-text  (see README.md)
+        -->
+        <h1>Privacy policy — Evergreen for Confluence</h1>
+        <p class="manual__meta">Last updated: <time datetime="2026-08-29">29 August 2026</time></p>
+
+        <h2 id="short-version">The short version</h2>
+        <p class="manual__lede">
+          Evergreen does not send your data anywhere. It runs entirely on Atlassian Forge,
+          inside Atlassian's infrastructure. There is no external server, no analytics
+          service, no email, and no third party. The app declares no external permissions,
+          which Atlassian enforces at the platform level — it <em>cannot</em> make an
+          outbound call even if it tried to.
+        </p>
+
+        <h2 id="what-the-app-stores">What the app stores</h2>
+        <p>Two places, both inside your Atlassian site.</p>
+        <p><strong>On each page, as a content property named <code>evergreen</code>:</strong></p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Field</th><th>Example</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>lastConfirmedAt</code></td>
+                <td><code>2026-06-01T09:12:00Z</code></td>
+                <td>when someone last confirmed the page</td>
+              </tr>
+              <tr>
+                <td><code>confirmedBy</code></td>
+                <td>Atlassian account ID</td>
+                <td>who confirmed it</td>
+              </tr>
+              <tr>
+                <td><code>confirmedByName</code></td>
+                <td>display name</td>
+                <td>so the byline stays readable if that account is later deactivated</td>
+              </tr>
+              <tr>
+                <td><code>overrideThreshold</code></td>
+                <td><code>{agingAfterDays, staleAfterDays}</code></td>
+                <td>per-page threshold, if set</td>
+              </tr>
+              <tr>
+                <td><code>exempt</code></td>
+                <td><code>true</code></td>
+                <td>if the page is excluded from tracking</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>In Forge storage, per space:</strong> an index of the pages the app can
+          see, holding page ID, title, last-edited timestamp, last-confirmed timestamp, the
+          confirming user's account ID and display name, the page owner's account ID and
+          display name, and the computed status. Plus threshold settings, the list of pages
+          needing attention, and any review assignments — each holding the assignee's
+          account ID and display name, when the assignment was made, and the account ID of
+          whoever made it.
+        </p>
+        <p>
+          Page <strong>content</strong> is never read into storage. The app reads page
+          metadata — title, timestamps, labels, author — and never the body.
+        </p>
+
+        <h2 id="personal-data">Personal data</h2>
+        <p>
+          Atlassian account IDs and display names, for four roles: who confirmed a page, who
+          owns a page, who is assigned to review one, and who made each assignment. Nothing
+          else. No email addresses, no IP addresses, no usage analytics, no behavioural
+          tracking.
+        </p>
+        <p>
+          Display names are stored alongside account IDs deliberately, so that a
+          confirmation made by someone who has since left still reads sensibly rather than
+          showing a bare ID or an error.
+        </p>
+
+        <h2 id="who-can-see-it">Who can see it</h2>
+        <p>
+          Only users of your Confluence site, subject to Confluence's own permissions. The
+          space dashboard sits in space settings, which Confluence restricts to space
+          administrators.
+        </p>
+        <p>
+          The app reads Confluence as the app, not as you. Pages restricted away from the
+          app are invisible to it — they are excluded from all counts, and the dashboard
+          states how many such pages it found rather than quietly omitting them.
+        </p>
+
+        <h2 id="retention-and-deletion">Retention and deletion</h2>
+        <ul>
+          <li>
+            Page confirmation data is a content property, so it follows the page: delete the
+            page and it goes with it.
+          </li>
+          <li>
+            Space-level data is in Forge storage and is removed when the app is uninstalled,
+            per Atlassian's data retention for Forge apps.
+          </li>
+          <li>
+            To remove one page's data without uninstalling, use
+            <strong>Exclude from tracking</strong> on the page byline, or delete the
+            <code>evergreen</code> content property directly via the Confluence REST API.
+          </li>
+        </ul>
+
+        <h2 id="sub-processors">Sub-processors</h2>
+        <p>None. Atlassian hosts everything; there is no other party involved.</p>
+
+        <h2 id="data-residency">Data residency</h2>
+        <p>
+          Whatever your Atlassian site's residency is. Evergreen adds no storage outside
+          Forge and therefore introduces no additional residency considerations.
+        </p>
+
+        <h2 id="changes">Changes</h2>
+        <p>
+          Material changes to what is stored or where will be reflected here and in the
+          Marketplace listing before they ship.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a> — for questions about
+          this policy, and for data access, correction or deletion requests.
+        </p>
+        <!-- legal:end -->
+
+        <nav class="manual__pagination">
+          <span><a href="/evergreen/docs/">← Documentation</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/evergreen/">Product page →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Evergreen for Confluence is published by Keelapps. Not affiliated with Atlassian.
+        Confluence is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
