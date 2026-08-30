@@ -1,0 +1,27 @@
+evergreen/index.html
+  s_9cb1fa239072c6::t_ce32ab9dfc2939 1-273
+index.html
+  s_9cb1fa239072c6::t_711763eecb4736 122-126
+evergreen/docs/index.html
+  s_9cb1fa239072c6::t_89f7a4d458f909 1-344
+tools/check-legal-text
+  s_9cb1fa239072c6::t_6241914c67f9e5 29
+evergreen/privacy/index.html
+  s_9cb1fa239072c6::t_e4322a1eb84d0e 1-241
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "744c29c27a547179722508114bd74009389f9888",
+  "prompts": {},
+  "sessions": {
+    "s_9cb1fa239072c6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a07e1126-4572-4f61-aae9-d336b5d12ca9",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}

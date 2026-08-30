@@ -1,0 +1,27 @@
+index.html
+  s_0e4506b188bba3::t_0cf59c92370861 85-89
+recur/docs/index.html
+  s_0e4506b188bba3::t_4605e107e4eb8e 1-324
+recur/index.html
+  s_0e4506b188bba3::t_976d1241504bcc 1-243
+recur/privacy/index.html
+  s_0e4506b188bba3::t_c9be0dbbae2373 1-201
+tools/check-legal-text
+  s_0e4506b188bba3::t_6ff4bc600a7af2 26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "ffb87684ed72007cbb4f06b5717a910201e53a74",
+  "prompts": {},
+  "sessions": {
+    "s_0e4506b188bba3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "adef89fa-9524-4b63-971b-0f144a7773a5",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}

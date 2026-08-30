@@ -1,0 +1,28 @@
+digest/index.html
+  s_64a2aeef86da2e::t_59cc5ccdd86111 1-278
+digest/docs/index.html
+  s_64a2aeef86da2e::t_91da4b91ea55e3 1-348
+tools/check-legal-text
+  s_64a2aeef86da2e::t_1e29a88c384030 28
+index.html
+  s_64a2aeef86da2e::t_d7e1d85408d5d8 109-113
+digest/privacy/index.html
+  s_64a2aeef86da2e::t_cc3a90e2f9a41d 189
+  s_64a2aeef86da2e::t_6be4f467e618d0 1-188,190-214
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "714490f1eca36fe0c017202a710ff0e710dd447f",
+  "prompts": {},
+  "sessions": {
+    "s_64a2aeef86da2e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a2ada016-41df-4158-aee7-1291fae12e14",
+        "model": "claude-fable-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}

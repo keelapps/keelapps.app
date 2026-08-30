@@ -1,0 +1,21 @@
+MAINTAINING.md
+  s_f580f725469e63::t_d855996c9c8e92 1-101
+README.md
+  s_f580f725469e63::t_1d457e91b61c35 1,3-4,6-9,11-14,16,18-23,25-30,32,35-36,39-41,43,45-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.23",
+  "base_commit_sha": "549328f36fadcf3cb2d5c5ca0615264f2cb3d4cf",
+  "prompts": {},
+  "sessions": {
+    "s_f580f725469e63": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf46cf3c-fd86-453c-a5d9-2c7cf3055100",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}

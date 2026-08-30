@@ -1,0 +1,29 @@
+README.md
+  s_f580f725469e63::t_20d98e15ad72ae 27-30,89-91,94-98
+index.html
+  s_f580f725469e63::t_ade57b4db898d3 85-89
+recur/docs/index.html
+  s_f580f725469e63::t_7dd44c231bc8f0 1-353
+recur/index.html
+  s_f580f725469e63::t_4d0e3c602c146c 1-249
+recur/privacy/index.html
+  s_f580f725469e63::t_03c545914c2737 1-201
+tools/check-legal-text
+  s_f580f725469e63::t_64f93de717891b 26-29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.23",
+  "base_commit_sha": "7fc1b796fdc4035458af8cad67a6c0a8ada7aa01",
+  "prompts": {},
+  "sessions": {
+    "s_f580f725469e63": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf46cf3c-fd86-453c-a5d9-2c7cf3055100",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}

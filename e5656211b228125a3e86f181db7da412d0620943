@@ -1,0 +1,14 @@
+accesslens/index.html
+  h_95e33fbd4ab2d9 213-216
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "e5656211b228125a3e86f181db7da412d0620943",
+  "prompts": {},
+  "humans": {
+    "h_95e33fbd4ab2d9": {
+      "author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}

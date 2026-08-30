@@ -1,0 +1,21 @@
+accesslens/index.html
+  s_9b4b6748d393d7::t_ef060e5d714dfa 1-275
+index.html
+  s_9b4b6748d393d7::t_92091f203d263c 43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "614d0ede0b0061816fade73748f7b40a7b635dc1",
+  "prompts": {},
+  "sessions": {
+    "s_9b4b6748d393d7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "131a3001-6e1f-4602-b306-e823deac9f39",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}

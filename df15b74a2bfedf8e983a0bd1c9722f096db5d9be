@@ -1,0 +1,21 @@
+index.html
+  s_f837db32c071ce::t_872499e1c210c4 146-147
+assets/css/product.css
+  s_f837db32c071ce::t_228bfe50307a59 48-64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "df15b74a2bfedf8e983a0bd1c9722f096db5d9be",
+  "prompts": {},
+  "sessions": {
+    "s_f837db32c071ce": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b5c19a50-b1c3-457c-997a-97230392d9c3",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}

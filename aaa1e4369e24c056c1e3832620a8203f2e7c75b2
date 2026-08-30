@@ -1,0 +1,53 @@
+README.md
+  s_f837db32c071ce::t_b4c3de14d3a749 46
+accesslens/docs/index.html
+  s_f837db32c071ce::t_f4136f0dfad09a 59,239,261
+accesslens/index.html
+  s_f837db32c071ce::t_1b6cd15a28658f 59,219,238
+accesslens/privacy/index.html
+  s_f837db32c071ce::t_c4b2b159884597 59,206
+digest/docs/index.html
+  s_f837db32c071ce::t_2c9e16b483eba2 59,316,338
+digest/index.html
+  s_f837db32c071ce::t_48d20d45bfdb80 59,248,267
+digest/privacy/index.html
+  s_f837db32c071ce::t_590b4f23e686f2 59,204
+evergreen/docs/index.html
+  s_f837db32c071ce::t_47799bc1394d7f 59,321,335
+evergreen/index.html
+  s_f837db32c071ce::t_8abce638fc7e75 59,244,263
+evergreen/privacy/index.html
+  s_f837db32c071ce::t_d6e8b650fe18e8 59,232
+index.html
+  s_f837db32c071ce::t_a8d0c3b1f8baf3 163,188
+recur/docs/index.html
+  s_f837db32c071ce::t_c9400d758422ff 59,329,352
+recur/index.html
+  s_f837db32c071ce::t_b629a5a9e87ae6 59,234,253
+recur/privacy/index.html
+  s_f837db32c071ce::t_9e6145eb8210d5 59,200
+security/index.html
+  s_f837db32c071ce::t_4b54bade5b6453 58,156,168
+signoff/docs/index.html
+  s_f837db32c071ce::t_c907e386fdf4c0 59,245
+signoff/index.html
+  s_f837db32c071ce::t_c673817e7601bf 59,251,270
+signoff/privacy/index.html
+  s_f837db32c071ce::t_97f062896a352c 59,194
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "aaa1e4369e24c056c1e3832620a8203f2e7c75b2",
+  "prompts": {},
+  "sessions": {
+    "s_f837db32c071ce": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b5c19a50-b1c3-457c-997a-97230392d9c3",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}

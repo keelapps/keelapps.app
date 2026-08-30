@@ -1,0 +1,26 @@
+signoff/privacy/index.html
+  s_64a2aeef86da2e::t_7a54b7d24f8fa2 1-203
+signoff/docs/index.html
+  s_64a2aeef86da2e::t_12c317ae65d175 1-254
+index.html
+  s_64a2aeef86da2e::t_346c0f1f2c66c5 117-128
+  s_64a2aeef86da2e::t_c0a1e5d80e859f 116
+signoff/index.html
+  s_64a2aeef86da2e::t_7bf5f0287db674 1-280
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "3a699ce56a827a71b8874f3b3145402f1910e83a",
+  "prompts": {},
+  "sessions": {
+    "s_64a2aeef86da2e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a2ada016-41df-4158-aee7-1291fae12e14",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
