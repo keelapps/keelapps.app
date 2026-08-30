@@ -43,5 +43,5 @@ changing anything structural.
 ## Support
 
 Questions and bug reports for the apps themselves go to
-the [Keelapps support portal](https://keelapps.atlassian.net/helpcenter/support/contact-us). Security
+the [Keelapps support portal](https://keelapps.atlassian.net/helpcenter/support/). Security
 issues: email <support@keelapps.atlassian.net> — see [/security/](https://keelapps.app/security/).
