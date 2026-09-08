@@ -1,0 +1,23 @@
+index.html
+  s_489434d5195f47::t_c33df760f98140 90,133,157,187-211
+  s_489434d5195f47::t_7307ac5756e9e1 134-156
+  s_489434d5195f47::t_a05143fe516163 91-102
+  s_489434d5195f47::t_b906b49994397d 158
+  s_489434d5195f47::t_d3fc3c2f66ed9b 212
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "1ecf7fadc5f08364c8ce571d3883addd39e7e4ab",
+  "prompts": {},
+  "sessions": {
+    "s_489434d5195f47": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2e42f9a9-7e40-423c-b7fd-8313dc82a133",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
