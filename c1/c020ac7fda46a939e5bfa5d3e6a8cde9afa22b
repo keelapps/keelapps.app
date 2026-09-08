@@ -1,0 +1,19 @@
+tools/check-legal-text
+  s_489434d5195f47::t_04a6a45eb428fc 28-29,32,34-35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "c1c020ac7fda46a939e5bfa5d3e6a8cde9afa22b",
+  "prompts": {},
+  "sessions": {
+    "s_489434d5195f47": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2e42f9a9-7e40-423c-b7fd-8313dc82a133",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
