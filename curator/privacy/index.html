@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Privacy policy — Curator for Confluence</title>
+    <meta
+      name="description"
+      content="Curator for Confluence stores previews, undo journals, operation history and the label catalogue only in Atlassian-hosted Forge storage inside your own tenant. The app declares no external network access."
+    />
+    <link rel="canonical" href="https://keelapps.app/curator/privacy/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/curator/privacy/" />
+    <meta property="og:title" content="Privacy policy — Curator for Confluence" />
+    <meta
+      property="og:description"
+      content="Previews, undo journals, history and the label catalogue stay in Atlassian-hosted Forge storage inside your own tenant. No external network access, no vendor copy."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/curator/">Curator</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Curator pages and sections">
+        <p class="manual__toc-title">Curator for Confluence</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/curator/">Product</a></li>
+          <li><a href="/curator/docs/">Documentation</a></li>
+          <li><a href="/curator/privacy/" aria-current="page">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#short-version">The short version</a></li>
+          <li><a href="#what-the-app-stores">What the app stores</a></li>
+          <li><a href="#what-the-app-writes">What the app writes</a></li>
+          <li><a href="#what-it-never-does">What the app never does</a></li>
+          <li><a href="#retention-and-deletion">Retention and deletion</a></li>
+          <li><a href="#data-residency">Data residency</a></li>
+          <li><a href="#sub-processors">Sub-processors</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/curator/">Curator</a><span>/</span>Privacy policy
+        </p>
+
+        <!-- legal:begin
+             In-force text. This document is submitted to the Atlassian
+             Marketplace. Structure, classes, ids and attributes may change;
+             NOT ONE WORD between these sentinels may. Verify before pushing:
+               tools/check-legal-text  (see README.md)
+        -->
+        <h1>Privacy policy — Curator for Confluence</h1>
+        <p class="manual__meta">Effective date: <time datetime="2026-09-09">9 September 2026</time></p>
+
+        <h2 id="short-version">The short version</h2>
+        <p class="manual__lede">
+          Curator for Confluence (“Curator”, “the app”) is published by Keelapps. It is a bulk
+          page and label governance tool: it previews a change, applies it, and can take it
+          back. Curator does not send your data anywhere. It runs entirely on Atlassian Forge,
+          inside Atlassian's infrastructure, and the app declares no external network
+          permissions — which Atlassian enforces at the platform level. There is no Keelapps
+          server, no analytics, no telemetry and no third party.
+        </p>
+
+        <h2 id="what-the-app-stores">What the app stores</h2>
+        <p>
+          Everything is stored in Forge app storage (Atlassian-hosted) inside your own
+          Atlassian site.
+        </p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Data</th><th>Examples</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Previews</td>
+                <td>a frozen list of the pages a change would affect — page id, page title, space id, parent page id, status (current or archived) and version number for each — plus the filter that selected them, the operation and its parameters, the account id of the person who built the preview, and any free-text note they typed</td>
+                <td>a preview has to describe the same pages the run will touch</td>
+              </tr>
+              <tr>
+                <td>Undo journals</td>
+                <td>for every page a run changed, the exact inverse of that change (the labels to put back, or the parent page and space id to move it back to) and the guard values the undo checks before acting — the parent and space the page was left in</td>
+                <td>the undo is the product</td>
+              </tr>
+              <tr>
+                <td>Operation history</td>
+                <td>one record per run and per undo: the operation, a description of it, the selection it ran over, the space key, the acting person's account id and display name, start and finish timestamps, counts of pages succeeded, skipped and failed, whether it can still be undone, the free-text note, and up to 100 per-page failures with the page id and the reason</td>
+                <td>history is what makes a bulk change auditable, so it deliberately names people</td>
+              </tr>
+              <tr>
+                <td>The label catalogue</td>
+                <td>every shared label on the site — name, id, prefix — with its derived usage count and the time that count was taken</td>
+                <td>so the label panel opens without re-counting the site</td>
+              </tr>
+              <tr>
+                <td>Operational data</td>
+                <td>job checkpoint cursors (how far a long run has got) and a small record of which API routes this site accepts</td>
+                <td>so an interrupted batch resumes instead of starting again</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Personal data is limited to Atlassian account ids and the display names of the
+          people who build previews and run operations. Personal labels — the favourites
+          Confluence stores with a <code>my</code> prefix — are never listed and never
+          stored.
+        </p>
+
+        <h2 id="what-the-app-writes">What the app writes to Confluence</h2>
+        <p>
+          Curator writes only what the operation you previewed and confirmed says it will
+          write:
+        </p>
+        <ul>
+          <li><strong>Labels</strong>, attached to or detached from pages.</li>
+          <li>
+            <strong>A page's parent</strong>, when you move pages. Moves prefer the endpoint
+            that changes only the page's position.
+          </li>
+          <li><strong>Archived status</strong>, when you archive pages.</li>
+        </ul>
+        <p>
+          Curator never writes page content of its own. One honest caveat: when a move cannot
+          use the position-only endpoint, the app falls back to Confluence's page update,
+          which <em>requires</em> the page body to be sent — so the app reads the page and
+          writes the same body back unchanged, and that fallback <strong>does create a new
+          page version</strong>, stamped with the version message <code>Curator: move</code>.
+          Whether a <em>label</em> change also causes Confluence to record a new version is
+          Confluence's own behaviour rather than something Curator asks for; we have not
+          measured it on a live site, and this page will say so plainly once we have.
+        </p>
+        <p>
+          Curator never changes page or space permissions, never deletes pages, and never
+          touches attachments or comments.
+        </p>
+
+        <h2 id="what-it-never-does">What the app never does</h2>
+        <ul>
+          <li>
+            <strong>No data leaves your Atlassian site.</strong> The app declares no external
+            permissions, so it cannot make an outbound call even by accident. There is no
+            analytics, no telemetry and no third-party service.
+          </li>
+          <li>
+            <strong>The vendor has no access to your data.</strong> Forge storage is reachable
+            only by the app itself, running inside Atlassian's infrastructure. Support
+            requests are answered from what you tell us, not from your data.
+          </li>
+          <li>
+            The app requests no scope beyond the eight
+            <a href="/curator/docs/#permissions">listed in its documentation</a>, and none of
+            them reads page content.
+          </li>
+        </ul>
+
+        <h2 id="retention-and-deletion">Retention and deletion</h2>
+        <ul>
+          <li>
+            <strong>Operation history</strong> is capped at 2,000 entries per site; beyond
+            that the oldest are dropped.
+          </li>
+          <li>
+            <strong>Previews</strong> stop being runnable 24 hours after they were built,
+            because a day-old preview no longer describes the site. Discarding a preview
+            deletes it and its page list.
+          </li>
+          <li>
+            <strong>Previews, operation records and undo journals persist until they are
+            discarded or the app is uninstalled.</strong> There is no background sweeper — we
+            state that plainly rather than implying an automatic expiry that does not exist.
+          </li>
+          <li>
+            <strong>Uninstalling the app</strong> removes its storage in accordance with
+            Atlassian's Forge data lifecycle. Nothing Curator wrote <em>to your pages</em> —
+            labels, moves, archived status — is undone by uninstalling: those are your
+            content, and the undo journal that could take them back goes away with the app.
+            Undo what you want undone before you uninstall.
+          </li>
+        </ul>
+
+        <h2 id="data-residency">Data residency</h2>
+        <p>
+          Whatever your Atlassian site's residency is. Because everything is stored in Forge
+          hosted storage, data residency follows your Atlassian site's configuration
+          automatically, and Curator introduces no additional residency considerations.
+        </p>
+
+        <h2 id="sub-processors">Sub-processors</h2>
+        <p>None. Atlassian hosts everything; there is no other party involved.</p>
+
+        <h2 id="changes">Changes</h2>
+        <p>
+          Material changes to what is stored or where will be reflected here and in the
+          Marketplace listing before they ship.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a> — for questions about
+          this policy, and for data access, correction or deletion requests.
+        </p>
+        <!-- legal:end -->
+
+        <nav class="manual__pagination">
+          <span><a href="/curator/docs/">← Documentation</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/curator/">Product page →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Curator for Confluence is published by Keelapps. Not affiliated with Atlassian.
+        Confluence is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>

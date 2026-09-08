@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Documentation — Curator for Confluence</title>
+    <meta
+      name="description"
+      content="How Curator works: selecting pages, the operations, the dry run, whole-batch undo, the label catalogue, site-wide label administration, history, API pacing and what cannot be undone."
+    />
+    <link rel="canonical" href="https://keelapps.app/curator/docs/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/curator/docs/" />
+    <meta property="og:title" content="Documentation — Curator for Confluence" />
+    <meta
+      property="og:description"
+      content="Selecting pages, the operations, the dry run, whole-batch undo, the label catalogue, site-wide label administration, history and API pacing."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/curator/">Curator</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Curator pages and sections">
+        <p class="manual__toc-title">Curator for Confluence</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/curator/">Product</a></li>
+          <li><a href="/curator/docs/" aria-current="page">Documentation</a></li>
+          <li><a href="/curator/privacy/">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#where-it-lives">Where Curator lives</a></li>
+          <li><a href="#selecting">Selecting pages</a></li>
+          <li><a href="#operations">The operations</a></li>
+          <li><a href="#dry-run">The dry run</a></li>
+          <li><a href="#undo">Undo</a></li>
+          <li><a href="#labels">The label catalogue</a></li>
+          <li><a href="#label-admin">Renaming, merging and deleting labels</a></li>
+          <li><a href="#history">History and CSV export</a></li>
+          <li><a href="#quota">API points and pacing</a></li>
+          <li><a href="#cannot-undo">What cannot be undone</a></li>
+          <li><a href="#permissions">Permissions the app requests</a></li>
+          <li><a href="#not-in-this-release">Not in this release</a></li>
+          <li><a href="#support">Support</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/curator/">Curator</a><span>/</span>Documentation
+        </p>
+
+        <h1>Documentation</h1>
+        <p class="manual__lede">
+          Curator has one shape, repeated: choose pages, read what would happen to them,
+          then let it happen — and take it back afterwards if it should not have. Everything
+          below is a variation on those four steps.
+        </p>
+
+        <h2 id="where-it-lives">Where Curator lives</h2>
+        <p>Four surfaces, each scoped to what you can see from it:</p>
+        <ul>
+          <li>
+            <strong>Space → Curator</strong> — the space console. Filter the space, choose an
+            operation, read the preview, run it, and see this space's history.
+          </li>
+          <li>
+            <strong>A page's action menu → Curate this page tree</strong> — the same
+            operations over one page and its descendants, without leaving the page.
+          </li>
+          <li>
+            <strong>Apps → Curator</strong> — the label catalogue: every shared label on the
+            site with its usage count, readable by anyone.
+          </li>
+          <li>
+            <strong>Settings → Curator</strong> — label administration. Renaming, merging and
+            deleting labels site-wide, for site admins only.
+          </li>
+        </ul>
+        <p>
+          Every read and every write runs as <em>you</em>, so Confluence's own permissions
+          decide what a batch can touch. A page you cannot edit is a page Curator cannot
+          change on your behalf — the preview says so before you commit rather than failing
+          halfway through.
+        </p>
+
+        <h2 id="selecting">Selecting pages</h2>
+        <p>
+          A selection is a filter, not a list of ticked boxes, so it keeps working as the
+          space grows. The available criteria:
+        </p>
+        <ul>
+          <li><strong>Scope</strong> — a whole space, or one page and its subtree.</li>
+          <li><strong>Title contains</strong> — a substring match.</li>
+          <li><strong>Last updated</strong> — before a date, after a date, or between two.</li>
+          <li><strong>Author</strong> — the person who last changed the page.</li>
+          <li><strong>Has all of these labels</strong> — every one must be present.</li>
+          <li><strong>Has none of these labels</strong> — the exclusion half.</li>
+          <li><strong>Include archived pages</strong> — off by default.</li>
+        </ul>
+        <p>
+          Curator counts the matches before you choose an operation, so the first number you
+          see is “how big is this?” rather than “what did I just do?”.
+        </p>
+
+        <h2 id="operations">The operations</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Operation</th><th>What it does</th><th>Reversible</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Add labels</td>
+                <td>Attaches one or more labels to every selected page.</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Remove labels</td>
+                <td>Detaches the named labels wherever they appear in the selection.</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Replace labels</td>
+                <td>Removes one set and adds another in a single per-page edit.</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Move</td>
+                <td>Re-parents pages under a different page, in this space or another one.</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Archive</td>
+                <td>Sets the pages to archived.</td>
+                <td><strong>No</strong> — see below</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Moving into another space is expressed as “move under this page”, because
+          Confluence's move API takes a target page rather than a space. Curator resolves a
+          space you pick to its home page for you.
+        </p>
+
+        <h2 id="dry-run">The dry run</h2>
+        <p>
+          Nothing is written until you have read a preview. Every preview answers the same
+          five questions:
+        </p>
+        <ul>
+          <li><strong>How many pages change</strong>, out of how many matched.</li>
+          <li>
+            <strong>The first fifty, individually</strong>, each with the exact edit it would
+            receive — not “labels will be updated” but which labels, on which page.
+          </li>
+          <li>
+            <strong>How many are skipped, and why.</strong> Every skip reason gets its own
+            sentence: already has the label, no edit permission, archived and excluded, the
+            move target is inside the selection, and so on. A page never disappears from a
+            batch without an explanation.
+          </li>
+          <li><strong>What it will cost</strong>, in Confluence API points.</li>
+          <li><strong>Whether it can be undone.</strong></li>
+        </ul>
+        <p>
+          A preview describes the site as it was when the preview was built, so it stops
+          being runnable after 24 hours. Build a fresh one rather than trusting a day-old
+          description of a space other people have been editing.
+        </p>
+
+        <h2 id="undo">Undo</h2>
+        <p>
+          Every run records a <em>per-page inverse</em> as it goes: the labels to put back,
+          or the parent page and space to move the page back to. Undo replays that journal.
+        </p>
+        <p>
+          Each page is guarded. Before Curator reverses a page it checks the values it
+          recorded at the time — the parent and the space the page was left in. If they no
+          longer match, somebody else has moved or changed that page since, and Curator
+          <strong>leaves it alone and reports it</strong> rather than overwriting their work.
+          A partially applied undo is an honest outcome; a silently clobbered edit is not.
+        </p>
+        <p>
+          The undo is itself an operation in the history, with its own counts and its own
+          record of who ran it.
+        </p>
+
+        <h2 id="labels">The label catalogue</h2>
+        <p>
+          <strong>Apps → Curator</strong> lists every shared label on the site with its name,
+          its prefix and a usage count.
+        </p>
+        <p>
+          Those counts are <em>derived</em>. Confluence's label endpoint returns names and
+          ids and nothing else — there is no count in the payload — so Curator walks each
+          label's pages in the background and counts them itself. Every row therefore carries
+          the time its count was taken, and counts past two thousand are shown as
+          <code>2,000+</code> rather than pretending to a precision the walk did not buy.
+        </p>
+        <p>
+          Personal favourites — the labels Confluence stores with a <code>my</code> prefix —
+          are never listed and never touched.
+        </p>
+
+        <h2 id="label-admin">Renaming, merging and deleting labels</h2>
+        <p>
+          <strong>Settings → Curator</strong>, site admins only. Three operations, all
+          site-wide, all previewed and all undoable:
+        </p>
+        <ul>
+          <li><strong>Rename</strong> — every page carrying the old label ends up carrying the new one.</li>
+          <li><strong>Merge</strong> — two or more labels collapse into one.</li>
+          <li><strong>Delete</strong> — the label is detached from every page that has it.</li>
+        </ul>
+        <p>
+          Confluence has no rename or merge endpoint, and Curator does not pretend otherwise.
+          A label is a string on a page, not an entity, so a rename is a bulk edit: remove the
+          old label and add the new one on every page carrying it. That is
+          <strong>not an atomic operation</strong> — it is hundreds or thousands of individual
+          page edits, and it can be interrupted. Which is why this is exactly where the dry
+          run, the resumable checkpoint and the whole-batch undo earn their keep. A run that
+          stops halfway resumes from its checkpoint; a run that finished wrong can be
+          reversed.
+        </p>
+
+        <h2 id="history">History and CSV export</h2>
+        <p>
+          Every run and every undo becomes one history record: the operation and a description
+          of it, the selection it ran over, the space, the acting person's name, start and
+          finish times, how many pages succeeded, were skipped or failed, whether it can
+          still be undone, any note you typed, and up to a hundred per-page failures with
+          their reasons.
+        </p>
+        <p>
+          History is capped at 2,000 entries per site; beyond that the oldest are dropped.
+          Export it as CSV whenever somebody needs the trail outside Confluence.
+        </p>
+
+        <h2 id="quota">API points and pacing</h2>
+        <p>
+          Confluence Cloud charges apps for API calls in points, and the hourly allowance
+          belongs to <em>the app</em> — shared across every customer running it, not
+          per-site. Exhausting it would block every other site until the next hour. Curator
+          therefore meters itself in three places:
+        </p>
+        <ul>
+          <li>The dry run <strong>prices the batch</strong> before you commit to it.</li>
+          <li>
+            An operation too large to be neighbourly is <strong>refused, with a reason</strong>
+            — not queued to run overnight at everyone else's expense.
+          </li>
+          <li>
+            Anything below that ceiling is <strong>paced</strong>: when this site has used its
+            share, the batch pauses and resumes in the next hourly window from its checkpoint.
+          </li>
+        </ul>
+        <p>
+          A long batch that says “paused until the next window” is working as designed. It
+          will finish.
+        </p>
+
+        <h2 id="cannot-undo">What cannot be undone</h2>
+        <p>
+          <strong>Archiving.</strong> Confluence Cloud has no restore API — there is no
+          <code>unarchive</code> route in either the v1 or the v2 specification, and
+          CONFCLOUD-75065, the request for one, is still <em>Gathering Interest</em>.
+        </p>
+        <p>
+          Curator does not hide this behind a support article. Archive is marked
+          non-reversible in the preview, on the confirmation button and in the history entry
+          it leaves behind. Every other operation is reversible.
+        </p>
+        <p>
+          Archiving also depends on your Confluence plan: the archive API accepts a limited
+          number of page ids per call, permits only one archive task per site at a time, and
+          is unavailable on Free. Below Premium it accepts a single page id per call, which
+          makes a large archive slow. Curator detects what your site allows and says so
+          rather than letting you find out from a progress bar that will not move.
+        </p>
+
+        <h2 id="permissions">Permissions the app requests</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Scope</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td><code>read:page:confluence</code></td><td>list pages in a space, read a page's metadata and labels, walk its children, and read the pages behind a label</td></tr>
+              <tr><td><code>write:page:confluence</code></td><td>the write behind a move, and required by the archive task</td></tr>
+              <tr><td><code>read:space:confluence</code></td><td>enumerate spaces for the destination picker, and resolve a space to its home page</td></tr>
+              <tr><td><code>read:label:confluence</code></td><td>the site-wide label catalogue the whole label panel is built on</td></tr>
+              <tr><td><code>write:label:confluence</code></td><td>attaching and detaching labels — Confluence's v2 API has no label mutations at all</td></tr>
+              <tr><td><code>read:content.metadata:confluence</code></td><td>required alongside the page write by the archive task</td></tr>
+              <tr><td><code>read:user:confluence</code></td><td>so history reads “Jane Doe moved 812 pages” rather than a bare account id</td></tr>
+              <tr><td><code>storage:app</code></td><td>previews, undo journals, history and the label catalogue, in Atlassian-hosted storage on your own site</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          There is no <code>permissions.external</code> block: the app cannot make an
+          outbound call even if it tried to, which Atlassian enforces at the platform level.
+        </p>
+
+        <h2 id="not-in-this-release">Not in this release</h2>
+        <ul>
+          <li>Attachments — deliberately out of scope. See <a href="/satchel-confluence/">Satchel for Confluence</a>.</li>
+          <li>Deleting pages. Curator archives; it never deletes.</li>
+          <li>Editing page content or page titles.</li>
+          <li>Changing page or space permissions and restrictions.</li>
+          <li>Scheduled or recurring batches.</li>
+          <li>Cross-site operations.</li>
+        </ul>
+
+        <h2 id="support">Support</h2>
+        <p>
+          Questions, bug reports and feature requests:
+          <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
+          Security issues: <a href="/security/">report privately</a>.
+        </p>
+
+        <nav class="manual__pagination">
+          <span><a href="/curator/">← Product page</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/curator/privacy/">Privacy policy →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Curator for Confluence is published by Keelapps. Not affiliated with Atlassian.
+        Confluence is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
