@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Documentation — AccessLens for Confluence</title>
+    <meta
+      name="description"
+      content="How AccessLens for Confluence works: reverse lookup, the page restriction audit and its findings, snapshots, diffs, signed access reviews, risk flags, cost estimates and CSV export."
+    />
+    <link rel="canonical" href="https://keelapps.app/accesslens-confluence/docs/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/accesslens-confluence/docs/" />
+    <meta property="og:title" content="Documentation — AccessLens for Confluence" />
+    <meta
+      property="og:description"
+      content="Reverse lookup, the page restriction audit, snapshots, diffs, signed access reviews, risk flags and what the app deliberately refuses to guess at."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/accesslens-confluence/">AccessLens for Confluence</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="AccessLens for Confluence pages and sections">
+        <p class="manual__toc-title">AccessLens for Confluence</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/accesslens-confluence/">Product</a></li>
+          <li><a href="/accesslens-confluence/docs/" aria-current="page">Documentation</a></li>
+          <li><a href="/accesslens-confluence/privacy/">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#where-it-lives">Where AccessLens lives</a></li>
+          <li><a href="#reverse-lookup">Reverse lookup</a></li>
+          <li><a href="#restrictions">The page restriction audit</a></li>
+          <li><a href="#snapshots">Snapshots</a></li>
+          <li><a href="#diffs">Diffs</a></li>
+          <li><a href="#reviews">Access reviews and sign-off</a></li>
+          <li><a href="#risk-flags">Risk flags, and what is not observable</a></li>
+          <li><a href="#cost">Cost estimates and the API budget</a></li>
+          <li><a href="#exports">CSV export</a></li>
+          <li><a href="#settings">Settings</a></li>
+          <li><a href="#permissions">Permissions the app requests</a></li>
+          <li><a href="#not-in-this-release">Not in this release</a></li>
+          <li><a href="#support">Support</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/accesslens-confluence/">AccessLens for Confluence</a><span>/</span>Documentation
+        </p>
+
+        <h1>Documentation</h1>
+        <p class="manual__lede">
+          AccessLens reads your site's permission state and hands it back in the shape an
+          auditor asks for: who can reach what, what is locked, what changed, and who signed
+          for it. It writes nothing — there is no write scope in the manifest — so everything
+          below is a read, a stored copy of a read, or a decision recorded about one.
+        </p>
+
+        <h2 id="where-it-lives">Where AccessLens lives</h2>
+        <ul>
+          <li>
+            <strong>Apps → AccessLens</strong> — the main console: reverse lookup, snapshots,
+            diffs and reviews for the whole site.
+          </li>
+          <li>
+            <strong>Space settings → AccessLens</strong> — the same answers narrowed to one
+            space, including its restriction audit, for the people who administer that space.
+          </li>
+        </ul>
+        <p>
+          A daily scheduled trigger drives scheduled scans, and a queue consumer runs the
+          scan itself in resumable shards so a large site finishes rather than timing out.
+        </p>
+
+        <h2 id="reverse-lookup">Reverse lookup</h2>
+        <p>
+          Confluence indexes permissions by space: open a space and it will tell you who has
+          what. AccessLens inverts the index, so you can start from any of three subjects:
+        </p>
+        <ul>
+          <li>
+            <strong>By group</strong> — every space the group reaches, and at what level. The
+            answer an access review actually needs.
+          </li>
+          <li>
+            <strong>By user</strong> — every space that person reaches, with
+            <em>every</em> path that grants it. If three group memberships all reach the same
+            space, all three are listed, because removing one of them changes nothing and a
+            reviewer needs to know that.
+          </li>
+          <li>
+            <strong>By space</strong> — everyone who reaches it, with group membership
+            expanded into people.
+          </li>
+        </ul>
+        <p>
+          Expansion is the point. A grant list that says “Engineering can read this space” is
+          not an answer; “these 148 named people can read this space” is. On sites that use
+          role-based space permissions, the role assignments carrying the same information are
+          read as well.
+        </p>
+
+        <h2 id="restrictions">The page restriction audit</h2>
+        <p>
+          This is the piece Confluence makes hardest to self-check, and it is where the app
+          differs most from everything else in the category.
+        </p>
+        <p>Per space, AccessLens lists:</p>
+        <ul>
+          <li>Every restricted page, with the restriction type — view, edit, or both.</li>
+          <li>
+            <strong>Where the restriction comes from.</strong> Restrictions inherit downwards,
+            so a page is very often hidden by an ancestor rather than by anything set on
+            itself. The inheritance source is named per page.
+          </li>
+          <li>Which users and groups the restriction names.</li>
+        </ul>
+        <p>And five classes of finding, each of which is a real mistake rather than a statistic:</p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Finding</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Restriction grants nothing</td>
+                <td>Restrictions can only narrow space permissions, never widen them. A restriction naming a group with no view permission on the space gives that group nothing — the reverse of what whoever typed it believed.</td>
+              </tr>
+              <tr>
+                <td>Only one person can read it</td>
+                <td>A page one leaver away from being unreachable.</td>
+              </tr>
+              <tr>
+                <td>Edit-only restriction</td>
+                <td>Frequently a mistake for a page that was meant to be private, not merely read-only.</td>
+              </tr>
+              <tr>
+                <td>Named individuals rather than groups</td>
+                <td>Access that no longer tracks anybody's role, and that nobody will remember to revoke.</td>
+              </tr>
+              <tr>
+                <td>Hidden by an ancestor</td>
+                <td>Removing the restriction on the page itself will change nothing; the restriction is further up.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Reading a page's restrictions is one request per page, which is the only cost in the
+          app that grows with the size of your content. The restriction audit therefore has
+          three modes — off, sampled and full — and sampled is the default, with a per-space
+          page ceiling. The interface distinguishes “checked and found nothing” from “not
+          checked”; it never lets a sample look like a complete pass.
+        </p>
+
+        <h2 id="snapshots">Snapshots</h2>
+        <p>
+          A snapshot is the whole site's permission state at a point in time: for each space
+          its identifiers and its permission grants, for each restricted page its identity and
+          the principals its restrictions name, and for each group referenced by a grant its
+          name and its members.
+        </p>
+        <p>
+          Snapshots run manually or on a schedule. The scan is sharded and checkpointed and
+          the cursor reaches <em>inside</em> a single space, page by page — a space can hold
+          tens of thousands of pages, and a scan that can only resume at space boundaries
+          would never finish on one of them.
+        </p>
+        <p>
+          If AccessLens could not read something it needed, the snapshot is marked
+          <strong>partial</strong> and says which part is missing. It never quietly reports
+          less than it found.
+        </p>
+
+        <h2 id="diffs">Diffs</h2>
+        <p>
+          Compare any two snapshots. The diff is reported <strong>one row per space and
+          subject</strong>, which is the unit an administrator actually acted in: granting a
+          contractor group read, comment and export on one space is one administrative action
+          and reads as one row, not three permission lines.
+        </p>
+        <p>
+          That is a deliberate aggregation. A diff that lists every changed permission
+          separately is technically complete and practically unreadable — the reviewer's job
+          is to recognise the change somebody made, not to reassemble it.
+        </p>
+
+        <h2 id="reviews">Access reviews and sign-off</h2>
+        <p>
+          A review is pinned to one snapshot, so it cannot drift while it is being conducted.
+          Space by space, a reviewer confirms or flags, with an optional note.
+        </p>
+        <p>Each decision records:</p>
+        <ul>
+          <li>The reviewer's Atlassian account id.</li>
+          <li>A <strong>server-side</strong> UTC timestamp — not the reviewer's clock.</li>
+          <li>The decision and any note.</li>
+        </ul>
+        <p>
+          Changing a decision does not erase the old one: superseded decisions are kept
+          alongside the current one. Once a review is signed off it freezes.
+        </p>
+
+        <h2 id="risk-flags">Risk flags, and what is not observable</h2>
+        <p>AccessLens flags three site-level risks:</p>
+        <ul>
+          <li><strong>Anonymous access</strong> to a space.</li>
+          <li><strong>“All logged-in users”</strong> grants.</li>
+          <li><strong>Spaces with no administrator.</strong></li>
+        </ul>
+        <p>
+          The first of these depends on your tenant's permission model. On sites using
+          role-based space permissions, anonymous access is readable as an access-class
+          principal in the role assignments. On the older model it is
+          <strong>not readable at all</strong> — the only endpoint that ever reported it has
+          been removed from the API.
+        </p>
+        <p>
+          So AccessLens <em>measures</em> whether it could observe anonymous access on your
+          site, and where it could not, the interface says
+          <strong>“not observable here”</strong> rather than “none found”. Those are different
+          statements, and only one of them is true. In the same spirit, when the app cannot
+          recognise any access class on a space, that fact is itself a finding — a permission
+          audit whose risk checks silently never fire is the most dangerous kind of clean
+          report.
+        </p>
+
+        <h2 id="cost">Cost estimates and the API budget</h2>
+        <p>
+          Confluence Cloud charges apps for API calls in points, and the hourly allowance is
+          shared across every site running the app rather than granted per site. Before a scan
+          runs, AccessLens shows what it will cost in points and what share of that hourly
+          allowance it represents. Shard size and the restriction mode are both settings, so a
+          large site can be scanned within a budget you chose rather than one you discovered.
+        </p>
+
+        <h2 id="exports">CSV export</h2>
+        <p>
+          Every view exports as CSV. The file is assembled <strong>in your own browser</strong>
+          from data delivered over the Forge bridge — it never passes through a server of
+          ours, because there is not one. Exports carry a byte-order mark so spreadsheets open
+          them in the right encoding, and leading formula characters are neutralised so a cell
+          of your data cannot execute in somebody's spreadsheet.
+        </p>
+
+        <h2 id="settings">Settings</h2>
+        <ul>
+          <li><strong>Scan cadence</strong> — how often a scheduled snapshot is taken.</li>
+          <li><strong>Shard size</strong> — how much work one shard does before checkpointing.</li>
+          <li><strong>Page-restriction mode and budget</strong> — off, sampled or full, with a per-space ceiling.</li>
+          <li>
+            <strong>Snapshot retention limit</strong> — how many snapshots to keep. At the
+            limit AccessLens <em>refuses a new snapshot</em> rather than deleting an old one.
+            Delete one yourself if you want room; the app will not make that decision for you.
+          </li>
+        </ul>
+
+        <h2 id="permissions">Permissions the app requests</h2>
+        <p>Eight scopes, and <strong>not one of them is a write</strong>:</p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Scope</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td><code>read:space:confluence</code></td><td>the space list, and space permission grants</td></tr>
+              <tr><td><code>read:space.permission:confluence</code></td><td>space roles and role assignments, on tenants that use them</td></tr>
+              <tr><td><code>read:page:confluence</code></td><td>page id, title and parent id, so a restricted page can be named and its inheritance walked — never page content</td></tr>
+              <tr><td><code>read:content-details:confluence</code></td><td>a page's view and edit restrictions</td></tr>
+              <tr><td><code>read:content.restriction:confluence</code></td><td>declared alongside the above so the restriction audit works across API shapes</td></tr>
+              <tr><td><code>read:user:confluence</code></td><td>resolve account ids to display names</td></tr>
+              <tr><td><code>read:group:confluence</code></td><td>groups and their members, so a group-level answer becomes a person-level one</td></tr>
+              <tr><td><code>storage:app</code></td><td>snapshots, reviews and settings, in Atlassian-hosted storage on your own site</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          There is no <code>permissions.external</code> block: the app cannot make an outbound
+          call even if it tried to, which Atlassian enforces at the platform level. And with
+          no write scope at all, it cannot change a permission, a restriction, a page or a
+          comment.
+        </p>
+
+        <h2 id="not-in-this-release">Not in this release</h2>
+        <ul>
+          <li>Changing permissions or restrictions — deliberately, and permanently. This is an audit tool.</li>
+          <li>Attachment-level or comment-level permission reporting.</li>
+          <li>Email or Slack notifications when access changes.</li>
+          <li>Cross-site reporting.</li>
+          <li>Jira permissions — those are <a href="/accesslens/">AccessLens for Jira</a>.</li>
+        </ul>
+
+        <h2 id="support">Support</h2>
+        <p>
+          Questions, bug reports and feature requests:
+          <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
+          Security issues: <a href="/security/">report privately</a>.
+        </p>
+
+        <nav class="manual__pagination">
+          <span><a href="/accesslens-confluence/">← Product page</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/accesslens-confluence/privacy/">Privacy policy →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        AccessLens for Confluence is published by Keelapps. Not affiliated with Atlassian.
+        Confluence is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>

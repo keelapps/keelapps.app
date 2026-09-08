@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>AccessLens for Confluence — space and page permission audit</title>
+    <meta
+      name="description"
+      content="Reverse lookup by group, user or space with membership expanded to effective access. Audit page restrictions and what inherits them. Point-in-time snapshots, diffs and signed-off access reviews. Read-only, nothing leaves Atlassian."
+    />
+    <link rel="canonical" href="https://keelapps.app/accesslens-confluence/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://keelapps.app/accesslens-confluence/" />
+    <meta property="og:title" content="AccessLens for Confluence — space and page permission audit" />
+    <meta
+      property="og:description"
+      content="Which spaces can this group reach, and which pages are locked? Confluence has no answer. AccessLens does — read-only, snapshotted, diffed and signed off, without anything leaving your tenant."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/product.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/accesslens-confluence/">AccessLens for Confluence</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <main class="product" id="main">
+      <section class="lede-block">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>AccessLens for Confluence
+        </p>
+        <p class="eyebrow">For the admin who has to prove who can see what</p>
+        <h1>Which spaces can this group reach, and which pages are locked?</h1>
+        <p class="lede">
+          Confluence indexes permissions by space, so the reverse question has no answer in
+          the product. AccessLens answers it — by group, by user or by space, with group
+          membership expanded so what you see is <em>effective</em> access — then adds the
+          part Confluence makes hardest to self-check: page restrictions, and what inherits
+          them. Freeze the result as a snapshot, diff any two quarters, sign the review off.
+          Read-only, and nothing leaves Atlassian.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#availability">Coming to the Atlassian Marketplace</a>
+          <span class="note-inline">Read-only: no write scopes at all. Audit data never leaves your Atlassian tenant.</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="aside" data-label="The gap this fills">
+          <p>
+            Three questions Confluence cannot answer about itself. <strong>Which spaces can
+            this group reach?</strong> No interface anywhere lists it. <strong>Who had access
+            on a given day, and who changed it?</strong> The native audit log is an event
+            stream, not a state. <strong>Which pages are locked, by whom, and why can I not
+            see one?</strong> There is no list of restricted pages, restrictions inherit
+            downwards, and they can only narrow space permissions and never widen them — so a
+            restriction naming a group with no space access grants nothing at all, the
+            reverse of what the admin who typed it believed.
+          </p>
+          <p>
+            The first two exist on the Jira side too, where the request has been open since
+            2019 with over a thousand votes and remains unresolved. The third is Confluence's
+            own, and it is where every app in this category stops.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Answer who can reach what</h3>
+            <p>
+              Reverse lookup in three directions — by group, by user or by space — with group
+              membership expanded to effective access. A lookup by user keeps
+              <em>every</em> inheritance path, not just the first one found.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Find every locked page</h3>
+            <p>
+              Restricted pages per space, the restriction type, and the
+              <strong>inheritance source</strong> — because a page is often hidden by an
+              ancestor rather than by itself.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Findings, not just facts</h3>
+            <p>
+              Five classes of restriction problem: restrictions that grant nothing, pages only
+              one person can read, edit-only restrictions, restrictions naming individuals
+              rather than groups, and pages hidden by an ancestor.
+            </p>
+          </div>
+          <div class="card">
+            <h3>A snapshot is audit evidence</h3>
+            <p>
+              Capture the whole site's permission state, manually or on a schedule. Large
+              sites finish because the scan is sharded and resumable — the cursor reaches
+              inside a single space, page by page.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Diffs an admin can read</h3>
+            <p>
+              Compare any two snapshots, reported one row per space and subject. Five
+              administrative changes read as five rows, never as fifty permission lines.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Reviews that are signed</h3>
+            <p>
+              Confirm or flag space by space. Each decision carries the reviewer's Atlassian
+              account id and a server-side UTC timestamp, and the review freezes once signed.
+              Every view exports as CSV.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>A quarterly access review, end to end</h2>
+        <ol class="steps">
+          <li>
+            <h3>The snapshot is already there</h3>
+            <p>
+              A scheduled scan captured the site last night. Before it ran, AccessLens said
+              what it would cost in Confluence API points and what share of the shared hourly
+              quota that is — so nothing surprises anyone.
+            </p>
+          </li>
+          <li>
+            <h3>Read the diff, not the whole site</h3>
+            <p>
+              Compare against last quarter's snapshot. One row per space and subject: the
+              contractor group that gained three spaces in June is one line, not nine.
+            </p>
+          </li>
+          <li>
+            <h3>Check the pages, not just the spaces</h3>
+            <p>
+              The restriction audit lists every locked page in the spaces under review,
+              including the ones hidden by an ancestor rather than themselves — and flags the
+              restrictions that grant nothing because the group named in them cannot see the
+              space.
+            </p>
+          </li>
+          <li>
+            <h3>Sign it and keep it</h3>
+            <p>
+              Confirm each space or flag it with a note. The sign-off records the reviewer's
+              account id and a server-side UTC timestamp, then freezes. Export the CSV into
+              the evidence pack and the quarter is closed.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>Against what you have today</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Native Confluence</th>
+                <th>Permission viewers</th>
+                <th>AccessLens</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Which spaces can this group reach?</td>
+                <td class="absent">No interface for it</td>
+                <td>Per-space views</td>
+                <td><span class="answer">By group, user or space</span></td>
+              </tr>
+              <tr>
+                <td>Is that answer effective access or just the grant list?</td>
+                <td class="absent">—</td>
+                <td class="absent">Usually the grant list</td>
+                <td><span class="answer">Membership expanded</span></td>
+              </tr>
+              <tr>
+                <td>Which pages are restricted?</td>
+                <td class="absent">No list anywhere</td>
+                <td class="absent">Rarely covered</td>
+                <td><span class="answer">Per space, with findings</span></td>
+              </tr>
+              <tr>
+                <td>Is this page hidden by itself or by an ancestor?</td>
+                <td class="absent">—</td>
+                <td class="absent">—</td>
+                <td><span class="answer">Named, per page</span></td>
+              </tr>
+              <tr>
+                <td>What did access look like last quarter?</td>
+                <td class="absent">Event log, not state</td>
+                <td class="absent">Live view only</td>
+                <td><span class="answer">Snapshots and diffs</span></td>
+              </tr>
+              <tr>
+                <td>Evidence a reviewer signed?</td>
+                <td class="absent">—</td>
+                <td>Varies</td>
+                <td><span class="answer">Account id and UTC timestamp</span></td>
+              </tr>
+              <tr>
+                <td>Does audit data leave Atlassian?</td>
+                <td>—</td>
+                <td class="absent">Depends on the vendor</td>
+                <td><span class="answer">Never — and read-only</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Three restraints, on purpose</h2>
+        <div class="prose">
+          <p>
+            Each of these is the opposite of what a tool normally does, and each one exists
+            because the people who buy an audit tool are exactly the people a convenient
+            default would hurt.
+          </p>
+          <p>
+            <strong>At the retention limit it refuses a new snapshot rather than evicting an
+            old one.</strong> No automatic rotation. An audit record destroyed without anyone
+            asking is worse than a scan that declines to run and tells you why.
+          </p>
+          <p>
+            <strong>When it cannot read something it marks the snapshot partial</strong>
+            instead of quietly reporting less. A clean report that was never complete is the
+            most expensive thing an audit tool can hand you.
+          </p>
+          <p>
+            <strong>Where a tenant cannot expose anonymous access at all, it says the
+            access is not observable here</strong> — not “none found”. Confluence's tenant
+            permission models differ, and on some of them the only endpoint that ever
+            reported anonymous access has been removed. AccessLens measures whether it could
+            observe it, and reports that measurement rather than an absence.
+          </p>
+          <p>
+            Also, structurally: <strong>the app is read-only.</strong> It declares no write
+            scope of any kind. It cannot create, change or delete a space permission, a page
+            restriction, a page or a comment, even if it were asked to.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 id="availability">Availability</h2>
+        <div class="prose">
+          <p>
+            AccessLens for Confluence is built and deployed on Atlassian Forge. It is going
+            through Atlassian Marketplace review; this page will link to the listing as soon
+            as it is live.
+          </p>
+          <p>
+            It is the Confluence sibling of
+            <a href="/accesslens/">AccessLens for Jira</a>, which is live on the Marketplace
+            today: the same snapshot, diff and sign-off semantics, with page restrictions
+            added.
+          </p>
+          <p>
+            Licensing is handled by Atlassian. Sites with 10 users or fewer are free with
+            every feature; paid tiers are priced per user, in step with the Jira edition.
+          </p>
+          <p>
+            Questions, bug reports and feature requests:
+            <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
+          </p>
+          <p>
+            Found a security issue? Please
+            <a href="/security/">report it privately</a>
+            rather than in a public channel.
+          </p>
+        </div>
+
+        <nav class="manual__pagination">
+          <span><a href="/">← All apps</a></span>
+          <span class="manual__pagination-mid"><a href="/accesslens-confluence/docs/">Documentation</a></span>
+          <span class="manual__pagination-next"><a href="/accesslens-confluence/privacy/">Privacy policy →</a></span>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        AccessLens for Confluence is an Atlassian Forge app. It runs entirely inside your
+        Atlassian tenant and declares no external network access — your data is never sent to
+        us or to anyone else. Not affiliated with Atlassian. Confluence is a trademark of
+        Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
