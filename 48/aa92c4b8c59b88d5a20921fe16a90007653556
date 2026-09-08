@@ -1,0 +1,23 @@
+satchel-confluence/index.html
+  s_489434d5195f47::t_de90b7a3aa9bfb 1-338
+satchel-confluence/docs/index.html
+  s_489434d5195f47::t_179ba27dc4186a 1-394
+satchel-confluence/privacy/index.html
+  s_489434d5195f47::t_19572e750ef529 1-292
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "48aa92c4b8c59b88d5a20921fe16a90007653556",
+  "prompts": {},
+  "sessions": {
+    "s_489434d5195f47": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2e42f9a9-7e40-423c-b7fd-8313dc82a133",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
