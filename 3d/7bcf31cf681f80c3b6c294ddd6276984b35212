@@ -1,0 +1,23 @@
+prefill/docs/index.html
+  s_489434d5195f47::t_1ae1d8b9aac589 1-380
+prefill/privacy/index.html
+  s_489434d5195f47::t_7e682754e94c8c 1-232
+prefill/index.html
+  s_489434d5195f47::t_ef69a4e42fa3ed 1-327
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "3d7bcf31cf681f80c3b6c294ddd6276984b35212",
+  "prompts": {},
+  "sessions": {
+    "s_489434d5195f47": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2e42f9a9-7e40-423c-b7fd-8313dc82a133",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
