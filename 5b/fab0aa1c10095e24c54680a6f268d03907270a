@@ -1,0 +1,28 @@
+tools/check-legal-text
+  s_7060f8892d153d::t_d7a6a9169e64b1 30,32
+mail-templates/privacy/index.html
+  s_7060f8892d153d::t_24bda69ae5b80c 1-226
+mail-templates/index.html
+  s_7060f8892d153d::t_b8c3110f94c1bf 1-292
+mail-templates/docs/index.html
+  s_7060f8892d153d::t_3a806c21ddb2af 1-321
+index.html
+  s_7060f8892d153d::t_d7a6a9169e64b1 117-128
+  s_7060f8892d153d::t_5799077b914ecf 116
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "5bfab0aa1c10095e24c54680a6f268d03907270a",
+  "prompts": {},
+  "sessions": {
+    "s_7060f8892d153d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f9bbde1c-2f8c-409b-a953-1792bee0926b",
+        "model": "claude-opus-5"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
