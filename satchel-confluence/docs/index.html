@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Documentation — Satchel for Confluence</title>
+    <meta
+      name="description"
+      content="How Satchel for Confluence works: the space attachment browser, moving files between pages and the two routes a move can take, zip download, orphans, duplicate candidates, storage, deletion, undo and API pacing."
+    />
+    <link rel="canonical" href="https://keelapps.app/satchel-confluence/docs/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/satchel-confluence/docs/" />
+    <meta property="og:title" content="Documentation — Satchel for Confluence" />
+    <meta
+      property="og:description"
+      content="The space attachment browser, moving files between pages and the two routes a move can take, zip download, orphans, duplicate candidates, storage, deletion and undo."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/satchel-confluence/">Satchel for Confluence</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Satchel for Confluence pages and sections">
+        <p class="manual__toc-title">Satchel for Confluence</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/satchel-confluence/">Product</a></li>
+          <li><a href="/satchel-confluence/docs/" aria-current="page">Documentation</a></li>
+          <li><a href="/satchel-confluence/privacy/">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#where-it-lives">Where Satchel lives</a></li>
+          <li><a href="#browser">The space attachment browser</a></li>
+          <li><a href="#move">Moving attachments between pages</a></li>
+          <li><a href="#zip">Zip download</a></li>
+          <li><a href="#orphans">Orphans</a></li>
+          <li><a href="#duplicates">Duplicate candidates</a></li>
+          <li><a href="#storage">Storage, and the number it will not invent</a></li>
+          <li><a href="#deletion">Bulk delete and the trash</a></li>
+          <li><a href="#undo">Undo</a></li>
+          <li><a href="#quota">API points and pacing</a></li>
+          <li><a href="#visibility">Who can see what</a></li>
+          <li><a href="#permissions">Permissions the app requests</a></li>
+          <li><a href="#not-in-this-release">Not in this release</a></li>
+          <li><a href="#support">Support</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/satchel-confluence/">Satchel for Confluence</a><span>/</span>Documentation
+        </p>
+
+        <h1>Documentation</h1>
+        <p class="manual__lede">
+          Satchel indexes a whole Confluence space so you can see, download, move and clean up
+          every file at once — and it does the one thing Confluence itself will not, which is move
+          an attachment to a different page. Where the platform makes a thing uncertain, Satchel
+          reports the uncertainty rather than rounding it off.
+        </p>
+
+        <h2 id="where-it-lives">Where Satchel lives</h2>
+        <ul>
+          <li>
+            <strong>Space → Attachments</strong> — the browser: every file in the space, with
+            search, filters, selection across pages, and the bulk actions.
+          </li>
+          <li>
+            <strong>A page's action menu → Manage attachments</strong> — one page, read live
+            rather than from the index.
+          </li>
+          <li>
+            <strong>Confluence administration → Satchel</strong> — cross-space totals, uploader
+            rankings, the audit trail, and the settings, including the bulk-delete switch.
+          </li>
+        </ul>
+
+        <h2 id="browser">The space attachment browser</h2>
+        <p>
+          A scan builds the space's inventory once — for every attachment: id, file name, size,
+          media type, version count, upload timestamp, uploader and status, plus the id, title and
+          status of the page it is on. <strong>Metadata only; file content is never
+          stored.</strong>
+        </p>
+        <p>
+          The scan is checkpointed and resumable, and an hourly job picks up any run that stopped
+          part way, so a space with tens of thousands of files finishes without anyone babysitting
+          it. From the resulting table you can search by name, filter by page, media type, uploader
+          and size, select across page boundaries, and then download, move or delete.
+        </p>
+        <p>
+          Aggregate totals shown on a space page — file count, total size — cover the whole space
+          and are labelled as such, next to a count of how many rows are hidden from you.
+        </p>
+
+        <h2 id="move">Moving attachments between pages</h2>
+        <p>
+          This is the feature Confluence Cloud does not have. CONFCLOUD-15025 has been open since
+          March 2009 and Atlassian has said it is not on the roadmap; Data Center's purpose-built
+          move endpoint does not exist on Cloud.
+        </p>
+        <p>
+          Pick the files, pick the target page, and read the dry run: what will move, what will not
+          and why, and <strong>which route the move will take on your site</strong>. There are two,
+          and they are not the same operation:
+        </p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Route</th><th>What happens</th><th>Consequences</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Re-parent</td>
+                <td>a single call changes the attachment's parent page</td>
+                <td>the attachment id, the file id and the whole version history survive; no bytes are transferred</td>
+              </tr>
+              <tr>
+                <td>Copy then delete</td>
+                <td>the file is read, uploaded to the target page, and the original is trashed</td>
+                <td>a new attachment id and file id, version history restarting at 1, and any page body that embedded the file by its old id no longer resolves</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Satchel <strong>attempts the re-parent first</strong> and learns from the answer. Only the
+          endpoint saying the operation does not exist downgrades your site to the copy route; a
+          permission error or a missing file fails that one row instead, because reading “this file
+          is gone” as “this Confluence cannot move files” would silently push every later move onto
+          the id-destroying route. What it learns is cached per site, and the record only ever
+          downgrades.
+        </p>
+        <p>
+          Every moved file is reported with the route that actually ran. Nothing in the interface
+          claims ids were preserved unless a re-parent really succeeded.
+        </p>
+        <p>
+          On the copy route, the original is deleted <strong>only after the copy has been observed
+          on the target page</strong>. There is no code path in which the original is gone and the
+          copy was never made.
+        </p>
+
+        <h2 id="zip">Zip download</h2>
+        <p>
+          Select files anywhere in the space and download one archive, foldered by page title, with
+          a CSV manifest inside listing what it contains.
+        </p>
+        <p>
+          The archive is assembled <strong>in your browser tab</strong>. The compression library is
+          part of the app's own bundle rather than fetched from a content delivery network — a CDN
+          would require an external network permission, and that permission is precisely what this
+          app does not have. Bytes go Confluence → your tab → your disk, with nothing stored in
+          between.
+        </p>
+        <p>
+          There are two routes for getting the bytes into the tab, and Satchel
+          <strong>measures</strong> which one returns them intact on your site rather than assuming:
+          one calls Confluence directly from the browser, the other relays the bytes through the
+          backend in slices. The direct route is faster; the relay is correct for every file type.
+          Both are zero-egress, and the app says which is in use.
+        </p>
+
+        <h2 id="orphans">Orphans</h2>
+        <p>Four buckets, and they are not equally certain:</p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Bucket</th><th>Confidence</th></tr></thead>
+            <tbody>
+              <tr><td>Files on deleted pages</td><td>Certain</td></tr>
+              <tr><td>Files on archived pages</td><td>Certain</td></tr>
+              <tr><td>Files in the trash, still counting against your storage</td><td>Certain</td></tr>
+              <tr><td>Files no page body references</td><td><strong>Inferred</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          The last one is labelled inferred because that is what it is. The check reads the parent
+          page's body for a reference to the file; a file may still be linked from another page,
+          from a comment, or from somewhere outside Confluence entirely. The interface also
+          distinguishes <em>“checked and found nothing”</em> from <em>“never looked”</em> — a page
+          whose body could not be read is not evidence that its files are unused.
+        </p>
+        <p>
+          Page bodies are read during a scan to answer this question and are
+          <strong>discarded immediately</strong>; only a true-or-false flag per attachment is kept.
+        </p>
+
+        <h2 id="duplicates">Duplicate candidates</h2>
+        <p>
+          Files are grouped by <strong>normalised filename and identical byte count</strong>, with
+          the space each group would reclaim.
+        </p>
+        <p>
+          They are candidates, and every surface says so, because <strong>there is no content
+          hash</strong>: the file id identifies the stored file for that one attachment, not a
+          checksum shared across identical uploads. Proving two files byte-identical would mean
+          downloading both.
+        </p>
+        <p>Two exclusions follow from the same reasoning:</p>
+        <ul>
+          <li>
+            <strong>Same name, different size is not grouped.</strong> Those are two revisions, and
+            deleting one loses work.
+          </li>
+          <li>
+            <strong>Same size, different name is not grouped.</strong> At small sizes that is
+            coincidence — two 31-byte spreadsheets with different names are two spreadsheets.
+          </li>
+        </ul>
+
+        <h2 id="storage">Storage, and the number it will not invent</h2>
+        <p>
+          Storage is reported by page, by uploader and by media type, plus the largest files. Any of
+          it exports as CSV.
+        </p>
+        <p>
+          One figure is deliberately absent. Confluence reports the <em>current</em> version's size
+          and the version <em>count</em>, but not the size of prior versions and no aggregate over
+          them. Multiplying size by count would be a fabrication — a document whose first draft was
+          2&nbsp;KB and whose tenth is 8&nbsp;MB is not 80&nbsp;MB. The storage tab therefore reports
+          version counts and states what it cannot tell you, rather than printing a confident wrong
+          number.
+        </p>
+        <p>
+          In the same spirit, <strong>“this space has no attachments” is never asserted as a
+          fact</strong>. Confluence can answer a read it could not serve with an empty success, so a
+          scan can succeed, index nothing, and be entirely wrong. Satchel records that case, phrases
+          it as a question, and gives administrators a one-call check that settles it.
+        </p>
+
+        <h2 id="deletion">Bulk delete and the trash</h2>
+        <ul>
+          <li>
+            Bulk delete is <strong>off by default</strong> and must be enabled by a site
+            administrator.
+          </li>
+          <li>It requires a <strong>dry run</strong> and a <strong>typed confirmation</strong>.</li>
+          <li>
+            Deletions go to <strong>Confluence's own trash</strong>, where a space administrator can
+            restore them through Confluence itself.
+          </li>
+          <li>
+            Every deletion is recorded: timestamp, action, who did it, the file name and size, and
+            the pages involved.
+          </li>
+        </ul>
+        <p>
+          Satchel never edits page content. Its only writes are attachment moves and deletions, both
+          explicitly initiated, both behind a dry run and a confirmation, and both recorded.
+        </p>
+        <p>
+          The audit trail is a bounded ring of the 2,000 most recent events; older events age out.
+          Export it as CSV if you need a longer record — the button is in Confluence administration
+          and on each space page. A rescan deliberately does <em>not</em> rewrite it: an audit record
+          that can be edited is not an audit record.
+        </p>
+
+        <h2 id="undo">Undo</h2>
+        <p>
+          A completed move records an undo journal, so it can be reversed. Journals expire 30 days
+          after the move they describe.
+        </p>
+
+        <h2 id="quota">API points and pacing</h2>
+        <p>
+          Confluence charges apps for API calls in points — a base point per call plus one per
+          object returned — and the hourly allowance belongs to <em>the app</em>, shared across every
+          tenant running it rather than granted per site. One customer scanning a large space could
+          rate-limit every other customer.
+        </p>
+        <p>
+          So Satchel caps itself well below that ceiling per site, paces its requests, shows every
+          estimate before spending it, and <strong>defers to the next hour rather than pushing
+          through</strong>. A scan that says it is waiting for the next window is working as
+          designed; the hourly resume job will pick it up.
+        </p>
+
+        <h2 id="visibility">Who can see what</h2>
+        <ul>
+          <li>
+            The space attachment browser is visible to anyone who can open the space, but by default
+            it <strong>hides rows whose page that person cannot open</strong> — Satchel intersects
+            its inventory with the pages Confluence says you may read before any row leaves the
+            server. A site administrator can switch this off.
+          </li>
+          <li>
+            Cross-space totals, uploader rankings and the audit trail live in Confluence
+            administration, so only site administrators reach them.
+          </li>
+          <li>
+            Every download, move and delete is performed <strong>as the signed-in user</strong>, so
+            Confluence's own permissions decide what actually happens regardless of what the index
+            shows.
+          </li>
+        </ul>
+
+        <h2 id="permissions">Permissions the app requests</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Scope</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td><code>read:page:confluence</code></td><td>page id, title and status, and the page body read during a scan to answer the “is anything referencing this file” question</td></tr>
+              <tr><td><code>read:space:confluence</code></td><td>enumerate spaces and resolve the one you are in</td></tr>
+              <tr><td><code>read:attachment:confluence</code></td><td>attachment metadata, and the bytes when you download</td></tr>
+              <tr><td><code>write:attachment:confluence</code></td><td>the move — re-parenting an attachment, or uploading the copy when the fallback route runs</td></tr>
+              <tr><td><code>read:content-details:confluence</code></td><td>the details a move and a listing need beyond the basic page record</td></tr>
+              <tr><td><code>delete:attachment:confluence</code></td><td>bulk delete, which ships switched off and sends files to the trash</td></tr>
+              <tr><td><code>read:user:confluence</code></td><td>resolve uploader account ids to display names</td></tr>
+              <tr><td><code>storage:app</code></td><td>the inventory, job records, undo journals, the audit trail and settings, in Atlassian-hosted storage on your own site</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          There is no <code>permissions.external</code> block: the app cannot make an outbound call
+          even if it tried to, which Atlassian enforces at the platform level. There is no scope for
+          editing page content, and no path to it in the interface.
+        </p>
+
+        <h2 id="not-in-this-release">Not in this release</h2>
+        <ul>
+          <li><strong>Uploading new attachments.</strong> Satchel moves and removes; it does not add.</li>
+          <li><strong>Editing page content.</strong> Deliberately, and permanently.</li>
+          <li><strong>Content-hash duplicate detection.</strong> Not possible; see <a href="#duplicates">duplicate candidates</a>.</li>
+          <li><strong>Version-history storage totals.</strong> Not computable from what Confluence reports.</li>
+          <li><strong>Scheduled scans.</strong> Scans run on demand, and resume automatically if interrupted.</li>
+          <li>Jira attachments — those are <a href="/satchel/">Satchel for Jira</a>.</li>
+        </ul>
+
+        <h2 id="support">Support</h2>
+        <p>
+          Questions, bug reports and feature requests:
+          <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
+          Security issues: <a href="/security/">report privately</a>.
+        </p>
+
+        <nav class="manual__pagination">
+          <span><a href="/satchel-confluence/">← Product page</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/satchel-confluence/privacy/">Privacy policy →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Satchel for Confluence is published by Keelapps. Not affiliated with Atlassian. Confluence
+        is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>

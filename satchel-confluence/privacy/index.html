@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Privacy policy — Satchel for Confluence</title>
+    <meta
+      name="description"
+      content="Satchel for Confluence stores attachment and page metadata, job records, undo journals and an audit trail only in Atlassian-hosted Forge storage inside your own tenant. Attachment content is never stored, and the app makes no external network calls."
+    />
+    <link rel="canonical" href="https://keelapps.app/satchel-confluence/privacy/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/satchel-confluence/privacy/" />
+    <meta property="og:title" content="Privacy policy — Satchel for Confluence" />
+    <meta
+      property="og:description"
+      content="Attachment contents are never stored. Metadata, job records, undo journals and the audit trail stay in Atlassian-hosted Forge storage inside your own tenant. No external calls, no vendor copy."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/satchel-confluence/">Satchel for Confluence</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Satchel for Confluence pages and sections">
+        <p class="manual__toc-title">Satchel for Confluence</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/satchel-confluence/">Product</a></li>
+          <li><a href="/satchel-confluence/docs/">Documentation</a></li>
+          <li><a href="/satchel-confluence/privacy/" aria-current="page">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#short-version">The short version</a></li>
+          <li><a href="#what-it-stores">What Satchel stores, and where</a></li>
+          <li><a href="#retention">Retention</a></li>
+          <li><a href="#visibility">Who can see what</a></li>
+          <li><a href="#third-parties">Third parties</a></li>
+          <li><a href="#sub-processors">Sub-processors</a></li>
+          <li><a href="#gdpr">GDPR and CCPA</a></li>
+          <li><a href="#personal-data-requests">Personal data requests</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/satchel-confluence/">Satchel for Confluence</a><span>/</span>Privacy policy
+        </p>
+
+        <!-- legal:begin
+             In-force text. This document is submitted to the Atlassian
+             Marketplace. Structure, classes, ids and attributes may change;
+             NOT ONE WORD between these sentinels may. Verify before pushing:
+               tools/check-legal-text  (see README.md)
+        -->
+        <h1>Privacy policy — Satchel for Confluence</h1>
+        <p class="manual__meta">Effective date: <time datetime="2026-09-09">9 September 2026</time></p>
+
+        <h2 id="short-version">The short version</h2>
+        <p class="manual__lede">
+          Satchel for Confluence (“Satchel”, “the app”) is published by Keelapps. It runs entirely
+          inside Atlassian's infrastructure. It makes <strong>no external network calls</strong>, it
+          stores nothing outside Forge hosted storage on your own site, and
+          <strong>Keelapps has no ability to read your data</strong>. There is no Keelapps server
+          for your data to reach. Attachment <em>contents</em> are never stored by Satchel at all:
+          when you download an archive, the files travel from Confluence to your browser, are
+          assembled into a zip in that browser tab, and are saved to your disk. Nothing is buffered,
+          cached or retained in between.
+        </p>
+
+        <h2 id="what-it-stores">What Satchel stores, and where</h2>
+        <p>
+          Everything below lives in Forge hosted storage, which is Atlassian infrastructure attached
+          to your own Confluence site. Atlassian's data-residency options apply to it.
+        </p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Data</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Attachment metadata: id, file name, size, media type, version count, upload timestamp, uploader account id, status</td>
+                <td>the space inventory that makes a cross-page view possible</td>
+              </tr>
+              <tr>
+                <td>Page metadata: id, title, status</td>
+                <td>so the inventory can say which page a file is on</td>
+              </tr>
+              <tr>
+                <td>Space keys and per-space settings</td>
+                <td>scoping and configuration</td>
+              </tr>
+              <tr>
+                <td>Bulk job records: what was selected, progress, per-file outcomes</td>
+                <td>so a job survives a closed browser tab and can be reported honestly</td>
+              </tr>
+              <tr>
+                <td>Undo journals for completed moves</td>
+                <td>so a move can be reversed</td>
+              </tr>
+              <tr>
+                <td>An audit trail of moves and deletions: timestamp, action, actor account id and display name, file name and size, source and target page</td>
+                <td>because deleting attachments matters and an administrator is owed a record</td>
+              </tr>
+              <tr>
+                <td>An hourly count of API points this site has spent</td>
+                <td>rate-limit self-throttling</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>Not stored:</strong> attachment file contents, page body text (page bodies are read
+          during a scan to find which files a page references, and are discarded immediately — only
+          a true-or-false flag per attachment is kept), passwords, tokens, or anything about users
+          beyond the account ids and display names Confluence itself returns.
+        </p>
+
+        <h2 id="retention">Retention</h2>
+        <ul>
+          <li>
+            The inventory is replaced wholesale by each rescan and deleted when the app is
+            uninstalled.
+          </li>
+          <li>
+            The audit trail is a <strong>bounded ring buffer of the 2,000 most recent
+            events</strong>. Older events are dropped automatically. If you need a longer record,
+            export it as CSV — the button is in Confluence administration and on each space page.
+          </li>
+          <li>Undo journals expire 30 days after the move they describe.</li>
+          <li>
+            Uninstalling the app removes all of it. Atlassian deletes Forge storage associated with
+            an uninstalled app; Keelapps has no copy to delete because Keelapps never had one.
+          </li>
+        </ul>
+
+        <h2 id="visibility">Who can see what</h2>
+        <ul>
+          <li>
+            The space attachment browser is visible to anyone who can open the space, but by default
+            it <strong>hides rows whose page that person cannot open</strong> — Satchel intersects
+            its inventory with the pages Confluence says that user may read before any row leaves the
+            server. A site administrator can switch this off.
+          </li>
+          <li>
+            Aggregate totals on a space page (file count, total size) cover the whole space and are
+            labelled as such, next to a count of how many rows are hidden from the current viewer.
+          </li>
+          <li>
+            Cross-space totals, uploader rankings and the audit trail live in Confluence
+            administration, so only site administrators can reach them.
+          </li>
+          <li>
+            Every download, move and delete is performed <strong>as the signed-in user</strong>, so
+            Confluence's own permissions decide what actually happens regardless of what the index
+            shows.
+          </li>
+        </ul>
+
+        <h2 id="third-parties">Third parties</h2>
+        <p>
+          None. Satchel makes no external network calls of any kind — no analytics, no error
+          reporting, no telemetry, no content delivery network. Its manifest contains no external
+          permissions block, which is what Atlassian's <strong>Runs on Atlassian</strong> badge
+          certifies and what makes this statement checkable rather than a promise.
+        </p>
+
+        <h2 id="sub-processors">Sub-processors</h2>
+        <p>None.</p>
+
+        <h2 id="gdpr">GDPR and CCPA</h2>
+        <p>
+          Keelapps is <strong>neither a controller nor a processor</strong> of your end-user data for
+          this app, and is <strong>neither a CCPA business nor a service provider</strong>, because
+          Keelapps has no access path to it. Data is processed only by app code running inside your
+          own Atlassian site, under Atlassian's terms and on Atlassian's infrastructure.
+        </p>
+        <p>
+          If you need a Data Processing Addendum for the Atlassian platform itself, that is between
+          you and Atlassian.
+        </p>
+
+        <h2 id="personal-data-requests">Personal data requests</h2>
+        <p>
+          Satchel stores Atlassian <strong>account ids</strong>, and display names cached alongside
+          them for readability. To remove a person's data:
+        </p>
+        <ol>
+          <li>Uninstalling Satchel removes everything it stores.</li>
+          <li>
+            Alternatively, rescan the space after Atlassian has deactivated the account — the
+            inventory is replaced wholesale, and account ids no longer visible to the app disappear
+            with it. Note that the audit trail is deliberately <em>not</em> rewritten by a rescan: an
+            audit record that can be edited is not an audit record. It ages out of the 2,000-event
+            ring on its own.
+          </li>
+        </ol>
+        <p>
+          Atlassian's own personal-data reporting API governs deletion timelines for account data
+          across Forge apps.
+        </p>
+
+        <h2 id="security">Security</h2>
+        <ul>
+          <li>No egress, so no data in transit outside Atlassian.</li>
+          <li>No vendor access, so no vendor-side breach surface for your content.</li>
+          <li>
+            The app never edits page content. Its only writes are attachment moves and deletions,
+            both explicitly initiated, both behind a dry run and a typed confirmation, and both
+            recorded.
+          </li>
+          <li>Bulk delete is <strong>off by default</strong> and must be enabled by a site administrator.</li>
+          <li>
+            Deletions move attachments to Confluence's own trash, where a space administrator can
+            restore them through Confluence itself.
+          </li>
+        </ul>
+
+        <h2 id="changes">Changes</h2>
+        <p>
+          Material changes to what is stored or where will be reflected here and in the Marketplace
+          listing before they ship. The effective date above moves with any change.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a> — for questions about
+          this policy, and for data access, correction or deletion requests. Security issues:
+          <a href="/security/">report them privately</a>.
+        </p>
+        <!-- legal:end -->
+
+        <nav class="manual__pagination">
+          <span><a href="/satchel-confluence/docs/">← Documentation</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/satchel-confluence/">Product page →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Satchel for Confluence is published by Keelapps. Not affiliated with Atlassian. Confluence
+        is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
