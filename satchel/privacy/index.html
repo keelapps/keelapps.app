@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Privacy policy — Satchel for Jira</title>
+    <meta
+      name="description"
+      content="Satchel for Jira stores attachment metadata, audit records and settings only in Atlassian-hosted Forge storage inside your own tenant. Attachment content is never stored anywhere, and the app declares no external network access."
+    />
+    <link rel="canonical" href="https://keelapps.app/satchel/privacy/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/satchel/privacy/" />
+    <meta property="og:title" content="Privacy policy — Satchel for Jira" />
+    <meta
+      property="og:description"
+      content="Attachment files never pass through us. Metadata, audit records and settings stay in Atlassian-hosted Forge storage inside your own tenant. No external network access, no vendor copy."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/satchel/">Satchel for Jira</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Satchel for Jira pages and sections">
+        <p class="manual__toc-title">Satchel for Jira</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/satchel/">Product</a></li>
+          <li><a href="/satchel/docs/">Documentation</a></li>
+          <li><a href="/satchel/privacy/" aria-current="page">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#short-version">The short version</a></li>
+          <li><a href="#what-it-processes">What the app processes</a></li>
+          <li><a href="#where-stored">Where it is stored</a></li>
+          <li><a href="#where-not-stored">Where it is not stored</a></li>
+          <li><a href="#no-transmission">No external transmission</a></li>
+          <li><a href="#permissions">Permissions, and what each is for</a></li>
+          <li><a href="#as-you">Permissions are yours, not the app's</a></li>
+          <li><a href="#deletion">Deletion is irreversible</a></li>
+          <li><a href="#removing-data">Removing your data</a></li>
+          <li><a href="#sub-processors">Sub-processors</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/satchel/">Satchel for Jira</a><span>/</span>Privacy policy
+        </p>
+
+        <!-- legal:begin
+             In-force text. This document is submitted to the Atlassian
+             Marketplace. Structure, classes, ids and attributes may change;
+             NOT ONE WORD between these sentinels may. Verify before pushing:
+               tools/check-legal-text  (see README.md)
+        -->
+        <h1>Privacy policy — Satchel for Jira</h1>
+        <p class="manual__meta">Effective date: <time datetime="2026-09-09">9 September 2026</time></p>
+
+        <h2 id="short-version">The short version</h2>
+        <p class="manual__lede">
+          Satchel for Jira (“Satchel”, “the app”) is published by Keelapps. Satchel does not
+          send your data anywhere. There is no Keelapps server involved in running this app,
+          because the app runs entirely on Atlassian's infrastructure and its manifest declares
+          no permission to contact any external host. Attachment files never pass through us:
+          when you download an archive, the bytes travel from Jira to your own browser, where
+          the zip is assembled, and then to your disk.
+        </p>
+
+        <h2 id="what-it-processes">What the app processes</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Data</th><th>Where it comes from</th><th>Where it goes</th><th>Retained?</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Attachment metadata — filename, byte size, media type, upload date, uploader account id and display name, issue key, issue type, project key</td>
+                <td>the Jira REST API</td>
+                <td>Forge storage, inside your Atlassian tenant</td>
+                <td>Yes, in scan records — see below</td>
+              </tr>
+              <tr>
+                <td>Attachment file content</td>
+                <td>the Jira REST API</td>
+                <td>your browser's memory, then your download folder</td>
+                <td><strong>No.</strong> Never stored by the app, in Forge or anywhere else</td>
+              </tr>
+              <tr>
+                <td>Your Atlassian account id and display name</td>
+                <td>the Forge invocation context</td>
+                <td>audit records, when you delete something or change a setting</td>
+                <td>Yes, until pruned</td>
+              </tr>
+              <tr>
+                <td>Site settings</td>
+                <td>the admin page</td>
+                <td>Forge storage</td>
+                <td>Yes, until changed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="where-stored">Where it is stored</h2>
+        <p>
+          <strong>Forge storage, which is Atlassian infrastructure inside your own tenant's data
+          boundary.</strong> Not a Keelapps database — there isn't one. Data residency follows
+          whatever your Atlassian site is configured for; the app has no separate region and
+          cannot move data out of yours.
+        </p>
+        <p>Stored records:</p>
+        <ul>
+          <li>
+            <strong>Scan records</strong> — an attachment inventory produced when someone runs a
+            project scan. Metadata only, never file content. The ten most recent scans per
+            project are kept; older ones are deleted automatically when an eleventh is created.
+          </li>
+          <li>
+            <strong>Audit records</strong> — one per attachment deleted through the app, and one
+            per settings change: who, what, when, and the reason they typed. Capped at 500 per
+            project, oldest dropped first.
+          </li>
+          <li>
+            <strong>Settings</strong> — the deletion switch, archive limits, and the transfer
+            mode.
+          </li>
+        </ul>
+
+        <h2 id="where-not-stored">Where it is not stored</h2>
+        <ul>
+          <li>
+            <strong>No analytics service.</strong> The app sends no telemetry, no usage events
+            and no error reports to any third party.
+          </li>
+          <li>
+            <strong>No external logging.</strong> Application log output goes to Atlassian's own
+            Forge logs, which are visible to your site administrators and to Atlassian, and to
+            nobody else.
+          </li>
+          <li>
+            <strong>No attachment content, anywhere, at any time.</strong> This is
+            architectural rather than a policy promise: the backend reads attachment bytes only
+            when relaying a slice to your browser mid-download, and that slice is held in
+            function memory for the duration of one request.
+          </li>
+        </ul>
+
+        <h2 id="no-transmission">No external transmission</h2>
+        <p>
+          The app's manifest contains no external permissions block. In Forge, an app cannot make
+          a network request to a host it has not declared, and any declaration is shown to an
+          administrator at install time. There is no such declaration here, and an automated test
+          on every build checks that it stays that way.
+        </p>
+        <p>
+          This is also what makes the app eligible for Atlassian's <strong>Runs on
+          Atlassian</strong> badge, which Atlassian applies after verifying the same thing
+          independently.
+        </p>
+
+        <h2 id="permissions">Permissions, and what each is for</h2>
+        <p>At install you are asked to grant four scopes:</p>
+        <ul>
+          <li>
+            <strong>Read Jira work</strong> — read issues, run JQL searches, read attachment
+            metadata and attachment content. This is how the app finds and downloads files.
+          </li>
+          <li>
+            <strong>Read Jira user</strong> — turn an uploader's account id into a display name,
+            so a storage report names a person rather than an identifier.
+          </li>
+          <li>
+            <strong>Write Jira work</strong> — used for exactly one API call: deleting an
+            attachment. Atlassian's consent text for this scope mentions creating and editing
+            issues, posting comments, creating worklogs and deleting issues.
+            <strong>Satchel does none of those things.</strong> It is the narrowest scope
+            Atlassian currently offers that includes deleting an attachment; the granular scope
+            that would say exactly that is still in Beta. Deletion also ships switched off and is
+            administrator-only when enabled.
+          </li>
+          <li><strong>App storage</strong> — the Forge storage described above.</li>
+        </ul>
+
+        <h2 id="as-you">Permissions are yours, not the app's</h2>
+        <p>
+          Every attachment read and every deletion runs as <strong>you</strong>, using your own
+          Atlassian identity. If you cannot open a file in Jira, Satchel cannot hand it to you —
+          including attachments hidden by issue security levels or added inside restricted
+          comments, which Jira withholds at the API level.
+        </p>
+        <p>
+          The one exception is the background project scan, which runs as the app because a queued
+          job has no signed-in user. Its output is attachment metadata for a governance report,
+          and anything offered for download is re-fetched as you.
+        </p>
+
+        <h2 id="deletion">Deletion is irreversible</h2>
+        <p>
+          Jira has no recycle bin for attachments. An attachment deleted through Satchel is gone
+          from Jira, and the only recovery is an Atlassian support restore of the entire site. The
+          app requires a dry-run preview and a typed confirmation, and records every deletion —
+          but it cannot undo one.
+        </p>
+
+        <h2 id="removing-data">Removing your data</h2>
+        <p>
+          Uninstalling the app deletes its Forge storage, including every scan and audit record,
+          according to Atlassian's own retention schedule for uninstalled apps. There is nothing
+          held anywhere else to request the deletion of.
+        </p>
+        <p>
+          To clear records without uninstalling, delete a scan from the project page. To clear the
+          audit trail, contact support — it is deliberately not deletable from the interface,
+          because an audit trail a user can erase is not an audit trail.
+        </p>
+
+        <h2 id="sub-processors">Sub-processors</h2>
+        <p>None. The app has no infrastructure of its own.</p>
+
+        <h2 id="children">Children</h2>
+        <p>
+          The app is not directed at children and processes no data about them beyond whatever a
+          Jira administrator has put into their own instance.
+        </p>
+
+        <h2 id="changes">Changes</h2>
+        <p>
+          Material changes to this policy will be published with a new version of the app and
+          reflected in the Marketplace listing. The effective date above moves with any change.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a> — for questions about
+          this policy, and for data access, correction or deletion requests.
+        </p>
+        <!-- legal:end -->
+
+        <nav class="manual__pagination">
+          <span><a href="/satchel/docs/">← Documentation</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/satchel/">Product page →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Satchel for Jira is published by Keelapps. Not affiliated with Atlassian. Jira is a
+        trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>

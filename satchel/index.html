@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Satchel for Jira — bulk attachment download and management</title>
+    <meta
+      name="description"
+      content="Zip every attachment on a Jira issue, a JQL result or a whole project, foldered by issue key. Then see what is in there: duplicate candidates, storage by uploader, the biggest files, CSV. The archive is built in your browser."
+    />
+    <link rel="canonical" href="https://keelapps.app/satchel/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://keelapps.app/satchel/" />
+    <meta property="og:title" content="Satchel for Jira — bulk attachment download and management" />
+    <meta
+      property="og:description"
+      content="Jira has no “download all attachments” button. Satchel adds one, then answers the question that follows it: what is in there, and how much of it can go? Built on Forge, zero egress."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/product.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/satchel/">Satchel for Jira</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <main class="product" id="main">
+      <section class="lede-block">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Satchel for Jira
+        </p>
+        <p class="eyebrow">For the issue with twelve attachments and no download button</p>
+        <h1>Twelve attachments means twelve previews. Or one zip.</h1>
+        <p class="lede">
+          Jira Cloud has no “download all attachments” button. Satchel adds it — for one
+          issue, for a JQL result, or for a whole project foldered by issue key — and then
+          answers the question that always follows: what is actually in there, and how much of
+          it can go? The archive is assembled in your own browser from your own Jira session,
+          so attachment bytes never touch a server of ours. There is not one.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#availability">Coming to the Atlassian Marketplace</a>
+          <span class="note-inline">Zero egress. No external server, no egress permission in the manifest, no copy of your files anywhere.</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="aside" data-label="The gap this fills">
+          <p>
+            To get twelve attachments off a Jira issue you open a preview, close it, and do it
+            eleven more times. Across issues, bulk download does not exist at all. The request
+            has been open on Atlassian's own tracker since 2019 — JRACLOUD-72921, 121 votes,
+            still <em>Gathering Interest</em> — and past 150 attachments Jira stops rendering
+            them altogether (JRACLOUD-81747).
+          </p>
+          <p>
+            The Marketplace has a download-only app in this space and a heavyweight document
+            management suite next to it. Nobody has put bulk download, attachment governance
+            and storage analysis in one place.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>One zip, however many files</h3>
+            <p>
+              Every attachment on an issue in a single archive, from a panel on the issue
+              itself. It works past the 150 attachments Jira itself stops rendering.
+            </p>
+          </div>
+          <div class="card">
+            <h3>A JQL result, or a project</h3>
+            <p>
+              From the project page: zip everything a JQL query matches, or the whole project,
+              foldered by <code>ISSUE-KEY/</code>. Progress and cancel throughout.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Nothing overwritten, nothing hidden</h3>
+            <p>
+              Two files with the same name are renamed inside the archive rather than silently
+              overwriting each other, and a note inside the zip lists anything that could not
+              be included, with the reason.
+            </p>
+          </div>
+          <div class="card">
+            <h3>See where the storage went</h3>
+            <p>
+              Occupancy by uploader, file type, issue type and age, plus the biggest files.
+              Jira shows one site-wide number and nothing underneath it.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Duplicate candidates</h3>
+            <p>
+              Files grouped by filename and exact byte size, with the bytes each group would
+              reclaim. Candidates, not verdicts — Jira exposes no content hash, and Satchel
+              says so wherever it shows a number.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Deletion that asks twice</h3>
+            <p>
+              A dry run, a typed confirmation, an audit record per file. It ships switched off
+              and is administrator-only when enabled — because Jira has no recycle bin for
+              attachments.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Reclaiming 40 GB, end to end</h2>
+        <ol class="steps">
+          <li>
+            <h3>Scan the project</h3>
+            <p>
+              The project page builds an attachment inventory in the background: filename,
+              size, type, uploader, issue and age for every file. It is checkpointed, so a big
+              project finishes.
+            </p>
+          </li>
+          <li>
+            <h3>Read the reports</h3>
+            <p>
+              Storage by uploader and by file type, the biggest files, and the duplicate
+              candidate groups with the bytes each would free. Export the whole inventory as
+              CSV if somebody else has to approve the list.
+            </p>
+          </li>
+          <li>
+            <h3>Take a copy first</h3>
+            <p>
+              Zip what you are about to remove — the archive is built in your browser and
+              lands on your disk, not on anybody's server — so “deleted” means “out of Jira”,
+              not “gone”.
+            </p>
+          </li>
+          <li>
+            <h3>Delete, on the record</h3>
+            <p>
+              An administrator enables deletion, reads the dry run, types the confirmation,
+              and Satchel records every file it removed and who removed it. That trail is
+              deliberately not deletable from the interface.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>Against what you have today</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Native Jira</th>
+                <th>Download-only apps</th>
+                <th>Satchel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Download every attachment on an issue?</td>
+                <td class="absent">One preview at a time</td>
+                <td>Yes</td>
+                <td><span class="answer">One zip</span></td>
+              </tr>
+              <tr>
+                <td>Across a JQL result or a project?</td>
+                <td class="absent">—</td>
+                <td>Sometimes</td>
+                <td><span class="answer">Foldered by issue key</span></td>
+              </tr>
+              <tr>
+                <td>What is eating the storage?</td>
+                <td class="absent">One site-wide number</td>
+                <td class="absent">—</td>
+                <td><span class="answer">By uploader, type, age, size</span></td>
+              </tr>
+              <tr>
+                <td>Which files are duplicated?</td>
+                <td class="absent">—</td>
+                <td class="absent">—</td>
+                <td><span class="answer">Candidates, with reclaimable bytes</span></td>
+              </tr>
+              <tr>
+                <td>Delete in bulk, with a record?</td>
+                <td class="absent">One at a time, no trail</td>
+                <td class="absent">—</td>
+                <td><span class="answer">Dry run, confirmation, audit</span></td>
+              </tr>
+              <tr>
+                <td>Do the files pass through a vendor server?</td>
+                <td>—</td>
+                <td class="absent">Often</td>
+                <td><span class="answer">Never — built in your browser</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Limits we state up front</h2>
+        <div class="prose">
+          <p>
+            <strong>Duplicate detection finds candidates, not proven duplicates.</strong> Jira
+            exposes no content hash for an attachment, and proving two files identical would
+            mean downloading both — for a whole project, every byte in it. Satchel therefore
+            matches on <em>filename and exact byte size</em>, and that qualification travels
+            with the number in the payload, so no screen can show you reclaimable bytes without
+            the sentence explaining what they are based on. Two files with the same name and
+            different sizes are not grouped; neither are two unrelated files that happen to be
+            the same size.
+          </p>
+          <p>
+            <strong>Deletion is irreversible.</strong> Jira has no recycle bin for attachments.
+            A file deleted through Satchel is gone from Jira, and the only recovery is an
+            Atlassian support restore of the entire site. Satchel requires a dry run and a typed
+            confirmation and records every deletion, but it cannot undo one. Deletion ships
+            switched off and is administrator-only when enabled.
+          </p>
+          <p>
+            <strong>One scope is broader than what the app does.</strong> Deleting an attachment
+            needs Jira's classic <code>write:jira-work</code> scope, whose consent text mentions
+            creating and editing issues, posting comments and deleting issues. Satchel does none
+            of those. It is the narrowest scope Atlassian currently offers that includes deleting
+            an attachment — the granular one that would say exactly that is still in Beta — and
+            an automated test fails the build if any code path reaches a mutating call other
+            than the single attachment delete.
+          </p>
+          <p>
+            <strong>Uploading attachments is deliberately not built.</strong> The app requests no
+            scope for it and the interface has no path to it.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 id="availability">Availability</h2>
+        <div class="prose">
+          <p>
+            Satchel for Jira is built and deployed on Atlassian Forge. It is going through
+            Atlassian Marketplace review; this page will link to the listing as soon as it is
+            live.
+          </p>
+          <p>
+            Licensing is handled by Atlassian. Sites with 10 users or fewer pay nothing at all,
+            and above that the single-issue zip and the direct download stay free forever on
+            every install — the fix for JRACLOUD-72921 is never behind a licence check. What a
+            licence buys is scale and governance: cross-issue archives, the project inventory,
+            the duplicate and storage reports, CSV export and deletion.
+          </p>
+          <p>
+            There is a
+            <a href="/satchel-confluence/">Satchel for Confluence</a> too, with the same
+            brand, the same zero-egress design, and bulk attachment move between pages.
+          </p>
+          <p>
+            Questions, bug reports and feature requests:
+            <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
+          </p>
+          <p>
+            Found a security issue? Please
+            <a href="/security/">report it privately</a>
+            rather than in a public channel.
+          </p>
+        </div>
+
+        <nav class="manual__pagination">
+          <span><a href="/">← All apps</a></span>
+          <span class="manual__pagination-mid"><a href="/satchel/docs/">Documentation</a></span>
+          <span class="manual__pagination-next"><a href="/satchel/privacy/">Privacy policy →</a></span>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Satchel for Jira is an Atlassian Forge app. It runs entirely inside your Atlassian
+        tenant and declares no external network access — your data is never sent to us or to
+        anyone else. Not affiliated with Atlassian. Jira is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
