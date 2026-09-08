@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Privacy policy — Prefill for Jira</title>
+    <meta
+      name="description"
+      content="Prefill for Jira stores request forms, use counters and recent issue keys only in Atlassian-hosted Forge storage inside your own tenant. Issue content is never stored, and the app declares no external network access."
+    />
+    <link rel="canonical" href="https://keelapps.app/prefill/privacy/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/prefill/privacy/" />
+    <meta property="og:title" content="Privacy policy — Prefill for Jira" />
+    <meta
+      property="og:description"
+      content="Forms, counters and issue keys stay in Atlassian-hosted Forge storage inside your own tenant. Issues are created as the person submitting them. No external network access, no vendor copy."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/prefill/">Prefill</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Prefill pages and sections">
+        <p class="manual__toc-title">Prefill for Jira</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/prefill/">Product</a></li>
+          <li><a href="/prefill/docs/">Documentation</a></li>
+          <li><a href="/prefill/privacy/" aria-current="page">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#short-version">The short version</a></li>
+          <li><a href="#what-the-app-stores">What the app stores</a></li>
+          <li><a href="#what-it-does-not-store">What the app does not store</a></li>
+          <li><a href="#up-to-you">One thing that is up to you</a></li>
+          <li><a href="#how-issues-are-created">How issues are created</a></li>
+          <li><a href="#who-can-see-what">Who can see what</a></li>
+          <li><a href="#retention-and-deletion">Retention and deletion</a></li>
+          <li><a href="#sub-processors">Sub-processors</a></li>
+          <li><a href="#data-residency">Data residency</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/prefill/">Prefill</a><span>/</span>Privacy policy
+        </p>
+
+        <!-- legal:begin
+             In-force text. This document is submitted to the Atlassian
+             Marketplace. Structure, classes, ids and attributes may change;
+             NOT ONE WORD between these sentinels may. Verify before pushing:
+               tools/check-legal-text  (see README.md)
+        -->
+        <h1>Privacy policy — Prefill for Jira</h1>
+        <p class="manual__meta">Effective date: <time datetime="2026-09-09">9 September 2026</time></p>
+
+        <h2 id="short-version">The short version</h2>
+        <p class="manual__lede">
+          Prefill for Jira (“Prefill”, “the app”) is published by Keelapps. Prefill does not send
+          your data anywhere. It runs entirely on Atlassian Forge, inside Atlassian's
+          infrastructure. The app declares no external network permissions, which Atlassian
+          enforces at the platform level — it <em>cannot</em> make an outbound call even if it
+          tried. There is no Keelapps server, no analytics service, no third party.
+        </p>
+
+        <h2 id="what-the-app-stores">What the app stores</h2>
+        <p>Everything below lives in Forge hosted storage, on your own Atlassian site.</p>
+        <ul>
+          <li>
+            <strong>Request forms you create.</strong> A name and description, the target project
+            and issue type, and the field configuration — which fields the form fills, which it
+            asks about, and the values you set for them. The account id of whoever created and
+            last changed the form.
+          </li>
+          <li>
+            <strong>Use counters.</strong> How many times each form was opened and submitted, and
+            when it was last used. These are approximate by design.
+          </li>
+          <li>
+            <strong>Recent issues.</strong> For each form, the last 20 issue keys it produced,
+            with the account id of the person who submitted and a timestamp.
+            <strong>Issue content is not stored</strong> — the summaries and statuses shown next
+            to those keys are read from Jira live, each time you look.
+          </li>
+          <li><strong>Site settings</strong>, and the last observed licence state.</li>
+        </ul>
+
+        <h2 id="what-it-does-not-store">What the app does not store</h2>
+        <p>
+          Issue descriptions, comments, attachments, email addresses, and any Jira content beyond
+          the issue keys described above. The only personal data the app stores is Atlassian
+          account ids; display names are resolved from Jira when a page renders and are not
+          persisted.
+        </p>
+
+        <h2 id="up-to-you">One thing that is up to you</h2>
+        <p>
+          The values you set on a form are stored as you type them. If you put personal data into
+          a field's default or fixed value, that data is in Forge storage. The app cannot tell the
+          difference between a routing label and a person's name.
+        </p>
+
+        <h2 id="how-issues-are-created">How issues are created</h2>
+        <p>
+          Issues are created <strong>as the person submitting the form</strong>, using their own
+          Atlassian credentials. Jira's own permissions decide whether the issue can be created,
+          the reporter is the real submitter, and the issue appears in Jira's audit trail exactly
+          as if it had been created through Jira's own interface. Prefill cannot create an issue
+          on behalf of someone who could not have created it themselves.
+        </p>
+        <p>
+          Prefill is for people who already have a Jira seat. It does not provide anonymous or
+          external submission, and it cannot: that would require an external server, and this app
+          makes no external calls.
+        </p>
+
+        <h2 id="who-can-see-what">Who can see what</h2>
+        <ul>
+          <li>
+            The request form behind a link is visible only to signed-in Jira users who have
+            permission to create issues in the target project.
+          </li>
+          <li>
+            Values a form hides from submitters are applied on the server and are never sent to a
+            submitter's browser.
+          </li>
+          <li>Site-wide lists of forms are visible only to Jira administrators.</li>
+        </ul>
+
+        <h2 id="retention-and-deletion">Retention and deletion</h2>
+        <p>
+          Deleting a form removes its definition, its counters and its recent-issue list.
+          Uninstalling the app removes everything the app has stored on your site, in accordance
+          with Atlassian's Forge data lifecycle. Issues that were created through a form are
+          ordinary Jira issues and are unaffected.
+        </p>
+
+        <h2 id="sub-processors">Sub-processors</h2>
+        <p>
+          None. Atlassian hosts everything; there is no other party involved, and Keelapps has no
+          access path to your data. Forge storage is reachable only by the app itself, running
+          inside Atlassian's infrastructure.
+        </p>
+        <p>
+          Because no data is transmitted outside Atlassian's infrastructure and the vendor neither
+          accesses, stores nor transmits customer data, Keelapps is not a data processor for the
+          purposes of this app. If your compliance team requires a Data Processing Addendum,
+          Atlassian's standard addendum for the platform applies.
+        </p>
+
+        <h2 id="data-residency">Data residency</h2>
+        <p>
+          Because everything is stored in Forge hosted storage, data residency follows your
+          Atlassian site's data residency configuration automatically.
+        </p>
+
+        <h2 id="changes">Changes</h2>
+        <p>
+          Material changes to what is stored or where will be reflected here and in the
+          Marketplace listing before they ship. The effective date above moves with any change.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a> — for questions about
+          this policy, and for data access, correction or deletion requests.
+        </p>
+        <!-- legal:end -->
+
+        <nav class="manual__pagination">
+          <span><a href="/prefill/docs/">← Documentation</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/prefill/">Product page →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Prefill for Jira is published by Keelapps. Not affiliated with Atlassian. Jira is a
+        trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>

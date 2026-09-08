@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Documentation — Prefill for Jira</title>
+    <meta
+      name="description"
+      content="How Prefill works: building a form, fixed and hidden and asked fields, sharing the link, who can submit, URL parameters, validation, custom field types, use counts and retiring a form."
+    />
+    <link rel="canonical" href="https://keelapps.app/prefill/docs/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/prefill/docs/" />
+    <meta property="og:title" content="Documentation — Prefill for Jira" />
+    <meta
+      property="og:description"
+      content="Building a form, fixed and hidden and asked fields, sharing the link, who can submit, URL parameters, validation, custom field types and retiring a form."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/prefill/">Prefill</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Prefill pages and sections">
+        <p class="manual__toc-title">Prefill for Jira</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/prefill/">Product</a></li>
+          <li><a href="/prefill/docs/" aria-current="page">Documentation</a></li>
+          <li><a href="/prefill/privacy/">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#what-it-is">What Prefill is, and is not</a></li>
+          <li><a href="#where-it-lives">Where Prefill lives</a></li>
+          <li><a href="#building">Building a form</a></li>
+          <li><a href="#field-modes">Fixed, hidden and asked</a></li>
+          <li><a href="#sharing">Sharing the link</a></li>
+          <li><a href="#submitting">What the submitter sees</a></li>
+          <li><a href="#who-can-submit">Who can submit</a></li>
+          <li><a href="#url-parameters">URL parameters</a></li>
+          <li><a href="#validation">Validation</a></li>
+          <li><a href="#field-types">Custom field types</a></li>
+          <li><a href="#counts">Use counts and recent issues</a></li>
+          <li><a href="#retiring">Retiring a form</a></li>
+          <li><a href="#permissions">Permissions the app requests</a></li>
+          <li><a href="#not-in-this-release">Not in this release</a></li>
+          <li><a href="#support">Support</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/prefill/">Prefill</a><span>/</span>Documentation
+        </p>
+
+        <h1>Documentation</h1>
+        <p class="manual__lede">
+          Prefill adds one thing to Jira: a link that opens a short request form instead of a
+          create screen. Everything below is either how to build that form, or which of Jira's
+          own rules still apply once somebody uses it — and they all do.
+        </p>
+
+        <h2 id="what-it-is">What Prefill is, and is not</h2>
+        <p>
+          <strong>Prefill is an intake link.</strong> Its product is the entry point: a URL you
+          paste into Slack, an email signature, a runbook or a monitoring alert, which opens a
+          page a colleague can complete without ever seeing Jira's create dialog.
+        </p>
+        <p>
+          <strong>It is not an issue-template app.</strong> Templates prefill Jira's own create
+          screen; the submitter still has to know their way around it. Prefill replaces the
+          screen for that one request rather than pre-typing it.
+        </p>
+        <p>
+          <strong>It is not an anonymous or external portal, and it cannot become one.</strong>
+          Submitters are your own Jira users — signed in, with permission to create issues in
+          the target project. Anonymous intake requires an outbound connection to a vendor's
+          server; Prefill declares no external network access at all, which Atlassian enforces
+          at the platform level. The scenario it is built for is “the whole company has a Jira
+          seat, but only a handful of people know how to file a ticket”. For requests from
+          people <em>without</em> a seat, use Jira Service Management.
+        </p>
+
+        <h2 id="where-it-lives">Where Prefill lives</h2>
+        <ul>
+          <li>
+            <strong>Apps → Request forms</strong> — the library. Build forms, copy their links,
+            and see what each one has produced. This page is also what a shared link opens.
+          </li>
+          <li>
+            <strong>Project → Request forms</strong> — the forms that file into this project, for
+            the people who own its queue.
+          </li>
+          <li>
+            <strong>Apps administration → Prefill for Jira</strong> — every form on the site with
+            a live health verdict, for Jira administrators.
+          </li>
+        </ul>
+        <p>
+          There are no queues and no scheduled jobs. A form is stored configuration; a submission
+          is one API call to Jira.
+        </p>
+
+        <h2 id="building">Building a form</h2>
+        <ol>
+          <li><strong>Name it</strong>, and describe it for whoever finds it later.</li>
+          <li>
+            <strong>Pick a project and issue type.</strong> Sub-task types are excluded, because a
+            sub-task needs a parent that an intake link cannot supply.
+          </li>
+          <li>
+            <strong>Decide what each field does</strong> — fixed, hidden or asked. See below.
+          </li>
+          <li>
+            <strong>Save.</strong> The form is checked against Jira's live create screen at this
+            point, and refused if it could not create an issue.
+          </li>
+        </ol>
+
+        <h2 id="field-modes">Fixed, hidden and asked</h2>
+        <p>Every field on the create screen is in one of three states:</p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>State</th><th>What the submitter sees</th><th>What Jira receives</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Fixed and hidden</td>
+                <td>nothing</td>
+                <td>the value you set, applied on the server on every submission</td>
+              </tr>
+              <tr>
+                <td>Asked, with a default</td>
+                <td>the field, already filled in</td>
+                <td>whatever they leave or change it to</td>
+              </tr>
+              <tr>
+                <td>Asked, empty</td>
+                <td>an empty field</td>
+                <td>what they type</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Hidden values never reach a submitter's browser. They are applied server-side, so a
+          form pinning Priority to High cannot be talked out of it by anyone reading the page
+          source.
+        </p>
+        <p>
+          The routing fields — project, issue type, component, labels, the custom field your
+          automation keys off — are the ones worth fixing. What is left to ask is usually two or
+          three things only the submitter knows.
+        </p>
+
+        <h2 id="sharing">Sharing the link</h2>
+        <p>
+          Each form has one key. Appending that key to the app page's URL as a query parameter
+          opens that form directly, and the library page gives you the full link to copy.
+        </p>
+        <p>
+          Deep linking was <strong>verified working on the site we tested, on 9 September
+          2026</strong>: the key opens its form, and an unknown key renders the app's own “that
+          form does not exist” page rather than an error. We deliberately do not claim it for
+          every Jira Cloud tenant — there are community reports of tenants where query strings
+          are stripped before an app sees them. So when a link arrives without a usable key,
+          Prefill falls back to a <strong>form picker</strong>: the visitor chooses from the forms
+          they can use and continues. That fallback is retained on purpose, not left in as dead
+          code.
+        </p>
+        <p>
+          One practical note if you administer the app: the app page's URL contains an environment
+          identifier, so a link generated from a development installation will not open on a
+          production one. Copy links from the installation your colleagues actually use.
+        </p>
+
+        <h2 id="submitting">What the submitter sees</h2>
+        <p>
+          A short page: the form's name and description, a badge showing which project and issue
+          type the request will become, and only the fields you marked as asked, with their
+          defaults filled in.
+        </p>
+        <p>
+          Submitting creates the issue through Jira's own create API, executed as the person
+          submitting. That means:
+        </p>
+        <ul>
+          <li>The <strong>reporter and creator are the real submitter</strong>, not the app and not you.</li>
+          <li>Jira's own permissions decide whether the issue can be created at all.</li>
+          <li>
+            The issue appears in Jira's audit trail exactly as if it had been created through
+            Jira's own interface, and notifications and automation fire normally.
+          </li>
+        </ul>
+        <p>
+          Prefill cannot create an issue on behalf of somebody who could not have created it
+          themselves.
+        </p>
+
+        <h2 id="who-can-submit">Who can submit</h2>
+        <p>
+          Signed-in Jira users with permission to create issues in the target project. That is
+          the whole answer, and it is a structural property rather than a setting: without an
+          external server there is nowhere for an anonymous request to come from.
+        </p>
+        <p>
+          If a form is opened by somebody who cannot create issues in its project, Jira refuses
+          the creation and the form says so. The right fix is a Jira permission change, not an
+          app setting.
+        </p>
+
+        <h2 id="url-parameters">URL parameters</h2>
+        <p>
+          An external system — a monitoring alert, an internal tool — can carry context into a
+          form by adding parameters to the link, so the summary or an environment field arrives
+          already populated.
+        </p>
+        <p>Two rules, both enforced on the server:</p>
+        <ul>
+          <li>
+            <strong>Opt-in per field.</strong> Only fields whose owner explicitly allowed URL
+            population can be set this way. Every other parameter is ignored.
+          </li>
+          <li><strong>Never a hidden field.</strong> A fixed, hidden value cannot be overridden by a URL.</li>
+        </ul>
+
+        <h2 id="validation">Validation</h2>
+        <p>Forms are checked twice, and the first time is the one that matters:</p>
+        <ul>
+          <li>
+            <strong>When you save.</strong> Prefill reads Jira's live create screen for that
+            project and issue type. If a required field is neither filled by the form nor asked
+            of the submitter, the save is <em>refused</em> — while the person who can fix it is
+            still looking at it. A broken intake link is otherwise discovered by a colleague
+            whose request silently failed to file.
+          </li>
+          <li>
+            <strong>On every submission.</strong> Create screens change: fields get added,
+            options get retired, projects get reconfigured. So the check runs again at submission
+            time, and a form that has gone stale reports what changed rather than throwing a raw
+            API error.
+          </li>
+        </ul>
+        <p>
+          The admin page carries the same verdict for every form on the site, so an
+          administrator can see the ones that need attention without opening each one.
+        </p>
+
+        <h2 id="field-types">Custom field types</h2>
+        <p>
+          Field shapes are read from Jira's own create metadata — never guessed from a field
+          name. Supported: select, multi-select, cascading select, user, group, date, datetime,
+          number, labels, time tracking and rich text, alongside the standard system fields.
+        </p>
+        <p>
+          A field type Prefill cannot fill honestly is reported as unsupported
+          <strong>in the builder</strong>, where you can choose something else — rather than
+          accepted and then failing at submission time in front of a colleague.
+        </p>
+
+        <h2 id="counts">Use counts and recent issues</h2>
+        <p>
+          Each form records how many times it was opened, how many times it was submitted, and
+          when it was last used. Those counts are approximate by design — they are kept in
+          sharded counters so that concurrent submissions never block one another — and they are
+          there to answer one question: is this link being opened and then abandoned?
+        </p>
+        <p>
+          Alongside them, the last issues the form produced. Only the issue keys are stored; the
+          summary and status shown next to them are read from Jira live, each time you look.
+        </p>
+
+        <h2 id="retiring">Retiring a form</h2>
+        <p>
+          Retiring a form stops it accepting submissions but <strong>keeps its key
+          reserved</strong>. Anyone still holding the old link — in a bookmark, a wiki page, a
+          six-month-old Slack message — is told the form was retired, instead of meeting a dead
+          page or, worse, a different form that later claimed the same key.
+        </p>
+        <p>
+          Deleting a form removes its definition, its counters and its recent-issue list. Issues
+          it already created are ordinary Jira issues and are unaffected.
+        </p>
+
+        <h2 id="permissions">Permissions the app requests</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Scope</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td><code>read:jira-work</code></td><td>read projects, issue types and the create metadata that gives every field its shape; read the issues a form produced</td></tr>
+              <tr><td><code>write:jira-work</code></td><td>create the issue — as the submitter, through Jira's own create API</td></tr>
+              <tr><td><code>read:jira-user</code></td><td>resolve account ids to display names when a page renders</td></tr>
+              <tr><td><code>storage:app</code></td><td>form definitions, counters and settings, in Atlassian-hosted storage on your own site</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          There is no <code>permissions.external</code> block: the app cannot make an outbound
+          call even if it tried to, which Atlassian enforces at the platform level — and which is
+          also why anonymous submission is impossible here rather than merely unsupported.
+        </p>
+
+        <h2 id="not-in-this-release">Not in this release</h2>
+        <ul>
+          <li>
+            <strong>Anonymous or external submission.</strong> Not a roadmap item — it is
+            incompatible with the app's zero-egress design.
+          </li>
+          <li><strong>Issue templates</strong> for Jira's own create screen.</li>
+          <li><strong>Sub-task creation</strong>, which needs a parent an intake link cannot supply.</li>
+          <li><strong>Attachments on submission.</strong></li>
+          <li><strong>Editing existing issues.</strong> Prefill creates; it does not update.</li>
+          <li><strong>Approval or routing workflows</strong> after creation — that is Jira automation's job.</li>
+        </ul>
+
+        <h2 id="support">Support</h2>
+        <p>
+          Questions, bug reports and feature requests:
+          <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
+          Security issues: <a href="/security/">report privately</a>.
+        </p>
+
+        <nav class="manual__pagination">
+          <span><a href="/prefill/">← Product page</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/prefill/privacy/">Privacy policy →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Prefill for Jira is published by Keelapps. Not affiliated with Atlassian. Jira is a
+        trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
