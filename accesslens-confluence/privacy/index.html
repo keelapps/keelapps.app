@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Privacy policy — AccessLens for Confluence</title>
+    <meta
+      name="description"
+      content="AccessLens for Confluence is read-only and stores snapshots, reviews and settings only in Atlassian-hosted Forge storage inside your own tenant. The app declares no write scopes and no external network access."
+    />
+    <link rel="canonical" href="https://keelapps.app/accesslens-confluence/privacy/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/accesslens-confluence/privacy/" />
+    <meta property="og:title" content="Privacy policy — AccessLens for Confluence" />
+    <meta
+      property="og:description"
+      content="Read-only, with no write scopes at all. Snapshots, reviews and settings stay in Atlassian-hosted Forge storage inside your own tenant. No external network access, no vendor copy."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/accesslens-confluence/">AccessLens for Confluence</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="AccessLens for Confluence pages and sections">
+        <p class="manual__toc-title">AccessLens for Confluence</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/accesslens-confluence/">Product</a></li>
+          <li><a href="/accesslens-confluence/docs/">Documentation</a></li>
+          <li><a href="/accesslens-confluence/privacy/" aria-current="page">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#short-version">The short version</a></li>
+          <li><a href="#what-the-app-reads">What the app reads</a></li>
+          <li><a href="#what-the-app-stores">What the app stores</a></li>
+          <li><a href="#what-the-app-writes">What the app writes</a></li>
+          <li><a href="#what-it-never-does">What the app never does</a></li>
+          <li><a href="#retention-and-deletion">Retention and deletion</a></li>
+          <li><a href="#data-residency">Data residency</a></li>
+          <li><a href="#sub-processors">Sub-processors</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/accesslens-confluence/">AccessLens for Confluence</a><span>/</span>Privacy policy
+        </p>
+
+        <!-- legal:begin
+             In-force text. This document is submitted to the Atlassian
+             Marketplace. Structure, classes, ids and attributes may change;
+             NOT ONE WORD between these sentinels may. Verify before pushing:
+               tools/check-legal-text  (see README.md)
+        -->
+        <h1>Privacy policy — AccessLens for Confluence</h1>
+        <p class="manual__meta">Effective date: <time datetime="2026-09-09">9 September 2026</time></p>
+
+        <h2 id="short-version">The short version</h2>
+        <p class="manual__lede">
+          AccessLens for Confluence (“AccessLens”, “the app”) is published by Keelapps. It is
+          read-only: it declares no write scope of any kind and cannot change a permission, a
+          restriction, a page or a comment. Everything it stores lives in Atlassian-hosted
+          Forge storage inside your own Atlassian site. The app declares no external network
+          permissions, which Atlassian enforces at the platform level, so there is no Keelapps
+          server, no analytics, no telemetry and no third party.
+        </p>
+
+        <h2 id="what-the-app-reads">What the app reads</h2>
+        <p>
+          AccessLens's entire function is to read the permission state of your site and present
+          it back to you. It reads:
+        </p>
+        <ul>
+          <li><strong>Spaces</strong> — id, key, name, type and status.</li>
+          <li>
+            <strong>Space permissions</strong> — which principal (user, group or access class)
+            holds which operation on which space, and, on sites using role-based space
+            permissions, the role assignments that carry the same information.
+          </li>
+          <li>
+            <strong>Pages</strong> — id, title and parent id, so restricted pages can be named
+            and their inheritance chain walked. <strong>Page content is never read.</strong>
+          </li>
+          <li>
+            <strong>Page restrictions</strong> — which users and groups a page's view or edit
+            is restricted to.
+          </li>
+          <li>
+            <strong>Groups and their members</strong> — group id, group name, and the account
+            ids and display names of members, so a group-level answer can be turned into a
+            person-level one.
+          </li>
+        </ul>
+
+        <h2 id="what-the-app-stores">What the app stores</h2>
+        <p>
+          All data lives in Atlassian-hosted Forge storage inside your own Atlassian site. The
+          app has no servers of its own and makes no calls to any external service.
+        </p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Data</th><th>What it contains</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Snapshots</td>
+                <td>for each space, its identifiers and its permission grants; for each restricted page, its id, title, parent id and the users and groups named in its restrictions; for each group referenced by a grant, its name and the account ids and display names of its members</td>
+                <td>a point-in-time record is what makes an access review evidence rather than an opinion</td>
+              </tr>
+              <tr>
+                <td>Access reviews</td>
+                <td>the review's title, the snapshot it is pinned to, and for each space the decision, any free-text note, the deciding account id and a server-side UTC timestamp, together with any superseded decisions</td>
+                <td>a sign-off has to name who signed and when</td>
+              </tr>
+              <tr>
+                <td>Settings</td>
+                <td>scan cadence, shard size, page-restriction mode and budget, and the snapshot retention limit</td>
+                <td>so a large site can be scanned within a budget you chose</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>Personal data stored: Atlassian account ids and display names.</strong> No
+          email addresses, no page content, no attachments.
+        </p>
+
+        <h2 id="what-the-app-writes">What the app writes to Confluence</h2>
+        <p>
+          <strong>Nothing.</strong> AccessLens declares no write scopes at all. It cannot
+          change a permission, a restriction, a page or a comment even if it were asked to.
+        </p>
+
+        <h2 id="what-it-never-does">What the app never does</h2>
+        <ul>
+          <li>
+            No data leaves your Atlassian site. There are no external calls, no analytics, no
+            telemetry, and no third-party services. The app declares no external permissions,
+            which Forge enforces at the platform level.
+          </li>
+          <li>
+            CSV exports are assembled in your own browser from data delivered over the Forge
+            bridge. They never pass through any server.
+          </li>
+          <li>
+            Application logs record snapshot ids, space keys, shard progress, HTTP status codes
+            and error reasons. They never record display names, account ids, page titles, or
+            permission content.
+          </li>
+          <li>
+            The vendor has <strong>no access to your data</strong>. Forge storage is reachable
+            only by the app itself, running inside Atlassian's infrastructure.
+          </li>
+        </ul>
+
+        <h2 id="retention-and-deletion">Retention and deletion</h2>
+        <p>
+          Snapshots and reviews persist in Forge storage for as long as the app is installed,
+          or until an administrator deletes them from the app's own interface. AccessLens
+          deliberately <strong>never deletes a snapshot automatically</strong> — at the
+          retention limit it refuses to take a new one rather than evicting an old one, because
+          an audit record destroyed without being asked for is worse than a refused scan.
+        </p>
+        <p>
+          Uninstalling the app removes its storage in accordance with Atlassian's Forge data
+          lifecycle.
+        </p>
+
+        <h2 id="data-residency">Data residency</h2>
+        <p>
+          Because everything is stored in Forge hosted storage, data residency follows your
+          Atlassian site's data residency configuration automatically.
+        </p>
+
+        <h2 id="sub-processors">Sub-processors</h2>
+        <p>None. Atlassian hosts everything; there is no other party involved.</p>
+
+        <h2 id="changes">Changes</h2>
+        <p>
+          Material changes to what is read, stored or where will be reflected here and in the
+          Marketplace listing before they ship.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a> — for questions about
+          this policy, and for data access, correction or deletion requests.
+        </p>
+        <!-- legal:end -->
+
+        <nav class="manual__pagination">
+          <span><a href="/accesslens-confluence/docs/">← Documentation</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/accesslens-confluence/">Product page →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        AccessLens for Confluence is published by Keelapps. Not affiliated with Atlassian.
+        Confluence is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
