@@ -25,9 +25,14 @@ from pathlib import Path
 
 PAGES = [
     "accesslens/privacy/index.html",
+    "accesslens-confluence/privacy/index.html",
+    "curator/privacy/index.html",
     "digest/privacy/index.html",
     "evergreen/privacy/index.html",
+    "prefill/privacy/index.html",
     "recur/privacy/index.html",
+    "satchel/privacy/index.html",
+    "satchel-confluence/privacy/index.html",
     "security/index.html",
 ]
 
