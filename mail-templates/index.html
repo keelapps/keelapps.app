@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <title>Mail Templates for Jira — reach the people who are not watchers</title>
+    <meta
+      name="description"
+      content="Templated Jira notifications for the stakeholders who are not on the watcher list. Delivered by Jira's own notification service — zero egress, Runs on Atlassian."
+    />
+    <link rel="canonical" href="https://keelapps.app/mail-templates/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://keelapps.app/mail-templates/" />
+    <meta property="og:title" content="Mail Templates for Jira — reach the people who are not watchers" />
+    <meta
+      property="og:description"
+      content="Per-project templates for issue-created, status-change and comment events. Recipients you choose. Nothing leaves Atlassian."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <a class="masthead__home" href="/">
+        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+            <path d="M 196 392 H 304" />
+            <path d="M 720 392 H 828" />
+            <path d="M 352 392 C 360 584, 664 584, 672 392" />
+            <path d="M 512 552 V 648" />
+          </g>
+          <circle cx="512" cy="708" r="30" fill="#E8664A" />
+        </svg>
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/mail-templates/">Mail Templates</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <main class="product" id="main">
+      <section class="lede-block">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Mail Templates
+        </p>
+        <p class="eyebrow">For the stakeholders Jira never emails</p>
+        <h1>Jira notifies watchers. The people who most need to know usually are not watchers.</h1>
+        <p class="lede">
+          A compliance contact, a support group, the account manager who owns the customer
+          relationship — none of them watch the issue, so Jira sends them nothing, and
+          someone ends up forwarding mail by hand. Mail Templates sends a structured,
+          templated message to recipients you name, on the events you choose, delivered by
+          Jira's own notification service. Nothing leaves Atlassian.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#availability">Coming to the Atlassian Marketplace</a>
+          <span class="note-inline">Zero egress. No external mail server, no vendor copy of your issue data.</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="aside" data-label="What this is, and what it is not">
+          <p>
+            This is an <strong>additional</strong> notification channel, not a replacement
+            for Jira's own. Jira keeps sending whatever its notification scheme is
+            configured to send; Mail Templates adds a message on top, which is exactly why
+            it suits people who would otherwise get nothing. If you want to stop a
+            duplicate for someone who already gets Jira's mail, switch that event off in
+            the project's notification scheme — and check what else shares that scheme
+            first.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Recipients you choose</h3>
+            <p>
+              Reporter, assignee, watchers, voters, named people or a Jira group — set per
+              rule. Not a forward of the watcher list, which is the thing that failed to
+              reach these people in the first place.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Three events, three templates</h3>
+            <p>
+              Issue created, status changed and comment added, each with its own subject,
+              body and recipient set. Turn on only the ones a project actually wants.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Templates that fill themselves in</h3>
+            <p>
+              Nineteen issue fields interpolate into subject and body — key, summary,
+              status, assignee, priority, the transition that just happened. One template
+              serves every issue in the project.
+            </p>
+          </div>
+          <div class="card">
+            <h3>A preview that is the real renderer</h3>
+            <p>
+              The preview under the editor is produced by the same code that renders the
+              mail that gets sent, so what you approve is what goes out.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Every send accounted for</h3>
+            <p>
+              A per-project log records each event handled — including the ones that sent
+              nothing, and why. "Why was there no email" always has an answer.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Delivered by Jira itself</h3>
+            <p>
+              Built on Forge with no external network access. Mail goes out through Jira's
+              own notification endpoint, which is what earns the Runs on Atlassian badge —
+              something a Connect app on a vendor's server cannot get.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>A release notification, end to end</h2>
+        <ol class="steps">
+          <li>
+            <h3>The rule is written once</h3>
+            <p>
+              On the Releases project, a project admin turns on "status changed", writes a
+              subject of <code>[{{project.key}}] {{issue.key}} — {{issue.summary}}</code>,
+              and picks the recipients: the reporter, plus the
+              <code>customer-success</code> group.
+            </p>
+          </li>
+          <li>
+            <h3>Someone moves an issue to Done</h3>
+            <p>
+              Jira fires the event. The app matches it against the rule, reads only the
+              fields the template references, and renders the message.
+            </p>
+          </li>
+          <li>
+            <h3>The people who are not watchers get the mail</h3>
+            <p>
+              Jira delivers it through its own notification service. Everyone on the list
+              still has to be able to see the issue — Jira drops anyone who cannot, so the
+              app can never widen access.
+            </p>
+          </li>
+          <li>
+            <h3>The log says what happened</h3>
+            <p>
+              The project's send log records the event, the result and the recipient count.
+              Hourly caps bound the damage a bulk edit of 500 issues could do.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>Against what you have today</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Native Jira</th>
+                <th>Connect notification apps</th>
+                <th>Mail Templates</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Can a non-watcher be notified?</td>
+                <td class="absent">Add them as a watcher, or forward by hand</td>
+                <td>Yes</td>
+                <td><span class="answer">Yes, by rule</span></td>
+              </tr>
+              <tr>
+                <td>Templated subject and body with issue fields?</td>
+                <td class="absent">Fixed Jira templates</td>
+                <td>Yes</td>
+                <td><span class="answer">Nineteen variables</span></td>
+              </tr>
+              <tr>
+                <td>Does issue data leave Atlassian?</td>
+                <td>—</td>
+                <td class="absent">Yes — vendor servers</td>
+                <td><span class="answer">Never</span></td>
+              </tr>
+              <tr>
+                <td>Runs on Atlassian badge?</td>
+                <td>—</td>
+                <td class="absent">Structurally cannot</td>
+                <td><span class="answer">Yes</span></td>
+              </tr>
+              <tr>
+                <td>Any write access to your issues?</td>
+                <td>—</td>
+                <td>Varies</td>
+                <td><span class="answer">None — it can only send a notification</span></td>
+              </tr>
+              <tr>
+                <td>Can it <em>replace</em> Jira's own notifications?</td>
+                <td>—</td>
+                <td>Yes, by intercepting them</td>
+                <td class="absent">No — Forge has no hook for that</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="prose">
+          <p>
+            That last row is the trade. Forge gives an app no way to suppress the mail
+            Jira's own notification scheme already sent, so this is a channel that adds
+            rather than replaces. The same constraint is what keeps every byte inside
+            Atlassian — and there are things it therefore will never do: no attachments,
+            no custom sender address, no unsubscribe management, no rich-text editor. All
+            of those need egress or permissions this product exists to avoid.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 id="availability">Availability</h2>
+        <div class="prose">
+          <p>
+            Mail Templates is built and deployed on Atlassian Forge. It is going through
+            Atlassian Marketplace review; this page will link to the listing as soon as it
+            is live.
+          </p>
+          <p>
+            Licensing is handled by Atlassian. Sites with 10 users or fewer pay nothing at
+            all; paid tiers are priced per user.
+          </p>
+          <p>
+            Questions, bug reports and feature requests:
+            <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
+          </p>
+          <p>
+            Found a security issue? Please
+            <a href="/security/">report it privately</a>
+            rather than in a public channel.
+          </p>
+        </div>
+
+        <nav class="manual__pagination">
+          <span><a href="/">← All apps</a></span>
+          <span class="manual__pagination-mid"><a href="/mail-templates/docs/">Documentation</a></span>
+          <span class="manual__pagination-next"><a href="/mail-templates/privacy/">Privacy policy →</a></span>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__links">
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a href="/security/">Security</a>
+      </p>
+      <p class="footer__fine">
+        Mail Templates is an Atlassian Forge app. It runs entirely inside your Atlassian
+        tenant and declares no external network access — your data is never sent to us or
+        to anyone else. Not affiliated with Atlassian. Jira is a trademark of Atlassian.
+      </p>
+    </footer>
+  </body>
+</html>
