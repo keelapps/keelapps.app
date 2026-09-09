@@ -29,10 +29,12 @@ PAGES = [
     "curator/privacy/index.html",
     "digest/privacy/index.html",
     "evergreen/privacy/index.html",
+    "mail-templates/privacy/index.html",
     "prefill/privacy/index.html",
     "recur/privacy/index.html",
     "satchel/privacy/index.html",
     "satchel-confluence/privacy/index.html",
+    "signoff/privacy/index.html",
     "security/index.html",
 ]
 
