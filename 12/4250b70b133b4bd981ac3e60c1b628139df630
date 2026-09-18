@@ -1,0 +1,21 @@
+index.html
+  s_4dbbaab1ebde2f::t_09e9b26fb97415 172,174
+signoff/index.html
+  s_4dbbaab1ebde2f::t_af4afac6b4ef60 78,81-84,87-106,266-269
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "124250b70b133b4bd981ac3e60c1b628139df630",
+  "prompts": {},
+  "sessions": {
+    "s_4dbbaab1ebde2f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ebd5b62e-9079-4fb9-8b6c-a4f91ac75a04",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Xianpeng Shen <xianpeng.shen@gmail.com>"
+    }
+  }
+}
