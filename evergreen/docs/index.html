@@ -113,7 +113,7 @@
             <strong>Confluence administration → Evergreen</strong>.
           </li>
           <li>
-            The nightly scan indexes every team space. To see results immediately, open
+            The daily scan indexes every team space. To see results immediately, open
             <strong>Space settings → Evergreen</strong> and hit
             <strong>Rebuild from scratch</strong>, or trigger every space at once from the
             admin page.
@@ -149,7 +149,8 @@
         <p>
           <strong>Exempt</strong> is a fourth state, not a threshold: a page excluded by
           label, by space rule or individually still has its age computed and shown, but is
-          left out of the stale list and the counts.
+          left out of the Needs-attention list and the fresh/aging/stale counts; exempt pages are
+          counted separately in their own tile.
         </p>
 
         <h2 id="the-page-byline">The page byline</h2>
@@ -191,7 +192,7 @@
             from scratch, or recalculate statuses after a threshold change.
           </li>
           <li>
-            <strong>Needs attention</strong> — every aging and stale page, worst first, with
+            <strong>Needs attention</strong> — every aging and stale page (up to a 10,000-row list ceiling), worst first, with
             filters by status and owner, paging, and multi-select for bulk actions.
           </li>
           <li>
@@ -199,8 +200,8 @@
             assigned, when, with a way to take entries off the list once dealt with.
           </li>
           <li>
-            <strong>Settings</strong> — space-level threshold overrides, space-level exempt
-            labels, and a switch to turn tracking off for this space entirely.
+            <strong>Settings</strong> — space-level threshold overrides and a switch to turn
+            tracking off for this space entirely.
           </li>
         </ul>
 
@@ -220,9 +221,11 @@
           </li>
         </ul>
         <p>
-          Bulk actions run in the background; the dashboard reports progress, how many pages
-          succeeded, and names the ones that failed. Selections beyond 200 pages are refused
-          loudly, never silently truncated.
+          Bulk actions run in the background; when a job finishes the dashboard reports how many
+          pages succeeded and how many could not be updated. A selection larger than 200 pages is
+          processed for its first 200 and the overflow is reported, never silently dropped. The
+          per-space review list holds at most 2,000 assignments; pages that would exceed it are
+          reported as skipped.
         </p>
 
         <h2 id="thresholds">Thresholds and overrides</h2>
@@ -238,17 +241,18 @@
           </table>
         </div>
         <p>
-          A partial override that would flip the pair (aging ≥ stale) is clamped and reported
-          rather than silently producing a status nobody can explain. Threshold changes take
-          effect with <strong>Recalculate statuses</strong> — a local recomputation that makes
-          no API calls at all.
+          A partial override that would flip the pair (aging ≥ stale) is clamped
+          rather than producing a status nobody can explain. Threshold changes take
+          effect with <strong>Recalculate statuses</strong> — a local recomputation that reads
+          no page content; its only API call is a bulk user-name lookup, and only when owner
+          names are still unresolved.
         </p>
 
         <h2 id="exclusions">Exclusions</h2>
         <ul>
           <li>
             <strong>By label</strong> — pages carrying <code>evergreen-exempt</code> (the
-            default; site and space admins can change the list).
+            default; site admins can change the list).
           </li>
           <li><strong>By space</strong> — from the global excluded list, or a space turning itself off.</li>
           <li><strong>By page</strong> — the byline's “Exclude from tracking”.</li>
@@ -258,10 +262,11 @@
 
         <h2 id="scanning">Scanning</h2>
         <p>
-          A nightly scan finds what changed in each space; a weekly full rebuild reconciles
+          A daily scan finds what changed in each space; a weekly full rebuild reconciles
           what an incremental scan cannot see (deleted pages, new restrictions). Long scans
-          split themselves into resumable chunks, so a fifty-thousand-page space is simply a
-          longer chain — and the dashboard keeps serving the previous scan's numbers until
+          split themselves into resumable chunks, so a very large space is simply a
+          longer chain (indexing caps at 100,000 pages per space, and scans at that scale have
+          not yet been exercised on a production-size site) — and the dashboard keeps serving the previous scan's numbers until
           the new ones are complete. Statuses are recomputed locally after every scan, which
           is what keeps the API footprint small enough for large sites.
         </p>
@@ -280,7 +285,7 @@
           <strong>Confluence administration → Evergreen</strong>, visible to site admins:
           site-default thresholds, the site-wide exempt label list, excluded space keys,
           the blog-post switch, and <strong>Rescan every space now</strong>. Pages that go
-          stale are listed on each space dashboard's “Newly stale” section — Confluence
+          stale are listed on each space dashboard's Overview tab, in a “N pages went stale” banner — Confluence
           exposes no API for apps to send in-product notifications, and Evergreen sends no
           email, ever.
         </p>
@@ -291,7 +296,7 @@
             <thead><tr><th>Scope</th><th>Why</th></tr></thead>
             <tbody>
               <tr><td><code>read:page:confluence</code></td><td>list pages per space; page titles, versions and owners</td></tr>
-              <tr><td><code>read:space:confluence</code></td><td>enumerate spaces for the nightly scan</td></tr>
+              <tr><td><code>read:space:confluence</code></td><td>enumerate spaces for the daily scan</td></tr>
               <tr><td><code>read:label:confluence</code></td><td>resolve exempt labels to the pages carrying them</td></tr>
               <tr><td><code>read:content.property:confluence</code></td><td>read each page's confirmation record</td></tr>
               <tr><td><code>write:content.property:confluence</code></td><td>write who confirmed and when</td></tr>

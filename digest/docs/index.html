@@ -115,12 +115,13 @@
             on a chosen day — a time zone, and a grouping (by project, assignee or status).
           </li>
           <li>
-            Hit <strong>Run now</strong> to see the first digest immediately instead of
-            waiting for the schedule. It lands in the inbox on the same page.
+            Hit <strong>Run now</strong> to queue the first digest instead of waiting for the
+            schedule. It lands in the inbox on the same page a few moments later — refresh to
+            see it.
           </li>
           <li>
-            From then on, each period folds into one digest, delivered within the hour it is
-            due.
+            From then on, each period folds into one digest, normally delivered during the hour it
+            is due.
           </li>
         </ol>
         <p>
@@ -133,9 +134,9 @@
           <table>
             <thead><tr><th>Field</th><th>Notes</th></tr></thead>
             <tbody>
-              <tr><td><strong>JQL query</strong></td><td>Anything you could run in the issue navigator. A broken query pauses the subscription with Jira's own error message.</td></tr>
-              <tr><td><strong>Cadence</strong></td><td>Daily at a chosen time, or weekly on a chosen day.</td></tr>
-              <tr><td><strong>Time zone</strong></td><td>Your own IANA time zone. “Daily at 09:00” means your 09:00, not the server's.</td></tr>
+              <tr><td><strong>JQL query</strong></td><td>Anything you could run in the issue navigator. A query Jira rejects or forbids pauses the subscription with Jira's own error message; a valid query that matches nothing is simply an empty period, so check it returns what you expect before saving.</td></tr>
+              <tr><td><strong>Cadence</strong></td><td>Daily at a chosen hour (on the hour, or at :15, :30 or :45), or weekly on a chosen day.</td></tr>
+              <tr><td><strong>Time zone</strong></td><td>Your browser's time zone, or one of a short list of major IANA zones. “Daily at 09:00” means your 09:00, not the server's.</td></tr>
               <tr><td><strong>Grouping</strong></td><td>By project, assignee or status — how the digest arranges its entries.</td></tr>
               <tr><td><strong>Empty digests</strong></td><td>Off by default. A period with no changes delivers nothing unless you tick <em>Send even when nothing changed</em>.</td></tr>
             </tbody>
@@ -149,18 +150,21 @@
           <li>Status transitions</li>
           <li>Assignments to you</li>
           <li>Priority changes</li>
-          <li>Comments that @mention you</li>
+          <li>Comments that @mention you (a per-subscription checkbox)</li>
+          <li>Reassignments to other people</li>
+          <li>Any other update that matched your query, labelled simply <em>Updated</em></li>
         </ul>
         <p>
-          An entry is an issue key, a truncated summary and short change labels like
+          An entry is an issue key, a truncated summary, the issue's status, assignee, project and
+          type, and short change labels like
           <em>Status: To Do → In Progress</em> — never descriptions, comment bodies or rich
           text. That restraint is a privacy property as much as a layout one: see
           <a href="/digest/privacy/">what the app stores</a>.
         </p>
         <p>
           When more than 50 issues changed in the window, the digest shows the 50 most notable
-          and says “and N more”, with a deep link that opens the full result in the issue
-          navigator.
+          and says how many matched in total (“Showing the 50 most notable of N matching
+          issues”), with a deep link that opens the full result in the issue navigator.
         </p>
 
         <h2 id="the-inbox">The inbox</h2>
@@ -181,9 +185,10 @@
           which is 09:00 local to them — on both sides of a daylight saving change.
         </p>
         <p>
-          Digests arrive within the hour they are due. Digest wakes up hourly and Atlassian
-          spreads those wake-ups across the hour, so a digest due at 09:00 typically appears a
-          few minutes past the hour rather than exactly on it.
+          Digests normally arrive during the hour they are due. Digest wakes up hourly and
+          Atlassian spreads those wake-ups across the hour, so a digest due at 09:00 appears
+          somewhere in the following hour rather than exactly on it; if Atlassian skips a wake-up
+          altogether, the next sweep picks the run up — it is never dropped.
         </p>
         <p>
           <strong>Windows tile.</strong> A run's window opens at the previous successful run,
@@ -196,8 +201,9 @@
         <p>
           Scheduled runs have no user context, so digests are generated with the app's own
           permissions. When you open one, it is re-filtered against your own Jira permissions
-          at that moment: anything you cannot see is stripped and replaced by a count —
-          “N items hidden”, never the items themselves.
+          at that moment: anything you cannot see is stripped and replaced by a count
+          (“Some issues are not shown … N issue(s) … have been hidden”), never the items
+          themselves.
         </p>
         <p>
           The check fails closed. If your access to an issue cannot be confirmed, the entry is
@@ -242,8 +248,8 @@
             <thead><tr><th>Limit</th><th>Value</th></tr></thead>
             <tbody>
               <tr><td>Subscriptions per person</td><td>1 on the free tier, 25 with a paid license. Nothing else is gated — every cadence and grouping is in the free tier.</td></tr>
-              <tr><td>Issues per digest</td><td>50, then “and N more” with a deep link to the issue navigator.</td></tr>
-              <tr><td>@mention detection</td><td>Scans the 25 most notable issues in the window — each check reads that issue's comments.</td></tr>
+              <tr><td>Issues per digest</td><td>The 50 most notable, with the total matched and a deep link to all of them</td></tr>
+              <tr><td>@mention detection</td><td>Optional per subscription. When on, it scans the 25 most recently updated issues in the window, reading each one's 20 most recent comments.</td></tr>
               <tr><td>Inbox depth</td><td>Your 50 most recent digests, oldest evicted first.</td></tr>
               <tr><td>Empty periods</td><td>Not delivered, unless the subscription opts into empty digests.</td></tr>
               <tr><td>Look-back window</td><td>At most two nominal periods, however late the run is.</td></tr>
@@ -254,7 +260,8 @@
         <h2 id="administration">Administration</h2>
         <p>
           Site administrators get <strong>Settings → Apps → Digest for Jira</strong>: counters
-          for subscriptions, deliveries and suppressed empty periods, and site-level toggles.
+          for subscriptions, runs, deliveries, suppressed empty periods and failures. This
+          release has no site-level settings to change.
           Counters only — no queries, no names, no account ids, no issue data. What a person
           subscribes to is their business.
         </p>
@@ -265,7 +272,7 @@
             <thead><tr><th>Scope</th><th>What it is for</th></tr></thead>
             <tbody>
               <tr><td><code>read:jira-work</code></td><td>Run each subscription's JQL, and read changelogs and comments to classify what changed in the window</td></tr>
-              <tr><td><code>read:jira-user</code></td><td>Resolve display names, detect comments that @mention the subscriber, and notice when an owner's account is deactivated</td></tr>
+              <tr><td><code>read:jira-user</code></td><td>Notice when a subscription owner's Atlassian account is deactivated</td></tr>
               <tr><td><code>storage:app</code></td><td>Store subscriptions, digests, the inbox and site counters in Atlassian-hosted app storage</td></tr>
             </tbody>
           </table>
@@ -280,8 +287,8 @@
         <h2 id="data-and-licensing">Data, privacy and licensing</h2>
         <p>
           Everything lives in Forge storage inside your own Atlassian tenant: subscription
-          configuration, digest bodies — issue keys, truncated summaries and short change
-          labels, never descriptions or comment text — the inbox, and site-level counters. No
+          configuration, digest bodies — issue keys, truncated summaries, status, assignee, project, type and
+          short change labels, never descriptions or comment text — the inbox, and site-level counters. No
           email addresses, IP addresses or analytics. Uninstalling the app removes all of it.
           Full text: <a href="/digest/privacy/">privacy policy</a>.
         </p>
@@ -303,7 +310,7 @@
             install prompt read-only. A later version may ship it; delivery would still be by
             Atlassian's own notification service.
           </li>
-          <li>Email sent by us — never. There is no external email provider, in this release or any other.</li>
+          <li>Email sent by us — never in this release. There is no external email provider, and adding one would cost the Runs on Atlassian badge, so it is not on the near-term roadmap.</li>
           <li>Filtering, rewriting or intercepting Jira's own notifications</li>
           <li>Slack or Teams delivery</li>
           <li>Saved filters as a subscription source — JQL only for now</li>

@@ -71,9 +71,9 @@
         <h1>The work that has to happen every month, happening every month.</h1>
         <p class="lede">
           Weekly reports, monthly maintenance, quarterly access reviews, certificate renewals.
-          Jira Cloud cannot create an issue on a schedule, and Automation for Jira reacts to
-          events rather than to a calendar. Recur creates the issue on time, in the time zone you
-          picked, and tells you exactly what it did — including the times it deliberately did
+          Jira Cloud cannot create an issue on a schedule, and Automation for Jira has a scheduled
+          trigger but no answer for a previous issue that is still open. Recur creates the issue
+          within the hour it is due, in the time zone you picked, and tells you exactly what it did — including the times it deliberately did
           nothing.
         </p>
         <div class="cta-row">
@@ -145,8 +145,8 @@
           <div class="card">
             <h3>“Why was there no issue” always has an answer</h3>
             <p>
-              Every run is accounted for in the history: the issue it created, or the reason it did
-              not. A skip is a recorded result, never a silent absence.
+              A template's last twenty runs are accounted for in its history: the issue each created,
+              or the reason it did not. A skip is a recorded result, never a silent absence.
             </p>
           </div>
           <div class="card">

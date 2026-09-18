@@ -96,7 +96,8 @@
           Recur creates Jira issues on a schedule — weekly reports, monthly maintenance, quarterly
           access reviews, certificate renewals. Jira Cloud has no native way to do this
           (<a href="https://jira.atlassian.com/browse/JRACLOUD-5185">JRACLOUD-5185</a> was closed as
-          Won't Do), and Automation for Jira reacts to events rather than to a calendar.
+          Won't Do), and Automation for Jira has a scheduled trigger but no answer for a previous
+          issue that is still open.
         </p>
         <p>
           Recur is built on Atlassian Forge. There are no external servers and no data leaves
@@ -125,8 +126,8 @@
           </li>
         </ol>
         <p>
-          Only project administrators see the create and edit controls. Everyone else in the project
-          sees the list read-only.
+          Project administrators (and Jira administrators) see the create and edit controls while
+          the site has an active licence. Everyone else in the project sees the list read-only.
         </p>
 
         <h2 id="what-a-template-contains">What a template contains</h2>
@@ -224,7 +225,7 @@
               </tr>
               <tr>
                 <td><strong>Wait for it to close</strong></td>
-                <td>Holds the occurrence and creates it the moment the previous issue closes, re-checking hourly. If another occurrence falls due while one is already held, the new one is folded into it rather than queued behind it — a queue of held occurrences is exactly the pile-up you were avoiding. Held occurrences are dropped after 30 days.</td>
+                <td>Holds the occurrence and creates it at the next hourly re-check after the previous issue closes. If another occurrence falls due while one is already held, the new one is folded into it rather than queued behind it — a queue of held occurrences is exactly the pile-up you were avoiding. Held occurrences are dropped after 30 days.</td>
               </tr>
             </tbody>
           </table>
@@ -238,10 +239,15 @@
           <table>
             <thead><tr><th>Result</th><th>Meaning</th></tr></thead>
             <tbody>
-              <tr><td><strong>Created</strong></td><td>The issue key is shown and links to the issue.</td></tr>
+              <tr><td><strong>Created</strong></td><td>The issue key is shown.</td></tr>
               <tr><td><strong>Skipped</strong></td><td>Which issue was still open, and the status it was in.</td></tr>
               <tr><td><strong>Waiting</strong></td><td>Held under the <em>wait for it to close</em> policy. One row per held occurrence, not one per hourly re-check.</td></tr>
-              <tr><td><strong>Failed</strong></td><td>Something in Jira rejected the issue — a deleted issue type, for instance. The row has a <strong>Retry</strong> button, and the template keeps its own schedule regardless.</td></tr>
+              <tr><td><strong>Failed</strong></td><td>Something in Jira rejected the issue — a deleted issue type, for instance. The row has a <strong>Retry</strong> button for project administrators, and the template keeps its own schedule regardless.</td></tr>
+              <tr><td><strong>Folded in</strong></td><td>An occurrence fell due while an earlier one was already held under <em>wait for it to close</em>; it was merged into that one rather than queued behind it.</td></tr>
+              <tr><td><strong>Gave up</strong></td><td>A held occurrence waited 30 days for the previous issue to close and was dropped.</td></tr>
+              <tr><td><strong>Paused</strong></td><td>The template was paused when the occurrence fell due, so nothing was created.</td></tr>
+              <tr><td><strong>Disabled</strong></td><td>The template's project was archived or deleted; Recur disabled the template rather than failing every hour.</td></tr>
+              <tr><td><strong>No licence</strong></td><td>The site had no active subscription when the occurrence fell due, so nothing was created.</td></tr>
             </tbody>
           </table>
         </div>
@@ -282,7 +288,7 @@
           <table>
             <thead><tr><th>Scope</th><th>What it is for</th></tr></thead>
             <tbody>
-              <tr><td><code>read:jira-work</code></td><td>Read projects, issue types and components; read issue status for the check on whether the last one is still open; verify the caller's administrator permissions</td></tr>
+              <tr><td><code>read:jira-work</code></td><td>Read projects, issue types, components and priorities; read issue status for the check on whether the last one is still open; verify the caller's administrator permissions</td></tr>
               <tr><td><code>write:jira-work</code></td><td>Create the recurring issues</td></tr>
               <tr><td><code>read:jira-user</code></td><td>The assignee picker, and the check on whether a person is still active</td></tr>
               <tr><td><code>storage:app</code></td><td>Store templates, run history and scheduler state in Atlassian-hosted app storage</td></tr>
@@ -298,8 +304,10 @@
         <h2 id="data-and-licensing">Data, privacy and licensing</h2>
         <p>
           Everything lives in Forge storage inside your own Atlassian tenant: template
-          configuration, run history, the due index, and the account ids of whoever created a
-          template or is picked as an assignee. No issue content, email addresses, IP addresses or
+          configuration and its runtime state (next run, run count, last issue key, any held
+          occurrence), run history, the due index, the scheduler cursor, per-run idempotency
+          records, the cached licence state, and the account ids of whoever created a template
+          or is picked as an assignee. No issue content, email addresses, IP addresses or
           analytics. Uninstalling the app removes all of it. Full text:
           <a href="/recur/privacy/">privacy policy</a>.
         </p>

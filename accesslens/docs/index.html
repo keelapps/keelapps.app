@@ -108,7 +108,8 @@
           use — “who had access on 30 September” is a question live data cannot answer at all.
         </p>
         <p>
-          A scan reads every project's permission scheme and roles, then expands group membership.
+          A scan reads every live project's permission scheme and roles (archived projects are not
+          scanned), then expands group membership.
           Large sites are split into shards that run in parallel, with a progress bar showing projects
           scanned, shards complete and an estimate. A scan that runs long re-queues itself and resumes
           where it left off rather than starting over.
@@ -175,7 +176,8 @@
 
         <h2 id="schedule-scans">Schedule scans</h2>
         <p>
-          <strong>Settings</strong> → set the cadence to weekly or monthly and pick the day. Scheduled
+          <strong>Settings</strong> → set the cadence to weekly or monthly and pick the day — monthly runs
+          on the 1st–28th, so every month has that day. Scheduled
           scans run in UTC. A scheduled run that collides with a manual one is skipped rather than
           queued, so two scans never race.
         </p>
@@ -193,26 +195,29 @@
           Some sites do not permit reading group members. When that happens the capability probe
           detects it and the snapshot is marked <code>groups not expanded</code>. Group-level answers
           stay complete; per-user answers cover only permissions granted to that user directly, and
-          the app says so in the UI and in every export rather than quietly under-reporting.
+          the app says so in the UI and in the snapshot, lookup and sign-off exports rather than
+          quietly under-reporting; the diff export shows the warning on screen only.
         </p>
         <p>
           Separately, a project whose permission scheme could not be read is recorded as
-          <strong>partial</strong> and marked in results and exports, rather than being dropped from
-          the snapshot.
+          <strong>partial</strong>, never dropped from the snapshot, and flagged in the snapshot export,
+          the review checklist and a banner above Explore results.
         </p>
 
         <h2 id="exports">Exports</h2>
         <p>
           Lookups, snapshots, diffs and sign-off records all export to CSV. Files are generated in
           your browser as UTF-8 with a byte-order mark and CRLF line endings, so non-ASCII project
-          names survive a round trip through Excel. Every export carries a provenance header naming
-          the snapshot, the scan window, and any degraded capability.
+          names survive a round trip through Excel. Snapshot and lookup exports carry a provenance header
+          naming the snapshot, the scan window, and any degraded capability; the diff export names
+          the two snapshots it compares, and the sign-off export names its snapshot and any degraded
+          capability.
         </p>
         <div class="aside" data-label="Note">
           <p>
             A full-site scan is not transactional. Permissions changed <em>during</em> the scan window
-            may be captured inconsistently, and the export header says so — an auditor should know the
-            window, not just the timestamp.
+            may be captured inconsistently, and the snapshot and lookup export headers say so — an auditor
+            should know the window, not just the timestamp.
           </p>
         </div>
 
@@ -222,9 +227,9 @@
             <thead><tr><th>Scope</th><th>What it is for</th></tr></thead>
             <tbody>
               <tr><td><code>read:jira-work</code></td><td>Enumerate projects; read project roles and permission schemes</td></tr>
-              <tr><td><code>read:jira-user</code></td><td>Resolve user display names</td></tr>
+              <tr><td><code>read:jira-user</code></td><td>Read the user identities returned alongside group members and role actors; the app makes no separate user-lookup call</td></tr>
               <tr><td><code>manage:jira-configuration</code></td><td>Read group members. The app writes no configuration and issues no write requests at all; this is the only path to group membership, and without it “which projects can this person reach” is unanswerable.</td></tr>
-              <tr><td><code>storage:app</code></td><td>Store snapshots and reviews in Atlassian-hosted app storage</td></tr>
+              <tr><td><code>storage:app</code></td><td>Store snapshots, reviews and settings in Atlassian-hosted app storage</td></tr>
             </tbody>
           </table>
         </div>

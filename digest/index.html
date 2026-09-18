@@ -147,15 +147,16 @@
             <h3>Honest about silence</h3>
             <p>
               A period with no changes delivers nothing, unless you ask for empty digests.
-              Broken JQL pauses the subscription and shows Jira's own error message rather than
-              failing silently.
+              JQL that Jira rejects pauses the subscription and shows Jira's own error message
+              rather than failing silently; a valid query that simply matches nothing is reported
+              as an empty period.
             </p>
           </div>
           <div class="card">
             <h3>Truncates honestly</h3>
             <p>
-              When more than 50 issues changed, the digest shows the 50 most notable and says
-              “and N more”, with a deep link that opens the full result in the issue navigator.
+              When more than 50 issues changed, the digest shows the 50 most notable, says how many
+              matched in total, and gives a deep link that opens the full result in the issue navigator.
             </p>
           </div>
           <div class="card">
@@ -193,10 +194,11 @@
             </p>
           </li>
           <li>
-            <h3>Everyone reads their own version</h3>
+            <h3>Each digest is yours alone</h3>
             <p>
-              A digest re-filters itself against each reader's permissions when opened. Entries
-              a reader may not see are stripped and counted, never leaked.
+              A digest is personal. It is generated with the app's own permissions, so when you
+              open it, it is re-filtered against yours at that moment: entries you may not see
+              are stripped and counted, never leaked.
             </p>
           </li>
         </ol>
@@ -243,7 +245,7 @@
                 <td>A quiet week — deliberate or broken?</td>
                 <td class="absent">Cannot tell</td>
                 <td class="absent">Cannot tell</td>
-                <td><span class="answer">Counted</span></td>
+                <td><span class="answer">Opt-in</span></td>
               </tr>
               <tr>
                 <td>Does issue data leave Atlassian?</td>
