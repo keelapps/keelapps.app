@@ -35,7 +35,7 @@ inherits this site's base URL — holding the app's screenshot from
 `autoplay=1`. Clicking navigates the iframe itself to YouTube. That click is the
 first and only request to a third party, and it is the visitor's.
 
-Copy the block from any of the four live product pages. Three rules:
+Copy the block from any of the five live product pages. Three rules:
 
 - The poster is a screenshot already in `assets/screenshots/`. Never a YouTube
   thumbnail — that would be a third-party request on load.

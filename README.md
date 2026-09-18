@@ -19,7 +19,7 @@ only after a visitor clicks play.
 | Digest for Jira | [`/digest/`](https://keelapps.app/digest/) | [`/digest/docs/`](https://keelapps.app/digest/docs/) | [`/digest/privacy/`](https://keelapps.app/digest/privacy/) | Live — [Marketplace](https://marketplace.atlassian.com/apps/978618646/digest-daily-weekly-summaries-for-jira) |
 | Prefill for Jira | [`/prefill/`](https://keelapps.app/prefill/) | [`/prefill/docs/`](https://keelapps.app/prefill/docs/) | [`/prefill/privacy/`](https://keelapps.app/prefill/privacy/) | Coming soon |
 | Satchel for Jira | [`/satchel/`](https://keelapps.app/satchel/) | [`/satchel/docs/`](https://keelapps.app/satchel/docs/) | [`/satchel/privacy/`](https://keelapps.app/satchel/privacy/) | Coming soon |
-| Signoff for Confluence | [`/signoff/`](https://keelapps.app/signoff/) | [`/signoff/docs/`](https://keelapps.app/signoff/docs/) | [`/signoff/privacy/`](https://keelapps.app/signoff/privacy/) | Coming soon |
+| Signoff for Confluence | [`/signoff/`](https://keelapps.app/signoff/) | [`/signoff/docs/`](https://keelapps.app/signoff/docs/) | [`/signoff/privacy/`](https://keelapps.app/signoff/privacy/) | Live — [Marketplace](https://marketplace.atlassian.com/apps/2487832225/signoff-page-approvals-for-confluence) |
 | Evergreen for Confluence | [`/evergreen/`](https://keelapps.app/evergreen/) | [`/evergreen/docs/`](https://keelapps.app/evergreen/docs/) | [`/evergreen/privacy/`](https://keelapps.app/evergreen/privacy/) | Live — [Marketplace](https://marketplace.atlassian.com/apps/1279909983) |
 | Curator for Confluence | [`/curator/`](https://keelapps.app/curator/) | [`/curator/docs/`](https://keelapps.app/curator/docs/) | [`/curator/privacy/`](https://keelapps.app/curator/privacy/) | Coming soon |
 | Satchel for Confluence | [`/satchel-confluence/`](https://keelapps.app/satchel-confluence/) | [`/satchel-confluence/docs/`](https://keelapps.app/satchel-confluence/docs/) | [`/satchel-confluence/privacy/`](https://keelapps.app/satchel-confluence/privacy/) | Coming soon |
@@ -30,7 +30,7 @@ only after a visitor clicks play.
 **The URLs above are filed with Atlassian and must not move.** Marketplace
 listings and app install flows link to them. A privacy policy URL is awkward to
 change once it is submitted, and a moved documentation URL is a dead link in a
-live listing. The four live apps' URLs are filed already; treat every row in the
+live listing. The five live apps' URLs are filed already; treat every row in the
 table as filed, because each listing is written against them from the day it is
 submitted.
 
