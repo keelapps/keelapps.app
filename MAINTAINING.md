@@ -63,7 +63,7 @@ specificity and nothing ever needs `!important`.
 
 ### The palette is two colours
 
-From `keelapps/.github` `brand/README.md`: navy and cream, swapping between
+From the Keelapps brand guide: navy and cream, swapping between
 figure and ground with the colour scheme, plus coral for the ballast bulb in the
 mark and **nothing else** — not links, not buttons, not emphasis. Every neutral
 on the site is ink at an alpha, which is why there is no third hex value in
