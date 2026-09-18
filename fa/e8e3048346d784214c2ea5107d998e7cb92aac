@@ -1,0 +1,26 @@
+signoff/index.html
+  s_4dbbaab1ebde2f::t_437567605cfa53 24-26
+  s_4dbbaab1ebde2f::t_af4afac6b4ef60 80,83-86,89-108,268-271
+index.html
+  s_4dbbaab1ebde2f::t_09e9b26fb97415 172,174
+README.md
+  s_4dbbaab1ebde2f::t_437567605cfa53 22,33
+MAINTAINING.md
+  s_4dbbaab1ebde2f::t_895f0796fb65bc 38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "fae8e3048346d784214c2ea5107d998e7cb92aac",
+  "prompts": {},
+  "sessions": {
+    "s_4dbbaab1ebde2f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ebd5b62e-9079-4fb9-8b6c-a4f91ac75a04",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": null
+    }
+  }
+}
