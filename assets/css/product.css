@@ -52,6 +52,38 @@
   font-size: var(--font-size-small);
 }
 
+.pricing-line {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  margin-top: var(--space-medium);
+  max-width: var(--measure);
+}
+
+
+/* One real screen, full plate width, drawn with the same rule as everything
+   else. The caption is copy a person reads, so it sits in muted, not faint. */
+
+.showcase {
+  margin: 0;
+  padding-bottom: var(--space-x-large);
+}
+
+.showcase img,
+.showcase video {
+  border: var(--rule-gauge) solid var(--color-rule-strong);
+  border-radius: var(--radius-large);
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.showcase figcaption {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  margin-top: var(--space-small);
+  max-width: var(--measure);
+}
+
 
 /* Sections below the fold repeat the home page rhythm. */
 
