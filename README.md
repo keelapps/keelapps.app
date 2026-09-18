@@ -4,9 +4,12 @@ Source for the Keelapps site: the vendor page, and the product, documentation
 and legal pages for each Atlassian Marketplace app.
 
 Live at **<https://keelapps.app/>**, served by GitHub Pages from `main` — a push
-to `main` publishes. Plain static HTML: no build step, no external requests, no
-fonts or scripts to fetch. Every asset is same-origin, and the mark in the
-masthead is inline SVG rather than an image.
+to `main` publishes. Plain static HTML: no build step, no fonts or scripts to
+fetch, and nothing requested from a third party on page load. Every asset is
+same-origin, and the mark in the masthead is inline SVG rather than an image.
+The one exception is deliberate and gated: the product demos are YouTube
+players behind a same-origin poster, and `youtube-nocookie.com` is contacted
+only after a visitor clicks play.
 
 | App | Product | Documentation | Privacy policy |
 | --- | --- | --- | --- |

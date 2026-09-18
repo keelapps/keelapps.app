@@ -61,7 +61,9 @@
 
 
 /* One real screen, full plate width, drawn with the same rule as everything
-   else. The caption is copy a person reads, so it sits in muted, not faint. */
+   else: a screenshot, or a click-to-load player whose poster is that same
+   screenshot (see MAINTAINING.md, "Video embeds"). The caption is copy a
+   person reads, so it sits in muted, not faint. */
 
 .showcase {
   margin: 0;
@@ -69,12 +71,20 @@
 }
 
 .showcase img,
-.showcase video {
+.showcase video,
+.showcase iframe {
   border: var(--rule-gauge) solid var(--color-rule-strong);
   border-radius: var(--radius-large);
   display: block;
   height: auto;
   width: 100%;
+}
+
+/* An iframe takes no size from its content the way an image does. */
+
+.showcase iframe {
+  aspect-ratio: 1840 / 900;
+  background: var(--color-ink);
 }
 
 .showcase figcaption {

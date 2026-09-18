@@ -25,6 +25,26 @@ Copy the `<head>` block and the masthead/footer markup from an existing page —
 without a build step there is no include mechanism, so the site chrome is
 repeated verbatim in every file.
 
+## Video embeds
+
+A product demo is embedded as an `<iframe>` carrying **both** `src` and `srcdoc`.
+Browsers render the `srcdoc` document and never fetch `src`, so the page loads
+with no third-party request; the `srcdoc` is a same-origin page — `about:srcdoc`
+inherits this site's base URL — holding the app's screenshot from
+`assets/screenshots/` and a play glyph, wrapped in a link to the embed URL with
+`autoplay=1`. Clicking navigates the iframe itself to YouTube. That click is the
+first and only request to a third party, and it is the visitor's.
+
+Copy the block from any of the four live product pages. Three rules:
+
+- The poster is a screenshot already in `assets/screenshots/`. Never a YouTube
+  thumbnail — that would be a third-party request on load.
+- Always `www.youtube-nocookie.com`, for both `src` and the link inside `srcdoc`.
+- No script, and no bare YouTube iframe. The facade is the only embed form here.
+
+The `srcdoc` document cannot see `root.css`, so its two colours are written out:
+`#0F2536` (navy) and `#F4EFE6` (cream) — the same two materials, nothing new.
+
 ## CSS
 
 Seven flat files, loaded in this order. Each page links the first four plus its
