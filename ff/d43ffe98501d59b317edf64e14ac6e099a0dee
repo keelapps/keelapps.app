@@ -1,0 +1,45 @@
+signoff/index.html
+  s_0ca869bfbb8152::t_9681aee2dc611d 33
+  s_0ca869bfbb8152::t_7190d3aa1b4089 28-32,34-66
+tools/make-sitemap
+  s_0ca869bfbb8152::t_b9c172cf6d00db 1-83
+robots.txt
+  s_0ca869bfbb8152::t_6cfae03b4eb005 1-4
+digest/index.html
+  s_0ca869bfbb8152::t_7190d3aa1b4089 28-31,34-66
+  s_0ca869bfbb8152::t_9681aee2dc611d 32-33
+index.html
+  s_0ca869bfbb8152::t_7190d3aa1b4089 26-39
+prefill/index.html
+  s_0ca869bfbb8152::t_9681aee2dc611d 32-33
+  s_0ca869bfbb8152::t_7190d3aa1b4089 28-31,34-66
+accesslens/index.html
+  s_0ca869bfbb8152::t_9681aee2dc611d 32-33
+  s_0ca869bfbb8152::t_7190d3aa1b4089 28-31,34-66
+evergreen/index.html
+  s_0ca869bfbb8152::t_9681aee2dc611d 32-33
+  s_0ca869bfbb8152::t_7190d3aa1b4089 28-31,34-66
+MAINTAINING.md
+  s_0ca869bfbb8152::t_d3fde15186d4ff 48-70
+recur/index.html
+  s_0ca869bfbb8152::t_7190d3aa1b4089 28-32,34-66
+  s_0ca869bfbb8152::t_9681aee2dc611d 33
+sitemap.xml
+  s_0ca869bfbb8152::t_7190d3aa1b4089 1-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "ffd43ffe98501d59b317edf64e14ac6e099a0dee",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Xianpeng Shen <xianpeng.shen@gmail.com>"
+    }
+  }
+}
