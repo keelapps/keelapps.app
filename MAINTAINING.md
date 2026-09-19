@@ -45,6 +45,29 @@ Copy the block from any of the five live product pages. Three rules:
 The `srcdoc` document cannot see `root.css`, so its two colours are written out:
 `#0F2536` (navy) and `#F4EFE6` (cream) — the same two materials, nothing new.
 
+## Search engines
+
+`robots.txt` allows everything and points at `sitemap.xml`, which lists every
+`index.html` in the tree. Nothing regenerates it on push, so after adding or
+editing a page:
+
+```sh
+tools/make-sitemap              # rewrite sitemap.xml; run last, commit with the edit
+tools/make-sitemap --check      # non-zero if a page is missing from it
+```
+
+Each live product page carries one `application/ld+json` block in its `<head>`
+— a `SoftwareApplication` with its demo as a `VideoObject` — and the home page
+an `Organization`. It is data, not script: nothing executes and nothing is
+fetched. Three rules:
+
+- `name` is the app's current Marketplace listing name, `alternateName` the
+  short name the page itself uses. Rename the listing, rename it here.
+- `description` and `image` repeat the page's own meta description and
+  `og:image`. There is no second set of copy to keep in step.
+- The `Offer` says what `pricing-line` says. A coming-soon page gets no block
+  until it has a listing to point `installUrl` at.
+
 ## CSS
 
 Seven flat files, loaded in this order. Each page links the first four plus its
