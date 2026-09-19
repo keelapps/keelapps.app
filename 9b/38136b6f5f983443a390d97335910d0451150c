@@ -1,0 +1,19 @@
+prefill/index.html
+  s_508a0d59da9f8a::t_ce7d7654c79ecf 24-26,89-108
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "9b38136b6f5f983443a390d97335910d0451150c",
+  "prompts": {},
+  "sessions": {
+    "s_508a0d59da9f8a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "01d3b214-a0f7-472b-a542-23e3e1e0b3fb",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Xianpeng Shen <xianpeng.shen@gmail.com>"
+    }
+  }
+}
