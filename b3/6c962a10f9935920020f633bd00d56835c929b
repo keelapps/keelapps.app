@@ -1,0 +1,25 @@
+README.md
+  s_0ca869bfbb8152::t_889e25179b5c52 23
+sitemap.xml
+  s_0ca869bfbb8152::t_889e25179b5c52 3,6
+index.html
+  s_0ca869bfbb8152::t_889e25179b5c52 217,219
+curator/index.html
+  s_0ca869bfbb8152::t_889e25179b5c52 77,80-83,289-291
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b36c962a10f9935920020f633bd00d56835c929b",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Xianpeng Shen <xianpeng.shen@gmail.com>"
+    }
+  }
+}
