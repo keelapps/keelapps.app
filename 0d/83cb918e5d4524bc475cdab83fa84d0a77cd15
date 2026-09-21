@@ -1,0 +1,20 @@
+curator/index.html
+  s_0ca869bfbb8152::t_314b3cf639bdde 24-26,28-66
+  s_0ca869bfbb8152::t_e9a29fa8d462ec 127-146
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "0d83cb918e5d4524bc475cdab83fa84d0a77cd15",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Xianpeng Shen <xianpeng.shen@gmail.com>"
+    }
+  }
+}
