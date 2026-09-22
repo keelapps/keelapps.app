@@ -1,0 +1,20 @@
+mail-templates/index.html
+  s_0ca869bfbb8152::t_c0b37737b24e2c 24-26,28-65,127-145
+  s_0ca869bfbb8152::t_0119b9a67baf6f 146
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "db5c6a81b97da117f94e44e1c797176e9a195a23",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
