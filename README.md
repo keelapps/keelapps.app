@@ -22,7 +22,7 @@ those players sit behind a same-origin poster until then.
 | Evergreen for Confluence | [`/evergreen/`](https://keelapps.app/evergreen/) | [`/evergreen/docs/`](https://keelapps.app/evergreen/docs/) | [`/evergreen/privacy/`](https://keelapps.app/evergreen/privacy/) | Live — [Marketplace](https://marketplace.atlassian.com/apps/1279909983) |
 | Curator for Confluence | [`/curator/`](https://keelapps.app/curator/) | [`/curator/docs/`](https://keelapps.app/curator/docs/) | [`/curator/privacy/`](https://keelapps.app/curator/privacy/) | Live — [Marketplace](https://marketplace.atlassian.com/apps/33303578/curator-bulk-page-label-governance) |
 | Satchel for Confluence | [`/satchel-confluence/`](https://keelapps.app/satchel-confluence/) | [`/satchel-confluence/docs/`](https://keelapps.app/satchel-confluence/docs/) | [`/satchel-confluence/privacy/`](https://keelapps.app/satchel-confluence/privacy/) | Coming soon |
-| Mail Templates for Jira | [`/mail-templates/`](https://keelapps.app/mail-templates/) | [`/mail-templates/docs/`](https://keelapps.app/mail-templates/docs/) | [`/mail-templates/privacy/`](https://keelapps.app/mail-templates/privacy/) | Coming soon |
+| Mail Templates for Jira | [`/mail-templates/`](https://keelapps.app/mail-templates/) | [`/mail-templates/docs/`](https://keelapps.app/mail-templates/docs/) | [`/mail-templates/privacy/`](https://keelapps.app/mail-templates/privacy/) | Live — [Marketplace](https://marketplace.atlassian.com/apps/948167511/mail-templates-for-jira) |
 
 ## Two things here have consequences off this site
 
