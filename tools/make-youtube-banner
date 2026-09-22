@@ -1,0 +1,198 @@
+#!/usr/bin/env python3
+"""Regenerate the YouTube channel banner from the mark and the palette.
+
+The banner is not a page asset — nothing on this site loads it. It exists so
+the channel art can be rebuilt from the brand rather than re-drawn by hand in
+an editor, which is how a logo quietly drifts from its own specification. The
+mark below is the masthead SVG from `index.html`, path for path; the colours
+are the two materials and one signal from `assets/css/root.css`.
+
+    tools/make-youtube-banner          # rewrite assets/brand/keelapps-youtube-2560x1440.png
+
+Upload the result at Customise channel -> Branding -> Banner image.
+
+Two things constrain the layout, and both are YouTube's, not ours:
+
+  * The file is 2560x1440, but a phone shows only the middle 1546x423 of it.
+    A desktop shows 2560x423 of it; a television shows all of it. So every
+    word sits inside that 1546x423 safe area, and the waterline carried out
+    to the canvas edges is the only thing the wider crops add. The script
+    prints the safe-area margins it achieved — if either goes negative after
+    editing the copy, the phone crop is clipping text.
+
+  * YouTube re-encodes what it receives, which finds banding in a dark
+    gradient. Chrome dithers gradients as it rasterises, so rendering through
+    Chrome rather than a plain SVG rasteriser is what keeps the navy clean.
+
+Both brand faces are fetched at run time rather than vendored: this site
+deliberately ships no font files, and faces used only to build an image do not
+belong in its assets. Rendering therefore needs a network.
+"""
+
+import base64
+import pathlib
+import subprocess
+import sys
+import tempfile
+import urllib.request
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+OUT = ROOT / "assets" / "brand" / "keelapps-youtube-2560x1440.png"
+
+# Latin subsets from Google Fonts. Outfit sets the wordmark and the tagline;
+# Geist Mono sets the eyebrow, because `.eyebrow` in product.css is mono.
+FONT_URLS = {
+    "Outfit": "https://fonts.gstatic.com/s/outfit/v15/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2",
+    "Geist Mono": "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2",
+}
+
+CHROME_CANDIDATES = [
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Chromium.app/Contents/MacOS/Chromium",
+    "/usr/bin/google-chrome",
+    "/usr/bin/chromium",
+]
+
+# --- Canvas, and the crops YouTube takes out of it ------------------------
+W, H = 2560, 1440
+SAFE_W, SAFE_H = 1546, 423
+SAFE_X0, SAFE_Y0 = (W - SAFE_W) / 2, (H - SAFE_H) / 2
+SAFE_X1, SAFE_Y1 = SAFE_X0 + SAFE_W, SAFE_Y0 + SAFE_H
+CX = W / 2
+
+# --- The palette, from root.css -------------------------------------------
+NAVY, CREAM, CORAL = "#0F2536", "#F4EFE6", "#E8664A"
+SKY, DEEP = "#16324A", "#0A1B28"   # navy shallower and deeper: one material
+
+# --- The mark, viewBox "176 360 672 396" from the masthead ----------------
+VB_X, VB_Y, VB_W, VB_H = 176, 360, 672, 396
+MARK_H = 155                       # ~1.8x the wordmark, as the site lockup sets it
+S = MARK_H / VB_H
+MARK_W = VB_W * S
+MARK_X0 = CX - MARK_W / 2
+WATERLINE_Y = 600                  # canvas y of the mark's own waterline
+MARK_Y0 = WATERLINE_Y - (392 - VB_Y) * S
+STROKE = 26 * S
+
+def vx(x):
+    """viewBox x -> canvas x, so the carried-out line meets the mark's stubs."""
+    return MARK_X0 + (x - VB_X) * S
+
+LINE_L_END, LINE_R_END = vx(196), vx(828)
+
+# --- Type -----------------------------------------------------------------
+# The eyebrow sits above the waterline; the name and the line sit below it.
+# Letter-spacing is the palette's own tracking, resolved against each size:
+# -0.02em (tracking-tight) for the two Outfit lines, 0.08em (tracking-wide)
+# for the mono eyebrow, exactly as `.eyebrow` sets it.
+KICK_SIZE, KICK_BASE = 23, 545
+WORD_SIZE, WORD_BASE = 85, 835
+TAG_SIZE, TAG_BASE = 39, 903
+
+KICKER = "APPS FOR ATLASSIAN CLOUD &#183; KEELAPPS.APP"
+WORDMARK = "keelapps"
+TAGLINE = "Steady tools, built below the waterline."
+
+
+def fetch_fonts():
+    faces = {}
+    for name, url in FONT_URLS.items():
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 Chrome/131"})
+            with urllib.request.urlopen(req, timeout=20) as r:
+                faces[name] = base64.b64encode(r.read()).decode()
+        except Exception as exc:
+            sys.exit(f"could not fetch {name} ({exc}); rendering would fall back to a "
+                     f"system face and the type would be wrong")
+    return faces
+
+
+def find_chrome():
+    for path in CHROME_CANDIDATES:
+        if pathlib.Path(path).exists():
+            return path
+    sys.exit("no Chrome or Chromium found; it is what dithers the gradient")
+
+
+def build_svg():
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
+  <defs>
+    <linearGradient id="depth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="{SKY}"/>
+      <stop offset="{WATERLINE_Y / H:.4f}" stop-color="{NAVY}"/>
+      <stop offset="1" stop-color="{DEEP}"/>
+    </linearGradient>
+    <linearGradient id="wl-left" x1="0" y1="0" x2="{LINE_L_END}" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="{CREAM}" stop-opacity="0"/>
+      <stop offset="0.18" stop-color="{CREAM}" stop-opacity="0.045"/>
+      <stop offset="0.60" stop-color="{CREAM}" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="{CREAM}" stop-opacity="0.40"/>
+    </linearGradient>
+    <linearGradient id="wl-right" x1="{W}" y1="0" x2="{LINE_R_END}" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="{CREAM}" stop-opacity="0"/>
+      <stop offset="0.18" stop-color="{CREAM}" stop-opacity="0.045"/>
+      <stop offset="0.60" stop-color="{CREAM}" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="{CREAM}" stop-opacity="0.40"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="{W}" height="{H}" fill="url(#depth)"/>
+
+  <!-- the mark's waterline, carried out to both edges at the same gauge -->
+  <path d="M 0 {WATERLINE_Y} H {LINE_L_END + 2}" stroke="url(#wl-left)" stroke-width="{STROKE:.2f}" fill="none"/>
+  <path d="M {W} {WATERLINE_Y} H {LINE_R_END - 2}" stroke="url(#wl-right)" stroke-width="{STROKE:.2f}" fill="none"/>
+
+  <g transform="translate({MARK_X0 - VB_X * S:.3f} {MARK_Y0 - VB_Y * S:.3f}) scale({S:.6f})">
+    <g fill="none" stroke="{CREAM}" stroke-width="26" stroke-linecap="round">
+      <path d="M 196 392 H 304"/>
+      <path d="M 720 392 H 828"/>
+      <path d="M 352 392 C 360 584, 664 584, 672 392"/>
+      <path d="M 512 552 V 648"/>
+    </g>
+    <circle cx="512" cy="708" r="30" fill="{CORAL}"/>
+  </g>
+
+  <text x="{CX}" y="{KICK_BASE}" text-anchor="middle" fill="{CREAM}" fill-opacity="0.68"
+        font-family="Geist Mono" font-size="{KICK_SIZE}" font-weight="400"
+        letter-spacing="{KICK_SIZE * 0.08:.2f}">{KICKER}</text>
+  <text x="{CX}" y="{WORD_BASE}" text-anchor="middle" fill="{CREAM}"
+        font-family="Outfit" font-size="{WORD_SIZE}" font-weight="600" letter-spacing="-1.70">{WORDMARK}</text>
+  <text x="{CX}" y="{TAG_BASE}" text-anchor="middle" fill="{CREAM}" fill-opacity="0.92"
+        font-family="Outfit" font-size="{TAG_SIZE}" font-weight="500" letter-spacing="-0.78">{TAGLINE}</text>
+</svg>'''
+
+
+def main():
+    faces = fetch_fonts()
+    chrome = find_chrome()
+    at_fonts = "".join(
+        f'@font-face {{ font-family:"{name}"; font-style:normal; font-weight:100 900;'
+        f' src:url(data:font/woff2;base64,{b64}) format("woff2"); }}'
+        for name, b64 in faces.items())
+    html = (f'<!doctype html><html><head><meta charset="utf-8"><style>{at_fonts}'
+            f'html,body {{ margin:0; padding:0; background:{NAVY}; }} svg {{ display:block; }}'
+            f'</style></head><body>{build_svg()}</body></html>')
+
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory() as tmp:
+        page = pathlib.Path(tmp) / "banner.html"
+        page.write_text(html)
+        subprocess.run([chrome, "--headless", "--disable-gpu", "--hide-scrollbars",
+                        "--force-device-scale-factor=1", "--virtual-time-budget=4000",
+                        f"--window-size={W},{H}", f"--screenshot={OUT}", f"file://{page}"],
+                       capture_output=True, check=True)
+
+    # Cap height and descender, used only to prove the ink clears the phone
+    # crop. Both margins must stay positive.
+    top = KICK_BASE - 0.70 * KICK_SIZE
+    bottom = TAG_BASE + 0.21 * TAG_SIZE
+    print(f"{OUT.relative_to(ROOT)}  {W}x{H}  {OUT.stat().st_size / 1024:.0f} KB")
+    print(f"safe area {SAFE_W}x{SAFE_H} at x {SAFE_X0:.0f}-{SAFE_X1:.0f} y {SAFE_Y0:.0f}-{SAFE_Y1:.0f}")
+    print(f"text band y {top:.0f}-{bottom:.0f}: clears top by {top - SAFE_Y0:.0f}px, "
+          f"bottom by {SAFE_Y1 - bottom:.0f}px")
+    if top < SAFE_Y0 or bottom > SAFE_Y1:
+        sys.exit("text is outside the safe area — the phone crop will clip it")
+
+
+if __name__ == "__main__":
+    main()
