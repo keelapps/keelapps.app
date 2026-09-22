@@ -1,0 +1,25 @@
+README.md
+  s_0ca869bfbb8152::t_00f532e4c16b57 16
+accesslens-confluence/index.html
+  s_0ca869bfbb8152::t_d45c1df2984257 79,82-85,296-298,302-303
+index.html
+  s_0ca869bfbb8152::t_6a04fbb0c9a276 114,116
+sitemap.xml
+  s_0ca869bfbb8152::t_49da9601246d01 3-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "9af3e27418f54e64027517d1e561bea7a707a6ae",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Xianpeng Shen <xianpeng.shen@gmail.com>"
+    }
+  }
+}
