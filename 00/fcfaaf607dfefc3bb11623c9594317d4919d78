@@ -1,0 +1,21 @@
+assets/brand/README.md
+  s_49a8052abf9eb8::t_1b0f4122b3c6a9 1-38
+tools/make-youtube-banner
+  s_49a8052abf9eb8::t_aa2e17229cadd6 1-198
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "00fcfaaf607dfefc3bb11623c9594317d4919d78",
+  "prompts": {},
+  "sessions": {
+    "s_49a8052abf9eb8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "72f54c32-8a83-4da6-9ecb-1b3eaf7f3f19",
+        "model": "unknown"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
