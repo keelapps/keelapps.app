@@ -1,0 +1,21 @@
+index.html
+  s_b586be21c5e5c9::t_2bbcbe3115dbd7 238
+satchel/index.html
+  s_b586be21c5e5c9::t_2bbcbe3115dbd7 55-63,143-146,149-154,156-158
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "f03cb2c3d71b9f121f87637d7ce8ac31aadb5e70",
+  "prompts": {},
+  "sessions": {
+    "s_b586be21c5e5c9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "be4091c1-c568-4c69-8d27-68afc4e03361",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
