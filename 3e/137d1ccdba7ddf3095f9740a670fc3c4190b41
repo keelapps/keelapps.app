@@ -1,0 +1,20 @@
+tools/make-share-card
+  s_0ca869bfbb8152::t_4c72ace173092a 1-60,63-111,113,116-144
+  s_0ca869bfbb8152::t_be1190f5d4aa36 61-62,112,114-115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "3e137d1ccdba7ddf3095f9740a670fc3c4190b41",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
