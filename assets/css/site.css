@@ -1,6 +1,7 @@
-/* Site chrome: masthead, breadcrumb, footer. This markup is repeated verbatim
-   in every page — there is no build step to share it — so it is kept short
-   enough to copy without thinking. */
+/* Site chrome: masthead, breadcrumb, footer, and the pieces several page types
+   share. The masthead and footer markup is repeated in every page — there is
+   no build step to share it — so tools/make-chrome writes it into each file,
+   and `tools/make-chrome --check` fails when a page has drifted. */
 
 .skip {
   background: var(--color-canvas);
@@ -20,27 +21,40 @@
 }
 
 
-/* Masthead. The hierarchy is absolute: mark, then name, then whisper. */
+/* Masthead. The hierarchy is absolute: mark, then name, then whisper.
+
+   It sits on the tint — the plate above the waterline — on every page, full
+   bleed, with its contents lined up on the page container. On the home and
+   product pages the hero below it continues the tint down to the waterline;
+   on a manual page the masthead's own rule is where the water starts. */
 
 .masthead {
-  align-items: baseline;
+  align-items: center;
+  background: var(--color-tint);
   border-bottom: var(--rule-gauge) solid var(--color-rule);
   column-gap: var(--space-large);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-inline: auto;
-  max-width: var(--measure-wide);
-  padding: var(--space-medium) var(--gutter);
+  padding: var(--space-medium) var(--bleed);
   row-gap: var(--space-small);
   width: 100%;
+}
+
+.masthead__brand {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em 0.7em;
+  min-width: 0;
 }
 
 .masthead__home {
   align-items: center;
   display: flex;
+  font-size: var(--font-size-large);
   font-weight: 600;
-  gap: 0.55em;
+  gap: 0.5em;
   letter-spacing: var(--tracking-tight);
   text-decoration: none;
 }
@@ -57,6 +71,24 @@
   transition: text-decoration-color var(--transition);
 }
 
+/* The app a page belongs to, after a slash — the same crumb on the product,
+   documentation and privacy pages, so an app's chrome stays byte-identical. */
+
+.masthead__sep::before {
+  color: var(--color-ink-faint);
+  content: "/";
+  font-size: var(--font-size-large);
+}
+
+.masthead__app {
+  font-weight: 500;
+  text-decoration-color: transparent;
+}
+
+.masthead__app:hover {
+  text-decoration-color: currentColor;
+}
+
 /* The mark is inline SVG so it inherits ink and costs no request. Only the
    ballast bulb carries its own colour. */
 
@@ -68,11 +100,30 @@
 }
 
 .masthead__nav {
+  align-items: center;
   color: var(--color-ink-muted);
   display: flex;
   flex-wrap: wrap;
   font-size: var(--font-size-small);
-  gap: var(--space-medium);
+  gap: var(--space-x-small) var(--space-medium);
+}
+
+.masthead__nav a:not(.btn) {
+  text-decoration-color: transparent;
+}
+
+.masthead__nav a:not(.btn):hover {
+  color: var(--color-ink);
+  text-decoration-color: currentColor;
+}
+
+/* The masthead's own button repeats the hero's call to action; on a phone the
+   hero is already on screen, so the masthead drops it and stays one line. */
+
+@media (max-width: 40em) {
+  .masthead__nav .btn {
+    display: none;
+  }
 }
 
 
@@ -96,28 +147,46 @@
 }
 
 
-/* The filled element that inverts the plate. Shared chrome: the product CTA
-   and the home support route both draw it. The quiet variant keeps the shape
-   but speaks the site's line language instead of filling. */
+/* The filled element that inverts the plate. Shared chrome: the product CTA,
+   the masthead and the home hero all draw it. The quiet variant keeps the
+   shape but speaks the site's line language instead of filling; the inverse
+   variant is the filled button on the one band that is itself inverted. */
 
 .btn {
+  align-items: center;
   background: var(--color-ink);
+  border: var(--rule-gauge) solid var(--color-ink);
   border-radius: var(--radius);
   color: var(--color-canvas);
-  display: inline-block;
+  display: inline-flex;
   font-size: var(--font-size-small);
-  padding: 0.7em 1.1em;
+  font-weight: 500;
+  gap: 0.6em;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.55em 1.1em;
   text-decoration: none;
   transition: opacity var(--transition);
 }
 
 .btn:hover {
-  opacity: 0.85;
+  opacity: 0.86;
+}
+
+.btn--large {
+  font-size: 100%;
+  min-height: 3.25rem;
+  padding-inline: 1.4em;
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
 }
 
 .btn--quiet {
   background: none;
-  border: var(--rule-gauge) solid var(--color-rule-strong);
+  border-color: var(--color-rule-strong);
   color: var(--color-ink);
   transition: background var(--transition), border-color var(--transition);
 }
@@ -126,6 +195,174 @@
   background: var(--color-surface);
   border-color: currentColor;
   opacity: 1;
+}
+
+.btn--inverse {
+  background: var(--color-canvas);
+  border-color: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+.btn svg {
+  flex: none;
+  height: 1em;
+  width: 1em;
+}
+
+
+/* Eyebrow: the monospaced label above a heading. Shared by the home page, the
+   product pages and the deep band. */
+
+.eyebrow {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-medium);
+  text-transform: uppercase;
+}
+
+
+/* The deep band: one per page, below everything the page is about, where the
+   plate inverts. Emphasis on this site is carried by inversion rather than by
+   a colour, and this is the largest inversion there is. */
+
+.deep {
+  background: var(--color-ink);
+  color: var(--color-canvas);
+  padding: var(--space-xx-large) var(--bleed);
+}
+
+.deep h2,
+.deep h3 {
+  color: var(--color-canvas);
+}
+
+.deep a {
+  text-decoration-color: var(--color-canvas-rule);
+}
+
+.deep a:hover {
+  text-decoration-color: currentColor;
+}
+
+.deep .eyebrow {
+  color: var(--color-canvas-muted);
+}
+
+.deep ::selection {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+
+/* App card: one app, led by the problem it solves in the words of its own
+   product page. The home catalog and each product page's "more apps" row draw
+   the same card. */
+
+.app-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.app-card__shot {
+  display: block;
+  text-decoration: none;
+}
+
+.app-card__shot img,
+.app-card__shot span {
+  aspect-ratio: 1840 / 900;
+  background: #fff;
+  border: var(--rule-gauge) solid var(--color-rule-strong);
+  border-radius: var(--radius-large);
+  display: block;
+  height: auto;
+  transition: border-color var(--transition);
+  width: 100%;
+}
+
+.app-card__shot:hover img {
+  border-color: var(--color-ink);
+}
+
+/* An app with no screenshot yet says so in the station-label voice. */
+
+.app-card__shot span {
+  align-items: center;
+  background: var(--color-tint);
+  border-style: dashed;
+  color: var(--color-ink-muted);
+  display: flex;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  justify-content: center;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.app-card__meta {
+  color: var(--color-ink-muted);
+  display: flex;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  gap: var(--space-medium);
+  justify-content: space-between;
+  letter-spacing: var(--tracking-wide);
+  margin-top: var(--space-medium);
+  text-transform: uppercase;
+}
+
+.app-card__status {
+  color: var(--color-ink);
+  flex: none;
+}
+
+.app-card__status--soon {
+  color: var(--color-ink-muted);
+}
+
+.app-card__problem {
+  font-size: clamp(1.2rem, 1.1rem + 0.35vw, 1.375rem);
+  line-height: 1.25;
+  margin-top: var(--space-small);
+}
+
+.app-card__problem a {
+  text-decoration-color: transparent;
+}
+
+.app-card__problem a:hover {
+  text-decoration-color: currentColor;
+}
+
+.app-card__name {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  margin-top: var(--space-x-small);
+}
+
+.app-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--font-size-small);
+  gap: var(--space-x-small) var(--space-medium);
+  margin-top: auto;
+  padding-top: var(--space-medium);
+}
+
+.app-card__links a {
+  align-items: baseline;
+  display: inline-flex;
+}
+
+.app-card__links svg {
+  align-self: center;
+  flex: none;
+  height: 0.6em;
+  margin-right: 0.45em;
+  width: 0.6em;
 }
 
 
@@ -163,33 +400,82 @@
 }
 
 
-/* Footer. */
+/* Footer. The whole fleet by product, then the page's own fine print. */
 
 .footer {
   border-top: var(--rule-gauge) solid var(--color-rule);
   color: var(--color-ink-muted);
   font-size: var(--font-size-small);
-  margin-inline: auto;
   margin-top: var(--space-x-large);
-  max-width: var(--measure-wide);
-  padding: var(--space-large) var(--gutter) var(--space-x-large);
+  padding: var(--space-xx-large) var(--bleed) var(--space-x-large);
   width: 100%;
 }
 
-.footer > * + * {
-  margin-top: var(--space-medium);
+.footer__grid {
+  display: grid;
+  gap: var(--space-x-large) var(--space-large);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.footer__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-medium);
+.footer__brand {
+  grid-column: 1 / -1;
+}
+
+.footer__brand .masthead__home {
+  color: var(--color-ink);
+}
+
+.footer__tagline {
+  margin-top: var(--space-small);
+}
+
+@media (min-width: 48em) {
+  .footer__grid {
+    grid-template-columns: 2fr repeat(3, minmax(0, 1fr));
+  }
+
+  .footer__brand {
+    grid-column: auto;
+  }
+}
+
+.footer__head {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-small);
+  text-transform: uppercase;
+}
+
+.footer__list {
+  display: grid;
+  gap: 0.35em;
+  list-style: none;
+  padding: 0;
+}
+
+.footer__list li {
+  margin: 0;
+}
+
+.footer__list a {
+  text-decoration-color: transparent;
+}
+
+.footer__list a:hover {
+  color: var(--color-ink);
+  text-decoration-color: currentColor;
+}
+
+.footer__base {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  margin-top: var(--space-x-large);
+  padding-top: var(--space-medium);
 }
 
 .footer__fine {
-  color: var(--color-ink-muted);
   font-size: var(--font-size-x-small);
-  max-width: var(--measure);
+  max-width: 48em;
 }
 
 

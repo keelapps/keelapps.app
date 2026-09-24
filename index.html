@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#E5DECF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
     <title>Keelapps — steady tools, built below the waterline</title>
     <meta
       name="description"
@@ -37,6 +37,8 @@
         ]
       }
     </script>
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/assets/css/reset.css" />
     <link rel="stylesheet" href="/assets/css/root.css" />
     <link rel="stylesheet" href="/assets/css/elements.css" />
@@ -55,9 +57,46 @@
   <body>
     <a class="skip" href="#main">Skip to content</a>
 
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="#apps">Apps</a>
+        <a href="/security/">Security</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a class="btn btn--quiet" href="https://marketplace.atlassian.com/vendors/1003432963/keelapps">On the Marketplace</a>
+      </nav>
+    </header>
+
     <main class="home" id="main">
       <section class="hero">
-        <svg class="hero__mark" viewBox="176 360 672 396" role="img" aria-label="The keelapps mark: a waterline, a hull, a keel spine, and a ballast bulb">
+        <p class="eyebrow">Apps for Jira &amp; Confluence Cloud · Built on Atlassian Forge</p>
+        <h1 class="hero__title">Steady tools for the people who run Jira and Confluence.</h1>
+        <p class="hero__lede">
+          Eleven single-purpose apps for Atlassian Cloud admins — permission audits,
+          recurring work, page approvals, bulk clean-up. Each does one job precisely, and
+          runs entirely inside your own Atlassian tenant.
+        </p>
+        <p class="hero__actions">
+          <a class="btn btn--large" href="#apps">See all eleven apps<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10" /><path d="M3.5 8.5 8 13l4.5-4.5" /></svg></a>
+          <a href="#built">What every app has in common</a>
+        </p>
+      </section>
+
+      <div class="waterline">
+        <svg class="waterline__mark" viewBox="176 360 672 396" role="img" aria-label="The keelapps mark: a waterline, a hull, a keel spine and a ballast bulb">
           <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
             <path d="M 196 392 H 304" />
             <path d="M 720 392 H 828" />
@@ -66,233 +105,280 @@
           </g>
           <circle cx="512" cy="708" r="30" fill="#E8664A" />
         </svg>
+      </div>
 
-        <h1 class="hero__word">keelapps</h1>
-        <p class="hero__tagline">Steady tools, built below the waterline.</p>
-        <p class="hero__lede">
-          Software for the work that has to keep happening whether or not anyone remembers
-          it — permissions audited, schedules kept, pages kept true. Each product does one
-          thing precisely rather than many things approximately.
-        </p>
+      <section class="fleet" id="apps" aria-labelledby="apps-title">
+        <div class="fleet__intro">
+          <p class="eyebrow">The fleet</p>
+          <h2 id="apps-title">Eleven apps. One job each.</h2>
+          <p>
+            Start from the gap you are trying to close. Every live app comes with a
+            one-minute demo, its own documentation and its own privacy policy.
+          </p>
+        </div>
+
+        <!-- fleet:begin -->
+        <fieldset class="filter">
+          <legend>Show apps for</legend>
+          <input type="radio" name="host" id="host-all" checked />
+          <label for="host-all">All <span>11</span></label>
+          <input type="radio" name="host" id="host-jira" />
+          <label for="host-jira">Jira <span>6</span></label>
+          <input type="radio" name="host" id="host-confluence" />
+          <label for="host-confluence">Confluence <span>5</span></label>
+        </fieldset>
+
+        <ol class="fleet__grid">
+          <li class="app-card" data-host="jira">
+            <a class="app-card__shot" href="/accesslens/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/accesslens.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Jira · Permission audit</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/accesslens/">Prove who can access what in Jira — at a point in time.</a></h3>
+            <p class="app-card__name">AccessLens for Jira</p>
+            <p class="app-card__links">
+              <a href="/accesslens/">Product page</a>
+              <a href="/accesslens/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:03</a>
+              <a href="/accesslens/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="confluence">
+            <a class="app-card__shot" href="/accesslens-confluence/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/accesslens-confluence.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Confluence · Permission audit</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/accesslens-confluence/">Which spaces can this group reach, and which pages are locked?</a></h3>
+            <p class="app-card__name">AccessLens for Confluence</p>
+            <p class="app-card__links">
+              <a href="/accesslens-confluence/">Product page</a>
+              <a href="/accesslens-confluence/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:11</a>
+              <a href="/accesslens-confluence/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="confluence">
+            <a class="app-card__shot" href="/signoff/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/signoff.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Confluence · Page approvals</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/signoff/">Who approved this version of this page — and is that still good?</a></h3>
+            <p class="app-card__name">Signoff for Confluence</p>
+            <p class="app-card__links">
+              <a href="/signoff/">Product page</a>
+              <a href="/signoff/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:03</a>
+              <a href="/signoff/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="jira">
+            <a class="app-card__shot" href="/recur/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/recur.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Jira · Recurring tasks</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/recur/">The work that has to happen every month, happening every month.</a></h3>
+            <p class="app-card__name">Recur for Jira</p>
+            <p class="app-card__links">
+              <a href="/recur/">Product page</a>
+              <a href="/recur/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:09</a>
+              <a href="/recur/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="jira">
+            <a class="app-card__shot" href="/digest/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/digest.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Jira · Scheduled reporting</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/digest/">Six emails about one issue, folded into one summary.</a></h3>
+            <p class="app-card__name">Digest for Jira</p>
+            <p class="app-card__links">
+              <a href="/digest/">Product page</a>
+              <a href="/digest/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:06</a>
+              <a href="/digest/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="jira">
+            <a class="app-card__shot" href="/mail-templates/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/mail-templates.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Jira · Notification templates</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/mail-templates/">Jira notifies watchers. The people who most need to know usually are not watchers.</a></h3>
+            <p class="app-card__name">Mail Templates for Jira</p>
+            <p class="app-card__links">
+              <a href="/mail-templates/">Product page</a>
+              <a href="/mail-templates/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:05</a>
+              <a href="/mail-templates/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="jira">
+            <a class="app-card__shot" href="/prefill/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/prefill.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Jira · Intake links</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/prefill/">Give a colleague one link instead of a Jira tutorial</a></h3>
+            <p class="app-card__name">Prefill for Jira</p>
+            <p class="app-card__links">
+              <a href="/prefill/">Product page</a>
+              <a href="/prefill/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:11</a>
+              <a href="/prefill/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="confluence">
+            <a class="app-card__shot" href="/evergreen/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/evergreen.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Confluence · Content freshness</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/evergreen/">A page that was right two years ago still looks right today.</a></h3>
+            <p class="app-card__name">Evergreen for Confluence</p>
+            <p class="app-card__links">
+              <a href="/evergreen/">Product page</a>
+              <a href="/evergreen/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:06</a>
+              <a href="/evergreen/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="confluence">
+            <a class="app-card__shot" href="/curator/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/curator.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Confluence · Bulk page governance</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/curator/">Change three hundred pages at once — and put them back if it was wrong</a></h3>
+            <p class="app-card__name">Curator for Confluence</p>
+            <p class="app-card__links">
+              <a href="/curator/">Product page</a>
+              <a href="/curator/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:10</a>
+              <a href="/curator/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="jira">
+            <a class="app-card__shot" href="/satchel/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/satchel.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Jira · Bulk attachments</span><span class="app-card__status app-card__status--soon">Coming soon</span></p>
+            <h3 class="app-card__problem"><a href="/satchel/">Twelve attachments means twelve previews. Or one zip.</a></h3>
+            <p class="app-card__name">Satchel for Jira</p>
+            <p class="app-card__links">
+              <a href="/satchel/">Product page</a>
+              <a href="/satchel/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="confluence">
+            <a class="app-card__shot" href="/satchel-confluence/" tabindex="-1" aria-hidden="true"><span>Screenshot at launch</span></a>
+            <p class="app-card__meta"><span>Confluence · Bulk attachments</span><span class="app-card__status app-card__status--soon">Coming soon</span></p>
+            <h3 class="app-card__problem"><a href="/satchel-confluence/">Move an attachment to another page. Confluence Cloud still cannot.</a></h3>
+            <p class="app-card__name">Satchel for Confluence</p>
+            <p class="app-card__links">
+              <a href="/satchel-confluence/">Product page</a>
+              <a href="/satchel-confluence/docs/">Docs</a>
+            </p>
+          </li>
+        </ol>
+        <!-- fleet:end -->
       </section>
 
-      <hr class="waterline" />
-
-      <section class="plate">
-        <h2 class="plate__title">Atlassian Cloud</h2>
-        <p class="plate__note">
-          For the people who run Jira and Confluence, rather than the people who file tickets
-          in them. Every app is built on Atlassian Forge and runs inside your own tenant.
-        </p>
-
-        <ol class="fleet">
-          <li class="fleet__item">
-            <h3 class="fleet__name">AccessLens for Jira</h3>
-            <p class="fleet__what">
-              Permission audit for Jira. Who can reach what, answered precisely enough to put
-              in front of an auditor.
+      <section class="deep" id="built" aria-labelledby="built-title">
+        <div class="deep__intro">
+          <p class="eyebrow">Below the waterline</p>
+          <h2 id="built-title">Every app is built the same way, whichever gap it fills.</h2>
+          <p>
+            Admin tools touch permissions, pages and people's inboxes. These four things
+            hold for every app we publish.
+          </p>
+        </div>
+        <ol class="principles">
+          <li>
+            <h3>Runs inside your tenant</h3>
+            <p>
+              Built on Atlassian Forge, declaring no external network access. Your data is
+              never sent to us, or to anyone else.
             </p>
-            <p class="fleet__links">
-              <a href="/accesslens/">Product</a>
-              <a href="/accesslens/docs/">Documentation</a>
-              <a href="/accesslens/privacy/">Privacy policy</a>
-              <a href="https://marketplace.atlassian.com/apps/4182244448/accesslens-for-jira">Marketplace</a>
-            </p>
-            <p class="fleet__status">Live on the Atlassian Marketplace</p>
           </li>
-
-          <li class="fleet__item">
-            <h3 class="fleet__name">AccessLens for Confluence</h3>
-            <p class="fleet__what">
-              Permission audit for Confluence. Which spaces a group reaches, which pages are
-              locked, and what locks them.
+          <li>
+            <h3>Installed and billed through Atlassian</h3>
+            <p>
+              Every live app is free for sites up to 10 users. Above that it is priced per
+              user and billed by Atlassian, not by us.
             </p>
-            <p class="fleet__links">
-              <a href="/accesslens-confluence/">Product</a>
-              <a href="/accesslens-confluence/docs/">Documentation</a>
-              <a href="/accesslens-confluence/privacy/">Privacy policy</a>
-              <a href="https://marketplace.atlassian.com/apps/2097025605/accesslens-space-page-permission-audit">Marketplace</a>
-            </p>
-            <p class="fleet__status">Live on the Atlassian Marketplace</p>
           </li>
-
-          <li class="fleet__item">
-            <h3 class="fleet__name">Recur for Jira</h3>
-            <p class="fleet__what">
-              Recurring tasks for Jira. Work that has to happen every month, happening every
-              month.
+          <li>
+            <h3>Honest about its limits</h3>
+            <p>
+              Each product page compares the app with native Jira or Confluence and the
+              alternatives — including what it does not do.
             </p>
-            <p class="fleet__links">
-              <a href="/recur/">Product</a>
-              <a href="/recur/docs/">Documentation</a>
-              <a href="/recur/privacy/">Privacy policy</a>
-              <a href="https://marketplace.atlassian.com/apps/3262138887/recur-recurring-tasks-for-jira">Marketplace</a>
-            </p>
-            <p class="fleet__status">Live on the Atlassian Marketplace</p>
           </li>
-
-          <li class="fleet__item">
-            <h3 class="fleet__name">Digest for Jira</h3>
-            <p class="fleet__what">
-              Scheduled reporting for Jira. The status summary someone asks for on Monday,
-              sent before they ask.
+          <li>
+            <h3>A demo before you install</h3>
+            <p>
+              A one-minute demo for every live app, recorded on a production install rather
+              than mocked up.
             </p>
-            <p class="fleet__links">
-              <a href="/digest/">Product</a>
-              <a href="/digest/docs/">Documentation</a>
-              <a href="/digest/privacy/">Privacy policy</a>
-              <a href="https://marketplace.atlassian.com/apps/978618646/digest-daily-weekly-summaries-for-jira">Marketplace</a>
-            </p>
-            <p class="fleet__status">Live on the Atlassian Marketplace</p>
-          </li>
-
-          <li class="fleet__item">
-            <h3 class="fleet__name">Prefill for Jira</h3>
-            <p class="fleet__what">
-              Prefilled intake links for Jira. One link instead of a Jira tutorial, and the
-              issue lands in the right queue.
-            </p>
-            <p class="fleet__links">
-              <a href="/prefill/">Product</a>
-              <a href="/prefill/docs/">Documentation</a>
-              <a href="/prefill/privacy/">Privacy policy</a>
-              <a href="https://marketplace.atlassian.com/apps/3380543121/prefill-for-jira">Marketplace</a>
-            </p>
-            <p class="fleet__status">Live on the Atlassian Marketplace</p>
-          </li>
-
-          <li class="fleet__item">
-            <h3 class="fleet__name">Satchel for Jira</h3>
-            <p class="fleet__what">
-              Bulk attachments for Jira. The “download all” button Jira never shipped, and the
-              storage report that follows it.
-            </p>
-            <p class="fleet__links">
-              <a href="/satchel/">Product</a>
-              <a href="/satchel/docs/">Documentation</a>
-              <a href="/satchel/privacy/">Privacy policy</a>
-            </p>
-            <p class="fleet__status">Coming soon</p>
-          </li>
-
-          <li class="fleet__item">
-            <h3 class="fleet__name">Signoff for Confluence</h3>
-            <p class="fleet__what">
-              Page approvals for Confluence. Who approved which version of which page —
-              answered by a badge that cannot lie.
-            </p>
-            <p class="fleet__links">
-              <a href="/signoff/">Product</a>
-              <a href="/signoff/docs/">Documentation</a>
-              <a href="/signoff/privacy/">Privacy policy</a>
-              <a href="https://marketplace.atlassian.com/apps/2487832225/signoff-page-approvals-for-confluence">Marketplace</a>
-            </p>
-            <p class="fleet__status">Live on the Atlassian Marketplace</p>
-          </li>
-
-          <li class="fleet__item">
-            <h3 class="fleet__name">Evergreen for Confluence</h3>
-            <p class="fleet__what">
-              Content freshness for Confluence. Finds the pages that have quietly stopped
-              being true.
-            </p>
-            <p class="fleet__links">
-              <a href="/evergreen/">Product</a>
-              <a href="/evergreen/docs/">Documentation</a>
-              <a href="/evergreen/privacy/">Privacy policy</a>
-              <a href="https://marketplace.atlassian.com/apps/1279909983">Marketplace</a>
-            </p>
-            <p class="fleet__status">Live on the Atlassian Marketplace</p>
-          </li>
-
-          <li class="fleet__item">
-            <h3 class="fleet__name">Curator for Confluence</h3>
-            <p class="fleet__what">
-              Bulk page and label governance for Confluence. Previewed before the write, undone
-              as a whole afterwards.
-            </p>
-            <p class="fleet__links">
-              <a href="/curator/">Product</a>
-              <a href="/curator/docs/">Documentation</a>
-              <a href="/curator/privacy/">Privacy policy</a>
-              <a href="https://marketplace.atlassian.com/apps/33303578/curator-bulk-page-label-governance">Marketplace</a>
-            </p>
-            <p class="fleet__status">Live on the Atlassian Marketplace</p>
-          </li>
-
-          <li class="fleet__item">
-            <h3 class="fleet__name">Satchel for Confluence</h3>
-            <p class="fleet__what">
-              Bulk attachments for Confluence, including the move between pages that Cloud
-              never got.
-            </p>
-            <p class="fleet__links">
-              <a href="/satchel-confluence/">Product</a>
-              <a href="/satchel-confluence/docs/">Documentation</a>
-              <a href="/satchel-confluence/privacy/">Privacy policy</a>
-            </p>
-            <p class="fleet__status">Coming soon</p>
-          </li>
-
-          <li class="fleet__item">
-            <h3 class="fleet__name">Mail Templates for Jira</h3>
-            <p class="fleet__what">
-              Notification templates for Jira. Notifications that read like your organisation
-              wrote them.
-            </p>
-            <p class="fleet__links">
-              <a href="/mail-templates/">Product</a>
-              <a href="/mail-templates/docs/">Documentation</a>
-              <a href="/mail-templates/privacy/">Privacy policy</a>
-              <a href="https://marketplace.atlassian.com/apps/948167511/mail-templates-for-jira">Marketplace</a>
-            </p>
-            <p class="fleet__status">Live on the Atlassian Marketplace</p>
           </li>
         </ol>
       </section>
 
-      <section class="plate">
-        <h2 class="plate__title">Support</h2>
-        <p class="plate__note">
-          Routed by purpose, so nothing sensitive lands in a public tracker.
-        </p>
-
+      <section class="support" aria-labelledby="support-title">
+        <div class="support__intro">
+          <p class="eyebrow">Support</p>
+          <h2 id="support-title">Routed by purpose.</h2>
+          <p>So nothing sensitive lands in a public tracker.</p>
+        </div>
         <ul class="routes">
           <li>
             <p class="routes__for">Questions, bugs, features</p>
-            <p class="routes__where">
-              <a class="btn btn--quiet" href="https://keelapps.atlassian.net/helpcenter/support/">Contact support</a>
-            </p>
-            <p class="routes__note">
-              Including questions from before you have installed anything.
-            </p>
+            <div>
+              <p class="routes__where"><a href="https://keelapps.atlassian.net/helpcenter/support/">Contact support</a></p>
+              <p class="routes__note">Including questions from before you have installed anything.</p>
+            </div>
           </li>
           <li>
             <p class="routes__for">Security vulnerabilities</p>
-            <p class="routes__where">
-              <a href="/security/">Report privately</a>
-              — never in a public channel.
-            </p>
+            <div>
+              <p class="routes__where"><a href="/security/">Report privately</a></p>
+              <p class="routes__note">Never in a public channel.</p>
+            </div>
           </li>
           <li>
             <p class="routes__for">Privacy and data requests</p>
-            <p class="routes__where">
-              Use the contact address on the relevant privacy policy.
-            </p>
+            <div>
+              <p class="routes__where">The contact address on each privacy policy</p>
+              <p class="routes__note">Every app has its own, linked from its product page.</p>
+            </div>
           </li>
         </ul>
       </section>
     </main>
 
     <footer class="footer">
-      <p class="footer__links">
-        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
-        <a href="/security/">Security</a>
-      </p>
-      <p class="footer__fine">
-        Keelapps builds administration and compliance apps for Atlassian Cloud. Not
-        affiliated with Atlassian. Jira and Confluence are trademarks of Atlassian.
-      </p>
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head">Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Keelapps builds administration and compliance apps for Atlassian Cloud. Not
+          affiliated with Atlassian. Jira and Confluence are trademarks of Atlassian.
+        </p>
+      </div>
     </footer>
   </body>
 </html>

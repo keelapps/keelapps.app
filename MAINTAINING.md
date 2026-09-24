@@ -21,9 +21,52 @@ therefore every URL already handed to Atlassian, stayed exactly as they were.
 ## Adding a page
 
 Drop an `index.html` at the right path and push. There is nothing to build.
-Copy the `<head>` block and the masthead/footer markup from an existing page —
-without a build step there is no include mechanism, so the site chrome is
-repeated verbatim in every file.
+Copy the `<head>` block, an empty `<header class="masthead"></header>` and a
+footer holding only the page's `<p class="footer__fine">`, then run
+`tools/make-chrome`. Without a build step there is no include mechanism, so
+the chrome is repeated in every file — and written there by that script rather
+than by hand.
+
+## The chrome is generated
+
+`tools/make-chrome` writes the parts more than one page carries:
+
+- the masthead — the lockup, the app a page belongs to and that app's three
+  pages, and its "Try it free" button once it has a Marketplace listing;
+- the footer — every app by product, then the page's own fine print, which it
+  reads back out of the page and keeps;
+- the home page's catalog, between `<!-- fleet:begin -->` and `<!-- fleet:end -->`;
+- each product page's "more apps" row, between `<!-- related:begin -->` and
+  `<!-- related:end -->`;
+- the theme colours and the two font preloads in every `<head>`.
+
+A card carries no copy of its own. Its headline is the product page's `<h1>`,
+its demo length the page's `VideoObject` duration, its status whether the
+page's intro links to a Marketplace listing, and its picture whatever
+`tools/make-card-images` made from the page's `og:image`. Edit the product
+page, then:
+
+```sh
+tools/make-card-images          # only if a product page's og:image changed
+tools/make-chrome               # rewrite the chrome in every page
+tools/make-chrome --check       # non-zero if any page has drifted
+```
+
+Adding an app is a row in `APPS` at the top of `tools/make-chrome`, its three
+pages, and those two scripts. The home page counts the fleet in words ("Eleven
+apps. One job each.", "See all eleven apps") — those are copy, and change by
+hand.
+
+## The page is a cross-section
+
+Every page is drawn as a hull cut at the waterline. The masthead, and on the
+home and product pages the hero below it, sit on the tint (`--color-tint`) —
+above the waterline. The hero's bottom rule is the waterline. The home page
+sets the mark on it, keel hanging into the fleet; a product page sets its demo
+across it, half above and half below. Everything under it is on the canvas,
+and each page has at most one *deep* band (`.deep` in `site.css`) where the
+plate inverts: the home page's four shared principles, a product page's
+availability and call to action.
 
 ## Video embeds
 
@@ -35,7 +78,10 @@ inherits this site's base URL — holding the app's screenshot from
 `autoplay=1`. Clicking navigates the iframe itself to YouTube. That click is the
 first and only request to a third party, and it is the visitor's.
 
-Copy the block from any of the five live product pages. Three rules:
+Copy the block from any live product page. The `<figure>` carries `id="demo"`:
+the hero's "Watch the demo" link and every app card's "Demo" link point there,
+so the only way to YouTube is still the visitor's click on the poster. Three
+rules:
 
 - The poster is a screenshot already in `assets/screenshots/`. Never a YouTube
   thumbnail — that would be a third-party request on load.
@@ -78,11 +124,20 @@ own:
 | `reset.css` | Zeroing. Must load first so everything after it wins. |
 | `root.css` | Design tokens only. No selector but `:root`. |
 | `elements.css` | Unclassed element baseline — a page with only these three is already readable and on-brand. |
-| `site.css` | Masthead, breadcrumb, footer, asides, tables, pagination. |
+| `site.css` | Masthead, breadcrumb, buttons, eyebrow, the deep band, the app card, footer, asides, tables, pagination. |
 | `home.css` / `product.css` / `manual.css` | One per page type. `manual.css` serves both docs and privacy. |
 
 `elements.css` uses only bare tag selectors, so any component rule beats it on
 specificity and nothing ever needs `!important`.
+
+### Fonts
+
+Outfit and Geist Mono are served from `assets/fonts/`: the Latin subsets of the
+variable fonts from Google Fonts, about 55 KB together, each beside its SIL
+Open Font License. `root.css` declares them, every page preloads both, and
+`font-display: swap` shows the fallback in each stack until they arrive.
+Characters outside the subset — the arrows in pagination — come from the
+fallback face. Nothing is fetched from Google at run time.
 
 ### The palette is two colours
 
@@ -98,7 +153,12 @@ Two consequences worth knowing before editing:
   hover. A coloured link would be a third material.
 - **`--color-ink-faint` is 2.8:1 and must not carry text.** It is for the
   generated station numbers and list markers, which repeat what is beside them.
-  Use `--color-ink-muted` (5.2:1) for anything a person has to read.
+  Use `--color-ink-muted` (5.2:1) for anything a person has to read. Decoration
+  that has to be faint — the slash in the masthead, the `st.00` / `wl +0`
+  marks on the home page's waterline — is generated content, not text.
+- **The deep band has its own dilutions.** On the inverted plate the ground is
+  ink, so muted and faint text there is `--color-canvas-muted` and
+  `--color-canvas-faint`, the ground at the same alphas.
 
 ## Checks before pushing
 
@@ -122,17 +182,14 @@ tools/check-contrast.js         # paste into a devtools console, both schemes
 Returns every text node below WCAG AA for its size, resolving alpha against what
 it is actually painted on. Empty array is clean.
 
-The site chrome should stay byte-identical across an app's three pages, so drift
-is greppable. The masthead differs *between* apps — its second link points at the
-app you are on — so check one app at a time:
-
 ```sh
-for app in accesslens recur; do
-  for f in $app/index.html $app/docs/index.html $app/privacy/index.html; do
-    awk '/<header class="masthead">/,/<\/header>/' "$f" | shasum | cut -d' ' -f1
-  done | sort -u | wc -l        # must print 1, once per app
-done
+tools/make-chrome --check       # masthead, footer, cards and <head> up to date
 ```
+
+The masthead is byte-identical across an app's three pages and differs between
+apps; the footer's fleet is identical everywhere and its fine print is each
+page's own. `--check` fails on any page that no longer matches what the script
+would write.
 
 ## Local preview
 

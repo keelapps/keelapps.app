@@ -4,8 +4,9 @@ Source for the Keelapps site: the vendor page, and the product, documentation
 and legal pages for each Atlassian Marketplace app.
 
 Live at **<https://keelapps.app/>** — a push to `main` publishes. Plain static
-HTML: no build step, no fonts or scripts of our own to fetch. Every asset is
-same-origin, and the mark in the masthead is inline SVG rather than an image.
+HTML: no build step and no scripts of our own. Every asset is same-origin —
+the two brand faces are served from `assets/fonts/` — and the mark in the
+masthead is inline SVG rather than an image.
 Two third parties are contacted: Google Analytics on every page load, and
 `youtube-nocookie.com` only after a visitor clicks play on a product demo —
 those players sit behind a same-origin poster until then.
@@ -44,6 +45,7 @@ two are meant to stay identical.
 
 ```sh
 python3 -m http.server 8000     # not file:// — asset paths are site-absolute
+tools/make-chrome --check       # masthead, footer and app cards up to date
 tools/check-legal-text          # run before every push
 ```
 

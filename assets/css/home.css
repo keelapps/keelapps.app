@@ -1,133 +1,325 @@
-/* Home page. The composition is a cross-section: a hero of mostly empty water,
-   a single horizontal datum, and everything that does the real work below it. */
+/* Home page. The composition is a cross-section: the promise above the
+   waterline on the tint, the mark sitting on the waterline with its keel
+   hanging into the water, the fleet below it, and the deep band — what every
+   hull shares — at the bottom. */
 
 .home {
-  margin-inline: auto;
-  max-width: var(--measure-wide);
-  padding-inline: var(--gutter);
+  --mark-w: clamp(13.75rem, 34vw, 25rem);
   width: 100%;
 }
 
 
-/* Above the datum. The lockup is a signature, not the statement: mark and
-   wordmark sit together at reading size, and the tagline carries the display
-   weight — the same hierarchy every product page opens with. */
+/* Above the waterline. The masthead carries the lockup, so the hero opens on
+   the offer: who these apps are for, and what they do. */
 
 .hero {
-  align-items: center;
-  column-gap: 0.6em;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  padding-block: var(--space-xx-large);
+  background: var(--color-tint);
+  border-bottom: var(--rule-gauge) solid var(--color-rule-strong);
+  padding: var(--space-xx-large) var(--bleed) var(--space-xxx-large);
 }
 
-.hero__mark {
-  color: var(--color-ink);
-  grid-column: 1;
-  height: 2.4rem;
-  width: auto;
+@media (min-width: 64em) {
+  .hero {
+    padding-top: var(--space-xxx-large);
+  }
 }
 
-.hero__word {
-  font-size: var(--font-size-x-large);
-  font-weight: 600;
-  grid-column: 2;
-  letter-spacing: var(--tracking-tight);
-  line-height: 1;
-}
-
-.hero__tagline {
-  color: var(--color-ink);
-  font-size: var(--font-size-display);
-  font-weight: 600;
-  grid-column: 1 / -1;
-  letter-spacing: var(--tracking-tight);
-  line-height: var(--line-height-tight);
-  margin-top: var(--space-x-large);
-  max-width: 13em;
-  text-wrap: balance;
+.hero__title {
+  font-size: clamp(2.5rem, 1.2rem + 5vw, 4.75rem);
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  max-width: 16em;
 }
 
 .hero__lede {
   color: var(--color-ink-muted);
-  font-size: var(--font-size-large);
-  grid-column: 1 / -1;
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem);
+  line-height: 1.55;
   margin-top: var(--space-large);
-  max-width: var(--measure);
+  max-width: 31em;
+}
+
+.hero__actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-medium) var(--space-large);
+  margin-top: var(--space-x-large);
 }
 
 
-/* The datum itself. One line, drawn at the class gauge, full bleed to the
-   column edges — the only rule on the page that is not a section boundary. */
+/* The waterline itself is the hero's bottom rule. The mark sits on it: its
+   own waterline strokes centred on the rule, the hull and keel below. The
+   offset is the mark's waterline (32 of its 672 viewBox units down) at
+   whatever width the mark is drawn. Centred on a narrow screen, where the
+   fleet opens underneath it; on the right from 64em, beside the fleet's
+   heading. */
 
 .waterline {
-  background: var(--color-rule-strong);
-  border: 0;
-  height: var(--rule-gauge);
-  margin: 0;
+  height: 0;
+  position: relative;
+}
+
+.waterline__mark {
+  color: var(--color-ink);
+  height: auto;
+  left: 50%;
+  position: absolute;
+  top: calc(var(--mark-w) * -0.0476);
+  transform: translateX(-50%);
+  width: var(--mark-w);
+}
+
+@media (min-width: 64em) {
+  .waterline__mark {
+    left: auto;
+    right: var(--bleed);
+    transform: none;
+  }
+}
+
+/* Station marks at the two ends of the datum, where the margins are wide
+   enough to hold them — the same marginalia as the share card. Generated
+   content, so they repeat the drawing's vocabulary without being read out. */
+
+@media (min-width: 90em) {
+  .waterline::before,
+  .waterline::after {
+    bottom: 0.6rem;
+    color: var(--color-ink-faint);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-x-small);
+    letter-spacing: var(--tracking-wide);
+    position: absolute;
+  }
+
+  .waterline::before {
+    content: "st.00";
+    left: 3rem;
+  }
+
+  .waterline::after {
+    content: "wl +0";
+    right: 3rem;
+  }
 }
 
 
-/* Below the datum: concentrated form. The rhythm deliberately tightens here —
-   the hero breathes, everything under the waterline packs together. */
-
-.plate {
-  padding-block: var(--space-xx-large);
-}
-
-.plate + .plate {
-  border-top: var(--rule-gauge) solid var(--color-rule);
-}
-
-.plate__title {
-  font-size: var(--font-size-title);
-  margin-bottom: var(--space-x-small);
-}
-
-.plate__note {
-  color: var(--color-ink-muted);
-  font-size: var(--font-size-small);
-  margin-bottom: var(--space-large);
-  max-width: var(--measure);
-}
-
-
-/* Fleet listing. Station labels number the hulls the way a builder's drawing
-   numbers frames — the same device the manual pages use for chapters. */
+/* Below the waterline: the fleet. On a narrow screen the heading waits until
+   the keel has cleared it. */
 
 .fleet {
-  counter-reset: station;
-  display: grid;
-  gap: var(--space-large);
-  list-style: none;
-  padding: 0;
-}
-
-@media (min-width: 44em) {
-  .fleet {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: var(--space-x-large);
-  }
+  padding: calc(var(--mark-w) * 0.55 + var(--space-x-large)) var(--bleed) var(--space-xxx-large);
 }
 
 @media (min-width: 64em) {
   .fleet {
+    padding-top: var(--space-xxx-large);
+  }
+
+  .fleet__intro {
+    max-width: calc(100% - var(--mark-w) - var(--space-x-large));
+  }
+}
+
+.fleet__intro {
+  max-width: 44rem;
+}
+
+.fleet__intro p:last-child {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-large);
+  line-height: 1.55;
+  margin-top: var(--space-medium);
+}
+
+.fleet h2,
+.deep h2,
+.support h2 {
+  font-size: var(--font-size-title);
+}
+
+
+/* The filter. Three radio buttons drawn as a segmented control, and :has()
+   hiding the other product's cards — no script, which this site has none of.
+   A browser without :has() gets the whole fleet and no control. */
+
+.filter {
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-x-small);
+  margin: var(--space-large) 0 0;
+  padding: 0;
+}
+
+.filter legend {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.filter input {
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.filter label {
+  align-items: center;
+  border: var(--rule-gauge) solid var(--color-rule-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  gap: 0.6em;
+  min-height: 2.75rem;
+  padding: 0 1.1em;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.filter label:hover {
+  border-color: currentColor;
+}
+
+.filter label span {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+}
+
+.filter input:checked + label {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-canvas);
+}
+
+.filter input:checked + label span {
+  color: var(--color-canvas-muted);
+}
+
+.filter input:focus-visible + label {
+  outline: var(--rule-gauge) solid var(--color-ink);
+  outline-offset: 0.2em;
+}
+
+@supports not selector(:has(*)) {
+  .filter {
+    display: none;
+  }
+}
+
+.fleet:has(#host-jira:checked) .app-card[data-host="confluence"],
+.fleet:has(#host-confluence:checked) .app-card[data-host="jira"] {
+  display: none;
+}
+
+
+/* The catalog. One column of text on a phone — eleven screenshots stacked
+   would be a scroll of pictures — then two and three columns of full cards. */
+
+.fleet__grid {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  margin-top: var(--space-x-large);
+  padding: 0;
+}
+
+.fleet__grid .app-card {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  padding-block: var(--space-large);
+}
+
+.fleet__grid .app-card__shot {
+  display: none;
+}
+
+.fleet__grid .app-card__meta {
+  margin-top: 0;
+}
+
+@media (min-width: 40em) {
+  .fleet__grid {
+    column-gap: var(--space-large);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--space-xx-large);
+  }
+
+  .fleet__grid .app-card {
+    border-top: 0;
+    padding-block: 0;
+  }
+
+  .fleet__grid .app-card__shot {
+    display: block;
+  }
+
+  .fleet__grid .app-card__meta {
+    margin-top: var(--space-medium);
+  }
+}
+
+@media (min-width: 64em) {
+  .fleet__grid {
+    column-gap: 2rem;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.fleet__item {
-  border-top: var(--rule-gauge) solid var(--color-rule);
-  counter-increment: station;
-  display: flex;
-  flex-direction: column;
+
+/* The deep band: four things every app shares, numbered as stations. */
+
+.deep__intro {
+  max-width: 44rem;
+}
+
+.deep__intro p:last-child {
+  color: var(--color-canvas-muted);
+  font-size: var(--font-size-large);
+  line-height: 1.55;
+  margin-top: var(--space-medium);
+}
+
+.principles {
+  counter-reset: principle;
+  display: grid;
+  gap: var(--space-large);
+  list-style: none;
+  margin-top: var(--space-x-large);
+  padding: 0;
+}
+
+@media (min-width: 40em) {
+  .principles {
+    column-gap: var(--space-x-large);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64em) {
+  .principles {
+    column-gap: 2.5rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.principles li {
+  border-top: var(--rule-gauge) solid var(--color-canvas-rule);
+  counter-increment: principle;
   margin: 0;
   padding-top: var(--space-medium);
 }
 
-.fleet__item::before {
-  color: var(--color-ink-faint);
-  content: "st." counter(station, decimal-leading-zero);
+.principles li::before {
+  color: var(--color-canvas-faint);
+  content: "st." counter(principle, decimal-leading-zero);
   display: block;
   font-family: var(--font-family-mono);
   font-size: var(--font-size-x-small);
@@ -135,53 +327,57 @@
   margin-bottom: var(--space-small);
 }
 
-.fleet__name {
-  font-size: var(--font-size-large);
+.principles h3 {
+  font-size: var(--font-size-x-large);
+  line-height: 1.25;
 }
 
-.fleet__what {
-  color: var(--color-ink-muted);
-  font-size: var(--font-size-small);
+.principles p {
+  color: var(--color-canvas-muted);
   margin-top: var(--space-x-small);
-}
-
-.fleet__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-x-small) var(--space-medium);
-  font-size: var(--font-size-small);
-  margin-top: var(--space-small);
-}
-
-/* Apps with no pages yet say so in the same voice as the station label. */
-
-.fleet__status {
-  color: var(--color-ink-muted);
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-x-small);
-  letter-spacing: var(--tracking-wide);
-  margin-top: auto;
-  padding-top: var(--space-small);
-  text-transform: uppercase;
 }
 
 
 /* Support routing. Purpose first, destination second — the same split the
    privacy policy and the support repo already describe. */
 
-.routes {
+.support {
   display: grid;
   gap: var(--space-large);
+  padding: var(--space-xxx-large) var(--bleed) var(--space-xx-large);
+}
+
+@media (min-width: 64em) {
+  .support {
+    column-gap: 10%;
+    grid-template-columns: 5fr 6fr;
+  }
+}
+
+.support__intro p:last-child {
+  color: var(--color-ink-muted);
+  margin-top: var(--space-small);
+  max-width: 26em;
+}
+
+.routes {
+  border-bottom: var(--rule-gauge) solid var(--color-rule);
   list-style: none;
   padding: 0;
 }
 
-@media (min-width: 48em) {
-  .routes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.routes li {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  display: grid;
+  gap: var(--space-x-small) var(--space-large);
+  margin: 0;
+  padding-block: var(--space-medium);
 }
 
-.routes li {
-  margin: 0;
+@media (min-width: 40em) {
+  .routes li {
+    grid-template-columns: 12rem minmax(0, 1fr);
+  }
 }
 
 .routes__for {
@@ -189,17 +385,17 @@
   font-family: var(--font-family-mono);
   font-size: var(--font-size-x-small);
   letter-spacing: var(--tracking-wide);
-  margin-bottom: var(--space-x-small);
+  padding-top: 0.3em;
   text-transform: uppercase;
 }
 
 .routes__where {
-  font-size: var(--font-size-small);
+  font-weight: 500;
   overflow-wrap: anywhere;
 }
 
 .routes__note {
   color: var(--color-ink-muted);
   font-size: var(--font-size-small);
-  margin-top: var(--space-small);
+  margin-top: 0.3em;
 }

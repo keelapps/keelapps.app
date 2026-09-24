@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0F2536" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#E5DECF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
     <title>Signoff for Confluence — page approvals that cannot lie</title>
     <meta
       name="description"
@@ -64,6 +64,8 @@
         }
       }
     </script>
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/assets/css/reset.css" />
     <link rel="stylesheet" href="/assets/css/root.css" />
     <link rel="stylesheet" href="/assets/css/elements.css" />
@@ -83,49 +85,62 @@
     <a class="skip" href="#main">Skip to content</a>
 
     <header class="masthead">
-      <a class="masthead__home" href="/">
-        <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
-          <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
-            <path d="M 196 392 H 304" />
-            <path d="M 720 392 H 828" />
-            <path d="M 352 392 C 360 584, 664 584, 672 392" />
-            <path d="M 512 552 V 648" />
-          </g>
-          <circle cx="512" cy="708" r="30" fill="#E8664A" />
-        </svg>
-        <span class="masthead__wordmark">keelapps</span>
-      </a>
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+        <span class="masthead__sep" aria-hidden="true"></span>
+        <a class="masthead__app" href="/signoff/">Signoff for Confluence</a>
+      </div>
       <nav class="masthead__nav" aria-label="Site">
-        <a href="/signoff/">Signoff</a>
+        <a href="/#apps">All apps</a>
+        <a href="/signoff/docs/">Documentation</a>
+        <a href="/signoff/privacy/">Privacy</a>
         <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a class="btn" href="https://marketplace.atlassian.com/apps/2487832225/signoff-page-approvals-for-confluence">Try it free</a>
       </nav>
     </header>
 
     <main class="product" id="main">
-      <section class="lede-block">
-        <p class="trail">
-          <a href="/">keelapps</a><span>/</span>Signoff
-        </p>
+      <section class="intro intro--straddle">
         <p class="eyebrow">For teams whose pages need a real sign-off</p>
         <h1>Who approved this version of this page — and is that still good?</h1>
-        <p class="lede">
-          Confluence cannot answer that question. Signoff can, because its approvals pin the
-          exact page version they covered: edit the page and the badge degrades to
-          “Approved&nbsp;·&nbsp;page changed” on its own, computed live against the page and
-          never stored. Policies are defined once and bound to spaces by reference — govern
-          three hundred spaces without copying a workflow into any of them.
-        </p>
-        <div class="cta-row">
-          <a class="btn" href="https://marketplace.atlassian.com/apps/2487832225/signoff-page-approvals-for-confluence">Try it free on the Atlassian Marketplace</a>
-          <span class="note-inline">Zero egress. Approval records never leave your Atlassian tenant.</span>
+        <div class="intro__split">
+          <p class="lede">
+            Confluence cannot answer that question. Signoff can, because its approvals pin the
+            exact page version they covered: edit the page and the badge degrades to
+            “Approved&nbsp;·&nbsp;page changed” on its own, computed live against the page and
+            never stored. Policies are defined once and bound to spaces by reference — govern
+            three hundred spaces without copying a workflow into any of them.
+          </p>
+          <div class="intro__act">
+            <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/2487832225/signoff-page-approvals-for-confluence">Try it free on the Atlassian Marketplace</a>
+            <p class="pricing-line">
+              Free for sites up to 10 users. Above that it is priced per user per month and billed by
+              Atlassian — <a href="https://marketplace.atlassian.com/apps/2487832225/signoff-page-approvals-for-confluence?tab=pricing">see pricing on the Marketplace</a>.
+            </p>
+            <p class="intro__note">Zero egress. Approval records never leave your Atlassian tenant.</p>
+            <a class="intro__demo" href="#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Watch the 1:03 demo</a>
+          </div>
         </div>
-        <p class="pricing-line">
-          Free for sites up to 10 users. Above that it is priced per user per month and billed by
-          Atlassian — <a href="https://marketplace.atlassian.com/apps/2487832225/signoff-page-approvals-for-confluence?tab=pricing">see pricing on the Marketplace</a>.
-        </p>
+        <dl class="facts">
+          <div><dt>Works in</dt><dd>Confluence Cloud</dd></div>
+          <div><dt>Runs on</dt><dd>Atlassian Forge</dd></div>
+          <div><dt>Your data</dt><dd>Never leaves Atlassian</dd></div>
+          <div><dt>Price</dt><dd>Free up to 10 users</dd></div>
+        </dl>
       </section>
 
-      <figure class="showcase">
+      <figure class="showcase" id="demo">
         <iframe
           class="showcase__player"
           src="https://www.youtube-nocookie.com/embed/JBVMs6DVjTo"
@@ -146,7 +161,8 @@
       </figure>
 
       <section class="section">
-        <div class="aside" data-label="The gap this fills">
+        <p class="eyebrow">The gap this fills</p>
+        <div class="gap">
           <p>
             Quality manuals, SOPs, release notes, legal copy — pages whose whole value is
             that someone stood behind a specific version of them. The native page has no
@@ -158,6 +174,7 @@
       </section>
 
       <section class="section">
+        <p class="eyebrow">Capabilities</p>
         <h2>What it does</h2>
         <div class="grid">
           <div class="card">
@@ -211,6 +228,7 @@
       </section>
 
       <section class="section">
+        <p class="eyebrow">Walkthrough</p>
         <h2>An SOP review, end to end</h2>
         <ol class="steps">
           <li>
@@ -247,6 +265,7 @@
       </section>
 
       <section class="section">
+        <p class="eyebrow">Compared honestly</p>
         <h2>Against what you have today</h2>
         <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
           <table class="compare">
@@ -300,48 +319,128 @@
         </div>
       </section>
 
-      <section class="section">
-        <h2 id="availability">Availability</h2>
-        <div class="prose">
+      <section class="deep availability" id="availability" aria-labelledby="availability-title">
+        <div class="availability__text">
+          <p class="eyebrow">Availability</p>
+          <h2 id="availability-title">Free for sites up to 10 users.</h2>
           <p>
-            Signoff is live on the
-            <a href="https://marketplace.atlassian.com/apps/2487832225/signoff-page-approvals-for-confluence">Atlassian Marketplace</a>. It is built and deployed on
-            Atlassian Forge and installs into your Confluence Cloud site straight from the
-            listing.
-          </p>
-          <p>
-            Licensing is handled by Atlassian. Sites with 10 users or fewer pay nothing at
-            all; paid tiers are priced per user, at a fraction of the heavyweight suites.
-          </p>
-          <p>
-            Questions, bug reports and feature requests:
-            <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
-          </p>
-          <p>
-            Found a security issue? Please
-            <a href="/security/">report it privately</a>
-            rather than in a public channel.
+            Signoff installs into your Confluence Cloud site straight from its listing on the
+            Atlassian Marketplace. Above ten users it is priced per user per month, and
+            licensing is handled by Atlassian.
           </p>
         </div>
-
-        <nav class="manual__pagination">
-          <span><a href="/">← All apps</a></span>
-          <span class="manual__pagination-mid"><a href="/signoff/docs/">Documentation</a></span>
-          <span class="manual__pagination-next"><a href="/signoff/privacy/">Privacy policy →</a></span>
-        </nav>
+        <div class="availability__act">
+          <a class="btn btn--large btn--block btn--inverse" href="https://marketplace.atlassian.com/apps/2487832225/signoff-page-approvals-for-confluence">Try it free on the Atlassian Marketplace</a>
+          <p class="availability__links">
+            <a href="/signoff/docs/">Documentation</a>
+            <a href="/signoff/privacy/">Privacy policy</a>
+            <a href="https://keelapps.atlassian.net/helpcenter/support/">Ask a question</a>
+            <a href="/security/">Report a security issue</a>
+          </p>
+        </div>
       </section>
+
+      <!-- related:begin -->
+      <section class="section related" aria-labelledby="related-title">
+        <div class="related__head">
+          <h2 id="related-title">More for the people who run Confluence</h2>
+          <a href="/#apps">All eleven apps</a>
+        </div>
+        <ul class="related__grid">
+          <li class="app-card" data-host="confluence">
+            <a class="app-card__shot" href="/evergreen/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/evergreen.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Confluence · Content freshness</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/evergreen/">A page that was right two years ago still looks right today.</a></h3>
+            <p class="app-card__name">Evergreen for Confluence</p>
+            <p class="app-card__links">
+              <a href="/evergreen/">Product page</a>
+              <a href="/evergreen/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:06</a>
+              <a href="/evergreen/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="confluence">
+            <a class="app-card__shot" href="/accesslens-confluence/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/accesslens-confluence.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Confluence · Permission audit</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/accesslens-confluence/">Which spaces can this group reach, and which pages are locked?</a></h3>
+            <p class="app-card__name">AccessLens for Confluence</p>
+            <p class="app-card__links">
+              <a href="/accesslens-confluence/">Product page</a>
+              <a href="/accesslens-confluence/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:11</a>
+              <a href="/accesslens-confluence/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="confluence">
+            <a class="app-card__shot" href="/curator/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/curator.webp" alt="" width="760" height="372" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Confluence · Bulk page governance</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/curator/">Change three hundred pages at once — and put them back if it was wrong</a></h3>
+            <p class="app-card__name">Curator for Confluence</p>
+            <p class="app-card__links">
+              <a href="/curator/">Product page</a>
+              <a href="/curator/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:10</a>
+              <a href="/curator/docs/">Docs</a>
+            </p>
+          </li>
+        </ul>
+      </section>
+      <!-- related:end -->
     </main>
 
     <footer class="footer">
-      <p class="footer__links">
-        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
-        <a href="/security/">Security</a>
-      </p>
-      <p class="footer__fine">
-        Signoff is an Atlassian Forge app. It runs entirely inside your Atlassian tenant and
-        declares no external network access — your data is never sent to us or to anyone
-        else. Not affiliated with Atlassian. Confluence is a trademark of Atlassian.
-      </p>
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head">Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Signoff is an Atlassian Forge app. It runs entirely inside your Atlassian tenant
+          and declares no external network access — your data is never sent to us or to
+          anyone else. Not affiliated with Atlassian. Confluence is a trademark of
+          Atlassian.
+        </p>
+      </div>
     </footer>
   </body>
 </html>

@@ -1,78 +1,143 @@
-/* Product page. Same plate as the home page, more cargo on it.
+/* Product page. The same cross-section as the home page, with more cargo: the
+   offer above the waterline, the demo straddling it, and the detail below.
 
    The old page leaned on semantic colour — a red problem callout, green "yes"
    badges. Neither survives contact with a two-material palette, and coral is
    spoken for. Emphasis here is carried by inversion, rule, and label instead. */
 
 .product {
-  margin-inline: auto;
-  max-width: var(--measure-wide);
-  padding-inline: var(--gutter);
+  /* How far the demo reaches above the waterline: a little under half its
+     height, at whatever width the page container gives it. */
+  --shot-w: min(100vw - 2 * var(--gutter), var(--measure-wide));
+  --straddle: calc(var(--shot-w) * 0.22);
   width: 100%;
 }
 
 
-.lede-block {
-  padding-block: var(--space-xx-large) var(--space-x-large);
+/* Above the waterline. */
+
+.intro {
+  background: var(--color-tint);
+  border-bottom: var(--rule-gauge) solid var(--color-rule-strong);
+  padding: var(--space-xx-large) var(--bleed) var(--space-xx-large);
 }
 
-.eyebrow {
-  color: var(--color-ink-muted);
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-x-small);
-  letter-spacing: var(--tracking-wide);
-  margin-bottom: var(--space-medium);
-  text-transform: uppercase;
+.intro--straddle {
+  padding-bottom: calc(var(--straddle) + var(--space-x-large));
 }
 
-.lede-block h1 {
-  font-size: var(--font-size-display);
-  max-width: 16em;
+.intro h1 {
+  font-size: clamp(2.25rem, 1.15rem + 4.1vw, 4rem);
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+  max-width: 17em;
+}
+
+.intro__split {
+  display: grid;
+  gap: var(--space-large);
+  margin-top: var(--space-large);
+}
+
+@media (min-width: 64em) {
+  .intro__split {
+    align-items: start;
+    column-gap: 2rem;
+    grid-template-columns: 7fr 1fr 4fr;
+    margin-top: var(--space-x-large);
+  }
+
+  .intro__act {
+    grid-column: 3;
+  }
 }
 
 .lede {
   color: var(--color-ink-muted);
   font-size: var(--font-size-large);
-  margin-top: var(--space-large);
-  max-width: var(--measure);
+  line-height: 1.6;
+  max-width: 38em;
 }
 
-.cta-row {
+.intro__act {
+  display: grid;
+  gap: var(--space-small);
+  justify-items: start;
+}
+
+.pricing-line,
+.intro__note {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  line-height: 1.55;
+}
+
+.intro__demo {
   align-items: baseline;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-medium);
-  margin-top: var(--space-large);
-}
-
-/* .btn lives in site.css — the home page draws it for the support route. */
-
-.note-inline {
-  color: var(--color-ink-muted);
+  display: inline-flex;
   font-size: var(--font-size-small);
 }
 
-.pricing-line {
+.intro__demo svg {
+  align-self: center;
+  flex: none;
+  height: 0.6em;
+  margin-right: 0.5em;
+  width: 0.6em;
+}
+
+/* Four facts every page states the same way, so two apps can be compared by
+   glancing between tabs. */
+
+.facts {
+  display: grid;
+  gap: var(--space-medium) var(--space-large);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--space-x-large);
+}
+
+@media (min-width: 48em) {
+  .facts {
+    column-gap: 2rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.facts div {
+  border-top: var(--rule-gauge) solid var(--color-rule-strong);
+  padding-top: var(--space-small);
+}
+
+.facts dt {
   color: var(--color-ink-muted);
-  font-size: var(--font-size-small);
-  margin-top: var(--space-medium);
-  max-width: var(--measure);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.facts dd {
+  font-size: 106%;
+  font-weight: 500;
+  margin: 0.25em 0 0;
 }
 
 
-/* One real screen, full plate width, drawn with the same rule as everything
-   else: a screenshot, or a click-to-load player whose poster is that same
+/* The demo, straddling the waterline: half of it above, half in the water.
+   A screenshot, or a click-to-load player whose poster is that same
    screenshot (see MAINTAINING.md, "Video embeds"). The caption is copy a
    person reads, so it sits in muted, not faint. */
 
 .showcase {
-  margin: 0;
-  padding-bottom: var(--space-x-large);
+  margin: calc(-1 * var(--straddle)) var(--bleed) 0;
+  position: relative;
+  scroll-margin-top: var(--space-large);
 }
 
 .showcase img,
 .showcase video,
 .showcase iframe {
+  background: #fff;
   border: var(--rule-gauge) solid var(--color-rule-strong);
   border-radius: var(--radius-large);
   display: block;
@@ -95,31 +160,145 @@
 }
 
 
-/* Sections below the fold repeat the home page rhythm. */
+/* Sections below the waterline: an eyebrow and a heading, no rules between
+   them — the eyebrow does the separating. */
 
 .section {
-  border-top: var(--rule-gauge) solid var(--color-rule);
-  padding-block: var(--space-x-large);
+  padding: var(--space-xxx-large) var(--bleed) 0;
 }
 
 .section > h2 {
+  font-size: var(--font-size-title);
   margin-bottom: var(--space-large);
   max-width: 20em;
 }
 
 
-/* Capability grid. No card chrome — a rule above each entry, the way the
-   fleet listing is drawn. */
+/* The gap this fills: the case for the app in its own words, set larger than
+   the rest because it is the part a buyer quotes. */
+
+.gap {
+  display: grid;
+  gap: var(--space-medium) 2rem;
+}
+
+@media (min-width: 64em) {
+  .gap {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.gap p {
+  color: var(--color-ink-muted);
+}
+
+.gap p:first-child {
+  color: var(--color-ink);
+  font-size: var(--font-size-x-large);
+  line-height: 1.45;
+}
+
+@media (min-width: 64em) {
+  .gap p:first-child {
+    grid-row: span 3;
+  }
+
+  /* A single paragraph takes the whole row rather than half of it. */
+  .gap p:only-child {
+    grid-column: 1 / -1;
+    max-width: 34em;
+  }
+}
+
+/* A page whose gap is best said as "is / is not" draws the two side by side,
+   the first on a heavier rule. */
+
+.isnot {
+  display: grid;
+  gap: var(--space-large) 2rem;
+}
+
+@media (min-width: 48em) {
+  .isnot {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.isnot > div {
+  border-top: var(--rule-gauge) solid var(--color-rule-strong);
+  padding-top: var(--space-medium);
+}
+
+.isnot > div:first-child {
+  border-top: 2px solid var(--color-ink);
+}
+
+.isnot__label {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-small);
+  text-transform: uppercase;
+}
+
+.isnot p:not(.isnot__label) {
+  font-size: var(--font-size-large);
+  line-height: 1.55;
+}
+
+.isnot > div + div p {
+  color: var(--color-ink-muted);
+}
+
+.never {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-x-small);
+  list-style: none;
+  margin-top: var(--space-large);
+  padding: 0;
+}
+
+.never li {
+  border: var(--rule-gauge) solid var(--color-rule-strong);
+  border-radius: var(--radius);
+  font-size: var(--font-size-small);
+  margin: 0;
+  padding: 0.3em 0.75em;
+}
+
+.never li:first-child {
+  border: 0;
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  padding-inline: 0 0.6em;
+  text-transform: uppercase;
+}
+
+.never + p {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  margin-top: var(--space-small);
+}
+
+
+/* Capability grid. No card chrome — a rule above each entry, numbered as
+   stations. */
 
 .grid {
+  counter-reset: capability;
   display: grid;
   gap: var(--space-large);
 }
 
 @media (min-width: 44em) {
   .grid {
-    column-gap: var(--space-x-large);
+    column-gap: 2rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--space-x-large);
   }
 }
 
@@ -129,7 +308,19 @@
 
 .card {
   border-top: var(--rule-gauge) solid var(--color-rule);
+  counter-increment: capability;
   padding-top: var(--space-medium);
+}
+
+.card::before,
+.steps li::before {
+  color: var(--color-ink-faint);
+  content: "st." counter(capability, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-small);
 }
 
 .card h3 {
@@ -143,11 +334,12 @@
 }
 
 
-/* Walkthrough. Steps are numbered as stations, matching every other numbered
-   sequence on the site. */
+/* Walkthrough. The steps hang off one line like frames off a keel: a rule
+   along the top, a tick down the side of each. */
 
 .steps {
-  counter-reset: step;
+  border-top: var(--rule-gauge) solid var(--color-rule-strong);
+  counter-reset: capability;
   display: grid;
   gap: var(--space-large);
   list-style: none;
@@ -156,7 +348,7 @@
 
 @media (min-width: 44em) {
   .steps {
-    column-gap: var(--space-x-large);
+    column-gap: 2rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -166,20 +358,10 @@
 }
 
 .steps li {
-  border-top: var(--rule-gauge) solid var(--color-rule);
-  counter-increment: step;
+  border-left: var(--rule-gauge) solid var(--color-rule-strong);
+  counter-increment: capability;
   margin: 0;
-  padding-top: var(--space-medium);
-}
-
-.steps li::before {
-  color: var(--color-ink-faint);
-  content: "st." counter(step, decimal-leading-zero);
-  display: block;
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-x-small);
-  letter-spacing: var(--tracking-wide);
-  margin-bottom: var(--space-small);
+  padding: var(--space-medium) 0 0 var(--space-medium);
 }
 
 .steps h3 {
@@ -193,12 +375,25 @@
 }
 
 
-/* Comparison table. The answer column is inverted rather than coloured. */
+/* Comparison table. The answer column is inverted rather than coloured, and
+   its heading is in full ink: it is the column the page is about. */
 
-.compare th:first-child { width: 45%; }
+.compare {
+  font-size: 94%;
+}
+
+.compare th:first-child { width: 36%; }
 
 .compare td:last-child,
 .compare th:last-child { text-align: left; }
+
+.compare th:last-child {
+  color: var(--color-ink);
+}
+
+.compare thead th {
+  border-bottom-color: var(--color-rule-strong);
+}
 
 .answer {
   background: var(--color-ink);
@@ -224,4 +419,85 @@
 
 .prose {
   max-width: var(--measure);
+}
+
+.section .table-wrap + .prose {
+  margin-top: var(--space-large);
+}
+
+
+/* Availability, on the deep band: the price in one line, the one action, and
+   the ways out to the app's other pages. */
+
+.availability {
+  display: grid;
+  gap: var(--space-large);
+  margin-top: var(--space-xxx-large);
+  scroll-margin-top: var(--space-large);
+}
+
+@media (min-width: 64em) {
+  .availability {
+    align-items: end;
+    column-gap: 2rem;
+    grid-template-columns: 7fr 1fr 4fr;
+  }
+
+  .availability__act {
+    grid-column: 3;
+  }
+}
+
+.availability h2 {
+  font-size: var(--font-size-title);
+}
+
+.availability__text > p:not(.eyebrow) {
+  color: var(--color-canvas-muted);
+  margin-top: var(--space-medium);
+  max-width: 36em;
+}
+
+.availability__act {
+  display: grid;
+  gap: var(--space-medium);
+}
+
+.availability__links {
+  color: var(--color-canvas-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--font-size-small);
+  gap: var(--space-x-small) var(--space-medium);
+}
+
+
+/* More apps for the same product, drawn with the home page's card. */
+
+.related {
+  padding-bottom: var(--space-large);
+}
+
+.related__head {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-small) var(--space-large);
+  justify-content: space-between;
+}
+
+.related__head h2 {
+  font-size: var(--font-size-heading);
+}
+
+.related__grid {
+  display: grid;
+  gap: var(--space-x-large) 2rem;
+  list-style: none;
+  margin-top: var(--space-large);
+  padding: 0;
+}
+
+@media (min-width: 44em) {
+  .related__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }

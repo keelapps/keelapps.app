@@ -1,0 +1,329 @@
+#!/usr/bin/env python3
+"""Write the shared chrome into every page: masthead, footer, and app cards.
+
+This site has no build step, so markup that more than one page carries is
+repeated in each file. That was fine while the chrome was a lockup and two
+links. It now names the whole fleet — the footer lists every app, the home
+page draws a card for each, and every product page draws three more — and an
+app added by hand to thirty-five files is an app missing from one of them.
+
+So the repeated parts are written by this script, from the table below and
+from the pages themselves:
+
+  * the masthead: the lockup, the app a page belongs to, that app's pages,
+    and its Marketplace button once it has a listing;
+  * the footer: every app by product, then the page's own fine print, which is
+    read back out of the page and kept as it is;
+  * the home page's catalog, between <!-- fleet:begin --> and <!-- fleet:end -->;
+  * each product page's "more apps" row, between <!-- related:begin --> and
+    <!-- related:end -->;
+  * in <head>: the theme colours (the tint the masthead sits on) and the
+    preloads for the two brand faces.
+
+A card's words are not in this file. Its headline is the product page's own
+<h1>, its demo length the page's VideoObject duration, its Marketplace link the
+page's own button; the card image is whatever tools/make-card-images left in
+assets/screenshots/cards/. Edit the product page and re-run this.
+
+    tools/make-chrome             # rewrite every page
+    tools/make-chrome --check     # exit non-zero if any page has drifted
+
+Adding an app: a row in APPS, its three pages, then this, tools/make-card-images
+and tools/make-sitemap. The home page's copy counts the fleet in words ("Eleven
+apps") — change those by hand.
+"""
+
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+SUPPORT = "https://keelapps.atlassian.net/helpcenter/support/"
+VENDOR = "https://marketplace.atlassian.com/vendors/1003432963/keelapps"
+YOUTUBE = "https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw"
+
+# The fleet, in the order the home page lists it: permissions and approvals,
+# then the work that has to keep happening, then content, then attachments.
+# (slug, name, short name, product, what it is, three related slugs)
+APPS = [
+    ("accesslens", "AccessLens for Jira", "AccessLens", "Jira", "Permission audit",
+     ["recur", "digest", "mail-templates"]),
+    ("accesslens-confluence", "AccessLens for Confluence", "AccessLens", "Confluence", "Permission audit",
+     ["signoff", "evergreen", "curator"]),
+    ("signoff", "Signoff for Confluence", "Signoff", "Confluence", "Page approvals",
+     ["evergreen", "accesslens-confluence", "curator"]),
+    ("recur", "Recur for Jira", "Recur", "Jira", "Recurring tasks",
+     ["digest", "prefill", "accesslens"]),
+    ("digest", "Digest for Jira", "Digest", "Jira", "Scheduled reporting",
+     ["recur", "mail-templates", "prefill"]),
+    ("mail-templates", "Mail Templates for Jira", "Mail Templates", "Jira", "Notification templates",
+     ["recur", "digest", "prefill"]),
+    ("prefill", "Prefill for Jira", "Prefill", "Jira", "Intake links",
+     ["mail-templates", "recur", "digest"]),
+    ("evergreen", "Evergreen for Confluence", "Evergreen", "Confluence", "Content freshness",
+     ["signoff", "curator", "accesslens-confluence"]),
+    ("curator", "Curator for Confluence", "Curator", "Confluence", "Bulk page governance",
+     ["evergreen", "signoff", "accesslens-confluence"]),
+    ("satchel", "Satchel for Jira", "Satchel", "Jira", "Bulk attachments",
+     ["accesslens", "recur", "prefill"]),
+    ("satchel-confluence", "Satchel for Confluence", "Satchel", "Confluence", "Bulk attachments",
+     ["curator", "evergreen", "signoff"]),
+]
+PRODUCTS = ["Jira", "Confluence"]
+WORDS = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen \
+fifteen sixteen seventeen eighteen nineteen twenty".split()
+
+MARK = """<svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+  <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+    <path d="M 196 392 H 304" />
+    <path d="M 720 392 H 828" />
+    <path d="M 352 392 C 360 584, 664 584, 672 392" />
+    <path d="M 512 552 V 648" />
+  </g>
+  <circle cx="512" cy="708" r="30" fill="#E8664A" />
+</svg>"""
+PLAY = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>'
+
+PRELOADS = """    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+"""
+
+
+def indent(text, n):
+    pad = " " * n
+    return "\n".join(pad + line if line else line for line in text.splitlines())
+
+
+# --- What each product page says about itself ------------------------------
+
+class App:
+    def __init__(self, row):
+        self.slug, self.name, self.short, self.product, self.job, self.related = row
+        page = (ROOT / self.slug / "index.html").read_text()
+        h1 = re.search(r"<h1>(.*?)</h1>", page, re.S)
+        if not h1:
+            sys.exit(f"{self.slug}/index.html has no <h1> to put on its card")
+        self.problem = " ".join(re.sub(r"<[^>]+>", "", h1.group(1)).split())
+        intro = page.split('<section class="intro', 1)[-1].split("</section>", 1)[0]
+        mp = re.search(r'href="(https://marketplace\.atlassian\.com/apps/[^"?]+)"', intro)
+        self.marketplace = mp.group(1) if mp else None
+        dur = re.search(r'"duration": "PT(\d+)M(\d+)S"', page)
+        self.demo = f"{int(dur.group(1))}:{int(dur.group(2)):02d}" if dur else None
+        self.image = ROOT / "assets" / "screenshots" / "cards" / f"{self.slug}.webp"
+
+    @property
+    def live(self):
+        return self.marketplace is not None
+
+    def card(self):
+        if self.image.exists():
+            shot = (f'<img src="/assets/screenshots/cards/{self.slug}.webp" alt="" width="760" '
+                    f'height="372" loading="lazy" decoding="async" />')
+        else:
+            shot = "<span>Screenshot at launch</span>"
+        status = ('<span class="app-card__status">Live</span>' if self.live else
+                  '<span class="app-card__status app-card__status--soon">Coming soon</span>')
+        demo = (f'\n    <a href="/{self.slug}/#demo">{PLAY}Demo {self.demo}</a>'
+                if self.demo else "")
+        return f"""<li class="app-card" data-host="{self.product.lower()}">
+  <a class="app-card__shot" href="/{self.slug}/" tabindex="-1" aria-hidden="true">{shot}</a>
+  <p class="app-card__meta"><span>{self.product} · {self.job}</span>{status}</p>
+  <h3 class="app-card__problem"><a href="/{self.slug}/">{self.problem}</a></h3>
+  <p class="app-card__name">{self.name}</p>
+  <p class="app-card__links">
+    <a href="/{self.slug}/">Product page</a>{demo}
+    <a href="/{self.slug}/docs/">Docs</a>
+  </p>
+</li>"""
+
+
+FLEET = [App(row) for row in APPS]
+BY_SLUG = {app.slug: app for app in FLEET}
+
+
+# --- The pieces ------------------------------------------------------------
+
+def masthead(app=None, home=False):
+    brand = f"""<a class="masthead__home" href="/">
+{indent(MARK, 2)}
+  <span class="masthead__wordmark">keelapps</span>
+</a>"""
+    if app:
+        brand += (f'\n<span class="masthead__sep" aria-hidden="true"></span>'
+                  f'\n<a class="masthead__app" href="/{app.slug}/">{app.name}</a>')
+        nav = [f'<a href="/#apps">All apps</a>',
+               f'<a href="/{app.slug}/docs/">Documentation</a>',
+               f'<a href="/{app.slug}/privacy/">Privacy</a>',
+               f'<a href="{SUPPORT}">Support</a>']
+        if app.live:
+            nav.append(f'<a class="btn" href="{app.marketplace}">Try it free</a>')
+    elif home:
+        nav = ['<a href="#apps">Apps</a>',
+               '<a href="/security/">Security</a>',
+               f'<a href="{SUPPORT}">Support</a>',
+               f'<a class="btn btn--quiet" href="{VENDOR}">On the Marketplace</a>']
+    else:
+        nav = ['<a href="/#apps">All apps</a>', f'<a href="{SUPPORT}">Support</a>']
+    return f"""<header class="masthead">
+  <div class="masthead__brand">
+{indent(brand, 4)}
+  </div>
+  <nav class="masthead__nav" aria-label="Site">
+{indent(chr(10).join(nav), 4)}
+  </nav>
+</header>"""
+
+
+def footer(fine):
+    cols = []
+    for product in PRODUCTS:
+        items = "\n".join(f'<li><a href="/{a.slug}/">{a.short}</a></li>'
+                          for a in FLEET if a.product == product)
+        cols.append(f"""<div>
+  <p class="footer__head">{product}</p>
+  <ul class="footer__list">
+{indent(items, 4)}
+  </ul>
+</div>""")
+    cols.append(f"""<div>
+  <p class="footer__head">Keelapps</p>
+  <ul class="footer__list">
+    <li><a href="/security/">Security</a></li>
+    <li><a href="{SUPPORT}">Support</a></li>
+    <li><a href="{VENDOR}">Marketplace</a></li>
+    <li><a href="{YOUTUBE}">YouTube</a></li>
+  </ul>
+</div>""")
+    return f"""<footer class="footer">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <a class="masthead__home" href="/">
+{indent(MARK, 8)}
+        <span class="masthead__wordmark">keelapps</span>
+      </a>
+      <p class="footer__tagline">Steady tools, built below the waterline.</p>
+    </div>
+{indent(chr(10).join(cols), 4)}
+  </div>
+  <div class="footer__base">
+    <p class="footer__fine">
+{indent(wrap(fine), 6)}
+    </p>
+  </div>
+</footer>"""
+
+
+def wrap(text, width=82):
+    words, lines, line = text.split(), [], ""
+    for word in words:
+        if line and len(line) + 1 + len(word) > width:
+            lines.append(line)
+            line = word
+        else:
+            line = f"{line} {word}" if line else word
+    return "\n".join(lines + [line])
+
+
+def fleet():
+    counts = [("all", "All", len(FLEET))] + [
+        (p.lower(), p, sum(a.product == p for a in FLEET)) for p in PRODUCTS]
+    radios = "\n".join(
+        f'<input type="radio" name="host" id="host-{key}"{" checked" if key == "all" else ""} />\n'
+        f'<label for="host-{key}">{label} <span>{n}</span></label>' for key, label, n in counts)
+    cards = "\n".join(a.card() for a in FLEET)
+    return f"""<fieldset class="filter">
+  <legend>Show apps for</legend>
+{indent(radios, 2)}
+</fieldset>
+
+<ol class="fleet__grid">
+{indent(cards, 2)}
+</ol>"""
+
+
+def related(app):
+    cards = "\n".join(BY_SLUG[s].card() for s in app.related)
+    return f"""<section class="section related" aria-labelledby="related-title">
+  <div class="related__head">
+    <h2 id="related-title">More for the people who run {app.product}</h2>
+    <a href="/#apps">All {WORDS[len(FLEET)]} apps</a>
+  </div>
+  <ul class="related__grid">
+{indent(cards, 4)}
+  </ul>
+</section>"""
+
+
+# --- Putting them into a page ----------------------------------------------
+
+def region(text, name, body, n):
+    pattern = re.compile(rf"( *)<!-- {name}:begin -->.*?<!-- {name}:end -->", re.S)
+    m = pattern.search(text)
+    if not m:
+        return text
+    pad = m.group(1)
+    return (text[:m.start()] + f"{pad}<!-- {name}:begin -->\n{indent(body, n)}\n"
+            f"{pad}<!-- {name}:end -->" + text[m.end():])
+
+
+def render(path):
+    text = path.read_text()
+    rel = path.parent.relative_to(ROOT).parts
+    app = BY_SLUG.get(rel[0]) if rel else None
+    home = not rel
+
+    # <head>
+    text = text.replace('content="#F4EFE6" media="(prefers-color-scheme: light)"',
+                        'content="#E5DECF" media="(prefers-color-scheme: light)"')
+    text = text.replace('content="#0F2536" media="(prefers-color-scheme: dark)"',
+                        'content="#1C3A52" media="(prefers-color-scheme: dark)"')
+    if "/assets/fonts/outfit-latin.woff2" not in text:
+        anchor = '    <link rel="stylesheet" href="/assets/css/reset.css" />\n'
+        if anchor not in text:
+            sys.exit(f"{path.relative_to(ROOT)}: no reset.css link to put the font preloads before")
+        text = text.replace(anchor, PRELOADS + anchor, 1)
+
+    # masthead
+    new = indent(masthead(app, home), 4)
+    text, n = re.subn(r" *<header class=\"masthead\">.*?</header>", lambda _: new, text, count=1, flags=re.S)
+    if not n:
+        sys.exit(f"{path.relative_to(ROOT)}: no masthead")
+
+    # footer, keeping the page's own fine print
+    m = re.search(r' *<footer class="footer">.*?</footer>', text, re.S)
+    if not m:
+        sys.exit(f"{path.relative_to(ROOT)}: no footer")
+    fine = re.search(r'<p class="footer__fine">(.*?)</p>', m.group(0), re.S)
+    new = indent(footer(" ".join(fine.group(1).split())), 4)
+    text = text[:m.start()] + new + text[m.end():]
+
+    if home:
+        text = region(text, "fleet", fleet(), 8)
+    if app:
+        text = region(text, "related", related(app), 6)
+    return text
+
+
+def main():
+    check = "--check" in sys.argv
+    drifted = []
+    for path in sorted(ROOT.rglob("index.html")):
+        if any(part.startswith(".") for part in path.relative_to(ROOT).parts):
+            continue
+        old = path.read_text()
+        new = render(path)
+        if new != old:
+            drifted.append(path.relative_to(ROOT))
+            if not check:
+                path.write_text(new)
+    if check and drifted:
+        print("chrome out of date — run tools/make-chrome:")
+        for p in drifted:
+            print(f"  {p}")
+        sys.exit(1)
+    if not check:
+        print(f"{len(drifted)} page(s) rewritten")
+
+
+if __name__ == "__main__":
+    main()

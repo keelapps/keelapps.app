@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+"""Regenerate the small screenshots the app cards show, from each product page.
+
+The home page shows every app as a card, and each product page shows three
+more. A card is at most about 380 CSS pixels wide, so the 1840x900 PNG a product
+page opens on would be several hundred kilobytes spent on a thumbnail — eleven
+of them on the home page alone. These are the same screenshots at 760x372
+(twice the card width, for a high-density screen) as WebP.
+
+Which screenshot is an app's is not written down here: it is the product page's
+own og:image, when that is one of assets/screenshots/. A page whose og:image is
+the default share card has no screenshot yet, gets no card image, and its card
+says so instead (see tools/make-chrome).
+
+    tools/make-card-images        # rewrite assets/screenshots/cards/*.webp
+
+Needs ImageMagick (`magick`). Run tools/make-chrome afterwards: it writes the
+image into a card only when the file exists.
+"""
+
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "assets" / "screenshots" / "cards"
+W, H = 760, 372
+QUALITY = 82
+SKIP = {".git", "assets", "tools", "security"}
+
+
+def product_pages():
+    for page in sorted(ROOT.glob("*/index.html")):
+        if page.parent.name not in SKIP:
+            yield page.parent.name, page
+
+
+def main():
+    OUT.mkdir(parents=True, exist_ok=True)
+    for slug, page in product_pages():
+        m = re.search(r'<meta property="og:image" content="https://keelapps\.app/(assets/screenshots/[^"]+)"',
+                      page.read_text())
+        target = OUT / f"{slug}.webp"
+        if not m:
+            if target.exists():
+                target.unlink()
+            print(f"{slug:24} no screenshot yet")
+            continue
+        source = ROOT / m.group(1)
+        subprocess.run(["magick", str(source), "-resize", f"{W}x{H}^", "-gravity", "center",
+                        "-extent", f"{W}x{H}", "-strip", "-quality", str(QUALITY), str(target)],
+                       check=True)
+        print(f"{slug:24} {target.relative_to(ROOT)}  {target.stat().st_size / 1024:.0f} KB")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except FileNotFoundError:
+        sys.exit("ImageMagick not found; install it (brew install imagemagick)")
