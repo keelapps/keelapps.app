@@ -9,10 +9,17 @@ uploaded to places that host their own copy.
 | --- | --- | --- |
 | `keelapps-youtube-2560x1440.png` | 2560×1440 | YouTube channel art — Customise channel → Branding → Banner image |
 
+One generated image *is* loaded by the site, and lives outside this folder because
+every page already points at its path: `assets/banner.png`, the default share card
+(og:image) for any page without its own. `tools/make-share-card` rebuilds it. It
+names no products — the hand-drawn original listed four apps and was out of date
+by the fifth.
+
 ## Rebuilding
 
 ```sh
 tools/make-youtube-banner
+tools/make-share-card
 ```
 
 Do not edit a PNG here. Change the script and re-run it. The mark's paths are
