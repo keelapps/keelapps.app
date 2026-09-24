@@ -25,6 +25,36 @@
     <meta property="og:image:width" content="1840" />
     <meta property="og:image:height" content="900" />
     <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Satchel — Bulk Attachment Download & Manager",
+        "alternateName": "Satchel for Jira",
+        "description": "Zip every attachment on a Jira issue, a JQL result or a whole project, foldered by issue key. Then see what is in there: duplicate candidates, storage by uploader, the biggest files, CSV. The archive is built in your browser.",
+        "url": "https://keelapps.app/satchel/",
+        "image": "https://keelapps.app/assets/screenshots/satchel-issue-panel.png",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Jira Cloud",
+        "installUrl": "https://marketplace.atlassian.com/apps/788499894",
+        "softwareHelp": {
+          "@type": "CreativeWork",
+          "url": "https://keelapps.app/satchel/docs/"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free for sites up to 10 users. Above that it is priced per user per month and billed by Atlassian.",
+          "url": "https://marketplace.atlassian.com/apps/788499894?tab=pricing"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Keelapps",
+          "url": "https://keelapps.app/"
+        }
+      }
+    </script>
     <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/assets/css/reset.css" />
@@ -67,6 +97,7 @@
         <a href="/satchel/docs/">Documentation</a>
         <a href="/satchel/privacy/">Privacy</a>
         <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a class="btn" href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager">Try it free</a>
       </nav>
     </header>
 
@@ -83,7 +114,11 @@
             so attachment bytes never touch a server of ours. There is not one.
           </p>
           <div class="intro__act">
-            <a class="btn btn--large btn--block btn--quiet" href="#availability">Coming to the Atlassian Marketplace</a>
+            <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager">Try it free on the Atlassian Marketplace</a>
+            <p class="pricing-line">
+              Free for sites up to 10 users. Above that it is priced per user per month and billed by
+              Atlassian — <a href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager?tab=pricing">see pricing on the Marketplace</a>.
+            </p>
             <p class="intro__note">Zero egress. No external server, no egress permission in the manifest, no copy of your files anywhere.</p>
           </div>
         </div>
@@ -91,7 +126,7 @@
           <div><dt>Works in</dt><dd>Jira Cloud</dd></div>
           <div><dt>Runs on</dt><dd>Atlassian Forge</dd></div>
           <div><dt>Your data</dt><dd>Never sent to us</dd></div>
-          <div><dt>Status</dt><dd>In Marketplace review</dd></div>
+          <div><dt>Price</dt><dd>Free up to 10 users</dd></div>
         </dl>
       </section>
 
@@ -312,11 +347,10 @@
       <section class="deep availability" id="availability" aria-labelledby="availability-title">
         <div class="availability__text">
           <p class="eyebrow">Availability</p>
-          <h2 id="availability-title">In Atlassian Marketplace review.</h2>
+          <h2 id="availability-title">Free for sites up to 10 users.</h2>
           <p>
-            Satchel for Jira is built and deployed on Atlassian Forge. It is going through
-            Atlassian Marketplace review; this page will link to the listing as soon as it is
-            live.
+            Satchel for Jira installs into your Jira Cloud site straight from its listing on the
+            Atlassian Marketplace. It is built and deployed on Atlassian Forge.
           </p>
           <p>
             Licensing is handled by Atlassian. Sites with 10 users or fewer pay nothing at all,
@@ -332,6 +366,7 @@
           </p>
         </div>
         <div class="availability__act">
+          <a class="btn btn--large btn--block btn--inverse" href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager">Try it free on the Atlassian Marketplace</a>
           <p class="availability__links">
             <a href="/satchel/docs/">Documentation</a>
             <a href="/satchel/privacy/">Privacy policy</a>
