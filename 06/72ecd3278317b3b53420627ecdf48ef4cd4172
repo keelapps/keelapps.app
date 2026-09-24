@@ -1,0 +1,27 @@
+satchel/privacy/index.html
+  s_0ca869bfbb8152::t_6a3c9e3857e899 68
+index.html
+  s_0ca869bfbb8152::t_6a3c9e3857e899 233
+README.md
+  s_0ca869bfbb8152::t_6a3c9e3857e899 21
+satchel/docs/index.html
+  s_0ca869bfbb8152::t_6a3c9e3857e899 68
+satchel/index.html
+  s_0ca869bfbb8152::t_6a3c9e3857e899 28-57,100,117-121,129,350,352-353,369
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "0672ecd3278317b3b53420627ecdf48ef4cd4172",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
