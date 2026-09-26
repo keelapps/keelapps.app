@@ -64,6 +64,8 @@ APPS = [
      ["signoff", "curator", "accesslens-confluence"]),
     ("curator", "Curator for Confluence", "Curator", "Confluence", "Bulk page governance",
      ["evergreen", "signoff", "accesslens-confluence"]),
+    ("sort-pages", "Sort Pages for Confluence", "Sort Pages", "Confluence", "Page tree order",
+     ["curator", "evergreen", "signoff"]),
     ("satchel", "Satchel for Jira", "Satchel", "Jira", "Bulk attachments",
      ["accesslens", "recur", "prefill"]),
     ("satchel-confluence", "Satchel for Confluence", "Satchel", "Confluence", "Bulk attachments",

@@ -24,6 +24,7 @@ those players sit behind a same-origin poster until then.
 | Curator for Confluence | [`/curator/`](https://keelapps.app/curator/) | [`/curator/docs/`](https://keelapps.app/curator/docs/) | [`/curator/privacy/`](https://keelapps.app/curator/privacy/) | Live — [Marketplace](https://marketplace.atlassian.com/apps/33303578/curator-bulk-page-label-governance) |
 | Satchel for Confluence | [`/satchel-confluence/`](https://keelapps.app/satchel-confluence/) | [`/satchel-confluence/docs/`](https://keelapps.app/satchel-confluence/docs/) | [`/satchel-confluence/privacy/`](https://keelapps.app/satchel-confluence/privacy/) | Live — [Marketplace](https://marketplace.atlassian.com/apps/2701230997/satchel-bulk-attachments-for-confluence) |
 | Mail Templates for Jira | [`/mail-templates/`](https://keelapps.app/mail-templates/) | [`/mail-templates/docs/`](https://keelapps.app/mail-templates/docs/) | [`/mail-templates/privacy/`](https://keelapps.app/mail-templates/privacy/) | Live — [Marketplace](https://marketplace.atlassian.com/apps/948167511/mail-templates-for-jira) |
+| Sort Pages for Confluence | [`/sort-pages/`](https://keelapps.app/sort-pages/) | [`/sort-pages/docs/`](https://keelapps.app/sort-pages/docs/) | [`/sort-pages/privacy/`](https://keelapps.app/sort-pages/privacy/) | Coming soon |
 
 ## Two things here have consequences off this site
 

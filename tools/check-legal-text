@@ -35,6 +35,7 @@ PAGES = [
     "satchel/privacy/index.html",
     "satchel-confluence/privacy/index.html",
     "signoff/privacy/index.html",
+    "sort-pages/privacy/index.html",
     "security/index.html",
 ]
 
