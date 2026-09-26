@@ -72,8 +72,8 @@
         <h1>Sort a page tree once, and the next new page still lands at the bottom.</h1>
         <div class="intro__split">
           <p class="lede">
-            Confluence can put a page's children in alphabetical order once, from the page tree's
-            menu. Add a page tomorrow and it goes to the bottom again. Sort Pages keeps a rule
+            Confluence can sort a page's children A to Z once, from Space settings → Reorder. Add
+            a page tomorrow and it goes to the bottom again. Sort Pages keeps a rule
             instead: set it on a page, a folder or a whole space, and pages that are created,
             renamed, moved or restored fall into place within a minute — A to Z with natural
             numbers, Z to A, newest first or oldest first. Only the order changes. Nothing leaves
@@ -99,9 +99,10 @@
             <strong>CONFCLOUD-65454 — keep pages permanently sorted alphabetically — has 625
             votes</strong> and sits at <em>Under Consideration</em>; in April 2025 the product manager
             wrote that it is harder than it looks, and nothing has moved since. Its neighbours ask
-            for the rest: newest first for meeting notes (CONFCLOUD-31358), reordering from
-            Automation (CONFCLOUD-77875), and a fix for the built-in sort failing silently when a
-            child page is restricted (CONFCLOUD-82423).
+            for a reverse sort (CONFCLOUD-31358) and for reordering as pages are created or updated
+            (CONFCLOUD-77875), and Atlassian's own bug report CONFCLOUD-82423 notes that the
+            built-in A to Z sort can fail without an error when the person sorting cannot edit
+            every page.
           </p>
           <p>
             So spaces drift. Someone sorts the tree by hand, a colleague adds a page, and it lands
@@ -217,18 +218,13 @@
             <tbody>
               <tr>
                 <td>Stay sorted after someone adds a page?</td>
-                <td class="absent">No — the sort is one-off</td>
+                <td class="absent">No — the A to Z sort is one-off</td>
                 <td><span class="answer">Yes, within a minute</span></td>
               </tr>
               <tr>
-                <td>Chapter 2 before Chapter 10?</td>
-                <td class="absent">No</td>
-                <td><span class="answer">Natural number order</span></td>
-              </tr>
-              <tr>
-                <td>Newest meeting notes on top?</td>
-                <td class="absent">No</td>
-                <td><span class="answer">Newest or oldest first</span></td>
+                <td>Z to A, or newest first?</td>
+                <td class="absent">A to Z only</td>
+                <td><span class="answer">A to Z, Z to A, newest or oldest first</span></td>
               </tr>
               <tr>
                 <td>Every level of a space at once?</td>
@@ -236,14 +232,14 @@
                 <td><span class="answer">Whole space, with exceptions</span></td>
               </tr>
               <tr>
-                <td>A restricted child page in the list?</td>
-                <td class="absent">The sort fails silently</td>
-                <td><span class="answer">Sorted around it, and reported</span></td>
+                <td>A page that cannot be moved?</td>
+                <td class="absent">The sort can fail without an error (CONFCLOUD-82423)</td>
+                <td><span class="answer">It stays put, the rest are sorted around it, and the log says so</span></td>
               </tr>
               <tr>
-                <td>Take it back?</td>
-                <td class="absent">No</td>
-                <td><span class="answer">Restore the original order</span></td>
+                <td>Back to how it was?</td>
+                <td>Undo Sorting, on the Reorder page</td>
+                <td><span class="answer">Restore the order from before the first sort, at any time</span></td>
               </tr>
             </tbody>
           </table>
