@@ -19,7 +19,7 @@
     <meta property="og:title" content="Satchel for Jira — bulk attachment download and management" />
     <meta
       property="og:description"
-      content="Jira has no “download all attachments” button. Satchel adds one, then answers the question that follows it: what is in there, and how much of it can go? Built on Forge, zero egress."
+      content="Jira zips one issue at a time. Satchel zips a JQL result or a whole project, foldered by issue key, then answers the question that follows: what is in there, and how much of it can go? Built on Forge, zero egress."
     />
     <meta property="og:image" content="https://keelapps.app/assets/screenshots/satchel-issue-panel.png" />
     <meta property="og:image:width" content="1840" />
@@ -112,15 +112,15 @@
 
     <main class="product" id="main">
       <section class="intro intro--straddle">
-        <p class="eyebrow">For the issue with twelve attachments and no download button</p>
-        <h1>Twelve attachments means twelve previews. Or one zip.</h1>
+        <p class="eyebrow">For the files spread across a whole project</p>
+        <h1>Jira zips one issue. Satchel zips the whole search.</h1>
         <div class="intro__split">
           <p class="lede">
-            Jira Cloud has no “download all attachments” button. Satchel adds it — for one
-            issue, for a JQL result, or for a whole project foldered by issue key — and then
-            answers the question that always follows: what is actually in there, and how much of
-            it can go? The archive is assembled in your own browser from your own Jira session,
-            so attachment bytes never touch a server of ours. There is not one.
+            Jira Cloud’s own Download all works one issue at a time. Satchel zips a JQL result or
+            a whole project in one archive, foldered by issue key — and then answers the question
+            that always follows: what is actually in there, and how much of it can go? The
+            archive is assembled in your own browser from your own Jira session, so attachment
+            bytes never touch a server of ours. There is not one.
           </p>
           <div class="intro__act">
             <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager">Try it free on the Atlassian Marketplace</a>
@@ -163,11 +163,12 @@
         <p class="eyebrow">The gap this fills</p>
         <div class="gap">
           <p>
-            To get twelve attachments off a Jira issue you open a preview, close it, and do it
-            eleven more times. Across issues, bulk download does not exist at all. The request
-            has been open on Atlassian's own tracker since 2019 — JRACLOUD-72921, 121 votes,
-            still <em>Gathering Interest</em> — and past 150 attachments Jira stops rendering
-            them altogether (JRACLOUD-81747).
+            Jira Cloud can download every attachment on one issue. Across issues it cannot:
+            collecting the files behind a quarter's close means opening every issue and
+            downloading each one's attachments separately. The request has been open on
+            Atlassian's own tracker since 2018 — JRACLOUD-68871, 113 votes, still
+            <em>Gathering Interest</em> — and past 150 attachments on one issue Jira stops
+            showing previews and thumbnails (JRACLOUD-81747).
           </p>
           <p>
             The Marketplace has a download-only app in this space and a heavyweight document
@@ -284,7 +285,7 @@
             <tbody>
               <tr>
                 <td>Download every attachment on an issue?</td>
-                <td class="absent">One preview at a time</td>
+                <td>Yes — Download all</td>
                 <td>Yes</td>
                 <td><span class="answer">One zip</span></td>
               </tr>
@@ -308,7 +309,7 @@
               </tr>
               <tr>
                 <td>Delete in bulk, with a record?</td>
-                <td class="absent">One at a time, no trail</td>
+                <td class="absent">One issue at a time</td>
                 <td class="absent">—</td>
                 <td><span class="answer">Dry run, confirmation, audit</span></td>
               </tr>
@@ -371,7 +372,7 @@
           <p>
             Licensing is handled by Atlassian. Sites with 10 users or fewer pay nothing at all,
             and above that the single-issue zip and the direct download stay free forever on
-            every install — the fix for JRACLOUD-72921 is never behind a licence check. What a
+            every install — the no-preview download CLOUD-12448 asks for is never behind a licence check. What a
             licence buys is scale and governance: cross-issue archives, the project inventory,
             the duplicate and storage reports, CSV export and deletion.
           </p>
