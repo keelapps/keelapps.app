@@ -6,20 +6,20 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#E5DECF" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
-    <title>Satchel for Confluence — bulk attachments, and the move Cloud never got</title>
+    <title>Satchel for Confluence — bulk attachments, and the bulk move Cloud never got</title>
     <meta
       name="description"
-      content="See every attachment in a Confluence space, download them as one zip, find orphans and duplicate candidates, and move files between pages — the gap CONFCLOUD-15025 left open in 2009. Built on Forge, nothing leaves Atlassian."
+      content="See every attachment in a Confluence space, download them as one zip, find orphans and duplicate candidates, and move files between pages in bulk — the gap CONFCLOUD-15025 left open in 2009. Built on Forge, nothing leaves Atlassian."
     />
     <link rel="canonical" href="https://keelapps.app/satchel-confluence/" />
     <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/assets/icon.png" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://keelapps.app/satchel-confluence/" />
-    <meta property="og:title" content="Satchel for Confluence — bulk attachments, and the move Cloud never got" />
+    <meta property="og:title" content="Satchel for Confluence — bulk attachments, and the bulk move Cloud never got" />
     <meta
       property="og:description"
-      content="Confluence shows attachments one page at a time. Satchel indexes the whole space: search, zip, spot orphans and duplicate candidates, and move attachments between pages. Zero egress."
+      content="Confluence moves attachments one at a time and downloads them one page at a time. Satchel indexes the whole space: search, zip, spot orphans and duplicate candidates, and move attachments in bulk. Zero egress."
     />
     <meta property="og:image" content="https://keelapps.app/assets/screenshots/satchel-confluence-move.png" />
     <meta property="og:image:width" content="1840" />
@@ -31,7 +31,7 @@
         "@type": "SoftwareApplication",
         "name": "Satchel — Bulk Attachments for Confluence",
         "alternateName": "Satchel for Confluence",
-        "description": "See every attachment in a Confluence space, download them as one zip, find orphans and duplicate candidates, and move files between pages — the gap CONFCLOUD-15025 left open in 2009. Built on Forge, nothing leaves Atlassian.",
+        "description": "See every attachment in a Confluence space, download them as one zip, find orphans and duplicate candidates, and move files between pages in bulk — the gap CONFCLOUD-15025 left open in 2009. Built on Forge, nothing leaves Atlassian.",
         "url": "https://keelapps.app/satchel-confluence/",
         "image": "https://keelapps.app/assets/screenshots/satchel-confluence-move.png",
         "applicationCategory": "BusinessApplication",
@@ -112,15 +112,15 @@
 
     <main class="product" id="main">
       <section class="intro intro--straddle">
-        <p class="eyebrow">For the file that is attached to the wrong page</p>
-        <h1>Move an attachment to another page. Confluence Cloud still cannot.</h1>
+        <p class="eyebrow">For the files attached to the wrong pages</p>
+        <h1>Confluence moves attachments one at a time. Satchel moves them in bulk.</h1>
         <div class="intro__split">
           <p class="lede">
-            Confluence shows attachments one page at a time, and moving a file between pages is
-            not possible at all. Satchel indexes the whole space instead: search every file,
-            download a structured zip, spot orphans and duplicate candidates, and move attachments
-            between pages — with a dry run before, an undo after, and a per-file report of what
-            actually happened. Nothing leaves Atlassian.
+            Confluence moves attachments one at a time, from each file’s Properties, and
+            downloads them one page at a time. Satchel indexes the whole space instead: search
+            every file, download a structured zip, spot orphans and duplicate candidates, and move
+            attachments between pages in bulk — with a dry run before, an undo after, and a
+            per-file report of what actually happened. Nothing leaves Atlassian.
           </p>
           <div class="intro__act">
             <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/2701230997/satchel-bulk-attachments-for-confluence">Try it free on the Atlassian Marketplace</a>
@@ -166,11 +166,12 @@
             <strong>CONFCLOUD-15025 — “Bulk Move of Attachments Between Pages” — has been open
             since March 2009</strong>, with 152 votes, and Atlassian's answer in January 2022 was
             that it is “a feature that we don't have plans to prioritize in the near future.”
-            Confluence Data Center has a move endpoint. Cloud never got one.
+            Cloud moves a file from its Properties, one file at a time.
           </p>
           <p>
-            The rest of it is the same story one level down: to answer “what is in this space,
-            how big is it, who put it there” you open pages one at a time. The Marketplace has a
+            The rest of it is the same story one level down: Confluence lists a space’s files in
+            space settings and reports storage as one total per space, but it downloads one page
+            at a time, and a whole space not at all. The Marketplace has a
             download-only app in this category and nothing that puts move, orphan detection and
             storage analysis together.
           </p>
@@ -200,14 +201,14 @@
             <h3>One table for the whole space</h3>
             <p>
               Search and filter every attachment by page, type, uploader and size; select across
-              pages; act in bulk. Confluence gives you one page's worth at a time.
+              pages; act in bulk.
             </p>
           </div>
           <div class="card">
             <h3>Find what nobody is using</h3>
             <p>
-              Four buckets: files on deleted pages, files on archived pages, files sitting in the
-              trash and still billed to you, and attachments no page body references.
+              Four buckets: files on deleted pages, files on archived pages, files still sitting
+              in the trash, and attachments no page body references.
             </p>
           </div>
           <div class="card">
@@ -282,14 +283,14 @@
             </thead>
             <tbody>
               <tr>
-                <td>Move an attachment to another page?</td>
-                <td class="absent">Not possible at all</td>
+                <td>Move attachments to another page?</td>
+                <td class="absent">One file at a time, via Properties</td>
                 <td class="absent">—</td>
                 <td><span class="answer">Dry run, per-file report, undo</span></td>
               </tr>
               <tr>
                 <td>See every attachment in a space at once?</td>
-                <td class="absent">One page at a time</td>
+                <td class="absent">A list in space settings</td>
                 <td>Partly</td>
                 <td><span class="answer">One searchable table</span></td>
               </tr>
@@ -307,7 +308,7 @@
               </tr>
               <tr>
                 <td>Where did the space's storage go?</td>
-                <td class="absent">No breakdown</td>
+                <td class="absent">One total per space</td>
                 <td class="absent">—</td>
                 <td><span class="answer">By page, uploader and type</span></td>
               </tr>
