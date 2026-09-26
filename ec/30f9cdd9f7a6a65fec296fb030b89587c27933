@@ -1,0 +1,32 @@
+recur/index.html
+  s_0ca869bfbb8152::t_78b34ce5d72804 61-63,147-148,160
+  s_0ca869bfbb8152::t_32b181f3c16eaa 158-159
+accesslens/index.html
+  s_0ca869bfbb8152::t_78b34ce5d72804 323
+satchel/index.html
+  s_0ca869bfbb8152::t_78b34ce5d72804 421
+index.html
+  s_0ca869bfbb8152::t_78b34ce5d72804 172
+mail-templates/index.html
+  s_0ca869bfbb8152::t_78b34ce5d72804 381
+prefill/index.html
+  s_0ca869bfbb8152::t_78b34ce5d72804 414
+digest/index.html
+  s_0ca869bfbb8152::t_78b34ce5d72804 354
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "ec30f9cdd9f7a6a65fec296fb030b89587c27933",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
