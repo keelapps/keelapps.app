@@ -1,0 +1,16 @@
+accesslens-confluence/index.html
+  h_cd61d860612957 61-63,147-148,160
+index.html
+  h_cd61d860612957 150
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "81d82e83d952b7dc7787ebc417ec94b0bd7474fa",
+  "prompts": {},
+  "humans": {
+    "h_cd61d860612957": {
+      "author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
