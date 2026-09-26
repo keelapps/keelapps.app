@@ -1,0 +1,115 @@
+curator/privacy/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 300
+satchel-confluence/privacy/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 324
+digest/privacy/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 245
+prefill/privacy/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 264
+satchel/privacy/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 333
+evergreen/docs/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 382
+accesslens/docs/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 308
+recur/docs/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 402
+satchel/docs/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 427
+sort-pages/privacy/index.html
+  s_b586be21c5e5c9::t_9d6ae68e1a786c 1-23,26-43,68-239,288-296
+  s_0ca869bfbb8152::t_c53acd92406f8f 24-25,44-57,60-62,65-67,240-273,275-287
+  s_b586be21c5e5c9::t_0ec40120ba1553 58-59,63-64,274
+satchel-confluence/docs/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 434
+evergreen/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 339,415
+signoff/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 347,423
+sort-pages/docs/index.html
+  s_0ca869bfbb8152::t_c53acd92406f8f 24-25,44-57,60-62,65-67,333-366,368-380
+  s_b586be21c5e5c9::t_0ec40120ba1553 58-59,63-64,367
+  s_b586be21c5e5c9::t_781993aeba4009 1-23,26-43,68-332,381-389
+mail-templates/docs/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 354
+evergreen/privacy/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 273
+digest/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 344,420
+mail-templates/privacy/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 258
+digest/docs/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 387
+sort-pages/index.html
+  s_b586be21c5e5c9::t_b6d243bb2f9365 1-23,26-43,68-308,350-353,402-412
+  s_0ca869bfbb8152::t_c53acd92406f8f 24-25,44-57,60-62,65-67,354-387,389-401
+  s_b586be21c5e5c9::t_0ec40120ba1553 58-59,63-64,309-349,388
+mail-templates/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 371,447
+README.md
+  s_b586be21c5e5c9::t_0ec40120ba1553 27
+security/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 205
+curator/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 391,467
+accesslens/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 313,389
+prefill/docs/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 413
+index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 88,93,113,124,128,231-240,375
+recur/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 330,406
+accesslens-confluence/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 398,474
+curator/docs/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 413
+signoff/docs/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 287
+accesslens-confluence/docs/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 390
+prefill/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 393,469
+satchel-confluence/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 408,484
+accesslens/privacy/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 247
+accesslens-confluence/privacy/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 284
+signoff/privacy/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 235
+satchel/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 400,476
+tools/check-legal-text
+  s_b586be21c5e5c9::t_0ec40120ba1553 38
+recur/privacy/index.html
+  s_b586be21c5e5c9::t_0ec40120ba1553 241
+sitemap.xml
+  s_b586be21c5e5c9::t_0ec40120ba1553 3-40
+tools/make-chrome
+  s_b586be21c5e5c9::t_0ec40120ba1553 67-68
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b6a0813587f200528451a103abd628c66b55250b",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    },
+    "s_b586be21c5e5c9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "be4091c1-c568-4c69-8d27-68afc4e03361",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
