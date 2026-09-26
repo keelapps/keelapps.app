@@ -153,14 +153,14 @@
 
         <h2 id="restrictions">The page restriction audit</h2>
         <p>
-          This is the piece Confluence makes hardest to self-check, and it is where the app
-          differs most from everything else in the category.
+          This is the piece Confluence makes hardest to self-check: it lists restricted pages
+          one space at a time, and a page's share dialog explains only that page.
         </p>
         <p>Per space, AccessLens lists:</p>
         <ul>
           <li>Every restricted page, with the restriction type — view, edit, or both.</li>
           <li>
-            <strong>Where the restriction comes from.</strong> Restrictions inherit downwards,
+            <strong>Where the restriction comes from.</strong> View restrictions inherit downwards,
             so a page is very often hidden by an ancestor rather than by anything set on
             itself. The inheritance source is named per page.
           </li>
@@ -261,8 +261,8 @@
           The first of these depends on your tenant's permission model. On sites using
           role-based space permissions, anonymous access is readable as an access-class
           principal in the role assignments. On the older model it is
-          <strong>not readable at all</strong> — the only endpoint that ever reported it has
-          been removed from the API.
+          <strong>not readable at all</strong> — the API this app can use does not expose
+          it.
         </p>
         <p>
           So AccessLens <em>measures</em> whether it could observe anonymous access on your

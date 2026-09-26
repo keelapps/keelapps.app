@@ -19,7 +19,7 @@
     <meta property="og:title" content="AccessLens for Confluence — space and page permission audit" />
     <meta
       property="og:description"
-      content="Which spaces can this group reach, and which pages are locked? Confluence has no answer. AccessLens does — read-only, snapshotted, diffed and signed off, without anything leaving your tenant."
+      content="Which spaces can this group reach, which pages are locked, and what changed since last quarter? AccessLens answers it in full — read-only, snapshotted, diffed and signed off, without anything leaving your tenant."
     />
     <meta property="og:image" content="https://keelapps.app/assets/screenshots/accesslens-confluence-restrictions.png" />
     <meta property="og:image:width" content="1840" />
@@ -116,8 +116,8 @@
         <h1>Which spaces can this group reach, and which pages are locked?</h1>
         <div class="intro__split">
           <p class="lede">
-            Confluence indexes permissions by space, so the reverse question has no answer in
-            the product. AccessLens answers it — by group, by user or by space, with group
+            Confluence's User access report shows a group's spaces as admin or user; it stops
+            there. AccessLens answers in full — by group, by user or by space, with group
             membership expanded so what you see is <em>effective</em> access — then adds the
             part Confluence makes hardest to self-check: page restrictions, and what inherits
             them. Freeze the result as a snapshot, diff any two quarters, sign the review off.
@@ -155,8 +155,8 @@
           referrerpolicy="strict-origin-when-cross-origin"
         ></iframe>
         <figcaption>
-          Two pages with no restriction of their own, each hidden by the same locked parent —
-          the thing a page's own restriction dialog will not tell you.
+          Two pages with no restriction of their own, each hidden by the same locked parent,
+          found in one pass.
           <a href="https://www.youtube.com/watch?v=EljwS316Zns">Watch on YouTube</a>.
         </figcaption>
       </figure>
@@ -165,19 +165,21 @@
         <p class="eyebrow">The gap this fills</p>
         <div class="gap">
           <p>
-            Three questions Confluence cannot answer about itself. <strong>Which spaces can
-            this group reach?</strong> No interface anywhere lists it. <strong>Who had access
-            on a given day, and who changed it?</strong> The native audit log is an event
-            stream, not a state. <strong>Which pages are locked, by whom, and why can I not
-            see one?</strong> There is no list of restricted pages, restrictions inherit
-            downwards, and they can only narrow space permissions and never widen them — so a
+            Three questions Confluence answers only in part. <strong>Which spaces can this
+            group reach?</strong> The User access report lists them as admin or user, and
+            leaves out the restricted pages the group can open. <strong>Who had access on a
+            given day?</strong> The native audit log is an event stream, not a state.
+            <strong>Which pages are locked, and why can I not see one?</strong> Restricted pages
+            are listed one space at a time, view restrictions inherit downwards, and
+            restrictions can only narrow space permissions and never widen them — so a
             restriction naming a group with no space access grants nothing at all, the
             reverse of what the admin who typed it believed.
           </p>
           <p>
             The first two exist on the Jira side too, where the request has been open since
-            2019 with over a thousand votes and remains unresolved. The third is Confluence's
-            own, and it is where every app in this category stops.
+            2019 with over a thousand votes and remains unresolved. On the Confluence side,
+            listing the spaces and restricted pages a group can reach has been requested since
+            2022 (CONFCLOUD-74405).
           </p>
         </div>
       </section>
@@ -291,7 +293,7 @@
             <tbody>
               <tr>
                 <td>Which spaces can this group reach?</td>
-                <td class="absent">No interface for it</td>
+                <td class="absent">User access report: admin or user</td>
                 <td>Per-space views</td>
                 <td><span class="answer">By group, user or space</span></td>
               </tr>
@@ -303,14 +305,14 @@
               </tr>
               <tr>
                 <td>Which pages are restricted?</td>
-                <td class="absent">No list anywhere</td>
-                <td class="absent">Rarely covered</td>
+                <td class="absent">Per space, in space settings</td>
+                <td>Varies</td>
                 <td><span class="answer">Per space, with findings</span></td>
               </tr>
               <tr>
                 <td>Is this page hidden by itself or by an ancestor?</td>
-                <td class="absent">—</td>
-                <td class="absent">—</td>
+                <td class="absent">Per page, in the share dialog</td>
+                <td>Varies</td>
                 <td><span class="answer">Named, per page</span></td>
               </tr>
               <tr>
@@ -358,8 +360,8 @@
           <p>
             <strong>Where a tenant cannot expose anonymous access at all, it says the
             access is not observable here</strong> — not “none found”. Confluence's tenant
-            permission models differ, and on some of them the only endpoint that ever
-            reported anonymous access has been removed. AccessLens measures whether it could
+            permission models differ, and on some of them the API this app can use does not
+            expose anonymous access. AccessLens measures whether it could
             observe it, and reports that measurement rather than an absence.
           </p>
           <p>
