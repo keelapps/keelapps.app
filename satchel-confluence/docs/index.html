@@ -151,9 +151,9 @@
 
         <h2 id="move">Moving attachments between pages</h2>
         <p>
-          This is the feature Confluence Cloud does not have. CONFCLOUD-15025 has been open since
-          March 2009 and Atlassian has said it is not on the roadmap; Data Center's purpose-built
-          move endpoint does not exist on Cloud.
+          Confluence Cloud moves an attachment from its Properties, one file at a time. Moving many
+          at once is CONFCLOUD-15025, open since March 2009; in 2022 Atlassian said it has no plans
+          to prioritize it. Data Center's purpose-built move endpoint does not exist on Cloud.
         </p>
         <p>
           Pick the files, pick the target page, and read the dry run: what will move, what will not
@@ -223,7 +223,7 @@
             <tbody>
               <tr><td>Files on deleted pages</td><td>Certain</td></tr>
               <tr><td>Files on archived pages</td><td>Certain</td></tr>
-              <tr><td>Files in the trash, still counting against your storage</td><td>Certain</td></tr>
+              <tr><td>Files in the trash, kept until the trash is purged</td><td>Certain</td></tr>
               <tr><td>Files no page body references</td><td><strong>Inferred</strong></td></tr>
             </tbody>
           </table>
