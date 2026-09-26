@@ -103,10 +103,10 @@
 
         <p class="manual__lede">
           Recur creates Jira issues on a schedule — weekly reports, monthly maintenance, quarterly
-          access reviews, certificate renewals. Jira Cloud has no native way to do this
-          (<a href="https://jira.atlassian.com/browse/JRACLOUD-5185">JRACLOUD-5185</a> was closed as
-          Won't Do), and Automation for Jira has a scheduled trigger but no answer for a previous
-          issue that is still open.
+          access reviews, certificate renewals. Jira's own Set to recur repeats one work item daily,
+          weekly, every two weeks or monthly, and every run counts against your Automation limits;
+          Recur works from templates, on any interval, at an hour in the time zone you picked, and
+          decides per template what happens when the last one is still open.
         </p>
         <p>
           Recur is built on Atlassian Forge. There are no external servers and no data leaves
@@ -212,13 +212,14 @@
         <h2 id="when-issues-appear">When exactly an issue appears</h2>
         <p>
           Within the hour it is due. Recur wakes up hourly and Atlassian spreads those wake-ups
-          across the hour, so an occurrence due at 03:00 typically appears a few minutes past the
-          hour rather than exactly on it.
+          across the hour, so an occurrence due at 03:00 appears at some point within that hour
+          rather than exactly on it.
         </p>
 
         <h2 id="last-one-still-open">When the last one is still open</h2>
         <p>
-          This is the setting most recurring-task tools do not have, and it is per template.
+          Jira's own Set to recur can wait for the last one to close, but cannot skip a round.
+          Recur offers all three, per template.
         </p>
         <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
           <table>
@@ -317,7 +318,7 @@
           occurrence), run history, the due index, the scheduler cursor, per-run idempotency
           records, the cached licence state, and the account ids of whoever created a template
           or is picked as an assignee. No issue content, email addresses, IP addresses or
-          analytics. Uninstalling the app removes all of it. Full text:
+          analytics. When the app is uninstalled, Atlassian deletes it after 28 days. Full text:
           <a href="/recur/privacy/">privacy policy</a>.
         </p>
         <p>

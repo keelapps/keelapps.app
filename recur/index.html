@@ -117,10 +117,11 @@
         <div class="intro__split">
           <p class="lede">
             Weekly reports, monthly maintenance, quarterly access reviews, certificate renewals.
-            Jira Cloud cannot create an issue on a schedule, and Automation for Jira has a scheduled
-            trigger but no answer for a previous issue that is still open. Recur creates the issue
-            within the hour it is due, in the time zone you picked, and tells you exactly what it did — including the times it deliberately did
-            nothing.
+            Jira's own Set to recur repeats one work item daily, weekly, every two weeks or
+            monthly, and every run counts against your Automation limits. Recur works from
+            templates, on any interval, at an hour in the time zone you picked. It creates the
+            issue within the hour it is due and tells you exactly what it did — including the
+            times it deliberately did nothing.
           </p>
           <div class="intro__act">
             <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/3262138887/recur-recurring-tasks-for-jira">Try it free on the Atlassian Marketplace</a>
@@ -164,10 +165,11 @@
         <p class="eyebrow">The gap this fills</p>
         <div class="gap">
           <p>
-            Scheduled issue creation has been asked for on Jira Cloud for years
-            (<a href="https://jira.atlassian.com/browse/JRACLOUD-5185"><code>JRACLOUD-5185</code></a>) and was closed as <em>Won't Do</em>. Automation for Jira
-            has a scheduled trigger, but no notion of what to do when the last issue it created is
-            still open — so the fifth unfinished monthly review looks exactly like the first.
+            Jira can repeat a work item now: <em>Set to recur</em>, on a schedule or after the last
+            one is done, until an end date. It offers daily, every weekday, weekly, every two weeks
+            and monthly — no quarterly, no “first Monday”, no hour or time zone to pick — and each
+            run is an Automation execution that counts against your plan's limit. It can wait for
+            the last one to close, but it cannot skip a round.
           </p>
         </div>
       </section>
@@ -262,40 +264,40 @@
             <thead>
               <tr>
                 <th>Question</th>
-                <th>Native Jira</th>
+                <th>Jira's Set to recur</th>
                 <th>Recur</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Create an issue every month on the 31st?</td>
-                <td class="absent">Not supported</td>
+                <td>Every three months, or every six weeks?</td>
+                <td class="absent">Up to monthly, or every 2 weeks</td>
+                <td><span class="answer">Any interval</span></td>
+              </tr>
+              <tr>
+                <td>The first Monday of the month?</td>
+                <td class="absent">A date, or the last day</td>
                 <td><span class="answer">Yes</span></td>
               </tr>
               <tr>
-                <td>Monthly on the 31st, in February?</td>
-                <td class="absent">Not supported</td>
-                <td><span class="answer">Last day</span></td>
-              </tr>
-              <tr>
-                <td>Stay at 09:00 across a daylight saving change?</td>
-                <td class="absent">Not supported</td>
+                <td>At 09:00 in your time zone, across daylight saving?</td>
+                <td class="absent">No hour or time zone setting</td>
                 <td><span class="answer">Yes</span></td>
               </tr>
               <tr>
-                <td>Skip this month because last month is still open?</td>
-                <td class="absent">Not supported</td>
-                <td><span class="answer">Per template</span></td>
+                <td>Skip this round because the last one is still open?</td>
+                <td class="absent">Wait for it, or create anyway</td>
+                <td><span class="answer">Create, skip or wait</span></td>
               </tr>
               <tr>
                 <td>Why was no issue created on Monday?</td>
-                <td class="absent">Not recorded</td>
-                <td><span class="answer">In the history</span></td>
+                <td class="absent">Automation audit log</td>
+                <td><span class="answer">Per template, with the reason</span></td>
               </tr>
               <tr>
-                <td>Which recurring tasks exist across the whole site?</td>
-                <td class="absent">Not supported</td>
-                <td><span class="answer">Admin page</span></td>
+                <td>Counts against your Automation limits?</td>
+                <td class="absent">Yes, every run</td>
+                <td><span class="answer">No</span></td>
               </tr>
             </tbody>
           </table>
