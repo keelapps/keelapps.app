@@ -170,13 +170,13 @@
             without ever seeing Jira's create dialog.
           </p>
           <p>
-            <strong>It is not an anonymous portal, and it cannot become one.</strong> Submitters
-            are your own Jira users — signed in, with permission to create issues in the target
-            project. Anonymous intake needs an outbound connection to a vendor's server, and
-            declaring one would forfeit the Runs on Atlassian guarantee that is this app's whole
-            structural advantage. The scenario Prefill is built for is “the entire company has a
-            Jira seat, but only a handful of people know how to file a ticket”. If you need
-            requests from people <em>without</em> a seat, you want Jira Service Management.
+            <strong>It is not an anonymous portal.</strong> Submitters are your own Jira users —
+            signed in, with permission to create issues in the target project — and every issue
+            is created as the person who submitted it. The scenario Prefill is built for is “the
+            entire company has a Jira seat, but only a handful of people know how to file a
+            ticket”. If you need requests from people <em>without</em> a seat, Jira's own forms
+            can be shared with anyone who has the link, and Jira Service Management runs customer
+            portals.
           </p>
         </div>
       </section>
@@ -196,9 +196,9 @@
           <div class="card">
             <h3>Share a link</h3>
             <p>
-              One key per form: copyable, editable, retirable. Retiring a form keeps the key
-              reserved, so anyone still holding the link is told it was retired rather than
-              shown a dead page.
+              One key per form, fixed once the form is saved, so a link in circulation keeps
+              working. Retiring a form keeps the key reserved, so anyone still holding the link
+              is told it was retired rather than shown a dead page.
             </p>
           </div>
           <div class="card">
@@ -337,24 +337,25 @@
           <p>
             <strong>Submitters are your own Jira users</strong> — signed in, with permission to
             create issues in the target project. Prefill does not provide an anonymous or
-            external customer portal; that would require an outside server, and Prefill makes no
-            external calls at all. If you need requests from people without a Jira seat, you
-            want Jira Service Management, not this app. This matters before you buy: Marketplace
+            external customer portal: it creates every issue as the signed-in person who
+            submitted it. If you need requests from people without a Jira seat, look at Jira's
+            own forms, which can be shared with anyone who has the link, or at Jira Service
+            Management — not this app. This matters before you buy: Marketplace
             apps are priced by Jira user count, and a form is only useful to somebody who
             already has a seat.
           </p>
           <p>
-            <strong>Prefill is not a template app.</strong> It does not prefill Jira's create
-            screen and it does not manage issue templates. If what you want is a pre-typed
-            description on Jira's own create dialog, this is the wrong tool.
+            <strong>Prefill is not a template app.</strong> It does not manage issue templates,
+            and what it hands people is its own short form, not Jira's create screen. If what
+            you want is a pre-typed description on Jira's own create dialog, this is the wrong
+            tool.
           </p>
           <p>
-            <strong>Deep links are measured, not assumed.</strong> Appending a form's key to the
-            app page's URL opens that form directly, and that was verified working on the site
-            we tested on 9 September 2026. We do not claim it for every Jira Cloud tenant:
-            community reports describe tenants where query strings are stripped, so the form
-            picker that stands in when a link carries no key is deliberately retained as a
-            genuine fallback rather than removed as dead code.
+            <strong>Deep links are measured, not assumed.</strong> A form's link opens that form
+            directly: we verified it on a development install on 9 September 2026 and on a
+            production install on 26 September 2026. It relies on Jira passing the link's query
+            string to the app, so if a link ever arrives without its key, the page lists the
+            forms that person can use instead, and the request still gets filed.
           </p>
           <p>
             <strong>URL parameters are opt-in, per field.</strong> An external system can carry

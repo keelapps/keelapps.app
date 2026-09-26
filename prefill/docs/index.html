@@ -120,13 +120,13 @@
           screen for that one request rather than pre-typing it.
         </p>
         <p>
-          <strong>It is not an anonymous or external portal, and it cannot become one.</strong>
-          Submitters are your own Jira users — signed in, with permission to create issues in
-          the target project. Anonymous intake requires an outbound connection to a vendor's
-          server; Prefill declares no external network access at all, which Atlassian enforces
-          at the platform level. The scenario it is built for is “the whole company has a Jira
-          seat, but only a handful of people know how to file a ticket”. For requests from
-          people <em>without</em> a seat, use Jira Service Management.
+          <strong>It is not an anonymous or external portal.</strong> Submitters are your own
+          Jira users — signed in, with permission to create issues in the target project — and
+          every issue is created as the person who submitted it. The scenario it is built for is
+          “the whole company has a Jira seat, but only a handful of people know how to file a
+          ticket”. For requests from people <em>without</em> a seat, Jira's own forms can be
+          shared with anyone who has the link, and Jira Service Management runs customer
+          portals.
         </p>
 
         <h2 id="where-it-lives">Where Prefill lives</h2>
@@ -206,14 +206,12 @@
           opens that form directly, and the library page gives you the full link to copy.
         </p>
         <p>
-          Deep linking was <strong>verified working on the site we tested, on 9 September
-          2026</strong>: the key opens its form, and an unknown key renders the app's own “that
-          form does not exist” page rather than an error. We deliberately do not claim it for
-          every Jira Cloud tenant — there are community reports of tenants where query strings
-          are stripped before an app sees them. So when a link arrives without a usable key,
-          Prefill falls back to a <strong>form picker</strong>: the visitor chooses from the forms
-          they can use and continues. That fallback is retained on purpose, not left in as dead
-          code.
+          Deep linking was <strong>verified on a development install on 9 September 2026 and on a
+          production install on 26 September 2026</strong>: the key opens its form, and an unknown
+          key renders the app's own “that form does not exist” page rather than an error. It
+          relies on Jira passing the link's query string to the app, so when a link arrives
+          without a usable key, Prefill falls back to a <strong>form picker</strong>: the visitor
+          chooses from the forms they can use and continues.
         </p>
         <p>
           One practical note if you administer the app: the app page's URL contains an environment
@@ -247,8 +245,8 @@
         <h2 id="who-can-submit">Who can submit</h2>
         <p>
           Signed-in Jira users with permission to create issues in the target project. That is
-          the whole answer, and it is a structural property rather than a setting: without an
-          external server there is nowhere for an anonymous request to come from.
+          the whole answer, and it is not a setting: Prefill creates every issue as the person
+          submitting it, so there is no anonymous mode to switch on.
         </p>
         <p>
           If a form is opened by somebody who cannot create issues in its project, Jira refuses
@@ -343,15 +341,14 @@
         </div>
         <p>
           There is no <code>permissions.external</code> block: the app cannot make an outbound
-          call even if it tried to, which Atlassian enforces at the platform level — and which is
-          also why anonymous submission is impossible here rather than merely unsupported.
+          call even if it tried to, which Atlassian enforces at the platform level.
         </p>
 
         <h2 id="not-in-this-release">Not in this release</h2>
         <ul>
           <li>
-            <strong>Anonymous or external submission.</strong> Not a roadmap item — it is
-            incompatible with the app's zero-egress design.
+            <strong>Anonymous or external submission.</strong> Not a roadmap item: Prefill files
+            every issue as a signed-in Jira user.
           </li>
           <li><strong>Issue templates</strong> for Jira's own create screen.</li>
           <li><strong>Sub-task creation</strong>, which needs a parent an intake link cannot supply.</li>
