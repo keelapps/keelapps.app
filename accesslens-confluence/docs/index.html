@@ -151,6 +151,15 @@
           role-based space permissions, the role assignments carrying the same information are
           read as well.
         </p>
+        <p>
+          By group and by user also list the <strong>restricted pages that name</strong> the
+          group or the person — directly, or through a group they are in — and say whether that
+          lets them in. A restriction only narrows space access, so naming someone on a page
+          opens it to them only if they can view the space and are named on every locked page
+          above it. Where that fails, AccessLens says what stands in the way: the space, the
+          page's own view restriction, or the locked page above it, by name. Where the snapshot
+          did not read enough to tell, it says that instead.
+        </p>
 
         <h2 id="restrictions">The page restriction audit</h2>
         <p>
@@ -174,7 +183,7 @@
             <tbody>
               <tr>
                 <td>Restriction grants nothing</td>
-                <td>Restrictions can only narrow space permissions, never widen them. A restriction naming a group with no view permission on the space gives that group nothing — the reverse of what whoever typed it believed.</td>
+                <td>Restrictions can only narrow space permissions, never widen them. A restriction naming a group none of whose members can view the space, or a person who cannot, gives them nothing — the reverse of what whoever typed it believed. Access through any group counts, and where a group's members were not read in full the finding is not made at all.</td>
               </tr>
               <tr>
                 <td>Only one person can read it</td>
@@ -207,8 +216,8 @@
         <p>
           A snapshot is the whole site's permission state at a point in time: for each space
           its identifiers and its permission grants, for each restricted page its identity and
-          the principals its restrictions name, and for each group referenced by a grant its
-          name and its members.
+          the principals its restrictions name, and for each group a grant or a restriction
+          names, its name and its members.
         </p>
         <p>
           Snapshots run manually or on a schedule. The scan is sharded and checkpointed and
@@ -220,6 +229,12 @@
           If AccessLens could not read something it needed, the snapshot is marked
           <strong>partial</strong> and says which part is missing. It never quietly reports
           less than it found.
+        </p>
+        <p>
+          Any snapshot exports as CSV: every space and subject, with view, edit and manage and
+          the operations behind them. Deleting one asks first and says what goes with it. A
+          snapshot an open review is using cannot be deleted; one a signed-off review used can,
+          because the review keeps its own copy of what it showed.
         </p>
 
         <h2 id="diffs">Diffs</h2>
@@ -248,7 +263,9 @@
         </ul>
         <p>
           Changing a decision does not erase the old one: superseded decisions are kept
-          alongside the current one. Once a review is signed off it freezes.
+          alongside the current one. Once a review is signed off it freezes: it cannot be signed
+          again or deleted, and it keeps the spaces and counts it showed, so deleting its
+          snapshot later — or a change in how AccessLens counts — does not change it.
         </p>
 
         <h2 id="risk-flags">Risk flags, and what is not observable</h2>
@@ -299,7 +316,8 @@
           <li>
             <strong>Scheduled snapshots</strong> — off, weekly or monthly. Weekly snapshots are
             taken on Mondays and monthly ones on the 1st, both in UTC, at a time of day Forge
-            chooses.
+            chooses. The Snapshots and Settings tabs show the next one, and say so when one was
+            refused at the retention limit.
           </li>
           <li>
             <strong>Page restrictions</strong> — off, sampled or full. Sampled reads up to 200
