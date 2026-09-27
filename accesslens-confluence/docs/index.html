@@ -110,8 +110,9 @@
         <h2 id="where-it-lives">Where AccessLens lives</h2>
         <ul>
           <li>
-            <strong>Apps → AccessLens</strong> — the main console: reverse lookup, snapshots,
-            diffs and reviews for the whole site.
+            <strong>Confluence administration → Apps → AccessLens</strong> — the main console:
+            reverse lookup, snapshots, diffs and reviews for the whole site. Only Confluence
+            administrators can open it, because it shows the whole site's permission map.
           </li>
           <li>
             <strong>Space settings → AccessLens</strong> — the same answers narrowed to one
@@ -279,8 +280,9 @@
           Confluence Cloud charges apps for API calls in points, and the hourly allowance is
           shared across every site running the app rather than granted per site. Before a scan
           runs, AccessLens shows what it will cost in points and what share of that hourly
-          allowance it represents. Shard size and the restriction mode are both settings, so a
-          large site can be scanned within a budget you chose rather than one you discovered.
+          allowance it represents. The restriction mode is a setting, and the estimate is
+          recalculated as you change it, so a large site can be scanned within a budget you chose
+          rather than one you discovered.
         </p>
 
         <h2 id="exports">CSV export</h2>
@@ -294,13 +296,20 @@
 
         <h2 id="settings">Settings</h2>
         <ul>
-          <li><strong>Scan cadence</strong> — how often a scheduled snapshot is taken.</li>
-          <li><strong>Shard size</strong> — how much work one shard does before checkpointing.</li>
-          <li><strong>Page-restriction mode and budget</strong> — off, sampled or full, with a per-space ceiling.</li>
           <li>
-            <strong>Snapshot retention limit</strong> — how many snapshots to keep. At the
-            limit AccessLens <em>refuses a new snapshot</em> rather than deleting an old one.
-            Delete one yourself if you want room; the app will not make that decision for you.
+            <strong>Scheduled snapshots</strong> — off, weekly or monthly. Weekly snapshots are
+            taken on Mondays and monthly ones on the 1st, both in UTC, at a time of day Forge
+            chooses.
+          </li>
+          <li>
+            <strong>Page restrictions</strong> — off, sampled or full. Sampled reads up to 200
+            pages per space and marks a larger space as partial.
+          </li>
+          <li>
+            <strong>Retention</strong> — up to twelve snapshots are kept. At the
+            limit AccessLens <em>refuses a new snapshot</em>, scheduled or manual, rather than
+            deleting an old one. Delete one yourself if you want room; the app will not make that
+            decision for you.
           </li>
         </ul>
 
