@@ -9,7 +9,7 @@
     <title>Prefill for Jira — prefilled intake links and short request forms</title>
     <meta
       name="description"
-      content="Give colleagues one link instead of a Jira tutorial. It opens a form with three questions, not thirty: project, issue type and routing fields are already set. Submitters are your own signed-in Jira users, and nothing leaves Atlassian."
+      content="Give colleagues one link instead of a Jira tutorial. It opens a short form that asks only what they know; project, issue type and routing fields are already set, out of sight. Submitters are your own signed-in Jira users, and nothing leaves Atlassian."
     />
     <link rel="canonical" href="https://keelapps.app/prefill/" />
     <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
@@ -31,7 +31,7 @@
         "@type": "SoftwareApplication",
         "name": "Prefill — Request Forms & Create-Issue Links for Jira",
         "alternateName": "Prefill for Jira",
-        "description": "Give colleagues one link instead of a Jira tutorial. It opens a form with three questions, not thirty: project, issue type and routing fields are already set. Submitters are your own signed-in Jira users, and nothing leaves Atlassian.",
+        "description": "Give colleagues one link instead of a Jira tutorial. It opens a short form that asks only what they know; project, issue type and routing fields are already set, out of sight. Submitters are your own signed-in Jira users, and nothing leaves Atlassian.",
         "url": "https://keelapps.app/prefill/",
         "image": "https://keelapps.app/assets/screenshots/prefill-request-form.png",
         "applicationCategory": "BusinessApplication",
@@ -56,11 +56,11 @@
         "video": {
           "@type": "VideoObject",
           "name": "Prefill for Jira — prefilled intake links and short request forms",
-          "description": "Give colleagues one link instead of a Jira tutorial. It opens a form with three questions, not thirty: project, issue type and routing fields are already set. Submitters are your own signed-in Jira users, and nothing leaves Atlassian.",
+          "description": "Give colleagues one link instead of a Jira tutorial. It opens a short form that asks only what they know; project, issue type and routing fields are already set, out of sight. Submitters are your own signed-in Jira users, and nothing leaves Atlassian.",
           "thumbnailUrl": "https://keelapps.app/assets/screenshots/prefill-request-form.png",
-          "uploadDate": "2026-09-19T03:48:00-07:00",
+          "uploadDate": "2026-09-27",
           "duration": "PT1M11S",
-          "embedUrl": "https://www.youtube-nocookie.com/embed/1D8ck2UmYdU"
+          "embedUrl": "https://www.youtube-nocookie.com/embed/Z7xGRXMJ5uI"
         }
       }
     </script>
@@ -117,9 +117,9 @@
         <div class="intro__split">
           <p class="lede">
             Paste it in Slack, an email signature, a runbook or a monitoring alert. It opens a
-            short form with three questions instead of thirty: the project, the issue type and
-            the fields that decide routing are already set, so the submitter answers only what
-            they alone can answer. Submitters are your own <strong>signed-in Jira users</strong>,
+            short form that asks only what the submitter can answer: the project, the issue type
+            and the fields that decide routing are already set, out of sight. Submitters are your
+            own <strong>signed-in Jira users</strong>,
             the issue is created as the real person, and nothing leaves Atlassian.
           </p>
           <div class="intro__act">
@@ -143,8 +143,8 @@
       <figure class="showcase" id="demo">
         <iframe
           class="showcase__player"
-          src="https://www.youtube-nocookie.com/embed/1D8ck2UmYdU"
-          srcdoc="<style>*{margin:0;padding:0}html,body{height:100%;overflow:hidden;background:#0F2536}a{display:block;height:100%;position:relative}img{display:block;width:100%;height:100%;object-fit:cover}span{position:absolute;inset:0;margin:auto;width:5rem;height:5rem;border-radius:50%;background:rgba(15,37,54,.86);color:#F4EFE6;display:grid;place-items:center;font:2rem/1 sans-serif}a:hover span{background:rgba(15,37,54,1)}</style><a href='https://www.youtube-nocookie.com/embed/1D8ck2UmYdU?autoplay=1' aria-label='Play the Prefill product demo'><img src='/assets/screenshots/prefill-request-form.png' alt=''><span>&#9654;</span></a>"
+          src="https://www.youtube-nocookie.com/embed/Z7xGRXMJ5uI"
+          srcdoc="<style>*{margin:0;padding:0}html,body{height:100%;overflow:hidden;background:#0F2536}a{display:block;height:100%;position:relative}img{display:block;width:100%;height:100%;object-fit:cover}span{position:absolute;inset:0;margin:auto;width:5rem;height:5rem;border-radius:50%;background:rgba(15,37,54,.86);color:#F4EFE6;display:grid;place-items:center;font:2rem/1 sans-serif}a:hover span{background:rgba(15,37,54,1)}</style><a href='https://www.youtube-nocookie.com/embed/Z7xGRXMJ5uI?autoplay=1' aria-label='Play the Prefill product demo'><img src='/assets/screenshots/prefill-request-form.png' alt=''><span>&#9654;</span></a>"
           width="1840"
           height="900"
           title="Prefill for Jira — one link instead of a Jira tutorial (product demo)"
@@ -156,7 +156,7 @@
         <figcaption>
           What the person on the other end of the link opens: three questions, with the project,
           the issue type and the priority already decided for them.
-          <a href="https://www.youtube.com/watch?v=1D8ck2UmYdU">Watch on YouTube</a>.
+          <a href="https://www.youtube.com/watch?v=Z7xGRXMJ5uI">Watch on YouTube</a>.
         </figcaption>
       </figure>
 
@@ -284,46 +284,40 @@
               <tr>
                 <th>Question</th>
                 <th>Jira's create screen</th>
-                <th>Issue template apps</th>
+                <th>Jira's own forms</th>
                 <th>Prefill</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>What does the submitter see?</td>
-                <td class="absent">Thirty fields</td>
-                <td class="absent">Thirty fields, pre-typed</td>
-                <td><span class="answer">Three questions</span></td>
+                <td class="absent">Every field on the project's create screen</td>
+                <td>The questions you put on the form</td>
+                <td><span class="answer">Only the fields you chose to ask</span></td>
               </tr>
               <tr>
-                <td>Do they need to know the project and issue type?</td>
-                <td class="absent">Yes</td>
-                <td>Less so</td>
-                <td><span class="answer">No — the link decides</span></td>
+                <td>Component, labels, priority, assignee</td>
+                <td class="absent">The submitter picks them</td>
+                <td class="absent">Asked as questions on the form</td>
+                <td><span class="answer">Fixed by you, never shown</span></td>
               </tr>
               <tr>
-                <td>Can it be pasted into Slack or an alert?</td>
-                <td class="absent">A create screen, not an intake page</td>
-                <td class="absent">Usually not</td>
-                <td><span class="answer">That is the product</span></td>
+                <td>Can the link fill in answers?</td>
+                <td>Some fields, through a create URL anyone can edit</td>
+                <td class="absent">No — parameters on the link are ignored</td>
+                <td><span class="answer">Yes, for the fields you allow — never a hidden one</span></td>
               </tr>
               <tr>
-                <td>Is a broken form caught before people hit it?</td>
-                <td>—</td>
-                <td class="absent">Rarely</td>
-                <td><span class="answer">At save, and at every submission</span></td>
+                <td>Who can submit?</td>
+                <td>Signed-in users</td>
+                <td>Your users, or anyone with the link</td>
+                <td>Signed-in users who can create issues in the project</td>
               </tr>
               <tr>
-                <td>Who is the reporter?</td>
-                <td>The submitter</td>
-                <td>The submitter</td>
-                <td><span class="answer">The submitter — created as them</span></td>
-              </tr>
-              <tr>
-                <td>Does anything leave Atlassian?</td>
-                <td>—</td>
-                <td class="absent">Depends on the vendor</td>
-                <td><span class="answer">Never</span></td>
+                <td>Attachments</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td class="absent">No</td>
               </tr>
             </tbody>
           </table>
