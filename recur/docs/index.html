@@ -178,8 +178,9 @@
 
         <h2 id="schedules-and-time-zones">Schedules and time zones</h2>
         <p>
-          Every template picks one IANA time zone. Occurrences are generated as local calendar dates
-          first, the wall-clock time is applied last, and only then is the result converted to UTC.
+          Every template picks one IANA time zone — any of them, not a short list. Occurrences are
+          generated as local calendar dates first, the wall-clock time is applied last, and only
+          then is the result converted to UTC.
           That is why <em>09:00 Europe/Vilnius</em> stays 09:00 across a daylight saving change even
           though the UTC instant moves.
         </p>
@@ -211,9 +212,10 @@
 
         <h2 id="when-issues-appear">When exactly an issue appears</h2>
         <p>
-          Within the hour it is due. Recur wakes up hourly and Atlassian spreads those wake-ups
-          across the hour, so an occurrence due at 03:00 appears at some point within that hour
-          rather than exactly on it.
+          Within an hour after it is due, and never before. Recur checks once an hour, at a
+          minute Atlassian picks for each site, and creates every occurrence whose time has
+          passed. On a site checked at :20, an occurrence due at 09:00 appears at 09:20, and one
+          due at 09:45 appears at 10:20 — not at 09:20, before its time.
         </p>
 
         <h2 id="last-one-still-open">When the last one is still open</h2>
@@ -249,7 +251,7 @@
           <table>
             <thead><tr><th>Result</th><th>Meaning</th></tr></thead>
             <tbody>
-              <tr><td><strong>Created</strong></td><td>The issue key is shown.</td></tr>
+              <tr><td><strong>Created</strong></td><td>The issue key, which opens the issue.</td></tr>
               <tr><td><strong>Skipped</strong></td><td>Which issue was still open, and the status it was in.</td></tr>
               <tr><td><strong>Waiting</strong></td><td>Held under the <em>wait for it to close</em> policy. One row per held occurrence, not one per hourly re-check.</td></tr>
               <tr><td><strong>Failed</strong></td><td>Something in Jira rejected the issue — a deleted issue type, for instance. The row has a <strong>Retry</strong> button for project administrators, and the template keeps its own schedule regardless.</td></tr>
