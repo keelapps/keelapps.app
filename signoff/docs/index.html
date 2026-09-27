@@ -110,8 +110,9 @@
         </p>
         <ul>
           <li>
-            <strong>Approvers</strong> — pre-filled from the space's policy when one applies;
-            otherwise pick anyone. You cannot be the only approver of your own request.
+            <strong>Approvers</strong> — pre-filled from the space's policy when one applies,
+            leaving you out if the policy names you; otherwise pick people. Nobody approves
+            their own request, and an app account or a deactivated one cannot approve.
           </li>
           <li>
             <strong>Mode</strong> — <em>any one may approve</em> (first approval settles it) or
@@ -198,8 +199,9 @@
         <p>
           <strong>Settings → Signoff → Audit export</strong> generates a CSV of every
           request, decision and cancellation across the site: timestamp, event, page,
-          space, page version, actor, comment. Paste it into the auditor's spreadsheet and
-          be done.
+          space, page version, actor, comment. Copy it into the auditor's spreadsheet and
+          be done. A title or comment that starts like a formula (<code>=</code>, <code>+</code>,
+          <code>-</code>, <code>@</code>) is kept as text, so opening the file runs nothing.
         </p>
 
         <h2 id="permissions">Permissions and scopes</h2>
@@ -231,13 +233,16 @@
           </dd>
           <dt>Can I approve my own page?</dt>
           <dd>
-            You can be <em>an</em> approver of your own request, but never the only one.
+            No. If the policy names you, you are left out of your own request and the other
+            approvers decide — as in Confluence's own approvals.
           </dd>
           <dt>Does it work with page restrictions?</dt>
           <dd>
             Yes. Signoff reads pages with its own app permission and stores only titles and
             version numbers; who can see the page itself remains entirely Confluence's
-            decision.
+            decision. One thing to know: an approver can decide from their inbox without
+            opening the page, and Signoff does not check that they are able to — so on a
+            restricted page, ask only people who can read it.
           </dd>
         </dl>
 
