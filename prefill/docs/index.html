@@ -85,6 +85,7 @@
           <li><a href="#sharing">Sharing the link</a></li>
           <li><a href="#submitting">What the submitter sees</a></li>
           <li><a href="#who-can-submit">Who can submit</a></li>
+          <li><a href="#who-can-build">Who can build and manage forms</a></li>
           <li><a href="#url-parameters">URL parameters</a></li>
           <li><a href="#validation">Validation</a></li>
           <li><a href="#field-types">Custom field types</a></li>
@@ -256,6 +257,24 @@
           app setting.
         </p>
 
+        <h2 id="who-can-build">Who can build and manage forms</h2>
+        <p>
+          A Jira administrator picks the rule on the admin page, and it applies to every form
+          action — creating, editing, retiring, deleting, and seeing a form's own page with its
+          hidden values, counts and recent issues:
+        </p>
+        <ul>
+          <li><strong>Project administrators</strong> (the default) of the project the form files into.</li>
+          <li><strong>Anyone who can create issues</strong> in that project.</li>
+          <li><strong>Jira administrators only.</strong></li>
+        </ul>
+        <p>
+          Jira administrators qualify under every rule. The check is made against the project the
+          form <em>files into as saved</em>, so moving a form to another project needs the right in
+          both. While a subscription is inactive, creating and editing forms is paused; existing
+          forms keep accepting submissions.
+        </p>
+
         <h2 id="url-parameters">URL parameters</h2>
         <p>
           An external system — a monitoring alert, an internal tool — can carry context into a
@@ -272,7 +291,7 @@
         </ul>
 
         <h2 id="validation">Validation</h2>
-        <p>Forms are checked twice, and the first time is the one that matters:</p>
+        <p>Forms are checked three times, and the first one is the one that matters:</p>
         <ul>
           <li>
             <strong>When you save.</strong> Prefill reads Jira's live create screen for that
@@ -282,10 +301,15 @@
             whose request silently failed to file.
           </li>
           <li>
-            <strong>On every submission.</strong> Create screens change: fields get added,
-            options get retired, projects get reconfigured. So the check runs again at submission
-            time, and a form that has gone stale reports what changed rather than throwing a raw
-            API error.
+            <strong>When it is opened.</strong> Create screens change: fields get added, options
+            get retired, projects get reconfigured. A form that could no longer file an issue
+            stops before anyone fills it in, and its page tells you why.
+          </li>
+          <li>
+            <strong>On submission.</strong> Jira has the last word. If it refuses a value the
+            submitter typed, the field is marked; if it refuses one of the form's hidden values,
+            the submitter is told the form's owner has to fix it, and the form's page shows you
+            Jira's reason with the date.
           </li>
         </ul>
         <p>
@@ -298,6 +322,8 @@
           Field shapes are read from Jira's own create metadata — never guessed from a field
           name. Supported: select, multi-select, cascading select, user, group, date, datetime,
           number, labels, time tracking and rich text, alongside the standard system fields.
+          Date-and-time fields get a date picker and a time picker, and are read in the
+          submitter's own time zone.
         </p>
         <p>
           A field type Prefill cannot fill honestly is reported as unsupported
@@ -314,7 +340,9 @@
         </p>
         <p>
           Alongside them, the last issues the form produced. Only the issue keys are stored; the
-          summary and status shown next to them are read from Jira live, each time you look.
+          summary and status shown next to them are read from Jira live, each time you look, and
+          an issue you cannot read in Jira is not listed. Pressing Submit twice files one issue:
+          the second press gets the issue the first one created.
         </p>
 
         <h2 id="retiring">Retiring a form</h2>

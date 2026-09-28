@@ -103,7 +103,7 @@
              NOT ONE WORD between these sentinels may.
         -->
         <h1>Privacy policy — Prefill for Jira</h1>
-        <p class="manual__meta">Effective date: <time datetime="2026-09-26">26 September 2026</time></p>
+        <p class="manual__meta">Effective date: <time datetime="2026-09-29">29 September 2026</time></p>
 
         <h2 id="short-version">The short version</h2>
         <p class="manual__lede">
@@ -129,9 +129,17 @@
           </li>
           <li>
             <strong>Recent issues.</strong> For each form, the last 20 issue keys it produced,
-            with the account id of the person who submitted and a timestamp.
+            with the account id of the person who submitted, a timestamp, and a random id the
+            submitter's page made up for that submission, so that a second click on Submit is
+            recognised rather than filing the request twice.
             <strong>Issue content is not stored</strong> — the summaries and statuses shown next
             to those keys are read from Jira live, each time you look.
+          </li>
+          <li>
+            <strong>The last refusal.</strong> When Jira refuses a form's hidden settings, or a
+            form stops fitting its project, the field involved and the wording of the refusal,
+            with the date, so the form's owner can see what went wrong. Nothing a submitter typed
+            is kept.
           </li>
           <li><strong>Site settings</strong>, and the last observed licence state.</li>
         </ul>
@@ -153,30 +161,49 @@
 
         <h2 id="how-issues-are-created">How issues are created</h2>
         <p>
-          Issues are created <strong>as the person submitting the form</strong>, using their own
-          Atlassian credentials. Jira's own permissions decide whether the issue can be created,
-          the reporter is the real submitter, and the issue appears in Jira's audit trail exactly
-          as if it had been created through Jira's own interface. Prefill cannot create an issue
-          on behalf of someone who could not have created it themselves.
+          Issues are created <strong>as the person submitting the form</strong>: the app asks Jira
+          to act on their behalf, so Jira's own permissions decide whether the issue can be
+          created, and the issue's reporter and creator are the submitter. Prefill cannot create an
+          issue on behalf of someone who could not have created it themselves.
         </p>
         <p>
           Prefill is for people who already have a Jira seat. It does not provide anonymous or
-          external submission, and it cannot: that would require an external server, and this app
-          makes no external calls.
+          external submission: every issue is created as the signed-in person who submits it.
         </p>
 
         <h2 id="who-can-see-what">Who can see what</h2>
         <ul>
           <li>
             The request form behind a link is visible only to signed-in Jira users who have
-            permission to create issues in the target project.
+            permission to create issues in the target project. Anyone else is told why they cannot
+            use it, without the form's name or description; its project is named only to people
+            who can already see that project in Jira.
           </li>
           <li>
             Values a form hides from submitters are applied on the server and are never sent to a
-            submitter's browser.
+            submitter's browser. If Jira refuses one, the submitter is told that the form's owner
+            has to fix it, not what the value is.
           </li>
+          <li>
+            A form's own page — its hidden values, use counts, recent issues and last refusal —
+            and editing, retiring or deleting it are limited to the people who may build forms for
+            the project it files into. By default that is the project's administrators; a Jira
+            administrator can narrow it to Jira administrators only, or widen it to anyone who can
+            create issues in that project. Jira administrators always qualify.
+          </li>
+          <li>A form's recent issues are listed only to viewers who can read those issues in Jira.</li>
           <li>Site-wide lists of forms are visible only to Jira administrators.</li>
         </ul>
+
+        <h2 id="what-keelapps-can-see">What Keelapps can see</h2>
+        <p>
+          Keelapps runs no servers of its own and cannot browse what the app stores on your site.
+          Like every Forge app, Prefill's logs are shared with its developer by default, and your
+          site administrator can switch that off (Atlassian Administration → Connected apps →
+          Logs access). The app writes to them only when something fails unexpectedly, and then
+          only the kind of failure, its HTTP status or storage error code, and where in the app's
+          code it happened — never field values, hidden values, issue content or anyone's name.
+        </p>
 
         <h2 id="retention-and-deletion">Retention and deletion</h2>
         <p>
@@ -188,9 +215,9 @@
 
         <h2 id="sub-processors">Sub-processors</h2>
         <p>
-          None. Atlassian hosts everything; there is no other party involved, and Keelapps has no
-          access path to your data. Forge storage is reachable only by the app itself, running
-          inside Atlassian's infrastructure.
+          None. Atlassian hosts everything; there is no other party involved, and Keelapps cannot
+          browse your data (see <a href="#what-keelapps-can-see">What Keelapps can see</a>). Forge
+          storage is reachable only by the app itself, running inside Atlassian's infrastructure.
         </p>
         <p>
           Because no data is transmitted outside Atlassian's infrastructure and the vendor neither
