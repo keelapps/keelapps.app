@@ -191,9 +191,15 @@
         <h2 id="recipients">Recipients</h2>
         <p>
           Tick any combination of <strong>Reporter</strong>, <strong>Assignee</strong>,
-          <strong>Watchers</strong> and <strong>Voters</strong>, and add named people or
-          Jira groups under <strong>Specific people</strong>. The point of the app is that
-          last part: a group or a fixed list that is not on the watcher list.
+          <strong>Watchers</strong> and <strong>Voters</strong>, add named people under
+          <strong>Specific people</strong>, and Jira groups under <strong>Groups</strong> —
+          searched by name as you type, among the groups you yourself can see.
+        </p>
+        <p>
+          A comment restricted to a group or a project role, and a service project's internal
+          note, is never mailed: Jira's own notifications respect those restrictions and a
+          notification sent through this app could not. The send log records it as
+          <strong>Restricted comment</strong>, with the reason.
         </p>
         <p>
           Everyone on the list still has to be able to see the issue. Jira drops recipients

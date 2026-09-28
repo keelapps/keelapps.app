@@ -6,20 +6,20 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#E5DECF" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
-    <title>Mail Templates for Jira — reach the people who are not watchers</title>
+    <title>Mail Templates for Jira — Jira's issue email, in your words</title>
     <meta
       name="description"
-      content="Templated Jira notifications for the stakeholders who are not on the watcher list. Delivered by Jira's own notification service — zero egress, Runs on Atlassian."
+      content="Your own subject and body for Jira issue emails, per project and per event, delivered by Jira's own notification service. No Automation rules, no automation usage, zero egress."
     />
     <link rel="canonical" href="https://keelapps.app/mail-templates/" />
     <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/assets/icon.png" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://keelapps.app/mail-templates/" />
-    <meta property="og:title" content="Mail Templates for Jira — reach the people who are not watchers" />
+    <meta property="og:title" content="Mail Templates for Jira — Jira's issue email, in your words" />
     <meta
       property="og:description"
-      content="Per-project templates for issue-created, status-change and comment events. Recipients you choose. Nothing leaves Atlassian."
+      content="Per-project templates for issue-created, status-change and comment events, sent to the roles, people and groups you choose. Nothing leaves Atlassian."
     />
     <meta property="og:image" content="https://keelapps.app/assets/screenshots/mail-templates-preview.png" />
     <meta property="og:image:width" content="1840" />
@@ -30,7 +30,7 @@
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Mail Templates for Jira",
-        "description": "Templated notifications for Jira Cloud: one template per event, sent to the people you name — including the ones who never watch the issue — and delivered by Jira's own notification service. Nothing leaves Atlassian.",
+        "description": "Templated notifications for Jira Cloud: one template per event, in your own words, sent to the roles, people and groups you name and delivered by Jira's own notification service. Nothing leaves Atlassian.",
         "url": "https://keelapps.app/mail-templates/",
         "image": "https://keelapps.app/assets/screenshots/mail-templates-preview.png",
         "applicationCategory": "BusinessApplication",
@@ -54,7 +54,7 @@
         },
         "video": {
           "@type": "VideoObject",
-          "name": "Mail Templates for Jira — email the people who aren't watching the issue",
+          "name": "Mail Templates for Jira — Jira's issue email, in your words",
           "description": "One template per event, filled in from the issue, sent to the people you name and delivered by Jira itself. The preview is rendered by the same code that sends the real email.",
           "thumbnailUrl": "https://keelapps.app/assets/screenshots/mail-templates-preview.png",
           "uploadDate": "2026-09-23T00:25:00+03:00",
@@ -111,15 +111,18 @@
 
     <main class="product" id="main">
       <section class="intro intro--straddle">
-        <p class="eyebrow">For the stakeholders Jira never emails</p>
-        <h1>Jira notifies watchers. The people who most need to know usually are not watchers.</h1>
+        <p class="eyebrow">For the email Jira's templates cannot write</p>
+        <h1>Jira's notification email, in your words.</h1>
         <div class="intro__split">
           <p class="lede">
-            A compliance contact, a support group, the account manager who owns the customer
-            relationship — none of them watch the issue, so Jira sends them nothing, and
-            someone ends up forwarding mail by hand. Mail Templates sends a structured,
-            templated message to recipients you name, on the events you choose, delivered by
-            Jira's own notification service. Nothing leaves Atlassian.
+            Jira Cloud's own notification emails cannot be rewritten — not the subject, not
+            the body, not per project; the
+            <a href="https://jira.atlassian.com/browse/JRACLOUD-7266">request to change that</a>
+            has been open since 2005. Automation's Send email can, one rule at a time, and every
+            run spends automation steps from your plan. Mail Templates gives each project one
+            template per event — issue created, status changed, comment added — with a preview
+            of the exact email and a log of every send, delivered by Jira's own notification
+            service. Nothing leaves Atlassian.
           </p>
           <div class="intro__act">
             <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/948167511/mail-templates-for-jira">Try it free on the Atlassian Marketplace</a>
@@ -146,14 +149,14 @@
           srcdoc="<style>*{margin:0;padding:0}html,body{height:100%;overflow:hidden;background:#0F2536}a{display:block;height:100%;position:relative}img{display:block;width:100%;height:100%;object-fit:cover}span{position:absolute;inset:0;margin:auto;width:5rem;height:5rem;border-radius:50%;background:rgba(15,37,54,.86);color:#F4EFE6;display:grid;place-items:center;font:2rem/1 sans-serif}a:hover span{background:rgba(15,37,54,1)}</style><a href='https://www.youtube-nocookie.com/embed/BIkVTr_USoc?autoplay=1' aria-label='Play the Mail Templates for Jira product demo'><img src='/assets/screenshots/mail-templates-preview.png' alt=''><span>&#9654;</span></a>"
           width="1840"
           height="900"
-          title="Mail Templates for Jira — email the people who aren't watching the issue (product demo)"
+          title="Mail Templates for Jira — Jira's issue email, in your words (product demo)"
           loading="lazy"
           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
           allowfullscreen
           referrerpolicy="strict-origin-when-cross-origin"
         ></iframe>
         <figcaption>
-          Recipients chosen by role or by name, and a preview that is the email itself — bold,
+          Recipients chosen by role, by name or by group, and a preview that is the email itself — bold,
           lists and the link to the issue, rendered by the same code that sends it.
           <a href="https://www.youtube.com/watch?v=BIkVTr_USoc">Watch on YouTube</a>.
         </figcaption>
@@ -168,8 +171,7 @@
             <p>
               An <strong>additional</strong> notification channel. Jira keeps sending
               whatever its notification scheme is configured to send; Mail Templates adds a
-              message on top — which is exactly why it suits people who would otherwise get
-              nothing.
+              message of your own on top, in your wording, to the people you choose.
             </p>
           </div>
           <div>
@@ -199,9 +201,9 @@
           <div class="card">
             <h3>Recipients you choose</h3>
             <p>
-              Reporter, assignee, watchers, voters, named people or a Jira group — set per
-              rule. Not a forward of the watcher list, which is the thing that failed to
-              reach these people in the first place.
+              Reporter, assignee, watchers, voters, named people or Jira groups — set per
+              rule, per event. Comments restricted to a group or role, and internal notes, are
+              never mailed.
             </p>
           </div>
           <div class="card">
@@ -237,8 +239,9 @@
             <h3>Delivered by Jira itself</h3>
             <p>
               Built on Forge with no external network access. Mail goes out through Jira's
-              own notification endpoint, which is what earns the Runs on Atlassian badge —
-              something a Connect app on a vendor's server cannot get.
+              own notification endpoint, not an Automation rule, so it spends none of your
+              automation allowance — and nothing leaving Atlassian is what earns the Runs on
+              Atlassian badge.
             </p>
           </div>
         </div>
@@ -265,7 +268,7 @@
             </p>
           </li>
           <li>
-            <h3>The people who are not watchers get the mail</h3>
+            <h3>The people on the list get the mail</h3>
             <p>
               Jira delivers it through its own notification service. Everyone on the list
               still has to be able to see the issue — Jira drops anyone who cannot, so the
@@ -290,55 +293,49 @@
             <thead>
               <tr>
                 <th>Question</th>
-                <th>Native Jira</th>
-                <th>Connect notification apps</th>
+                <th>Jira notifications</th>
+                <th>Automation: Send email</th>
                 <th>Mail Templates</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Can a non-watcher be notified?</td>
-                <td class="absent">Add them as a watcher, or forward by hand</td>
-                <td>Yes</td>
-                <td><span class="answer">Yes, by rule</span></td>
+                <td>Can you write the subject and body?</td>
+                <td class="absent">No — Jira Cloud's templates are fixed</td>
+                <td>Yes, with smart values</td>
+                <td><span class="answer">Yes, 19 issue variables</span></td>
               </tr>
               <tr>
-                <td>Templated subject and body with issue fields?</td>
-                <td class="absent">Fixed Jira templates</td>
-                <td>Yes</td>
-                <td><span class="answer">Nineteen variables</span></td>
+                <td>Who can receive it?</td>
+                <td>Anyone the notification scheme names</td>
+                <td>Anyone the rule names</td>
+                <td><span class="answer">Roles, people and groups</span></td>
               </tr>
               <tr>
-                <td>Does issue data leave Atlassian?</td>
+                <td>Does it use your automation allowance?</td>
+                <td>No</td>
+                <td class="absent">Yes — every trigger, condition and action is a step</td>
+                <td><span class="answer">No</span></td>
+              </tr>
+              <tr>
+                <td>How is it set up?</td>
+                <td>A notification scheme</td>
+                <td>A rule per event</td>
+                <td><span class="answer">A template per event</span></td>
+              </tr>
+              <tr>
+                <td>Can it stop Jira's own email?</td>
                 <td>—</td>
-                <td class="absent">Yes — vendor servers</td>
-                <td><span class="answer">Never</span></td>
-              </tr>
-              <tr>
-                <td>Runs on Atlassian badge?</td>
-                <td>—</td>
-                <td class="absent">Structurally cannot</td>
-                <td><span class="answer">Yes</span></td>
-              </tr>
-              <tr>
-                <td>Any write access to your issues?</td>
-                <td>—</td>
-                <td>Varies</td>
-                <td><span class="answer">None — it can only send a notification</span></td>
-              </tr>
-              <tr>
-                <td>Can it <em>replace</em> Jira's own notifications?</td>
-                <td>—</td>
-                <td>Yes, by intercepting them</td>
-                <td class="absent">No — Forge has no hook for that</td>
+                <td class="absent">No</td>
+                <td class="absent">No — turn the event off in the scheme</td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="prose">
           <p>
-            That last row is the trade. The same constraint is what keeps every byte inside
-            Atlassian.
+            Automation's allowance on Jira Free is 150 steps a month for the whole site, and a
+            rule that emails on every status change spends two or three steps each time it runs.
           </p>
         </div>
       </section>
