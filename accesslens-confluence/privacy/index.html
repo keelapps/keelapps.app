@@ -102,7 +102,7 @@
              NOT ONE WORD between these sentinels may.
         -->
         <h1>Privacy policy — AccessLens for Confluence</h1>
-        <p class="manual__meta">Effective date: <time datetime="2026-09-09">9 September 2026</time></p>
+        <p class="manual__meta">Effective date: <time datetime="2026-09-29">29 September 2026</time></p>
 
         <h2 id="short-version">The short version</h2>
         <p class="manual__lede">
@@ -127,8 +127,10 @@
             permissions, the role assignments that carry the same information.
           </li>
           <li>
-            <strong>Pages</strong> — id, title and parent id, so restricted pages can be named
-            and their inheritance chain walked. <strong>Page content is never read.</strong>
+            <strong>Pages</strong> — id, title and parent id (and, when the parent is not a
+            page, what kind of content it is, such as a folder), so restricted pages can be named
+            and their inheritance chain walked. <strong>Page content is never read.</strong> Only
+            pages are listed — not blog posts, folders, whiteboards or databases.
           </li>
           <li>
             <strong>Page restrictions</strong> — which users and groups a page's view or edit
@@ -154,25 +156,30 @@
             <tbody>
               <tr>
                 <td>Snapshots</td>
-                <td>for each space, its identifiers and its permission grants; for each restricted page, its id, title, parent id and the users and groups named in its restrictions; for each group referenced by a grant, its name and the account ids and display names of its members</td>
+                <td>who started the snapshot, and who cancelled it if anyone did (account ids); for each space, its identifiers and its permission grants, including the account ids and display names of users granted access directly; for each restricted page, its id, title, parent id and the users (account id and display name) and groups named in its restrictions; the ids and titles of unrestricted pages hidden under a restricted page; for each group named in a grant or only in a page restriction, its name and the account ids and display names of its members; for a space that could not be scanned, the reason (a request path and status, never a query string); and, where someone used "Confirm coverage", the page counts and that person's display name, with the date</td>
                 <td>a point-in-time record is what makes an access review evidence rather than an opinion</td>
               </tr>
               <tr>
                 <td>Access reviews</td>
-                <td>the review's title, the snapshot it is pinned to, and for each space the decision, any free-text note, the deciding account id and a server-side UTC timestamp, together with any superseded decisions</td>
+                <td>the review's title, the snapshot it is pinned to, the account id of whoever created it, and for each space the decision, any free-text note, the deciding account id and a server-side UTC timestamp, with every decision ever recorded kept; at sign-off, a copy of the review's rows carrying each decision with the decider's display name and account id, and the signer's display name and account id; and, if the review's snapshot is deleted later, the account id of whoever deleted it</td>
                 <td>a sign-off has to name who signed and when</td>
               </tr>
               <tr>
                 <td>Settings</td>
-                <td>scan cadence, shard size, page-restriction mode and budget, and the snapshot retention limit</td>
+                <td>scan cadence, shard size, page-restriction mode and budget, the snapshot retention limit, the outcome of the last scheduled run, and whether the site's subscription was active the last time the app was opened</td>
                 <td>so a large site can be scanned within a budget you chose</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          <strong>Personal data stored: Atlassian account ids and display names.</strong> No
-          email addresses, no page content, no attachments.
+          Display names are stored at the moment they are read — at scan, at sign-off or at
+          confirmation — so a record reads the same after an account is renamed or removed; the
+          account id stored beside each name remains the identity.
+        </p>
+        <p>
+          <strong>Personal data stored: Atlassian account ids, display names, and whatever
+          reviewers type into notes.</strong> No email addresses, no page content, no attachments.
         </p>
 
         <h2 id="what-the-app-writes">What the app writes to Confluence</h2>
@@ -193,13 +200,17 @@
             bridge. They never pass through any server.
           </li>
           <li>
-            Application logs record snapshot ids, space keys, shard progress, HTTP status codes
-            and error reasons. They never record display names, account ids, page titles, or
-            permission content.
+            Keelapps runs no servers and <strong>cannot browse the data the app stores</strong>:
+            Forge storage is reachable only by the app itself, running inside Atlassian's
+            infrastructure.
           </li>
           <li>
-            The vendor has <strong>no access to your data</strong>. Forge storage is reachable
-            only by the app itself, running inside Atlassian's infrastructure.
+            <strong>Keelapps can see the app's Forge logs.</strong> Forge shares an app's logs
+            with its developer by default when the app is installed; a site admin can switch this
+            off under Atlassian Administration → Connected apps → the app → Logs access. The logs
+            contain snapshot ids, space keys, space, page and group ids, request paths without
+            their query strings, HTTP status codes, counts, progress and error reasons. They never
+            contain account ids, display names, page titles, review notes or permission content.
           </li>
         </ul>
 
@@ -212,8 +223,13 @@
           an audit record destroyed without being asked for is worse than a refused scan.
         </p>
         <p>
-          Uninstalling the app removes its storage in accordance with Atlassian's Forge data
-          lifecycle.
+          A signed-off review cannot be deleted from the app at all. If the site's subscription
+          lapses, the app becomes read-only: existing snapshots and reviews stay readable and
+          exportable, and nothing new is collected.
+        </p>
+        <p>
+          After the app is uninstalled, Atlassian keeps its storage for 28 days and then deletes
+          it — signed-off reviews included. Export the CSVs you need first.
         </p>
 
         <h2 id="data-residency">Data residency</h2>

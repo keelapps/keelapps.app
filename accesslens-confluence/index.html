@@ -199,7 +199,7 @@
             </p>
           </div>
           <div class="card">
-            <h3>Find every locked page</h3>
+            <h3>Find locked pages, and what locks them</h3>
             <p>
               Restricted pages per space, the restriction type, and the
               <strong>inheritance source</strong> — because a page is often hidden by an
@@ -217,16 +217,18 @@
           <div class="card">
             <h3>A snapshot is audit evidence</h3>
             <p>
-              Capture the whole site's permission state, manually or on a schedule. Large
+              Capture every current space's permission state, manually or on a schedule. Large
               sites finish because the scan is sharded and resumable — the cursor reaches
-              inside a single space, page by page.
+              inside a single space, page by page — and a space it cannot read stays in the
+              snapshot with the reason, never silently dropped.
             </p>
           </div>
           <div class="card">
             <h3>Diffs an admin can read</h3>
             <p>
               Compare any two snapshots, reported one row per space and subject. Five
-              administrative changes read as five rows, never as fifty permission lines.
+              administrative changes read as five rows, never as fifty permission lines — and
+              what either side could not read is listed as not comparable, not as a change.
             </p>
           </div>
           <div class="card">
@@ -263,8 +265,9 @@
           <li>
             <h3>Check the pages, not just the spaces</h3>
             <p>
-              The restriction audit lists every locked page in the spaces under review,
-              including the ones hidden by an ancestor rather than themselves — and flags the
+              The restriction audit lists the locked pages it can read in the spaces under
+              review (200 per space by default, or all of them), including the ones hidden by an
+              ancestor rather than themselves — and flags the
               restrictions that grant nothing because the group named in them cannot see the
               space.
             </p>
