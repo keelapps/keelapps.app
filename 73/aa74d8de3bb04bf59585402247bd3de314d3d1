@@ -1,0 +1,19 @@
+recur/index.html
+  s_8a226299eb6d34::t_dd788c4d9448c8 133
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "73aa74d8de3bb04bf59585402247bd3de314d3d1",
+  "prompts": {},
+  "sessions": {
+    "s_8a226299eb6d34": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3c731b1f-6a17-4d83-b96a-8150d4c6d740",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
