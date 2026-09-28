@@ -136,7 +136,9 @@
         <p>The <strong>Explore</strong> tab offers three directions, all against a chosen snapshot:</p>
         <ul>
           <li><strong>By group</strong> — every project the group can reach, and with what</li>
-          <li><strong>By user</strong> — including access inherited through group membership</li>
+          <li><strong>By user</strong> — including access inherited through group membership, and,
+            listed apart, what every licensed user can reach (a snapshot does not record who holds
+            Jira access, so those rows say they apply if the person does)</li>
           <li><strong>By project</strong> — everyone who can reach it, flattened</li>
         </ul>
         <p>
@@ -178,8 +180,10 @@
         <div class="aside" data-label="Important">
           <p>
             <strong>Signing off is permanent.</strong> The review freezes: no decision or note can be
-            changed afterwards, by anyone. That is what makes the exported record hold up, and it is
-            why there is no way to reopen it. Export before you sign if you are unsure.
+            changed afterwards, by anyone, and it cannot be signed again or deleted. It keeps its own
+            copy of the projects it showed, so it reads the same after its snapshot is deleted. That is
+            what makes the exported record hold up, and it is why there is no way to reopen it. Export
+            before you sign if you are unsure.
           </p>
         </div>
 
@@ -196,7 +200,8 @@
           Snapshots are kept until you delete them, up to a limit you set (default 12).
           <strong>At the limit, AccessLens refuses a new snapshot rather than deleting an old
           one.</strong> Audit evidence is never discarded automatically — export and delete a snapshot
-          yourself to make room.
+          yourself to make room. A snapshot an open review uses cannot be deleted until the review is
+          signed off or deleted; a signed-off review keeps its own copy of what it showed.
         </p>
 
         <h2 id="cannot-see-everything">When AccessLens cannot see everything</h2>
