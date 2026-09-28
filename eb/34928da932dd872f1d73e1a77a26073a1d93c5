@@ -1,0 +1,19 @@
+curator/index.html
+  s_0ca869bfbb8152::t_b4f7f2e9a62481 178-180,308
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "eb34928da932dd872f1d73e1a77a26073a1d93c5",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
