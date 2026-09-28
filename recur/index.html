@@ -117,8 +117,8 @@
         <div class="intro__split">
           <p class="lede">
             Weekly reports, monthly maintenance, quarterly access reviews, certificate renewals.
-            Jira's own Set to recur repeats one work item daily, weekly, every two weeks or
-            monthly, and every run counts against your Automation limits. Recur works from
+            Jira can repeat a work item up to monthly, or run an Automation rule you build for each
+            task, and every run of either uses your Automation allowance. Recur works from
             templates, on any interval, at an hour in the time zone you picked. It creates the
             issue within an hour after it is due, never before, and tells you exactly what it
             did — including the times it deliberately did nothing.
@@ -165,11 +165,11 @@
         <p class="eyebrow">The gap this fills</p>
         <div class="gap">
           <p>
-            Jira can repeat a work item now: <em>Set to recur</em>, on a schedule or after the last
-            one is done, until an end date. It offers daily, every weekday, weekly, every two weeks
-            and monthly — no quarterly, no “first Monday”, no hour or time zone to pick — and each
-            run is an Automation execution that counts against your plan's limit. It can wait for
-            the last one to close, but it cannot skip a round.
+            Jira can repeat a work item: <em>Set to recur</em>, on a schedule or after the last one
+            is done — daily, every weekday, weekly, every two weeks or monthly, at the time of day
+            you set it up. For a quarter, the first Monday, or 09:00 in another time zone you build
+            an Automation rule, one per task. Either way every run uses Automation steps from your
+            plan's allowance.
           </p>
         </div>
       </section>
@@ -265,6 +265,7 @@
               <tr>
                 <th>Question</th>
                 <th>Jira's Set to recur</th>
+                <th>An Automation rule you build</th>
                 <th>Recur</th>
               </tr>
             </thead>
@@ -272,30 +273,36 @@
               <tr>
                 <td>Every three months, or every six weeks?</td>
                 <td class="absent">Up to monthly, or every 2 weeks</td>
+                <td>Yes, one rule per task</td>
                 <td><span class="answer">Any interval</span></td>
               </tr>
               <tr>
                 <td>The first Monday of the month?</td>
                 <td class="absent">A date, or the last day</td>
+                <td>Yes</td>
                 <td><span class="answer">Yes</span></td>
               </tr>
               <tr>
-                <td>At 09:00 in your time zone, across daylight saving?</td>
-                <td class="absent">No hour or time zone setting</td>
-                <td><span class="answer">Yes</span></td>
+                <td>At 09:00 in your time zone?</td>
+                <td class="absent">At the time of day you set it up</td>
+                <td>A time and a time zone</td>
+                <td><span class="answer">Yes, across daylight saving</span></td>
               </tr>
               <tr>
-                <td>Skip this round because the last one is still open?</td>
-                <td class="absent">Wait for it, or create anyway</td>
-                <td><span class="answer">Create, skip or wait</span></td>
+                <td>What if the last one is still open?</td>
+                <td>Its two modes, Scheduled or Completed</td>
+                <td>A condition you write into the rule</td>
+                <td><span class="answer">Create, skip or wait, per template</span></td>
               </tr>
               <tr>
                 <td>Why was no issue created on Monday?</td>
-                <td class="absent">Automation audit log</td>
+                <td>The Automation audit log</td>
+                <td>The Automation audit log</td>
                 <td><span class="answer">Per template, with the reason</span></td>
               </tr>
               <tr>
-                <td>Counts against your Automation limits?</td>
+                <td>Uses your Automation allowance?</td>
+                <td class="absent">Yes, every run</td>
                 <td class="absent">Yes, every run</td>
                 <td><span class="answer">No</span></td>
               </tr>

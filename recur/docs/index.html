@@ -103,10 +103,11 @@
 
         <p class="manual__lede">
           Recur creates Jira issues on a schedule — weekly reports, monthly maintenance, quarterly
-          access reviews, certificate renewals. Jira's own Set to recur repeats one work item daily,
-          weekly, every two weeks or monthly, and every run counts against your Automation limits;
-          Recur works from templates, on any interval, at an hour in the time zone you picked, and
-          decides per template what happens when the last one is still open.
+          access reviews, certificate renewals. Jira can repeat a work item up to monthly with Set to
+          recur, or run an Automation rule you build for each task, and every run of either uses
+          your Automation allowance. Recur works from templates, on any interval, at an hour in the
+          time zone you picked, and decides per template what happens when the last one is still
+          open.
         </p>
         <p>
           Recur is built on Atlassian Forge. There are no external servers and no data leaves
@@ -221,8 +222,7 @@
 
         <h2 id="last-one-still-open">When the last one is still open</h2>
         <p>
-          Jira's own Set to recur can wait for the last one to close, but cannot skip a round.
-          Recur offers all three, per template.
+          Each template picks one of three policies.
         </p>
         <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
           <table>
