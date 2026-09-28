@@ -116,9 +116,9 @@
         <h1>A page that was right two years ago still looks right today.</h1>
         <div class="intro__split">
           <p class="lede">
-            Knowledge bases rot silently — outdated runbooks look exactly as authoritative as
-            current ones, and nobody can tell the difference from the outside. Evergreen gives
-            every Confluence page a freshness status, and gives owners a one-click way to say
+            Confluence shows when a page was last updated, and its Verified status lets an owner
+            vouch for pages one at a time. Evergreen gives every Confluence page a freshness
+            status on its own, and gives the people who know it a one-click way to say
             “I checked, it's still correct” — without editing the page, creating a version, or
             pinging a single watcher.
           </p>
@@ -163,10 +163,15 @@
         <p class="eyebrow">The gap this fills</p>
         <div class="gap">
           <p>
-            The tools in this category are full content-lifecycle suites: archiving workflows,
-            approval chains, automated clean-up jobs. They have proved teams will pay to keep a
-            knowledge base from rotting — and they are a lot of machinery when all that was
-            wanted is a red/yellow/green signal and a button that says it's still fine.
+            Confluence has pieces of this. Verified is set page by page, by a page's owner or an
+            admin, and an Automation template can un-verify pages nobody has touched and email
+            their owners. The content manager in space settings filters a space's pages by last
+            activity. None of it gives every page a status of its own that readers see on the page.
+          </p>
+          <p>
+            The apps in this category that do are full content-lifecycle suites: archiving
+            workflows, approval chains, automated clean-up jobs — a lot of machinery when all
+            that was wanted is a red/yellow/green signal and a button that says it's still fine.
             Evergreen deliberately stops there.
           </p>
         </div>
@@ -270,7 +275,7 @@
             <thead>
               <tr>
                 <th>Question</th>
-                <th>Doing nothing</th>
+                <th>Confluence on its own</th>
                 <th>Lifecycle suites</th>
                 <th>Evergreen</th>
               </tr>
@@ -278,15 +283,21 @@
             <tbody>
               <tr>
                 <td>Can a reader tell a stale page from a current one?</td>
-                <td class="absent">No</td>
+                <td>The updated date, and Verified where someone set it</td>
                 <td>After configuration</td>
                 <td><span class="answer">Badge on every page</span></td>
               </tr>
               <tr>
                 <td>Can an owner vouch for a page without editing it?</td>
-                <td class="absent">Fake edits, “bump” comments</td>
+                <td>Yes: the Verified status (owners and admins)</td>
                 <td class="absent">Usually a workflow step</td>
-                <td><span class="answer">One click</span></td>
+                <td><span class="answer">One click, for anyone who reads it</span></td>
+              </tr>
+              <tr>
+                <td>A list of what needs attention, per space?</td>
+                <td>The content manager filters by last activity; no status</td>
+                <td>After configuration</td>
+                <td><span class="answer">Aging and stale, worst first</span></td>
               </tr>
               <tr>
                 <td>Time from install to first insight?</td>
@@ -296,7 +307,7 @@
               </tr>
               <tr>
                 <td>Can it archive or delete something you still need?</td>
-                <td>No</td>
+                <td>Only when a person or a rule does</td>
                 <td class="absent">Yes — the top complaint</td>
                 <td><span class="answer">Cannot; no such code</span></td>
               </tr>
