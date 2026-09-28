@@ -237,7 +237,7 @@
             <tbody>
               <tr><td><code>read:jira-work</code></td><td>Enumerate projects; read project roles and permission schemes</td></tr>
               <tr><td><code>read:jira-user</code></td><td>Read the user identities returned alongside group members and role actors; the app makes no separate user-lookup call</td></tr>
-              <tr><td><code>manage:jira-configuration</code></td><td>Read group members. The app writes no configuration and issues no write requests at all; this is the only path to group membership, and without it “which projects can this person reach” is unanswerable.</td></tr>
+              <tr><td><code>manage:jira-configuration</code></td><td>Read group members. The app writes no configuration and issues no write requests at all. This is the classic scope Jira accepts for reading group members (its granular alternative, <code>read:group:jira</code>, is still in beta), and without group members “which projects can this person reach” is unanswerable.</td></tr>
               <tr><td><code>storage:app</code></td><td>Store snapshots, reviews and settings in Atlassian-hosted app storage</td></tr>
             </tbody>
           </table>
