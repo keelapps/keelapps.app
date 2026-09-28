@@ -119,8 +119,8 @@ class App:
 
     def card(self):
         if self.image.exists():
-            shot = (f'<img src="/assets/screenshots/cards/{self.slug}.webp" alt="" width="760" '
-                    f'height="372" loading="lazy" decoding="async" />')
+            shot = (f'<img src="/assets/screenshots/cards/{self.slug}.webp" alt="" width="720" '
+                    f'height="480" loading="lazy" decoding="async" />')
         else:
             shot = "<span>Screenshot at launch</span>"
         status = ('<span class="app-card__status">Live</span>' if self.live else

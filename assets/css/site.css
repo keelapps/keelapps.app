@@ -266,37 +266,60 @@
   margin: 0;
 }
 
+/* The picture is a window onto the app. Every card shows the same amount of
+   interface — 560 by 373 CSS pixels of it, see tools/make-card-images — at the
+   same scale, set on a plate at the same place and running off its right and
+   bottom edges, so twelve different screens read as one set. The plate is
+   deep water, the ground the Marketplace cards and the demo posters use, so
+   the site, the listings and the videos show an app the same way. Only the
+   interface is a picture; the plate is drawn here. */
+
 .app-card__shot {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(160deg, rgb(var(--rgb-navy-soft)), rgb(var(--rgb-navy)) 70%);
+  border-radius: var(--radius-large);
   display: block;
+  overflow: hidden;
+  position: relative;
   text-decoration: none;
 }
 
-.app-card__shot img,
-.app-card__shot span {
-  aspect-ratio: 1840 / 900;
+/* On the dark plate the page is already deep water; the card lifts to the
+   tint so it still reads as a plate. */
+
+@media (prefers-color-scheme: dark) {
+  .app-card__shot {
+    background: var(--color-tint);
+  }
+}
+
+.app-card__shot img {
+  aspect-ratio: 3 / 2;
   background: #fff;
-  border: var(--rule-gauge) solid var(--color-rule-strong);
-  border-radius: var(--radius-large);
+  border-radius: var(--radius) 0 0 0;
+  box-shadow: 0 0.25rem 1.25rem rgb(var(--rgb-navy) / 0.5);
   display: block;
   height: auto;
-  transition: border-color var(--transition);
-  width: 100%;
+  left: 7%;
+  position: absolute;
+  top: 10%;
+  transition: translate var(--transition);
+  width: 93%;
 }
 
 .app-card__shot:hover img {
-  border-color: var(--color-ink);
+  translate: 0 -0.25rem;
 }
 
 /* An app with no screenshot yet says so in the station-label voice. */
 
 .app-card__shot span {
   align-items: center;
-  background: var(--color-tint);
-  border-style: dashed;
-  color: var(--color-ink-muted);
+  color: rgb(var(--rgb-cream) / 0.74);
   display: flex;
   font-family: var(--font-family-mono);
   font-size: var(--font-size-x-small);
+  height: 100%;
   justify-content: center;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;

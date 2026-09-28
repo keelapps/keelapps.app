@@ -43,17 +43,37 @@ than by hand.
 A card carries no copy of its own. Its headline is the product page's `<h1>`,
 its demo length the page's `VideoObject` duration, its status whether the
 page's intro links to a Marketplace listing, and its picture whatever
-`tools/make-card-images` made from the page's `og:image`. Edit the product
+`tools/make-card-images` made from the app's card source. Edit the product
 page, then:
 
 ```sh
-tools/make-card-images          # only if a product page's og:image changed
+tools/make-card-images          # only if a card source changed
 tools/make-chrome               # rewrite the chrome in every page
 tools/make-chrome --check       # non-zero if any page has drifted
 ```
 
+### The card's picture
+
+Twelve screenshots of twelve different screens only read as a set when each
+shows the same amount of interface at the same scale, framed the same way. So
+a card does not show the product page's `og:image` shrunk down: it shows a
+window onto the app, and the window is fixed.
+
+- **The source** is `assets/screenshots/cards/source/<slug>.png`: exactly
+  560 × 373 CSS pixels of the app's own screen, captured at a device scale
+  of 2 (1120 × 747). It starts at the top-left of the app's surface — its
+  heading or panel, or the page title for an app that lives in the byline —
+  and holds no Jira or Confluence navigation, no sidebar, no modal backdrop,
+  no other app's UI and no personal name. Production install, current release.
+  `tools/make-card-images` has the full rules and refuses a source of the
+  wrong shape.
+- **The frame** is `site.css`: a deep-water plate — the ground the Marketplace
+  cards and the demo posters use, lifted to the tint on the dark plate — with
+  the interface set 7% in from the left and 10% down, running off the right
+  and bottom edges. Nothing about the frame is baked into the image.
+
 Adding an app is a row in `APPS` at the top of `tools/make-chrome`, its three
-pages, and those two scripts. The home page counts the fleet in words ("Eleven
+pages, a card source, and those two scripts. The home page counts the fleet in words ("Eleven
 apps. One job each.", "See all eleven apps") — those are copy, and change by
 hand.
 

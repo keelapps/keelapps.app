@@ -1,16 +1,31 @@
 #!/usr/bin/env python3
-"""Regenerate the small screenshots the app cards show, from each product page.
+"""Regenerate the pictures the app cards show, from each app's card source.
 
-The home page shows every app as a card, and each product page shows three
-more. A card is at most about 380 CSS pixels wide, so the 1840x900 PNG a product
-page opens on would be several hundred kilobytes spent on a thumbnail — eleven
-of them on the home page alone. These are the same screenshots at 760x372
-(twice the card width, for a high-density screen) as WebP.
+A card's picture is a window onto the app, and the cards only read as one set
+if every window shows the same amount of interface at the same scale. So a
+card source is not a whole screenshot: it is exactly 560 by 373 CSS pixels of
+the app's own screen, captured at a device scale of 2 (never below 1.3, which
+would leave it narrower than the 720 pixels it is written at), saved as
 
-Which screenshot is an app's is not written down here: it is the product page's
-own og:image, when that is one of assets/screenshots/. A page whose og:image is
-the default share card has no screenshot yet, gets no card image, and its card
-says so instead (see tools/make-chrome).
+    assets/screenshots/cards/source/<slug>.png
+
+where <slug> is the product page's directory. Cut it so that:
+
+- it starts at the top-left of the app's own surface — its heading, its panel,
+  or, for an app that lives in a page's byline, the page title — with no
+  Jira or Confluence navigation, sidebar or modal backdrop in it;
+- it comes from the production install and shows the current release. A
+  development install draws a Dev lozenge or "(Development)" into the frame,
+  so an app that has not launched is cut where neither shows;
+- it carries no personal name or site address, and no other app's UI.
+
+At scale 2 that is a 1120x747 PNG, at 2.5 a 1400x933 one. The plate behind it,
+its position and the edges it runs off are drawn by site.css, not here.
+
+This writes each source at 720x480 — twice the width it is shown at, for a
+high-density screen — as WebP, to assets/screenshots/cards/<slug>.webp. A
+product page without a source gets no picture, and its card says so instead
+(see tools/make-chrome).
 
     tools/make-card-images        # rewrite assets/screenshots/cards/*.webp
 
@@ -18,39 +33,46 @@ Needs ImageMagick (`magick`). Run tools/make-chrome afterwards: it writes the
 image into a card only when the file exists.
 """
 
-import re
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "assets" / "screenshots" / "cards"
-W, H = 760, 372
-QUALITY = 82
+CARDS = ROOT / "assets" / "screenshots" / "cards"
+SOURCES = CARDS / "source"
+W, H = 720, 480
+QUALITY = 84
 SKIP = {".git", "assets", "tools", "security"}
 
 
 def product_pages():
     for page in sorted(ROOT.glob("*/index.html")):
         if page.parent.name not in SKIP:
-            yield page.parent.name, page
+            yield page.parent.name
+
+
+def size(path):
+    out = subprocess.run(["magick", "identify", "-format", "%w %h", str(path)],
+                         capture_output=True, text=True, check=True).stdout
+    return tuple(map(int, out.split()))
 
 
 def main():
-    OUT.mkdir(parents=True, exist_ok=True)
-    for slug, page in product_pages():
-        m = re.search(r'<meta property="og:image" content="https://keelapps\.app/(assets/screenshots/[^"]+)"',
-                      page.read_text())
-        target = OUT / f"{slug}.webp"
-        if not m:
+    CARDS.mkdir(parents=True, exist_ok=True)
+    for slug in product_pages():
+        source = SOURCES / f"{slug}.png"
+        target = CARDS / f"{slug}.webp"
+        if not source.exists():
             if target.exists():
                 target.unlink()
-            print(f"{slug:24} no screenshot yet")
+            print(f"{slug:24} no card source yet")
             continue
-        source = ROOT / m.group(1)
-        subprocess.run(["magick", str(source), "-resize", f"{W}x{H}^", "-gravity", "center",
-                        "-extent", f"{W}x{H}", "-strip", "-quality", str(QUALITY), str(target)],
-                       check=True)
+        w, h = size(source)
+        if abs(w / h - W / H) > 0.01 or w < W:
+            sys.exit(f"{source.relative_to(ROOT)} is {w}x{h}: a card source is 560x373 CSS px "
+                     f"at a device scale of 2, so 3:2 and at least {W} wide")
+        subprocess.run(["magick", str(source), "-filter", "Lanczos", "-resize", f"{W}x{H}!",
+                        "-strip", "-quality", str(QUALITY), str(target)], check=True)
         print(f"{slug:24} {target.relative_to(ROOT)}  {target.stat().st_size / 1024:.0f} KB")
 
 
