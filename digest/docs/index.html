@@ -129,8 +129,8 @@
             see it.
           </li>
           <li>
-            From then on, each period folds into one digest, normally delivered during the hour it
-            is due.
+            From then on, each period folds into one digest, normally delivered within an hour
+            after it is due, never before.
           </li>
         </ol>
         <p>
@@ -194,7 +194,7 @@
           which is 09:00 local to them — on both sides of a daylight saving change.
         </p>
         <p>
-          Digests normally arrive during the hour they are due. Digest wakes up hourly and
+          A digest normally arrives within an hour after it is due, and never before. Digest wakes up hourly and
           Atlassian spreads those wake-ups across the hour, so a digest due at 09:00 appears
           somewhere in the following hour rather than exactly on it; if Atlassian skips a wake-up
           altogether, the next sweep picks the run up — it is never dropped.
@@ -298,7 +298,7 @@
           Everything lives in Forge storage inside your own Atlassian tenant: subscription
           configuration, digest bodies — issue keys, truncated summaries, status, assignee, project, type and
           short change labels, never descriptions or comment text — the inbox, and site-level counters. No
-          email addresses, IP addresses or analytics. Uninstalling the app removes all of it.
+          email addresses, IP addresses or analytics. When the app is uninstalled, Atlassian deletes it after 28 days.
           Full text: <a href="/digest/privacy/">privacy policy</a>.
         </p>
         <p>
