@@ -176,7 +176,8 @@
           </li>
           <li>
             <strong>Exclude from tracking</strong> — takes this one page out of freshness
-            tracking (and back in, with the same button).
+            tracking (and back in, with the same button). The byline says who excluded it and
+            when; a page excluded by its label says so, and comes back when the label is removed.
           </li>
           <li>
             <strong>Set page thresholds</strong> — overrides the aging/stale days for this
@@ -184,10 +185,18 @@
           </li>
         </ul>
         <p>
-          These actions are available to everyone who can view the page, deliberately: the
-          person best placed to say “this is still correct” is often a reader, not an editor.
-          Every confirmation is attributed by name and can be corrected by anyone else with
-          one more click.
+          <strong>Mark as fresh</strong> is available to everyone who can view the page,
+          deliberately: the person best placed to say “this is still correct” is often a reader,
+          not an editor. Every confirmation is attributed by name and can be corrected by anyone
+          else with one more click. <strong>Exclude from tracking</strong> and
+          <strong>Set page thresholds</strong> change what the space is told about the page, so
+          they are for people who can edit it: Evergreen asks Confluence, as you, before it
+          writes, and readers don't see those two buttons.
+        </p>
+        <p>
+          On a page whose restrictions leave the app out, the byline says Evergreen can't read
+          it. Blog posts work like pages when “Also track blog posts” is on; while it is off,
+          their byline says blog posts aren't tracked.
         </p>
 
         <h2 id="the-space-dashboard">The space dashboard</h2>
@@ -245,7 +254,7 @@
             <tbody>
               <tr><td>Site defaults (90 / 180)</td><td>Site admins</td><td>Confluence administration → Evergreen</td></tr>
               <tr><td>Space override</td><td>Space admins</td><td>Space settings → Evergreen → Settings</td></tr>
-              <tr><td>Page override</td><td>Anyone who can view the page</td><td>The page byline</td></tr>
+              <tr><td>Page override</td><td>Anyone who can edit the page</td><td>The page byline</td></tr>
             </tbody>
           </table>
         </div>
@@ -283,10 +292,9 @@
         <h2 id="restricted-pages">Restricted pages</h2>
         <p>
           Evergreen reads Confluence as itself, not as any user. A page restricted away from
-          the app is invisible to it — such pages are excluded from all counts, and the
-          dashboard states how many it found rather than quietly omitting them. The count is
-          a floor: Confluence answers identically for a deleted page and a restricted one in
-          most cases, so Evergreen only claims what it can prove.
+          the app is invisible to it and left out of every count. Confluence answers the app the
+          same way for a restricted page as for a deleted one, so the dashboard cannot say how
+          many there are. On such a page, the byline says Evergreen can't read it.
         </p>
 
         <h2 id="administration">Administration</h2>
@@ -294,9 +302,8 @@
           <strong>Confluence administration → Evergreen</strong>, visible to site admins:
           site-default thresholds, the site-wide exempt label list, excluded space keys,
           the blog-post switch, and <strong>Rescan every space now</strong>. Pages that go
-          stale are listed on each space dashboard's Overview tab, in a “N pages went stale” banner — Confluence
-          exposes no API for apps to send in-product notifications, and Evergreen sends no
-          email, ever.
+          stale are listed on each space dashboard's Overview tab, in a “N pages went stale”
+          banner. Evergreen sends no email and no notifications, ever.
         </p>
 
         <h2 id="permissions">Permissions the app requests</h2>
