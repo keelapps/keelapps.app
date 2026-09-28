@@ -110,8 +110,8 @@
         </p>
         <p>
           Recur is built on Atlassian Forge. There are no external servers and no data leaves
-          Atlassian's infrastructure, so there is nothing extra for a vendor security review to look
-          at.
+          Atlassian's infrastructure, so a security review has no vendor infrastructure to assess —
+          only the four scopes listed under <a href="#permissions">Permissions</a>.
         </p>
 
         <h2 id="getting-started">Getting started</h2>
@@ -163,7 +163,8 @@
             though the underlying instant is 22:00 UTC on the 19th.
           </li>
           <li>
-            <code>{{n}}</code> — how many times this template has run, starting at 1. Useful for
+            <code>{{n}}</code> — the number of issues this template has created, counting this one,
+            so the first is 1. Skipped and failed runs do not count. Useful for
             <em>TLS renewal check #4</em>.
           </li>
         </ul>
