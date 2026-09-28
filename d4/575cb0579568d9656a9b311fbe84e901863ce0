@@ -1,0 +1,22 @@
+prefill/privacy/index.html
+  s_0ca869bfbb8152::t_e46a71a803258c 106,132-134,138-143,164-167,171,178-180,184-192,194,198-207,218-220
+prefill/docs/index.html
+  s_0ca869bfbb8152::t_01981d68c45bea 88
+  s_0ca869bfbb8152::t_192086411eda10 260-277,294,304-312,325-326,343-345
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "d4575cb0579568d9656a9b311fbe84e901863ce0",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
