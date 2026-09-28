@@ -175,8 +175,10 @@
             is created as the person who submitted it. The scenario Prefill is built for is “the
             entire company has a Jira seat, but only a handful of people know how to file a
             ticket”. If you need requests from people <em>without</em> a seat, Jira's own forms
-            can be shared with anyone who has the link, and Jira Service Management runs customer
-            portals.
+            can be shared with anyone who has the link (if your admin allows public forms), and
+            Jira Service Management runs customer portals — whose request types can already hide
+            preset values and take answers from the portal link. Prefill is for the projects
+            that have no portal.
           </p>
         </div>
       </section>
@@ -291,7 +293,7 @@
             <tbody>
               <tr>
                 <td>What does the submitter see?</td>
-                <td class="absent">Every field on the project's create screen</td>
+                <td class="absent">A short dialog or the full create screen, depending on the project — and they pick the project and issue type</td>
                 <td>The questions you put on the form</td>
                 <td><span class="answer">Only the fields you chose to ask</span></td>
               </tr>
@@ -310,7 +312,7 @@
               <tr>
                 <td>Who can submit?</td>
                 <td>Signed-in users</td>
-                <td>Your users, or anyone with the link</td>
+                <td>Your users, or anyone with the link if your admin allows it</td>
                 <td>Signed-in users who can create issues in the project</td>
               </tr>
               <tr>
@@ -333,8 +335,9 @@
             create issues in the target project. Prefill does not provide an anonymous or
             external customer portal: it creates every issue as the signed-in person who
             submitted it. If you need requests from people without a Jira seat, look at Jira's
-            own forms, which can be shared with anyone who has the link, or at Jira Service
-            Management — not this app. This matters before you buy: Marketplace
+            own forms, which can be shared with anyone who has the link if your admin allows
+            public forms, or at Jira Service Management — not this app. A service project's
+            portal already hides preset values and prefills from its link. This matters before you buy: Marketplace
             apps are priced by Jira user count, and a form is only useful to somebody who
             already has a seat.
           </p>

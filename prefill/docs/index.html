@@ -125,8 +125,9 @@
           every issue is created as the person who submitted it. The scenario it is built for is
           “the whole company has a Jira seat, but only a handful of people know how to file a
           ticket”. For requests from people <em>without</em> a seat, Jira's own forms can be
-          shared with anyone who has the link, and Jira Service Management runs customer
-          portals.
+          shared with anyone who has the link (if your admin allows public forms), and Jira
+          Service Management runs customer portals, whose request types can already hide preset
+          values and prefill from the portal link.
         </p>
 
         <h2 id="where-it-lives">Where Prefill lives</h2>
@@ -234,8 +235,8 @@
           <li>The <strong>reporter and creator are the real submitter</strong>, not the app and not you.</li>
           <li>Jira's own permissions decide whether the issue can be created at all.</li>
           <li>
-            The issue appears in Jira's audit trail exactly as if it had been created through
-            Jira's own interface, and notifications and automation fire normally.
+            Jira's notifications and automation rules for issue creation fire as they do for
+            any new issue.
           </li>
         </ul>
         <p>
