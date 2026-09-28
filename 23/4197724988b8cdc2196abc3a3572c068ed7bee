@@ -1,0 +1,21 @@
+curator/docs/index.html
+  s_0ca869bfbb8152::t_254e79c98894fc 110,113-115,119-120,123-124,136-141,152,249-252,260-267,281,305-307,345-346
+curator/index.html
+  s_0ca869bfbb8152::t_d0e904d0e1aabd 191,222-224
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "234197724988b8cdc2196abc3a3572c068ed7bee",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "unknown"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
