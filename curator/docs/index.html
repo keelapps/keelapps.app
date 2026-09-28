@@ -9,7 +9,7 @@
     <title>Documentation — Curator for Confluence</title>
     <meta
       name="description"
-      content="How Curator works: selecting pages, the operations, the dry run, whole-batch undo, the label catalogue, site-wide label administration, history, API pacing and what cannot be undone."
+      content="How Curator works: selecting pages, the operations, the dry run, whole-batch undo, the label catalogue, site-wide label administration, history, API pacing and what Curator cannot undo."
     />
     <link rel="canonical" href="https://keelapps.app/curator/docs/" />
     <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
@@ -87,7 +87,7 @@
           <li><a href="#label-admin">Renaming, merging and deleting labels</a></li>
           <li><a href="#history">History and CSV export</a></li>
           <li><a href="#quota">API points and pacing</a></li>
-          <li><a href="#cannot-undo">What cannot be undone</a></li>
+          <li><a href="#cannot-undo">What Curator cannot undo</a></li>
           <li><a href="#permissions">Permissions the app requests</a></li>
           <li><a href="#not-in-this-release">Not in this release</a></li>
           <li><a href="#support">Support</a></li>
@@ -127,10 +127,13 @@
           </li>
         </ul>
         <p>
-          Every read and every write runs as <em>you</em>, so Confluence's own permissions
-          decide what a batch can touch. A page you cannot edit is a page Curator cannot
-          change on your behalf — the preview says so before you commit rather than failing
-          halfway through.
+          <strong>Whose permissions.</strong> A batch runs in the background, where Forge
+          has no user to act as, so its changes are made with Curator's own permissions.
+          Before anything is queued — and again when you press Run — Curator checks
+          <em>you</em>: you must be able to edit the page the batch starts from, the space's
+          home page for a space-wide batch or the root of the tree. Page restrictions bind
+          Curator too: a page whose view restriction does not include it is invisible to it,
+          so it is neither previewed, counted nor changed.
         </p>
 
         <h2 id="selecting">Selecting pages</h2>
@@ -182,7 +185,7 @@
               <tr>
                 <td>Archive</td>
                 <td>Sets the pages to archived.</td>
-                <td><strong>No</strong> — see below</td>
+                <td><strong>Not by Curator</strong> — Confluence restores archived pages; see below</td>
               </tr>
             </tbody>
           </table>
@@ -225,11 +228,12 @@
           or the parent page and space to move the page back to. Undo replays that journal.
         </p>
         <p>
-          Each page is guarded. Before Curator reverses a page it checks the values it
-          recorded at the time — the parent and the space the page was left in. If they no
-          longer match, somebody else has moved or changed that page since, and Curator
-          <strong>leaves it alone and reports it</strong> rather than overwriting their work.
-          A partially applied undo is an honest outcome; a silently clobbered edit is not.
+          A label batch is undone by taking off exactly the labels it added and putting back
+          exactly the ones it removed; nothing else on the page is touched. A moved page is
+          guarded: before Curator moves it back it checks the page is still under the parent
+          this batch left it under. If it is not, somebody has moved it since, and Curator
+          <strong>leaves it where they put it and names it</strong> in the undo's result. A
+          partially applied undo is an honest outcome; a silently reversed decision is not.
         </p>
         <p>
           The undo is itself an operation in the history, with its own counts and its own
@@ -310,23 +314,21 @@
           will finish.
         </p>
 
-        <h2 id="cannot-undo">What cannot be undone</h2>
+        <h2 id="cannot-undo">What Curator cannot undo</h2>
         <p>
-          <strong>Archiving.</strong> Confluence Cloud has no restore API — there is no
-          <code>unarchive</code> route in either the v1 or the v2 specification, and
-          CONFCLOUD-75065, the request for one, is still <em>Gathering Interest</em>.
+          <strong>Archiving.</strong> Confluence Cloud has no API for restoring archived
+          pages — CONFCLOUD-75065, the request for one, is still <em>Gathering
+          Interest</em> — so archive is the one operation Curator cannot take back as a
+          batch. The pages are not lost: Confluence restores them under
+          <strong>Space settings → Content → Archived</strong>, one at a time, or on
+          Premium together with the pages nested under them. Curator says so in the
+          preview, on the Run button and on the finished batch.
         </p>
         <p>
-          Curator does not hide this behind a support article. Archive is marked
-          non-reversible in the preview, on the confirmation button and in the history entry
-          it leaves behind. Every other operation is reversible.
-        </p>
-        <p>
-          Archiving also depends on your Confluence plan: the archive API accepts a limited
-          number of page ids per call, permits only one archive task per site at a time, and
-          is unavailable on Free. Below Premium it accepts a single page id per call, which
-          makes a large archive slow. Curator detects what your site allows and says so
-          rather than letting you find out from a progress bar that will not move.
+          Archiving also depends on your Confluence plan. Page archiving is part of
+          Confluence Standard and above, and a Free site refuses it. The archive API also
+          takes a limited number of pages per call and runs one archive task per site at a
+          time, and Curator paces itself to both.
         </p>
 
         <h2 id="permissions">Permissions the app requests</h2>

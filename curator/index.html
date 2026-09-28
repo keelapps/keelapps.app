@@ -118,8 +118,9 @@
           <p class="lede">
             Curator filters a Confluence space or a page tree, then re-labels, moves or archives
             what it found. Every batch is previewed page by page before a single write, and
-            every batch but archiving can be undone as a whole — with each page guarded, so a
-            colleague's edit is never overwritten by an undo. Nothing leaves Atlassian.
+            every batch but archiving can be undone as a whole: the labels it added come off,
+            the ones it removed go back, and a page someone has moved since is left where they
+            put it. Nothing leaves Atlassian.
           </p>
           <div class="intro__act">
             <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/33303578/curator-bulk-page-label-governance">Try it free on the Atlassian Marketplace</a>
@@ -163,18 +164,19 @@
         <p class="eyebrow">The gap this fills</p>
         <div class="gap">
           <p>
-            Confluence Cloud has no bulk page or label management. Retiring a label across
-            three hundred pages, or moving a project tree into another space, is manual work
-            — and the requests for it have sat at <em>Gathering Interest</em> for years:
-            CONFCLOUD-7681 (rename, merge and delete labels), CONFCLOUD-17373 (mass
-            add/remove labels), CONFCLOUD-73945 (bulk move pages between spaces, where the
-            official answer is “use the API”), CONFCLOUD-78606 and CONFCLOUD-70744 (bulk
-            archive).
+            Confluence Cloud changes labels one page at a time. It cannot rename, merge or
+            delete a label anywhere, nor add one to many pages at once, and both requests
+            have sat at <em>Gathering Interest</em> for years: CONFCLOUD-7681 (rename, merge
+            and delete, open since 2007) and CONFCLOUD-17373 (mass add and remove, since
+            2009).
           </p>
           <p>
-            The Marketplace category is fragmented and its leaders are small: page managers
-            that do not touch labels, label managers that do not touch pages, and — the part
-            customers complain about — nothing that can be undone.
+            It moves one page together with its whole tree, into any space — but not a
+            chosen set of pages that do not share a parent, such as every page labelled
+            <code>deprecated</code>. On CONFCLOUD-73945 the official answer is a guide to doing
+            it through the API. Archiving is the bulk action Confluence does have: Premium and
+            Enterprise archive up to 500 items at once from the space's content manager;
+            below Premium it is one page at a time.
           </p>
         </div>
       </section>
@@ -209,9 +211,9 @@
           <div class="card">
             <h3>Undo the batch, not the page</h3>
             <p>
-              Every run records a per-page inverse, and undo replays it. Each page is
-              guarded: if somebody else changed it in the meantime, Curator leaves it alone
-              and reports it rather than overwriting their work.
+              Every run records what it changed on each page, and undo takes back exactly
+              that — the labels it added, the labels it removed, the parent it moved a page
+              from. A page someone has moved since is left where they put it, and named.
             </p>
           </div>
           <div class="card">
@@ -264,9 +266,9 @@
           <li>
             <h3>Take it back if it was wrong</h3>
             <p>
-              One click replays the inverse on every page. Any page a colleague edited in
-              the meantime is skipped and reported, not overwritten — and the undo appears
-              in the history as its own operation.
+              One click takes the rename back on every page: the new label comes off, the old
+              one goes back on, and nothing else on the page is touched. The undo appears in
+              the history as its own operation.
             </p>
           </li>
         </ol>
@@ -281,45 +283,38 @@
               <tr>
                 <th>Question</th>
                 <th>Native Confluence</th>
-                <th>Page or label managers</th>
                 <th>Curator</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Re-label three hundred pages at once?</td>
-                <td class="absent">No bulk editing</td>
-                <td>One or the other, rarely both</td>
-                <td><span class="answer">Pages and labels, one batch</span></td>
+                <td>Add or remove a label on three hundred pages?</td>
+                <td class="absent">One page at a time</td>
+                <td><span class="answer">One previewed batch</span></td>
               </tr>
               <tr>
-                <td>Rename or merge a label?</td>
-                <td class="absent">No rename endpoint at all</td>
-                <td>Sometimes</td>
+                <td>Rename, merge or delete a label?</td>
+                <td class="absent">Not possible</td>
                 <td><span class="answer">Site-wide, previewed</span></td>
               </tr>
               <tr>
-                <td>See exactly what a batch will change first?</td>
-                <td class="absent">—</td>
-                <td class="absent">Counts, if anything</td>
-                <td><span class="answer">Page by page, with every skip reason</span></td>
+                <td>Move a chosen set of pages into another space?</td>
+                <td>One page and its tree at a time</td>
+                <td><span class="answer">Any filtered set, one batch</span></td>
               </tr>
               <tr>
-                <td>Undo the whole batch afterwards?</td>
-                <td class="absent">—</td>
-                <td class="absent">Usually not</td>
-                <td><span class="answer">Per-page inverse, guarded</span></td>
+                <td>Archive pages in bulk?</td>
+                <td>Premium and Enterprise: up to 500 at once. Below Premium: one at a time</td>
+                <td><span class="answer">Filtered batches, Standard and above</span></td>
               </tr>
               <tr>
-                <td>Move pages into another space?</td>
-                <td class="absent">Manual, page by page</td>
-                <td>Some</td>
-                <td><span class="answer">In the same batch</span></td>
+                <td>Take a batch back afterwards?</td>
+                <td class="absent">No batch to take back</td>
+                <td><span class="answer">Relabels and moves, in one click</span></td>
               </tr>
               <tr>
                 <td>Does anything leave Atlassian?</td>
                 <td>—</td>
-                <td class="absent">Depends on the vendor</td>
                 <td><span class="answer">Never</span></td>
               </tr>
             </tbody>
@@ -337,11 +332,13 @@
             you discover them halfway through a batch.
           </p>
           <p>
-            <strong>Archiving cannot be undone.</strong> Confluence has no restore API:
-            <code>unarchive</code> appears nowhere in either REST specification, and
-            CONFCLOUD-75065 is still <em>Gathering Interest</em>. Archive is marked
-            non-reversible everywhere it appears. Everything else Curator does is
-            reversible.
+            <strong>Curator cannot undo an archive.</strong> Confluence has no API for
+            restoring archived pages (CONFCLOUD-75065 is still <em>Gathering Interest</em>),
+            so archive is the one operation without a batch undo. The pages are not lost:
+            Confluence restores them under Space settings → Content → Archived — one at a
+            time, or on Premium together with the pages nested under them. Everything else
+            Curator does can be taken back as a batch. Archiving also needs Confluence
+            Standard or above; Free has no page archiving at all.
           </p>
           <p>
             <strong>Renaming a label is not an atomic operation.</strong> Confluence has no
