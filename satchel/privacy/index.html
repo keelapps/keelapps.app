@@ -105,16 +105,20 @@
              NOT ONE WORD between these sentinels may.
         -->
         <h1>Privacy policy — Satchel for Jira</h1>
-        <p class="manual__meta">Effective date: <time datetime="2026-09-09">9 September 2026</time></p>
+        <p class="manual__meta">Effective date: <time datetime="2026-09-29">29 September 2026</time></p>
 
         <h2 id="short-version">The short version</h2>
         <p class="manual__lede">
           Satchel for Jira (“Satchel”, “the app”) is published by Keelapps. Satchel does not
-          send your data anywhere. There is no Keelapps server involved in running this app,
-          because the app runs entirely on Atlassian's infrastructure and its manifest declares
-          no permission to contact any external host. Attachment files never pass through us:
-          when you download an archive, the bytes travel from Jira to your own browser, where
-          the zip is assembled, and then to your disk.
+          send your data outside Atlassian. There is no Keelapps server involved in running
+          this app: it runs entirely on Atlassian's infrastructure, and its manifest
+          declares no permission to contact any external host.
+        </p>
+
+        <p>
+          Attachment files never pass through us. When you download an archive, the bytes
+          travel from Jira to your own browser, where the zip is assembled, and then to your
+          disk.
         </p>
 
         <h2 id="what-it-processes">What the app processes</h2>
@@ -125,26 +129,38 @@
             </thead>
             <tbody>
               <tr>
-                <td>Attachment metadata — filename, byte size, media type, upload date, uploader account id and display name, issue key, issue type, project key</td>
-                <td>the Jira REST API</td>
-                <td>Forge storage, inside your Atlassian tenant</td>
-                <td>Yes, in scan records — see below</td>
+                <td>Attachment metadata — filename, byte size, MIME type, upload date, uploader account id, issue key and id, issue type, project key</td>
+                <td>Jira REST API</td>
+                <td>Forge storage (KVS), inside your Atlassian tenant</td>
+                <td>Yes, in inventory records — see below</td>
               </tr>
               <tr>
                 <td>Attachment file content</td>
-                <td>the Jira REST API</td>
-                <td>your browser's memory, then your download folder</td>
+                <td>Jira REST API</td>
+                <td>Your browser's memory, then your download folder</td>
                 <td><strong>No.</strong> Never stored by the app, in Forge or anywhere else</td>
               </tr>
               <tr>
-                <td>Your Atlassian account id and display name</td>
-                <td>the Forge invocation context</td>
-                <td>audit records, when you delete something or change a setting</td>
-                <td>Yes, until pruned</td>
+                <td>Account ids — of whoever runs an inventory, deletes an attachment or changes a setting</td>
+                <td>Forge invocation context</td>
+                <td>Inventory and audit records</td>
+                <td>Yes — see below</td>
+              </tr>
+              <tr>
+                <td>Display names</td>
+                <td>Jira REST API, looked up as the person viewing a screen</td>
+                <td>That screen</td>
+                <td><strong>No.</strong> Never stored</td>
+              </tr>
+              <tr>
+                <td>The files a deletion preview covers, as Jira describes them</td>
+                <td>Jira REST API</td>
+                <td>Forge storage</td>
+                <td>At most six hours</td>
               </tr>
               <tr>
                 <td>Site settings</td>
-                <td>the admin page</td>
+                <td>The admin page</td>
                 <td>Forge storage</td>
                 <td>Yes, until changed</td>
               </tr>
@@ -154,55 +170,76 @@
 
         <h2 id="where-stored">Where it is stored</h2>
         <p>
-          <strong>Forge storage, which is Atlassian infrastructure inside your own tenant's data
-          boundary.</strong> Not a Keelapps database — there isn't one. Data residency follows
-          whatever your Atlassian site is configured for; the app has no separate region and
-          cannot move data out of yours.
+          <strong>Forge storage (KVS), which is Atlassian infrastructure inside your own
+          tenant's data boundary.</strong> Not a Keelapps database — there isn't one. Data
+          residency follows whatever your Atlassian site is configured for; the app has no
+          separate region and cannot move data out of yours.
         </p>
-        <p>Stored records:</p>
+
+        <p>
+          Stored records:
+        </p>
+
         <ul>
           <li>
-            <strong>Scan records</strong> — an attachment inventory produced when someone runs a
-            project scan. Metadata only, never file content. The ten most recent scans per
-            project are kept; older ones are deleted automatically when an eleventh is created.
+            <strong>Inventory records</strong> — the attachment list produced when someone
+            runs a project inventory. Metadata only, never file content; uploaders are
+            stored as account ids. The ten most recent inventories per project are kept; an
+            older one is deleted automatically when an eleventh is created, and the person
+            who ran one, or a project or Jira administrator, can delete it from the project
+            page at any time. Inventories taken with versions before 2.3.0 also hold
+            uploaders' display names, until they are replaced or deleted.
           </li>
           <li>
-            <strong>Audit records</strong> — one per attachment deleted through the app, and one
-            per settings change: who, what, when, and the reason they typed. Capped at 500 per
-            project, oldest dropped first.
+            <strong>Deletion previews</strong> — the files someone chose to delete, as Jira
+            described them (name, size, issue), held so the deletion removes exactly what
+            was previewed. Removed when the dialog is closed, and otherwise expire within
+            six hours.
           </li>
           <li>
-            <strong>Settings</strong> — the deletion switch, archive limits, and the transfer
-            mode.
+            <strong>Audit records</strong> — one per attachment deleted through the app
+            (who, what, when, the reason they typed, and Jira's answer) and one per settings
+            change. Kept for <strong>400 days</strong>, then removed automatically, a batch
+            at a time, whenever that trail is opened or an inventory is started in the
+            project — so a trail nobody opens can hold older records until then. Nothing in
+            the app removes them sooner, and no screen offers to.
+          </li>
+          <li>
+            <strong>Settings</strong> — the deletion switch, archive limits, transfer mode.
           </li>
         </ul>
 
         <h2 id="where-not-stored">Where it is not stored</h2>
         <ul>
           <li>
-            <strong>No analytics service.</strong> The app sends no telemetry, no usage events
-            and no error reports to any third party.
+            No analytics service. The app sends no telemetry, no usage events and no error
+            reports to any third party.
           </li>
           <li>
-            <strong>No external logging.</strong> Application log output goes to Atlassian's own
-            Forge logs, which are visible to your site administrators and to Atlassian, and to
-            nobody else.
+            Operational logs. The app writes log lines to Atlassian's Forge logging: which
+            operation ran, status and error codes, counts and timings. No file contents,
+            file names, issue keys or JQL. Keelapps can read these logs while your site's
+            <strong>Logs access</strong> setting for the app is on, which is the default; a
+            site admin can download them, or turn Keelapps's access off, in Atlassian
+            Administration → Connected apps → Satchel → Logs access.
           </li>
           <li>
-            <strong>No attachment content, anywhere, at any time.</strong> This is
-            architectural rather than a policy promise: the backend reads attachment bytes only
-            when relaying a slice to your browser mid-download, and that slice is held in
-            function memory for the duration of one request.
+            No attachment content, anywhere, at any time. This is architectural, not a
+            policy promise: the backend reads attachment bytes only when relaying a slice to
+            your browser mid-download, and that slice is held in function memory for the
+            duration of one request.
           </li>
         </ul>
 
         <h2 id="no-transmission">No external transmission</h2>
         <p>
-          The app's manifest contains no external permissions block. In Forge, an app cannot make
-          a network request to a host it has not declared, and any declaration is shown to an
-          administrator at install time. There is no such declaration here, and an automated test
-          on every build checks that it stays that way.
+          The app's <code>manifest.yml</code> contains no <code>permissions.external</code>
+          block. In Forge, an app cannot make a network request to a host it has not
+          declared, and any declaration is shown to an administrator at install time. There
+          is no such declaration here, which is checked by an automated test on every build
+          (<code>test/writeSurface.test.js</code>).
         </p>
+
         <p>
           This is also what makes the app eligible for Atlassian's <strong>Runs on
           Atlassian</strong> badge, which Atlassian applies after verifying the same thing
@@ -210,80 +247,106 @@
         </p>
 
         <h2 id="permissions">Permissions, and what each is for</h2>
-        <p>At install you are asked to grant four scopes:</p>
+        <p>
+          At install you are asked to grant four scopes:
+        </p>
+
         <ul>
           <li>
-            <strong>Read Jira work</strong> — read issues, run JQL searches, read attachment
-            metadata and attachment content. This is how the app finds and downloads files.
+            <strong><code>read:jira-work</code></strong> — read issues, run JQL searches
+            (including checking which of a project's issues you can see), read attachment
+            metadata and content, and check whether you are an administrator. This is how
+            the app finds and downloads files, and how it decides what to show you.
           </li>
           <li>
-            <strong>Read Jira user</strong> — turn an uploader's account id into a display name,
-            so a storage report names a person rather than an identifier.
+            <strong><code>read:jira-user</code></strong> — look up display names for account
+            ids, as you, when a screen shows one: who uploaded a file in an inventory, who
+            is named in an audit record. Names are not stored.
           </li>
           <li>
-            <strong>Write Jira work</strong> — used for exactly one API call: deleting an
-            attachment. Atlassian's consent text for this scope mentions creating and editing
-            issues, posting comments, creating worklogs and deleting issues.
-            <strong>Satchel does none of those things.</strong> It is the narrowest scope
-            Atlassian currently offers that includes deleting an attachment; the granular scope
-            that would say exactly that is still in Beta. Deletion also ships switched off and is
-            administrator-only when enabled.
+            <strong><code>write:jira-work</code></strong> — Satchel holds this only because
+            deleting an attachment needs it, and the only write call in its code is
+            <code>DELETE /rest/api/3/attachment/{id}</code>. Atlassian's consent text for
+            this classic scope mentions creating and editing issues, posting comments,
+            creating worklogs and deleting issues. <strong>Satchel does none of those
+            things</strong>, and never uploads anything. It is the only classic Jira scope
+            that includes deleting an attachment; the granular
+            <code>delete:attachment:jira</code> scope would say exactly that, and it is
+            still in beta. Deletion also ships switched off, and when an administrator
+            switches it on it is limited to Jira administrators unless they widen it.
           </li>
-          <li><strong>App storage</strong> — the Forge storage described above.</li>
+          <li>
+            <strong><code>storage:app</code></strong> — the Forge storage described above.
+          </li>
         </ul>
 
         <h2 id="as-you">Permissions are yours, not the app's</h2>
         <p>
-          Every attachment read and every deletion runs as <strong>you</strong>, using your own
-          Atlassian identity. If you cannot open a file in Jira, Satchel cannot hand it to you —
-          including attachments hidden by issue security levels or added inside restricted
-          comments, which Jira withholds at the API level.
+          Every attachment read, every search, every permission check and every deletion
+          runs as <strong>you</strong>, through Forge's <code>asUser()</code> API, so Jira's
+          own permissions — project permissions and issue security — decide what you get. If
+          you cannot open a file in Jira, Satchel cannot hand it to you. (Jira does not
+          restrict an attachment added in a restricted comment: anyone who can view the
+          issue can open it, in Jira and in Satchel.)
         </p>
+
         <p>
-          The one exception is the background project scan, which runs as the app because a queued
-          job has no signed-in user. Its output is attachment metadata for a governance report,
-          and anything offered for download is re-fetched as you.
+          The one exception is the project inventory, which runs as the app because a queued
+          job has no signed-in user, so it can reach issues some project members cannot see.
+          Every time its rows are read — the list, the reports and the numbers — they are
+          filtered to the issues the person reading can see in Jira, and if Jira cannot be
+          asked in time, nothing is shown.
+        </p>
+
+        <p>
+          Deleting from a project page covers that project only: Satchel checks every file
+          with Jira, as you, before the preview, and deletes only files it confirmed are on
+          those issues in that project.
         </p>
 
         <h2 id="deletion">Deletion is irreversible</h2>
         <p>
-          Jira has no recycle bin for attachments. An attachment deleted through Satchel is gone
-          from Jira, and the only recovery is an Atlassian support restore of the entire site. The
-          app requires a dry-run preview and a typed confirmation, and records every deletion —
-          but it cannot undo one.
+          Jira has no recycle bin for attachments (JRACLOUD-81027). A deleted file comes
+          back only from a copy you took beforehand; Atlassian does not undo customer
+          deletions from its own backups. Satchel lists the files it will delete, requires a
+          typed confirmation, and records every deletion — but it cannot undo one.
         </p>
 
         <h2 id="removing-data">Removing your data</h2>
         <p>
-          Uninstalling the app deletes its Forge storage, including every scan and audit record,
-          according to Atlassian's own retention schedule for uninstalled apps. There is nothing
-          held anywhere else to request the deletion of.
+          Uninstalling the app ends its access to its Forge storage. Atlassian keeps an
+          uninstalled app's storage for 28 days — a reinstall can be relinked to it if that
+          is requested within 21 days — and then deletes it. Nothing is held anywhere else.
         </p>
+
         <p>
-          To clear records without uninstalling, delete a scan from the project page. To clear the
-          audit trail, contact support — it is deliberately not deletable from the interface,
-          because an audit trail a user can erase is not an audit trail.
+          To remove an inventory without uninstalling, delete it from the project page.
+          Audit records cannot be deleted from the app's screens — an audit trail its users
+          can erase is not an audit trail; they are removed automatically after 400 days.
+          Keelapps has no access to your site's data and cannot remove records for you.
         </p>
 
         <h2 id="sub-processors">Sub-processors</h2>
-        <p>None. The app has no infrastructure of its own.</p>
+        <p>
+          None. The app has no infrastructure of its own.
+        </p>
 
         <h2 id="children">Children</h2>
         <p>
-          The app is not directed at children and processes no data about them beyond whatever a
-          Jira administrator has put into their own instance.
+          The app is not directed at children and processes no data about them beyond
+          whatever a Jira administrator has put into their own instance.
         </p>
 
         <h2 id="changes">Changes</h2>
         <p>
-          Material changes to this policy will be published with a new version of the app and
-          reflected in the Marketplace listing. The effective date above moves with any change.
+          Material changes to this policy will be published with a new version of the app
+          and reflected in the Marketplace listing. The effective date above moves with any
+          change.
         </p>
 
         <h2 id="contact">Contact</h2>
         <p>
-          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a> — for questions about
-          this policy, and for data access, correction or deletion requests.
+          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a>
         </p>
         <!-- legal:end -->
 

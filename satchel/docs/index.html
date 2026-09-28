@@ -111,7 +111,7 @@
           <p>
             <strong>Jira's issue view does not show app panels automatically.</strong> On an
             issue, open the <strong>View app actions</strong> button under the issue title — the
-            round icon, not the “+” — and choose <strong>Attachments</strong>. The panel then
+            round icon, not the “+” — and choose <strong>Satchel</strong>. The panel then
             stays visible on that issue.
           </p>
           <p>
@@ -124,7 +124,7 @@
         <p>Satchel has three surfaces:</p>
         <ul>
           <li>
-            <strong>The issue panel</strong> — <em>View app actions → Attachments</em> on any
+            <strong>The issue panel</strong> — <em>View app actions → Satchel</em> on any
             issue. Lists the issue's attachments and downloads them, individually or as one zip.
           </li>
           <li>
@@ -145,12 +145,12 @@
         <p>From the issue panel:</p>
         <ul>
           <li>
-            <strong>Download all as zip</strong> — every attachment on the issue in one archive,
-            however many there are, including well past the 150 at which Jira's own attachment
-            rendering gives up.
+            <strong>Download all as zip</strong> — every attachment on the issue in one archive of
+            up to 1 GB and 5,000 files, including past 150, where Jira falls back to a list
+            without previews or thumbnails.
           </li>
           <li>
-            <strong>Download one file</strong> — direct, skipping Jira's preview step entirely.
+            <strong>Download one file</strong> — straight to your disk, without opening the preview.
           </li>
         </ul>
         <p>Two things the archive guarantees:</p>
@@ -226,14 +226,17 @@
           duplicate and storage reports are computed from, and what the CSV export writes out.
         </p>
         <p>
-          The ten most recent scans per project are kept; creating an eleventh deletes the
-          oldest. You can delete a scan yourself from the project page.
+          The ten most recent inventories per project are kept; creating an eleventh deletes the
+          oldest. Whoever ran one, or a project or Jira administrator, can delete it from the
+          project page. A new inventory can start once the last has finished, at most every ten
+          minutes.
         </p>
         <p>
-          The scan itself runs as the app rather than as you, because a queued background job
-          has no signed-in user. Its output is metadata for a governance report — and anything
-          you then ask to download is re-fetched as <em>you</em>, so Jira's permissions still
-          decide what you can actually have.
+          The inventory itself runs as the app rather than as you, because a queued background
+          job has no signed-in user, so it can reach issues some project members cannot see.
+          Every time its rows are read — the list, the reports and the numbers — they are
+          filtered to the issues the person reading can see in Jira, and if Jira cannot be asked
+          in time, nothing is shown. Anything you then download is fetched as <em>you</em>.
         </p>
 
         <h2 id="duplicates">Duplicate candidates</h2>
@@ -261,7 +264,7 @@
         </ul>
 
         <h2 id="storage">Storage reports</h2>
-        <p>Jira gives you one site-wide storage figure. Satchel breaks the project's share of it down by:</p>
+        <p>Today Jira reports storage for the whole site, not per project. Satchel breaks the project's share of it down by:</p>
         <ul>
           <li><strong>Uploader</strong> — who put it there.</li>
           <li><strong>File type</strong> — the screenshots-versus-videos question.</li>
@@ -278,17 +281,22 @@
 
         <h2 id="deletion">Bulk deletion</h2>
         <p>
-          <strong>Jira has no recycle bin for attachments.</strong> An attachment deleted through
-          Satchel is gone from Jira, and the only recovery is an Atlassian support restore of the
-          entire site. Satchel cannot undo a deletion, and does not pretend it can.
+          <strong>Jira has no recycle bin for attachments</strong> (JRACLOUD-81027). A deleted
+          file comes back only from a copy you took beforehand; Atlassian does not undo customer
+          deletions from its own backups. Satchel cannot undo a deletion, and does not pretend it
+          can.
         </p>
         <p>So deletion is fenced in four ways:</p>
         <ul>
-          <li>It <strong>ships switched off.</strong> A site administrator has to enable it.</li>
-          <li>It is <strong>administrator-only</strong> even once enabled.</li>
+          <li>It <strong>ships switched off.</strong> A Jira administrator has to enable it.</li>
           <li>
-            It requires a <strong>dry run</strong> — the exact files, the exact count, the exact
-            bytes — and then a <strong>typed confirmation</strong>.
+            Once on, it is <strong>limited to Jira administrators</strong> unless they widen it to
+            anyone who can delete the attachment in Jira.
+          </li>
+          <li>
+            It requires a <strong>preview</strong> — Jira confirms every file, and the dialog lists
+            each one with the total — and then a <strong>typed confirmation</strong>. Only the files
+            in that preview, in that project, can be deleted, by whoever previewed them.
           </li>
           <li>
             Every deleted file leaves an <strong>audit record</strong>: who, what, when, and the
@@ -296,9 +304,10 @@
           </li>
         </ul>
         <p>
-          Audit records are capped at 500 per project, oldest dropped first, and they are
-          deliberately <strong>not deletable from the interface</strong> — an audit trail a user
-          can erase is not an audit trail. To clear one, contact support.
+          Each file's record is written before it is deleted. Records are kept for 400 days and
+          are deliberately <strong>not deletable from the interface</strong> — an audit trail a
+          user can erase is not an audit trail. The project's trail is for project and Jira
+          administrators; the admin page shows every settings change and every deletion.
         </p>
         <p>Download what you are deleting first. That is what the zip is for.</p>
 
@@ -306,12 +315,14 @@
         <p>
           Every attachment read and every deletion runs as <strong>you</strong>, using your own
           Atlassian identity. If you cannot open a file in Jira, Satchel cannot hand it to you —
-          including attachments hidden by issue security levels or added inside restricted
-          comments, which Jira withholds at the API level.
+          including attachments on issues hidden by issue security. (Jira does not restrict an
+          attachment added in a restricted comment: anyone who can view the issue can open it, in
+          Jira and in Satchel.)
         </p>
         <p>
-          The one exception is the background project scan described above, which runs as the app
-          because a queued job has no signed-in user.
+          The one exception is the background project inventory described above, which runs as
+          the app because a queued job has no signed-in user — and whose rows are filtered to what
+          the reader can see every time they are read.
         </p>
 
         <h2 id="permissions">Permissions the app requests</h2>
@@ -320,8 +331,8 @@
             <thead><tr><th>Scope</th><th>Why</th></tr></thead>
             <tbody>
               <tr><td><code>read:jira-work</code></td><td>read issues, run JQL, read attachment metadata and attachment content — how the app finds and downloads files</td></tr>
-              <tr><td><code>read:jira-user</code></td><td>turn an uploader's account id into a display name, so a storage report names people</td></tr>
-              <tr><td><code>write:jira-work</code></td><td>one API call only: deleting an attachment</td></tr>
+              <tr><td><code>read:jira-user</code></td><td>look up display names for account ids, as you, when a screen shows one — uploaders in an inventory, people in an audit record; names are not stored</td></tr>
+              <tr><td><code>write:jira-work</code></td><td>held only because deleting an attachment needs it; the only write call in the code is <code>DELETE /rest/api/3/attachment/{id}</code></td></tr>
               <tr><td><code>storage:app</code></td><td>scan records, audit records and settings, in Atlassian-hosted storage on your own site</td></tr>
             </tbody>
           </table>
@@ -330,9 +341,9 @@
           <code>write:jira-work</code> is broader than what Satchel does with it, and that
           deserves stating plainly. Atlassian's consent text for it mentions creating and editing
           issues, posting comments, creating worklogs and deleting issues. <strong>Satchel does
-          none of those things.</strong> It is the narrowest scope Atlassian currently offers
-          that includes deleting an attachment — the granular scope that would say exactly that
-          is still in Beta — and a test in the build fails if any code path reaches a mutating
+          none of those things</strong>, and never uploads anything. It is the only classic Jira
+          scope that includes deleting an attachment — the granular scope that would say exactly
+          that is still in Beta — and a test in the build fails if any code path reaches a mutating
           call other than the single attachment delete. That test exists to stop the gap between
           the consent prompt and the behaviour from widening silently.
         </p>
@@ -345,8 +356,8 @@
         <p>
           Sites with 10 users or fewer pay nothing. Above that, two things stay free forever on
           every install: the <strong>single-issue zip</strong> and the
-          <strong>direct single-file download</strong>. The fix for the seven-year-old missing
-          download button is never behind a licence check.
+          <strong>direct single-file download</strong>. The single-file download is never behind a
+          licence check.
         </p>
         <p>
           A licence buys scale and governance: cross-issue and project-wide archives, the project
@@ -356,12 +367,13 @@
         <h2 id="not-in-this-release">Not in this release</h2>
         <ul>
           <li>
-            <strong>Uploading attachments.</strong> No write scope for it, and no path to it in
-            the interface.
+            <strong>Uploading attachments.</strong> No path to it in the interface; the only write
+            call in the code is the attachment delete.
           </li>
           <li>
-            <strong>Cross-project inventories.</strong> The project page is scoped to its own
-            project; a site-wide inventory is a different permissions conversation.
+            <strong>Cross-project inventories.</strong> The JQL box runs any JQL as you, but
+            inventories, reports, deletion and the audit trail are scoped to the page's project; a
+            site-wide inventory is a different permissions conversation.
           </li>
           <li>
             <strong>Scheduled inventories.</strong> One more trigger and a daily invocation to

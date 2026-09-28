@@ -117,7 +117,8 @@
         <div class="intro__split">
           <p class="lede">
             Jira Cloud’s own Download all works one issue at a time. Satchel zips a JQL result or
-            a whole project in one archive, foldered by issue key — and then answers the question
+            a whole project, foldered by issue key, in archives of up to 1 GB and 5,000 files —
+            and then answers the question
             that always follows: what is actually in there, and how much of it can go? The
             archive is assembled in your own browser from your own Jira session, so attachment
             bytes never touch a server of ours. There is not one.
@@ -183,10 +184,11 @@
         <h2>What it does</h2>
         <div class="grid">
           <div class="card">
-            <h3>One zip, however many files</h3>
+            <h3>One zip for the whole issue</h3>
             <p>
-              Every attachment on an issue in a single archive, from a panel on the issue
-              itself. It works past the 150 attachments Jira itself stops rendering.
+              Every attachment on an issue in a single archive of up to 1 GB, from a panel on the
+              issue itself — including past 150, where Jira falls back to a list without previews
+              or thumbnails.
             </p>
           </div>
           <div class="card">
@@ -208,7 +210,7 @@
             <h3>See where the storage went</h3>
             <p>
               Occupancy by uploader, file type, issue type and age, plus the biggest files.
-              Jira shows one site-wide number and nothing underneath it.
+              Today Jira reports storage for the whole site, not per project.
             </p>
           </div>
           <div class="card">
@@ -222,8 +224,9 @@
           <div class="card">
             <h3>Deletion that asks twice</h3>
             <p>
-              A dry run, a typed confirmation, an audit record per file. It ships switched off
-              and is administrator-only when enabled — because Jira has no recycle bin for
+              Jira confirms every file, the dialog lists them, you type the confirmation, and each
+              file is recorded before it goes. It ships switched off and, once on, is limited to
+              Jira administrators unless they widen it — because Jira has no recycle bin for
               attachments.
             </p>
           </div>
@@ -232,7 +235,7 @@
 
       <section class="section">
         <p class="eyebrow">Walkthrough</p>
-        <h2>Reclaiming 40 GB, end to end</h2>
+        <h2>Reclaiming space, end to end</h2>
         <ol class="steps">
           <li>
             <h3>Scan the project</h3>
@@ -261,9 +264,10 @@
           <li>
             <h3>Delete, on the record</h3>
             <p>
-              An administrator enables deletion, reads the dry run, types the confirmation,
-              and Satchel records every file it removed and who removed it. That trail is
-              deliberately not deletable from the interface.
+              An administrator enables deletion, reads the preview Jira has checked, types the
+              confirmation, and Satchel records every file before it removes it, and who removed
+              it. That trail is kept for 400 days and deliberately not deletable from the
+              interface.
             </p>
           </li>
         </ol>
@@ -309,7 +313,7 @@
               </tr>
               <tr>
                 <td>Delete in bulk, with a record?</td>
-                <td class="absent">One issue at a time</td>
+                <td class="absent">Per issue, or by an Automation rule — no preview or confirmation</td>
                 <td class="absent">—</td>
                 <td><span class="answer">Dry run, confirmation, audit</span></td>
               </tr>
@@ -340,23 +344,25 @@
           </p>
           <p>
             <strong>Deletion is irreversible.</strong> Jira has no recycle bin for attachments.
-            A file deleted through Satchel is gone from Jira, and the only recovery is an
-            Atlassian support restore of the entire site. Satchel requires a dry run and a typed
-            confirmation and records every deletion, but it cannot undo one. Deletion ships
-            switched off and is administrator-only when enabled.
+            A file deleted through Satchel is gone from Jira: it comes back only from a copy you
+            took beforehand, and Atlassian does not undo customer deletions from its own backups.
+            Satchel checks every file with Jira, lists them, requires a typed confirmation and
+            records every deletion, but it cannot undo one. Deletion ships switched off and, once
+            on, is limited to Jira administrators unless they widen it.
           </p>
           <p>
             <strong>One scope is broader than what the app does.</strong> Deleting an attachment
             needs Jira's classic <code>write:jira-work</code> scope, whose consent text mentions
             creating and editing issues, posting comments and deleting issues. Satchel does none
-            of those. It is the narrowest scope Atlassian currently offers that includes deleting
+            of those, and it never uploads. It is the only classic Jira scope that includes deleting
             an attachment — the granular one that would say exactly that is still in Beta — and
             an automated test fails the build if any code path reaches a mutating call other
             than the single attachment delete.
           </p>
           <p>
-            <strong>Uploading attachments is deliberately not built.</strong> The app requests no
-            scope for it and the interface has no path to it.
+            <strong>Uploading attachments is deliberately not built.</strong> The write scope
+            Satchel holds would allow it, but the only write call in its code is the attachment
+            delete, and the interface has no path to upload.
           </p>
         </div>
       </section>
