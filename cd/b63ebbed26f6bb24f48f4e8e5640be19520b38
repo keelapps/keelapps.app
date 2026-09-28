@@ -1,0 +1,20 @@
+digest/index.html
+  s_0ca869bfbb8152::t_16c678d67f973f 275,284,291,298,306,312
+  s_0ca869bfbb8152::t_6eea6315afa671 319
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "cdb63ebbed26f6bb24f48f4e8e5640be19520b38",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
