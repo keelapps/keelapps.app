@@ -107,23 +107,21 @@
         </p>
 
         <h2 id="where-it-lives">Where Curator lives</h2>
-        <p>Four surfaces, each scoped to what you can see from it:</p>
+        <p>Three surfaces, each scoped to what you can see from it:</p>
         <ul>
           <li>
-            <strong>Space → Curator</strong> — the space console. Filter the space, choose an
-            operation, read the preview, run it, and see this space's history.
+            <strong>Space → Curator</strong> — the space console, for people who can edit the
+            space. Filter the space, choose an operation, read the preview, run it, and see
+            this space's history.
           </li>
           <li>
             <strong>A page's action menu → Curate this page tree</strong> — the same
-            operations over one page and its descendants, without leaving the page.
+            operations over one page and its descendants, without leaving the page. It sees
+            only the batches started from that page.
           </li>
           <li>
-            <strong>Apps → Curator</strong> — the label catalogue: every shared label on the
-            site with its usage count, readable by anyone.
-          </li>
-          <li>
-            <strong>Settings → Curator</strong> — label administration. Renaming, merging and
-            deleting labels site-wide, for site admins only.
+            <strong>Settings → Curator</strong> — for site admins only: the label catalogue,
+            renaming, merging and deleting labels site-wide, and the site-wide history.
           </li>
         </ul>
         <p>
@@ -135,6 +133,12 @@
           Curator too: a page whose view restriction does not include it is invisible to it,
           so it is neither previewed, counted nor changed.
         </p>
+        <p>
+          Two operations reach further than editing, and need more: <strong>archiving</strong>
+          needs what archiving in Confluence needs — space admin, or the space's Archive
+          permission — and <strong>moving</strong> needs the right to add pages where the
+          pages are going. The list of destination spaces shows only the spaces you can see.
+        </p>
 
         <h2 id="selecting">Selecting pages</h2>
         <p>
@@ -145,7 +149,7 @@
           <li><strong>Scope</strong> — a whole space, or one page and its subtree.</li>
           <li><strong>Title contains</strong> — a substring match.</li>
           <li><strong>Last updated</strong> — before a date, after a date, or between two.</li>
-          <li><strong>Author</strong> — the person who last changed the page.</li>
+          <li><strong>Created by</strong> — the person who created the page.</li>
           <li><strong>Has all of these labels</strong> — every one must be present.</li>
           <li><strong>Has none of these labels</strong> — the exclusion half.</li>
           <li><strong>Include archived pages</strong> — off by default.</li>
@@ -242,8 +246,10 @@
 
         <h2 id="labels">The label catalogue</h2>
         <p>
-          <strong>Apps → Curator</strong> lists every shared label on the site with its name,
-          its prefix and a usage count.
+          <strong>Settings → Curator → Labels</strong> lists every shared label on the site
+          with a usage count. It is for site admins only, because Curator builds it with its
+          own access: it names labels from every space, and Confluence shows a person only the
+          labels they may view.
         </p>
         <p>
           Those counts are <em>derived</em>. Confluence's label endpoint returns names and
@@ -251,6 +257,14 @@
           label's pages in the background and counts them itself. Every row therefore carries
           the time its count was taken, and counts past two thousand are shown as
           <code>2,000+</code> rather than pretending to a precision the walk did not buy.
+          Pages Curator cannot see — a view restriction that does not include it — are not
+          counted.
+        </p>
+        <p>
+          Confluence can hold one label name several times over: adding a new label to many
+          pages at once can create several labels with the same name. Curator treats them as
+          one label — one row, one count, and a rename that reaches every page carrying the
+          name.
         </p>
         <p>
           Personal favourites — the labels Confluence stores with a <code>my</code> prefix —
@@ -264,7 +278,7 @@
         </p>
         <ul>
           <li><strong>Rename</strong> — every page carrying the old label ends up carrying the new one.</li>
-          <li><strong>Merge</strong> — two or more labels collapse into one.</li>
+          <li><strong>Merge</strong> — one label is folded into another on every page that carries it.</li>
           <li><strong>Delete</strong> — the label is detached from every page that has it.</li>
         </ul>
         <p>
@@ -288,7 +302,9 @@
         </p>
         <p>
           History is capped at 2,000 entries per site; beyond that the oldest are dropped.
-          Export it as CSV whenever somebody needs the trail outside Confluence.
+          Each space's history is in its space console; the whole site's is in
+          <strong>Settings → Curator → History</strong>, for site admins. Export either as
+          CSV whenever somebody needs the trail outside Confluence.
         </p>
 
         <h2 id="quota">API points and pacing</h2>
@@ -326,7 +342,8 @@
         </p>
         <p>
           Archiving also depends on your Confluence plan. Page archiving is part of
-          Confluence Standard and above, and a Free site refuses it. The archive API also
+          Confluence Standard and above, and a Free site refuses it: Curator stops the first
+          such batch with that reason and blocks archive previews from then on. The archive API also
           takes a limited number of pages per call and runs one archive task per site at a
           time, and Curator paces itself to both.
         </p>
