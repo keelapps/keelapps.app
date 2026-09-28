@@ -125,8 +125,8 @@
           </li>
           <li>
             Hit <strong>Run now</strong> to queue the first digest instead of waiting for the
-            schedule. It lands in the inbox on the same page a few moments later — refresh to
-            see it.
+            schedule. It lands in the inbox on the same page within a minute or so — press
+            <strong>Refresh</strong> there to see it.
           </li>
           <li>
             From then on, each period folds into one digest, normally delivered within an hour
@@ -143,9 +143,9 @@
           <table>
             <thead><tr><th>Field</th><th>Notes</th></tr></thead>
             <tbody>
-              <tr><td><strong>JQL query</strong></td><td>Anything you could run in the issue navigator. A query Jira rejects or forbids pauses the subscription with Jira's own error message; a valid query that matches nothing is simply an empty period, so check it returns what you expect before saving.</td></tr>
+              <tr><td><strong>JQL query</strong></td><td>Anything you could run in the issue navigator. <code>currentUser()</code>, <code>watchedIssues()</code> and <code>votedIssues()</code> mean you. A digest runs while you are away, so a saved filter shared with nobody, and functions that answer for whoever is signed in such as <code>issueHistory()</code>, are refused with the reason when you test or save the query. A query Jira rejects or forbids pauses the subscription with Jira's own error message; a valid query that matches nothing is simply an empty period, so check it returns what you expect before saving.</td></tr>
               <tr><td><strong>Cadence</strong></td><td>Daily at a chosen hour (on the hour, or at :15, :30 or :45), or weekly on a chosen day.</td></tr>
-              <tr><td><strong>Time zone</strong></td><td>Your browser's time zone, or one of a short list of major IANA zones. “Daily at 09:00” means your 09:00, not the server's.</td></tr>
+              <tr><td><strong>Time zone</strong></td><td>Your browser's time zone to start with, or any IANA zone — type your city to find it. “Daily at 09:00” means your 09:00, not the server's.</td></tr>
               <tr><td><strong>Grouping</strong></td><td>By project, assignee or status — how the digest arranges its entries.</td></tr>
               <tr><td><strong>Empty digests</strong></td><td>Off by default. A period with no changes delivers nothing unless you tick <em>Send even when nothing changed</em>.</td></tr>
             </tbody>
@@ -172,14 +172,15 @@
         </p>
         <p>
           When more than 50 issues changed in the window, the digest shows the 50 most notable
-          and says how many matched in total (“Showing the 50 most notable of N matching
-          issues”), with a deep link that opens the full result in the issue navigator.
+          and says so, with a deep link that opens the full result in the issue navigator, which
+          counts only what you can see. The digest gives no total of its own: it was counted with
+          the app's permissions, and that number could include issues you cannot open.
         </p>
 
         <h2 id="the-inbox">The inbox</h2>
         <p>
           Digests are delivered to the inbox under <strong>Apps → Digests</strong>: newest
-          first, with unread counts and a <strong>mark all read</strong> control. Nothing is
+          first, with unread counts, <strong>Refresh</strong> and <strong>mark all read</strong>. Nothing is
           emailed; you read the summary when you choose to.
         </p>
         <p>
@@ -212,7 +213,8 @@
           permissions. When you open one, it is re-filtered against your own Jira permissions
           at that moment: anything you cannot see is stripped and replaced by a count
           (“Some issues are not shown … N issue(s) … have been hidden”), never the items
-          themselves.
+          themselves. For the same reason the inbox shows no issue counts: they were taken with
+          the app's permissions. An opened digest counts only what you can see.
         </p>
         <p>
           The check fails closed. If your access to an issue cannot be confirmed, the entry is
@@ -322,7 +324,7 @@
           <li>Email sent by us — never in this release. There is no external email provider, and adding one would cost the Runs on Atlassian badge, so it is not on the near-term roadmap.</li>
           <li>Filtering, rewriting or intercepting Jira's own notifications</li>
           <li>Slack or Teams delivery</li>
-          <li>Saved filters as a subscription source — JQL only for now</li>
+          <li>Saved filters as a subscription source — a subscription is JQL; a filter can be named in it only if it is shared, not private to you</li>
           <li>AI-written summaries — a digest lists what changed; it does not paraphrase it</li>
         </ul>
 
