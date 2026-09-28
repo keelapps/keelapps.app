@@ -1,0 +1,21 @@
+accesslens/docs/index.html
+  s_0ca869bfbb8152::t_2f797deeed7081 139-141,183-186,203-204
+accesslens/privacy/index.html
+  s_0ca869bfbb8152::t_eb1548785f3a91 104,138
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "94a3c986a118d09c9d36447bd0a40d080aceee80",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
