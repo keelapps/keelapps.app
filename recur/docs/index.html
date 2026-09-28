@@ -258,7 +258,8 @@
               <tr><td><strong>Failed</strong></td><td>Something in Jira rejected the issue — a deleted issue type, for instance. The row has a <strong>Retry</strong> button for project administrators, and the template keeps its own schedule regardless.</td></tr>
               <tr><td><strong>Folded in</strong></td><td>An occurrence fell due while an earlier one was already held under <em>wait for it to close</em>; it was merged into that one rather than queued behind it.</td></tr>
               <tr><td><strong>Gave up</strong></td><td>A held occurrence waited 30 days for the previous issue to close and was dropped.</td></tr>
-              <tr><td><strong>Paused</strong></td><td>The template was paused when the occurrence fell due, so nothing was created.</td></tr>
+              <tr><td><strong>Paused</strong></td><td>The template was paused when these occurrences fell due, so nothing was created. Written when it is resumed: one row that counts them, from the first to the last.</td></tr>
+              <tr><td><strong>Missed</strong></td><td>Recur found the occurrence more than 72 hours after it was due — the app was disabled for days, say — and moved on to the next run instead of filing an issue for a date long past.</td></tr>
               <tr><td><strong>Disabled</strong></td><td>The template's project was archived or deleted; Recur disabled the template rather than failing every hour.</td></tr>
               <tr><td><strong>No licence</strong></td><td>The site had no active subscription when the occurrence fell due, so nothing was created.</td></tr>
             </tbody>
@@ -279,8 +280,9 @@
         <h2 id="administration">Administration</h2>
         <p>
           <strong>Project administrators</strong> create, edit, pause and delete templates in their
-          own projects. Permission is checked as the calling user on every mutating action, so it
-          reflects real Jira access rather than what the UI happens to show.
+          own projects. Anyone who can browse a project can see its templates and their run history.
+          Both are checked as the calling user on every action, so they reflect real Jira access
+          rather than what the UI happens to show.
         </p>
         <p>
           <strong>Jira administrators</strong> additionally get a site-wide page listing every

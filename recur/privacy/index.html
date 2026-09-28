@@ -101,7 +101,7 @@
              NOT ONE WORD between these sentinels may.
         -->
         <h1>Privacy policy — Recur for Jira</h1>
-        <p class="manual__meta">Last updated: <time datetime="2026-09-18">18 September 2026</time></p>
+        <p class="manual__meta">Last updated: <time datetime="2026-09-29">29 September 2026</time></p>
 
         <h2 id="short-version">The short version</h2>
         <p class="manual__lede">
@@ -130,18 +130,28 @@
               </tr>
               <tr>
                 <td>Runtime state</td>
-                <td>next run time, run count, last issue key, held occurrences</td>
+                <td>next run time, run count, last issue key, held occurrences, position in the assignee rotation</td>
                 <td>scheduling</td>
               </tr>
               <tr>
                 <td>Run history</td>
-                <td>per-run result (created/skipped/waiting/failed), issue key, reason for skips</td>
+                <td>the last 20 runs: result (created/skipped/waiting/failed/paused/missed), issue key, reason for skips</td>
                 <td>so “why was there no issue” always has an answer</td>
               </tr>
               <tr>
+                <td>Run records</td>
+                <td>one per scheduled run: when it ran and the key of the issue it created</td>
+                <td>so a run delivered twice never creates its issue twice</td>
+              </tr>
+              <tr>
                 <td>Creator/owner references</td>
-                <td>Atlassian account ids of who created a template, who is assigned or in the rotation (display names are looked up from Jira when shown, not stored)</td>
+                <td>Atlassian account ids of who created a template and who last changed it, who is assigned or in the rotation (display names are looked up from Jira when shown, not stored)</td>
                 <td>attribution and assignee selection</td>
+              </tr>
+              <tr>
+                <td>Licence state</td>
+                <td>whether the site's subscription was active when last seen, and when</td>
+                <td>so scheduled runs know whether to create issues</td>
               </tr>
             </tbody>
           </table>
@@ -160,15 +170,15 @@
 
         <h2 id="who-can-see-it">Who can see it</h2>
         <p>
-          Template management is restricted to project administrators for their own
-          projects, checked as the calling user (<code>asUser</code>) — never assumed from the UI.
-          Site-wide lists are visible to Jira administrators only. Every mutating resolver
-          runs the same permission check.
+          A project's templates and their run history are visible to people who can browse
+          that project. Template management is restricted to project administrators for their
+          own projects. Both are checked as the calling user (<code>asUser</code>) — never
+          assumed from the UI. Site-wide lists are visible to Jira administrators only.
         </p>
 
         <h2 id="retention-and-deletion">Retention and deletion</h2>
         <ul>
-          <li>Deleting a template deletes its configuration and run history.</li>
+          <li>Deleting a template deletes its configuration, its run history and its run records.</li>
           <li>Held occurrences older than 30 days are dropped automatically.</li>
           <li>When the app is uninstalled, Atlassian deletes its Forge storage after 28 days.</li>
         </ul>
