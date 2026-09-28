@@ -1,0 +1,22 @@
+evergreen/privacy/index.html
+  s_0ca869bfbb8152::t_f991cd188fedef 104
+  s_0ca869bfbb8152::t_84cb353039784b 149-153,164-167,176-178,194-202,216-218
+evergreen/docs/index.html
+  s_0ca869bfbb8152::t_84cb353039784b 179-180,188-199,257,295-297,305-306
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "039aad641d4af452a787884ce1ec5431a4148a93",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
