@@ -1,0 +1,24 @@
+satchel-confluence/index.html
+  s_0ca869bfbb8152::t_ff5f5ccbbc1517 61
+  s_0ca869bfbb8152::t_c83eccd759e190 58-59,62-63,145-146,149,156-159,195,198-199,304
+index.html
+  s_0ca869bfbb8152::t_ea486d54b08959 259
+satchel-confluence/docs/index.html
+  s_0ca869bfbb8152::t_41a0ea44597bbd 201-208
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "040ff0220cb7260cc564c280af49c3c428c64599",
+  "prompts": {},
+  "sessions": {
+    "s_0ca869bfbb8152": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e336f38e-eab7-43a5-9e10-a0fa495f41c4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
