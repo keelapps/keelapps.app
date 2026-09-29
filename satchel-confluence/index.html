@@ -170,8 +170,9 @@
           </p>
           <p>
             The rest of it is the same story one level down: Confluence lists a space’s files in
-            space settings and reports storage as one total per space, but it downloads one page
-            at a time, and a whole space not at all. The Marketplace has a
+            space settings and reports storage as one total per space (Standard and up), but it
+            downloads one page at a time; only a space admin's HTML export bundles a whole space's
+            files, in folders named by page ID. The Marketplace has a
             download-only app in this category and nothing that puts move, orphan detection and
             storage analysis together.
           </p>
@@ -208,7 +209,7 @@
             <h3>Find what nobody is using</h3>
             <p>
               Four buckets: files on deleted pages, files on archived pages, files still sitting
-              in the trash, and attachments no page body references.
+              in the trash, and attachments their own page does not embed or link.
             </p>
           </div>
           <div class="card">
@@ -244,7 +245,8 @@
           <li>
             <h3>Read the four orphan buckets</h3>
             <p>
-              Deleted pages, archived pages, the trash, and files no page body references. The
+              Deleted pages, archived pages, the trash, and files their own page does not embed or
+              link. The
               first three are certain; the last is labelled as inferred, and the interface
               distinguishes “checked and found nothing” from “never looked”.
             </p>
@@ -289,14 +291,14 @@
                 <td><span class="answer">Dry run, per-file report, undo</span></td>
               </tr>
               <tr>
-                <td>See every attachment in a space at once?</td>
+                <td>See every page attachment in a space at once?</td>
                 <td class="absent">A list in space settings</td>
                 <td>Partly</td>
                 <td><span class="answer">One searchable table</span></td>
               </tr>
               <tr>
                 <td>Download a whole space's files?</td>
-                <td class="absent">—</td>
+                <td class="absent">Only inside a space-admin export</td>
                 <td>Yes</td>
                 <td><span class="answer">One zip, foldered by page</span></td>
               </tr>
@@ -308,7 +310,7 @@
               </tr>
               <tr>
                 <td>Where did the space's storage go?</td>
-                <td class="absent">One total per space</td>
+                <td class="absent">One total per space (Standard and up)</td>
                 <td class="absent">—</td>
                 <td><span class="answer">By page, uploader and type</span></td>
               </tr>
@@ -329,7 +331,7 @@
         <div class="prose">
           <p>
             <strong>The move has two possible routes, and which one your site allows decides what
-            it costs you.</strong> Confluence's current API has no attachment write path, so
+            it costs you.</strong> Confluence's v2 API has no attachment write path, so
             Satchel attempts the honest route first: a single call that re-parents the attachment,
             preserving its id, its file id and its whole version history. Only if the endpoint
             answers that the operation does not exist does it fall back to copy-then-delete —

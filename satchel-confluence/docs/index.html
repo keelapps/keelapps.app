@@ -103,8 +103,8 @@
         <h1>Documentation</h1>
         <p class="manual__lede">
           Satchel indexes a whole Confluence space so you can see, download, move and clean up
-          every file at once — and it does the one thing Confluence itself will not, which is move
-          an attachment to a different page. Where the platform makes a thing uncertain, Satchel
+          every file at once — and move many attachments to another page at once, where
+          Confluence moves them one at a time. Where the platform makes a thing uncertain, Satchel
           reports the uncertainty rather than rounding it off.
         </p>
 
@@ -139,9 +139,9 @@
           stored.</strong>
         </p>
         <p>
-          The scan is checkpointed and resumable, and an hourly job picks up any run that stopped
-          part way, so a space with tens of thousands of files finishes without anyone babysitting
-          it. From the resulting table you can search by name, filter by page, media type, uploader
+          The scan is checkpointed and resumable, and an hourly job resumes a scan paused for the
+          API budget, so a space with tens of thousands of files finishes without anyone
+          babysitting it. From the resulting table you can search by name, filter by page, media type, uploader
           and size, select across page boundaries, and then download, move or delete.
         </p>
         <p>
@@ -210,8 +210,8 @@
         <p>
           There are two routes for getting the bytes into the tab, and Satchel
           <strong>measures</strong> which one returns them intact on your site rather than assuming:
-          one calls Confluence directly from the browser, the other relays the bytes through the
-          backend in slices. The direct route is faster; the relay is correct for every file type.
+          one calls Confluence directly from the browser, the other relays each file through the
+          backend, up to 4 MiB per file. The direct route is faster; the relay is correct for every file type.
           Both are zero-egress, and the app says which is in use.
         </p>
 
@@ -224,7 +224,7 @@
               <tr><td>Files on deleted pages</td><td>Certain</td></tr>
               <tr><td>Files on archived pages</td><td>Certain</td></tr>
               <tr><td>Files in the trash, kept until the trash is purged</td><td>Certain</td></tr>
-              <tr><td>Files no page body references</td><td><strong>Inferred</strong></td></tr>
+              <tr><td>Files their own page does not embed or link</td><td><strong>Inferred</strong></td></tr>
             </tbody>
           </table>
         </div>
@@ -339,8 +339,10 @@
             server. A site administrator can switch this off.
           </li>
           <li>
-            Cross-space totals, uploader rankings and the audit trail live in Confluence
-            administration, so only site administrators reach them.
+            Cross-space totals, the full audit trail and the site settings live in Confluence
+            administration, for site administrators. In a space, members see the files, reports and
+            activity for pages they can open; space administrators see all of the space's activity
+            and change its settings.
           </li>
           <li>
             Every download, move and delete is performed <strong>as the signed-in user</strong>, so

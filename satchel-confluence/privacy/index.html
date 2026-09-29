@@ -103,164 +103,329 @@
              NOT ONE WORD between these sentinels may.
         -->
         <h1>Privacy policy — Satchel for Confluence</h1>
-        <p class="manual__meta">Effective date: <time datetime="2026-09-09">9 September 2026</time></p>
+        <p class="manual__meta">Effective date: <time datetime="2026-09-29">29 September 2026</time></p>
 
         <h2 id="short-version">The short version</h2>
+
         <p class="manual__lede">
-          Satchel for Confluence (“Satchel”, “the app”) is published by Keelapps. It runs entirely
-          inside Atlassian's infrastructure. It makes <strong>no external network calls</strong>, it
-          stores nothing outside Forge hosted storage on your own site, and
-          <strong>Keelapps has no ability to read your data</strong>. There is no Keelapps server
-          for your data to reach. Attachment <em>contents</em> are never stored by Satchel at all:
-          when you download an archive, the files travel from Confluence to your browser, are
-          assembled into a zip in that browser tab, and are saved to your disk. Nothing is buffered,
-          cached or retained in between.
+          Satchel for Confluence (“Satchel”, “the app”) is published by Keelapps. Satchel
+          runs entirely inside Atlassian's infrastructure. It makes <strong>no external
+          network calls</strong>, and it stores nothing outside Forge hosted storage on your
+          own site. Keelapps cannot read what Satchel stores: there is no Keelapps server
+          for your data to reach. The one thing Keelapps can see, while your administrators
+          allow it, is the app's Forge logs — see <a href="#logs">Logs</a> for what they
+          hold.
+        </p>
+
+        <p>
+          Attachment <em>contents</em> are never stored by Satchel at all. When you download
+          an archive, the files travel from Confluence to your browser, are assembled into a
+          zip in that browser tab, and are saved to your disk. Nothing is buffered, cached
+          or retained in between.
         </p>
 
         <h2 id="what-it-stores">What Satchel stores, and where</h2>
+
         <p>
-          Everything below lives in Forge hosted storage, which is Atlassian infrastructure attached
-          to your own Confluence site. Atlassian's data-residency options apply to it.
+          Everything below lives in <strong>Forge hosted storage</strong>, which is
+          Atlassian infrastructure attached to your own Confluence site. Atlassian's
+          data-residency options apply to it.
         </p>
+
         <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
           <table>
-            <thead><tr><th>Data</th><th>Why</th></tr></thead>
+            <thead>
+              <tr><th>Data</th><th>Why</th><th>Kept until</th></tr>
+            </thead>
             <tbody>
               <tr>
-                <td>Attachment metadata: id, file name, size, media type, version count, upload timestamp, uploader account id, status</td>
-                <td>the space inventory that makes a cross-page view possible</td>
+                <td>For each attachment on a page in a scanned space: id, file name, size, media type, version count, upload timestamp, uploader account id, status, whether its own page embeds or links it, and its Confluence web link</td>
+                <td>The space inventory that makes a cross-page view possible</td>
+                <td>The next scan replaces it</td>
               </tr>
               <tr>
-                <td>Page metadata: id, title, status</td>
-                <td>so the inventory can say which page a file is on</td>
+                <td>For each page in a scanned space: id, title, status</td>
+                <td>So the inventory can say which page a file is on</td>
+                <td>The next scan replaces it</td>
               </tr>
               <tr>
-                <td>Space keys and per-space settings</td>
-                <td>scoping and configuration</td>
+                <td>For each scanned space: counts, timestamps, the account id of whoever started the last scan, up to 20 ids of pages Confluence would not list</td>
+                <td>The space page's summary</td>
+                <td>The next scan replaces it</td>
               </tr>
               <tr>
-                <td>Bulk job records: what was selected, progress, per-file outcomes</td>
-                <td>so a job survives a closed browser tab and can be reported honestly</td>
+                <td>Scan progress while a scan runs: counts and where it is up to</td>
+                <td>So a scan survives several runs and can be resumed</td>
+                <td>The scan ends</td>
               </tr>
               <tr>
-                <td>Undo journals for completed moves</td>
-                <td>so a move can be reversed</td>
+                <td>Site and per-space settings</td>
+                <td>Configuration</td>
+                <td>Changed or uninstalled</td>
               </tr>
               <tr>
-                <td>An audit trail of moves and deletions: timestamp, action, actor account id and display name, file name and size, source and target page</td>
-                <td>because deleting attachments matters and an administrator is owed a record</td>
+                <td>Bulk job records: kind, space, the starter's account id, counts, the target page's id and title, and up to 100 per-file problems (file name, attachment and page ids, reason)</td>
+                <td>So a job survives a closed tab and can be reported honestly</td>
+                <td>30 days after the job ends</td>
+              </tr>
+              <tr>
+                <td>Bulk job plans: each selected file's id, name, size, media type, status, page id and title</td>
+                <td>What a running job works through</td>
+                <td>The job ends</td>
+              </tr>
+              <tr>
+                <td>While a job runs: a random id for the browser tab driving it, and a stop request if one was made</td>
+                <td>So two tabs never run one job</td>
+                <td>The job ends</td>
+              </tr>
+              <tr>
+                <td>Per space: the running jobs and their starters' account ids</td>
+                <td>So a job whose tab closed can be resumed</td>
+                <td>The job ends</td>
+              </tr>
+              <tr>
+                <td>Undo journals: for each file a move touched, its old and new attachment ids, name, size, media type, and source and target page ids and titles; with when, where and the mover's account id</td>
+                <td>So a move can be reversed</td>
+                <td>The undo runs, or 30 days after the move</td>
+              </tr>
+              <tr>
+                <td>Per space: the moves on offer for undo, with the mover's account id</td>
+                <td>The undo list</td>
+                <td>As the journal</td>
+              </tr>
+              <tr>
+                <td>What Satchel moved, trashed or purged since the last scan: attachment ids and target page ids and titles</td>
+                <td>So the space page shows Satchel's own changes at once</td>
+                <td>The next scan</td>
+              </tr>
+              <tr>
+                <td>An audit trail of moves and deletions: timestamp, action, the actor's account id, file name and size, attachment ids, source and target page ids and titles, outcome</td>
+                <td>Because moving and deleting change people's files, and an administrator is owed a record</td>
+                <td>The 2,000 most recent events are kept</td>
+              </tr>
+              <tr>
+                <td>For ten minutes per person: which of a space's pages they can open, and whether they administer the space, with their account id</td>
+                <td>So Confluence is not asked the same question on every click</td>
+                <td>Deleted within the hour after it lapses</td>
+              </tr>
+              <tr>
+                <td>How this site moves attachments (re-parent or copy), and when that was measured</td>
+                <td>So a move says which route it will take</td>
+                <td>Uninstalled</td>
               </tr>
               <tr>
                 <td>An hourly count of API points this site has spent</td>
-                <td>rate-limit self-throttling</td>
+                <td>Rate-limit self-throttling</td>
+                <td>Two hours</td>
               </tr>
             </tbody>
           </table>
         </div>
+
         <p>
-          <strong>Not stored:</strong> attachment file contents, page body text (page bodies are read
-          during a scan to find which files a page references, and are discarded immediately — only
-          a true-or-false flag per attachment is kept), passwords, tokens, or anything about users
-          beyond the account ids and display names Confluence itself returns.
+          Audit events recorded before 2.8.0 also hold the actor's display name, and
+          inventory rows scanned before 2.8.0 hold the attachment's v2 download link until
+          the next scan. Since 2.8.0 display names are looked up when they are shown and are
+          not stored.
+        </p>
+
+        <p>
+          <strong>Not stored:</strong> attachment file contents, page body text (page bodies
+          are read during a scan to find which files a page embeds or links, and are
+          discarded immediately — only a true-or-false flag per attachment is kept),
+          passwords, tokens, or anything about users beyond their Atlassian account ids.
         </p>
 
         <h2 id="retention">Retention</h2>
+
         <ul>
           <li>
-            The inventory is replaced wholesale by each rescan and deleted when the app is
-            uninstalled.
+            The inventory is replaced wholesale by each rescan.
           </li>
           <li>
-            The audit trail is a <strong>bounded ring buffer of the 2,000 most recent
-            events</strong>. Older events are dropped automatically. If you need a longer record,
-            export it as CSV — the button is in Confluence administration and on each space page.
+            Everything with a "kept until" above is deleted on that schedule by the app
+            itself, by an hourly sweep. The audit trail keeps its <strong>2,000 most recent
+            events</strong>; older events are deleted. If you need a longer record, export
+            it as CSV — the button is in Confluence administration and on each space page.
           </li>
-          <li>Undo journals expire 30 days after the move they describe.</li>
           <li>
-            Uninstalling the app removes all of it. Atlassian deletes Forge storage associated with
-            an uninstalled app; Keelapps has no copy to delete because Keelapps never had one.
+            Undo journals are deleted 30 days after the move they describe, whether or not
+            anybody used them.
+          </li>
+          <li>
+            When the app is uninstalled, Atlassian keeps its Forge storage for 28 days —
+            under Atlassian's <a
+            href="https://developer.atlassian.com/platform/forge/storage-reference/hosted-storage-data-lifecycle/">hosted-storage
+            data lifecycle</a> a reinstall can be relinked to it if that is requested within
+            21 days — and then deletes it. Keelapps has no copy to delete, because Keelapps
+            never had one.
           </li>
         </ul>
 
         <h2 id="visibility">Who can see what</h2>
+
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th></th><th>Space member</th><th>Space administrator</th><th>Site administrator</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>The space's files, reports and uploader ranking</td>
+                <td>Files on pages they can open</td>
+                <td>Files on pages they can open</td>
+                <td>As a member of the space</td>
+              </tr>
+              <tr>
+                <td>The space's settings</td>
+                <td>Read-only</td>
+                <td>Can change them</td>
+                <td>Sets the site-wide defaults</td>
+              </tr>
+              <tr>
+                <td>The space's Activity tab and its CSV</td>
+                <td>Moves and deletions of files on pages they can open</td>
+                <td>Every move and deletion in the space</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Undo, stop or confirm a job</td>
+                <td>Their own</td>
+                <td>Anybody's in the space</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Cross-space totals, the full audit trail, the site settings</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Yes, in Confluence administration</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <ul>
           <li>
-            The space attachment browser is visible to anyone who can open the space, but by default
-            it <strong>hides rows whose page that person cannot open</strong> — Satchel intersects
-            its inventory with the pages Confluence says that user may read before any row leaves the
-            server. A site administrator can switch this off.
+            By default the space page <strong>hides rows whose page the viewer cannot
+            open</strong>: Satchel checks with Confluence, as that person, which pages they
+            can open before any row leaves the server, and remembers the answer for ten
+            minutes. A site administrator can switch this off.
           </li>
           <li>
-            Aggregate totals on a space page (file count, total size) cover the whole space and are
-            labelled as such, next to a count of how many rows are hidden from the current viewer.
+            Aggregate totals on a space page (file count, total size) cover the whole space
+            and are labelled as such, next to a count of how many rows are hidden from the
+            current viewer.
           </li>
           <li>
-            Cross-space totals, uploader rankings and the audit trail live in Confluence
-            administration, so only site administrators can reach them.
+            Whether someone administers a space, or Confluence, is asked of Confluence as
+            that person; nothing is taken on trust from the browser.
           </li>
           <li>
-            Every download, move and delete is performed <strong>as the signed-in user</strong>, so
-            Confluence's own permissions decide what actually happens regardless of what the index
-            shows.
+            Every download, move and delete is performed <strong>as the signed-in
+            user</strong>, so Confluence's own permissions decide what actually happens
+            regardless of what the index shows.
           </li>
         </ul>
 
+        <h2 id="logs">Logs</h2>
+
+        <p>
+          Atlassian keeps logs of the app's function runs and, by default, makes them
+          available to Keelapps, the developer. A site administrator can download them, or
+          switch Keelapps' access off, in Atlassian Administration → Connected apps →
+          Satchel.
+        </p>
+
+        <p>
+          Satchel writes little to them: space keys, job references, counts of what a scan
+          or sweep did, and the status codes Confluence answered with when something failed.
+          An unexpected error is logged with where in the code it happened, which can
+          include one of Satchel's internal storage keys — and some of those contain a space
+          key or an account id. Satchel does not write file contents, file names or page
+          titles to its logs.
+        </p>
+
         <h2 id="third-parties">Third parties</h2>
+
         <p>
           None. Satchel makes no external network calls of any kind — no analytics, no error
-          reporting, no telemetry, no content delivery network. Its manifest contains no external
-          permissions block, which is what Atlassian's <strong>Runs on Atlassian</strong> badge
-          certifies and what makes this statement checkable rather than a promise.
+          reporting service, no telemetry, no CDN. Its <code>manifest.yml</code> declares no
+          external network access (there is no <code>permissions.external</code> block),
+          which is what makes the app eligible for Atlassian's <strong>Runs on
+          Atlassian</strong> badge and what makes this statement checkable rather than a
+          promise.
         </p>
 
         <h2 id="sub-processors">Sub-processors</h2>
-        <p>None.</p>
+
+        <p>
+          None. The app runs on Atlassian's platform, under your agreement with Atlassian.
+        </p>
 
         <h2 id="gdpr">GDPR and CCPA</h2>
+
         <p>
-          Keelapps is <strong>neither a controller nor a processor</strong> of your end-user data for
-          this app, and is <strong>neither a CCPA business nor a service provider</strong>, because
-          Keelapps has no access path to it. Data is processed only by app code running inside your
-          own Atlassian site, under Atlassian's terms and on Atlassian's infrastructure.
+          Keelapps does not receive, store or process the data Satchel keeps: it is
+          processed only by app code running inside your own Atlassian site, under
+          Atlassian's terms and on Atlassian's infrastructure. On that basis Keelapps is
+          <strong>neither a controller nor a processor</strong> of your end-user data for
+          this app, and <strong>neither a CCPA business nor a service provider</strong>. The
+          Forge logs described above are the one thing Keelapps can see, and your
+          administrators control that access.
         </p>
+
         <p>
-          If you need a Data Processing Addendum for the Atlassian platform itself, that is between
-          you and Atlassian.
+          If you need a Data Processing Addendum for the Atlassian platform itself, that is
+          between you and Atlassian.
         </p>
 
         <h2 id="personal-data-requests">Personal data requests</h2>
+
         <p>
-          Satchel stores Atlassian <strong>account ids</strong>, and display names cached alongside
-          them for readability. To remove a person's data:
-        </p>
-        <ol>
-          <li>Uninstalling Satchel removes everything it stores.</li>
-          <li>
-            Alternatively, rescan the space after Atlassian has deactivated the account — the
-            inventory is replaced wholesale, and account ids no longer visible to the app disappear
-            with it. Note that the audit trail is deliberately <em>not</em> rewritten by a rescan: an
-            audit record that can be edited is not an audit record. It ages out of the 2,000-event
-            ring on its own.
-          </li>
-        </ol>
-        <p>
-          Atlassian's own personal-data reporting API governs deletion timelines for account data
-          across Forge apps.
+          Satchel stores Atlassian <strong>account ids</strong> — of uploaders, of whoever
+          started a scan, a move, a delete or an undo, and of whoever was shown a space page
+          in the last few minutes. It does not store names. To remove a person's data:
         </p>
 
-        <h2 id="security">Security</h2>
-        <ul>
-          <li>No egress, so no data in transit outside Atlassian.</li>
-          <li>No vendor access, so no vendor-side breach surface for your content.</li>
+        <ol>
           <li>
-            The app never edits page content. Its only writes are attachment moves and deletions,
-            both explicitly initiated, both behind a dry run and a typed confirmation, and both
-            recorded.
+            Uninstall Satchel; its storage is then deleted as described under Retention.
           </li>
-          <li>Bulk delete is <strong>off by default</strong> and must be enabled by a site administrator.</li>
           <li>
-            Deletions move attachments to Confluence's own trash, where a space administrator can
-            restore them through Confluence itself.
+            Or let it age out: rescan the space after Atlassian has deactivated the account,
+            and the inventory no longer holds their uploads; the job records, undo journals
+            and short-lived answers that name them are deleted on the schedule above. The
+            audit trail is deliberately <em>not</em> rewritten — an audit record that can be
+            edited is not an audit record — and their events leave it as newer events push
+            them out of the 2,000 kept.
+          </li>
+        </ol>
+
+        <h2 id="security">Security</h2>
+
+        <ul>
+          <li>
+            No egress, so no data in transit outside Atlassian.
+          </li>
+          <li>
+            No vendor access to what the app stores, so no vendor-side breach surface for
+            your content.
+          </li>
+          <li>
+            The app never edits page content. Its only writes are attachment moves and
+            deletions, both explicitly initiated and both preceded by a dry run; deletions
+            also need a typed confirmation checked on the server. Every one is recorded.
+          </li>
+          <li>
+            Bulk delete is <strong>off by default</strong> and must be enabled by a site
+            administrator. A space administrator can switch it off for their space, but
+            cannot switch it on while the site has it off.
+          </li>
+          <li>
+            Deletions move attachments to Confluence's own trash, where a space
+            administrator can restore them through Confluence itself. Purging — the one
+            irreversible step — applies only to files already in the trash and needs its own
+            typed confirmation.
           </li>
         </ul>
 
@@ -271,10 +436,9 @@
         </p>
 
         <h2 id="contact">Contact</h2>
+
         <p>
-          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a> — for questions about
-          this policy, and for data access, correction or deletion requests. Security issues:
-          <a href="/security/">report them privately</a>.
+          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a>
         </p>
         <!-- legal:end -->
 
