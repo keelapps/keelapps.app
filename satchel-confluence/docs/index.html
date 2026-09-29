@@ -198,7 +198,14 @@
         <h2 id="zip">Zip download</h2>
         <p>
           Select files anywhere in the space and download one archive, foldered by page title, with
-          a CSV manifest inside listing what it contains.
+          a CSV manifest inside listing what it contains. Before it starts, Satchel says how many
+          files and how many megabytes it will fetch, and roughly what that costs in Confluence API
+          points.
+        </p>
+        <p>
+          One archive holds up to <strong>2,000 files or 2 GB</strong>. Files past either limit are
+          listed in the manifest instead of being packed, so you can select them and download a
+          second zip. A file the archive could not include is listed too, with the reason in words.
         </p>
         <p>
           The archive is assembled <strong>in your browser tab</strong>. The compression library is
