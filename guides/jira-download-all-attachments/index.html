@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#E5DECF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
+    <title>How to download all attachments from Jira Cloud in bulk (2026) — keelapps</title>
+    <meta
+      name="description"
+      content="Jira Cloud downloads attachments one issue at a time. Four ways to get every attachment from a JQL search or a whole project, a script you can run today, how they compare, and how to find what is using your storage."
+    />
+    <link rel="canonical" href="https://keelapps.app/guides/jira-download-all-attachments/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/guides/jira-download-all-attachments/" />
+    <meta property="og:title" content="How to download all attachments from Jira Cloud in bulk" />
+    <meta
+      property="og:description"
+      content="Four ways to get every attachment from a JQL search or a project out of Jira Cloud, with a script, a comparison and the traps."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can Jira Cloud download attachments from several issues at once?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not from the issue view. Download all works on one issue. Across issues you need a site backup with attachments, a REST API script, or a Marketplace app. The request for a native option, JRACLOUD-68871, has been open since 2018."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I download all attachments from a Jira project?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Run a JQL search such as project = KEY with the attachment field, then download each attachment's content URL into a folder per issue key. A script against the REST API does this, and apps such as Satchel do it from the project page without a script."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does a Jira Cloud backup include attachments?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It can. Backup manager lets you include attachments, but the backup covers the whole site, cannot be narrowed to a project or a search, and is meant for migration and disaster recovery rather than handing files to someone."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I restore an attachment I deleted in Jira Cloud?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Jira Cloud has no recycle bin for attachments, and Atlassian does not undo customer deletions from its backups. Download a copy before deleting anything in bulk."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I find which projects use the most Jira storage?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Jira reports storage for the whole site, not per project. To see where it goes, list every attachment with its size, type, uploader and date, from the REST API or with an app that builds that inventory, and sort."
+            }
+          }
+        ]
+      }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Sections">
+        <p class="manual__toc-title">Guide</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/">All apps</a></li>
+          <li><a href="/satchel/">Satchel for Jira</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#the-gap">What Jira does and does not do</a></li>
+          <li><a href="#one-issue">Option 1: one issue at a time</a></li>
+          <li><a href="#backup">Option 2: a site backup</a></li>
+          <li><a href="#script">Option 3: a REST API script</a></li>
+          <li><a href="#app">Option 4: an app</a></li>
+          <li><a href="#compare">The options side by side</a></li>
+          <li><a href="#storage">Finding what uses your storage</a></li>
+          <li><a href="#faq">Questions</a></li>
+          <li><a href="#satchel">Where Satchel fits</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Guides
+        </p>
+
+        <h1>How to download all attachments from Jira Cloud</h1>
+        <p class="manual__meta">Jira Cloud · Updated <time datetime="2026-10-07">7 October 2026</time></p>
+
+        <p class="manual__lede">
+          Jira Cloud can zip every attachment on one issue. It cannot zip the attachments
+          behind a JQL search or a whole project, which is what an audit request, a contract
+          handover or a storage clean-up usually needs. This guide covers four ways to do it,
+          a script you can run today, the traps that lose files, and how to find out what is
+          filling your storage.
+        </p>
+        <p>
+          We make <a href="/satchel/">Satchel</a>, one of the options below, so we are not
+          neutral. The native routes and the script come first and need no app.
+        </p>
+
+        <h2 id="the-gap">What Jira does and does not do</h2>
+        <p>
+          On a single issue, the attachments panel has <strong>Download all</strong>, which
+          returns one zip. That is the whole of Jira’s bulk download. There is no action on
+          a search result, a filter, a board or a project that collects files across
+          issues. The request for one,
+          <a href="https://jira.atlassian.com/browse/JRACLOUD-68871">JRACLOUD-68871</a>, has
+          been open since 2018.
+        </p>
+        <p>
+          Two related limits come up at the same time. Past 150 attachments on one issue,
+          Jira stops showing previews and thumbnails
+          (<a href="https://jira.atlassian.com/browse/JRACLOUD-81747">JRACLOUD-81747</a>).
+          And Jira has no recycle bin for attachments
+          (<a href="https://jira.atlassian.com/browse/JRACLOUD-81027">JRACLOUD-81027</a>),
+          so a bulk delete without a copy is final.
+        </p>
+
+        <h2 id="one-issue">Option 1: one issue at a time</h2>
+        <p>
+          Open each issue, choose <strong>Download all</strong> in the attachments panel,
+          and rename the zip after the issue key. For ten issues this is fine. For a
+          quarter’s worth of invoices or a project’s design files it is an afternoon of
+          clicking, and the result is a pile of zips that someone has to unpack and sort.
+        </p>
+
+        <h2 id="backup">Option 2: a site backup</h2>
+        <p>
+          <strong>Settings → System → Backup manager</strong> can create a backup that
+          includes attachments. It is complete, and it needs no code. It is also the whole
+          site: you cannot narrow it to a project or a search, the files arrive in an
+          internal folder layout rather than by issue key, and Jira limits how often you can
+          create one. Use it for migration and disaster recovery, not for handing a
+          project’s files to an auditor.
+        </p>
+
+        <h2 id="script">Option 3: a REST API script</h2>
+        <p>
+          The REST API returns each issue’s attachments with a download URL, so a short
+          script can turn any JQL search into a folder per issue. This one uses Python
+          with the <code>requests</code> library and an
+          <a href="https://id.atlassian.com/manage-profile/security/api-tokens">API token</a>:
+        </p>
+        <pre><code>import os, pathlib, requests
+
+site = "https://your-site.atlassian.net"
+auth = (os.environ["JIRA_EMAIL"], os.environ["JIRA_TOKEN"])
+jql = "project = FIN AND created &gt;= -90d"
+
+token = None
+while True:
+    params = {"jql": jql, "fields": "attachment", "maxResults": 100}
+    if token:
+        params["nextPageToken"] = token
+    url = f"{site}/rest/api/3/search/jql"
+    page = requests.get(url, params=params, auth=auth).json()
+    for issue in page["issues"]:
+        folder = pathlib.Path("export") / issue["key"]
+        for a in issue["fields"].get("attachment", []):
+            folder.mkdir(parents=True, exist_ok=True)
+            name = a["filename"].replace("/", "_")
+            path, n = folder / name, 1
+            while path.exists():          # two files can share a name
+                path, n = folder / f"{n}-{name}", n + 1
+            file = requests.get(a["content"], auth=auth)
+            path.write_bytes(file.content)
+    token = page.get("nextPageToken")
+    if not token:
+        break</code></pre>
+        <p>Four traps catch most first versions:</p>
+        <ol>
+          <li>
+            <strong>Same-name files overwrite each other.</strong> Three files called
+            <code>screenshot.png</code> on one issue become one unless the script renames
+            them, as the loop above does.
+          </li>
+          <li>
+            <strong>Rate limits.</strong> A large export will be told to slow down with HTTP
+            429. Respect the <code>Retry-After</code> header and retry rather than skipping
+            the file.
+          </li>
+          <li>
+            <strong>Silent gaps.</strong> A file that fails to download should be written to a
+            list, so the person receiving the folder knows it is incomplete.
+          </li>
+          <li>
+            <strong>What the token can see.</strong> The script runs as the token’s owner.
+            Issues hidden from them by issue security are missing from the result without
+            any error.
+          </li>
+        </ol>
+
+        <h2 id="app">Option 4: an app</h2>
+        <p>
+          Several Marketplace apps add bulk download inside Jira. They differ most in where
+          your files travel and what else they do. Before installing one, check:
+        </p>
+        <ul>
+          <li>
+            <strong>Scope of a download</strong>: a JQL result, a filter, a whole project, and
+            whether the archive is foldered by issue key.
+          </li>
+          <li>
+            <strong>Where the zip is built.</strong> Some apps copy your files to the vendor’s
+            servers to build the archive. An app that builds it in your browser, with no
+            external network permission, never hands the files to anyone. The Runs on
+            Atlassian badge on a listing certifies the second kind.
+          </li>
+          <li>
+            <strong>Honest output</strong>: duplicate names renamed rather than overwritten,
+            and a note inside the archive listing anything left out.
+          </li>
+          <li>
+            <strong>Write scopes.</strong> Download needs only read access. An app that also
+            deletes needs a write scope, and should say exactly what it uses it for.
+          </li>
+        </ul>
+
+        <h2 id="compare">The options side by side</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Question</th><th>Download all</th><th>Site backup</th><th>REST API script</th><th>Satchel</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>From a JQL search or a project?</td><td>One issue only</td><td>Whole site only</td><td>Yes</td><td>Yes</td></tr>
+              <tr><td>Foldered by issue key?</td><td>One zip per issue</td><td>No</td><td>If the script does it</td><td>Yes</td></tr>
+              <tr><td>Same-name files kept?</td><td>Yes</td><td>Yes</td><td>If the script renames</td><td>Renamed, never overwritten</td></tr>
+              <tr><td>Missing files reported?</td><td>—</td><td>—</td><td>If the script logs them</td><td>A note inside the zip</td></tr>
+              <tr><td>Do the files leave Atlassian?</td><td>To your disk</td><td>To your disk</td><td>To wherever it runs</td><td>To your disk, via your browser</td></tr>
+              <tr><td>Storage report by uploader, type, age?</td><td>—</td><td>—</td><td>If you build it</td><td>Yes</td></tr>
+              <tr><td>Cost</td><td>Free</td><td>Free</td><td>Your time</td><td>Free up to 10 users, then per user</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          A one-off export is a job for the script. If people ask for files every month, or
+          the same work has to feed a storage clean-up, an app saves the upkeep.
+        </p>
+
+        <h2 id="storage">Finding what uses your storage</h2>
+        <p>
+          Bulk download and storage usually arrive together: someone notices the site is near
+          its limit, and the files have to be saved somewhere before they can go. Jira Cloud
+          reports storage for the whole site, not per project, so the first step is an
+          inventory.
+        </p>
+        <ol>
+          <li>
+            <strong>List every attachment</strong> in the project with its size, media type,
+            uploader, issue and date. The search in the script above returns all of these in
+            the <code>attachment</code> field; write them to a CSV instead of downloading.
+          </li>
+          <li>
+            <strong>Sort by size.</strong> A few dozen files usually account for most of the
+            space: screen recordings, database dumps, design exports.
+          </li>
+          <li>
+            <strong>Group by uploader and type</strong> to find the habits behind it, such as
+            a build bot attaching logs to every issue.
+          </li>
+          <li>
+            <strong>Look for duplicates</strong> by filename and exact size. Jira exposes no
+            content hash, so treat matches as candidates to check, not proof.
+          </li>
+          <li>
+            <strong>Copy before you delete.</strong> Download what you will remove, then
+            delete. Jira Automation has a delete attachments action, but no preview and no
+            undo.
+          </li>
+        </ol>
+
+        <h2 id="faq">Questions</h2>
+        <h3>Can Jira Cloud download attachments from several issues at once?</h3>
+        <p>
+          Not from the issue view. Download all works on one issue. Across issues you need a
+          site backup with attachments, a REST API script, or a Marketplace app. The request
+          for a native option,
+          <a href="https://jira.atlassian.com/browse/JRACLOUD-68871">JRACLOUD-68871</a>, has
+          been open since 2018.
+        </p>
+        <h3>How do I download all attachments from a Jira project?</h3>
+        <p>
+          Run a JQL search such as <code>project = KEY</code> with the attachment field, then
+          download each attachment’s content URL into a folder per issue key. The
+          <a href="#script">script above</a> does this, and apps such as Satchel do it from
+          the project page without a script.
+        </p>
+        <h3>Does a Jira Cloud backup include attachments?</h3>
+        <p>
+          It can. Backup manager lets you include attachments, but the backup covers the whole
+          site, cannot be narrowed to a project or a search, and is meant for migration and
+          disaster recovery rather than handing files to someone.
+        </p>
+        <h3>Can I restore an attachment I deleted in Jira Cloud?</h3>
+        <p>
+          No. Jira Cloud has no recycle bin for attachments, and Atlassian does not undo
+          customer deletions from its backups. Download a copy before deleting anything in
+          bulk.
+        </p>
+        <h3>How do I find which projects use the most Jira storage?</h3>
+        <p>
+          Jira reports storage for the whole site, not per project. To see where it goes, list
+          every attachment with its size, type, uploader and date, from the REST API or with
+          an app that builds that inventory, and sort.
+        </p>
+
+        <h2 id="satchel">Where Satchel fits</h2>
+        <p>
+          <a href="/satchel/">Satchel for Jira</a> is option 4. From the project page it zips
+          a JQL result or the whole project, foldered by <code>ISSUE-KEY/</code>, in archives
+          of up to 1 GB and 5,000 files. Same-name files are renamed rather than overwritten,
+          and a note inside the zip names anything it could not include. The archive is built
+          in your browser from your own Jira session, so the files never reach a server of
+          ours; there is not one.
+        </p>
+        <p>
+          The same page builds the inventory described above: storage by uploader, file type,
+          issue type and age, the biggest files, and duplicate candidates with the space each
+          group would free. Deletion ships switched off. Once an administrator turns it on, it
+          needs a preview Jira has checked and a typed confirmation, and every deleted file is
+          recorded for 400 days.
+        </p>
+        <p>
+          What it does not do: it never uploads, inventories are per project rather than
+          site-wide, and duplicate detection finds candidates, not proven copies. Sites of up
+          to 10 users pay nothing, and the single-issue zip stays free on every install.
+        </p>
+        <p>
+          <a class="btn" href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager">Try Satchel free</a>
+        </p>
+        <p>
+          Moving files out of Confluence instead?
+          <a href="/satchel-confluence/">Satchel for Confluence</a> does bulk download and
+          moves attachments between pages.
+        </p>
+
+        <nav class="manual__pagination">
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head">Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Published by Keelapps. Not affiliated with Atlassian. Jira and Confluence are
+          trademarks of Atlassian.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
