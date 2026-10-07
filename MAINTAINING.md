@@ -41,8 +41,8 @@ than by hand.
 - the theme colours and the two font preloads in every `<head>`.
 
 A card carries no copy of its own. Its headline is the product page's `<h1>`,
-its demo length the page's `VideoObject` duration, its status whether the
-page's intro links to a Marketplace listing, and its picture whatever
+its demo length the page's `VideoObject` duration, its status — and its Runs on Atlassian
+badge — whether the page's intro links to a Marketplace listing, and its picture whatever
 `tools/make-card-images` made from the app's card source. Edit the product
 page, then:
 

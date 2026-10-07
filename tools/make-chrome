@@ -127,11 +127,14 @@ class App:
                   '<span class="app-card__status app-card__status--soon">Coming soon</span>')
         demo = (f'\n    <a href="/{self.slug}/#demo">{PLAY}Demo {self.demo}</a>'
                 if self.demo else "")
+        # Every live listing carries Atlassian's Runs on Atlassian badge: each app
+        # is Forge with no external permission, which is what earns it.
+        badge = ' <span class="app-card__badge">Runs on Atlassian</span>' if self.live else ""
         return f"""<li class="app-card" data-host="{self.product.lower()}">
   <a class="app-card__shot" href="/{self.slug}/" tabindex="-1" aria-hidden="true">{shot}</a>
   <p class="app-card__meta"><span>{self.product} · {self.job}</span>{status}</p>
   <h3 class="app-card__problem"><a href="/{self.slug}/">{self.problem}</a></h3>
-  <p class="app-card__name">{self.name}</p>
+  <p class="app-card__name">{self.name}{badge}</p>
   <p class="app-card__links">
     <a href="/{self.slug}/">Product page</a>{demo}
     <a href="/{self.slug}/docs/">Docs</a>

@@ -47,6 +47,41 @@
   margin-top: var(--space-x-large);
 }
 
+/* What holds for every app, as a row of station labels under the offer: the
+   terms a buyer checks before reading any further. Text, so muted, not faint. */
+
+.hero__facts {
+  color: var(--color-ink-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  gap: var(--space-small) var(--space-large);
+  letter-spacing: var(--tracking-wide);
+  list-style: none;
+  margin-top: var(--space-large);
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.hero__facts li {
+  align-items: flex-start;
+  display: flex;
+  gap: var(--space-x-small);
+  margin: 0;
+}
+
+/* A short rule before each, the gauge every line on the plate is drawn at. */
+
+.hero__facts li::before {
+  background: var(--color-rule-strong);
+  content: "";
+  flex: none;
+  height: var(--rule-gauge);
+  margin-top: 0.6em;
+  width: 0.9em;
+}
+
 
 /* The waterline itself is the hero's bottom rule. The mark sits on it: its
    own waterline strokes centred on the rule, the hull and keel below. The
@@ -398,4 +433,42 @@
   color: var(--color-ink-muted);
   font-size: var(--font-size-small);
   margin-top: 0.3em;
+}
+
+
+/* Motion. The offer settles in line by line on load, the mark last, as if
+   coming to rest on the waterline; the stations in the deep band rise like the
+   cards above them (the keyframes are in site.css). Only opacity and position
+   move — no colour changes — and none of it runs for a visitor who has asked
+   for less motion. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero > * {
+    animation: settle 0.7s cubic-bezier(0.33, 1, 0.68, 1) both;
+  }
+
+  .hero > :nth-child(2) { animation-delay: 0.07s; }
+  .hero > :nth-child(3) { animation-delay: 0.14s; }
+  .hero > :nth-child(4) { animation-delay: 0.21s; }
+  .hero > :nth-child(5) { animation-delay: 0.28s; }
+
+  .waterline__mark {
+    animation: settle 0.9s 0.3s cubic-bezier(0.33, 1, 0.68, 1) both;
+  }
+
+  @supports (animation-timeline: view()) {
+    .principles li,
+    .routes li {
+      animation: rise linear both;
+      animation-range: entry 0% entry 70%;
+      animation-timeline: view();
+    }
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    translate: 0 0.75rem;
+  }
 }
