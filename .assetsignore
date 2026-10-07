@@ -1,0 +1,13 @@
+# Not part of the site: kept out of Cloudflare preview uploads.
+.git
+.github
+.claude
+.gitignore
+.nojekyll
+.assetsignore
+wrangler.jsonc
+CNAME
+*.md
+tools
+node_modules
+.wrangler

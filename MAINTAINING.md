@@ -219,3 +219,21 @@ python3 -m http.server 8000
 
 Use a server, not `file://` — every stylesheet and asset is referenced from the
 site root and those paths do not resolve under the file protocol.
+
+## Previews
+
+The live site is GitHub Pages: a push to `main` publishes keelapps.app, and
+nothing below changes that. Cloudflare only serves previews, so a pull request
+can be looked at before it is merged.
+
+`wrangler.jsonc` describes the repository root as a static-assets Worker with
+no script of its own, and `.assetsignore` keeps everything that is not the site
+out of the upload — the tools, the Markdown, `CNAME`, the dot-directories. With
+the repository connected to Workers Builds in the Cloudflare dashboard, every
+push to a branch other than `main` uploads a preview version and the pull
+request gets its `workers.dev` link. There is nothing to build, so the build
+command is empty.
+
+To try the same thing locally, `npx wrangler dev` serves exactly what a preview
+would. Asset paths are site-absolute, so a preview works at the root of any
+host; every page's canonical link still names keelapps.app.
