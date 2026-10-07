@@ -1,0 +1,14 @@
+// Cloudflare Workers config, for pull request previews only. Production is still
+// GitHub Pages: a push to main publishes keelapps.app, as before. Workers Builds
+// uploads a preview version of every other branch, so a change can be seen on a
+// workers.dev URL before it is merged. See "Previews" in MAINTAINING.md.
+{
+  "name": "keelapps-app",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    // The site is the repository root; .assetsignore keeps the tooling out.
+    "directory": ".",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  }
+}
