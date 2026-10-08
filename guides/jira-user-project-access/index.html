@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#E5DECF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
+    <title>Which Jira projects can a user access? A guide for Jira Cloud admins — keelapps</title>
+    <meta
+      name="description"
+      content="Jira Cloud has no screen that lists every project one person can reach. How to get the answer from Jira itself with one REST call, how to find out why, and what to capture before someone leaves."
+    />
+    <link rel="canonical" href="https://keelapps.app/guides/jira-user-project-access/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/guides/jira-user-project-access/" />
+    <meta property="og:title" content="Which Jira projects can a user access?" />
+    <meta
+      property="og:description"
+      content="List every Jira Cloud project one person can reach, find out which grant gives them each one, and capture it before they leave."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Sections">
+        <p class="manual__toc-title">Guide</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/">All apps</a></li>
+          <li><a href="/accesslens/">AccessLens for Jira</a></li>
+          <li><a href="/guides/jira-group-project-access/">Which projects can a group access?</a></li>
+          <li><a href="/guides/jira-permission-audit/">Jira permission audit</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#role-view">The admin screen, and what it leaves out</a></li>
+          <li><a href="#ask-jira">Ask Jira directly</a></li>
+          <li><a href="#why">Working out why</a></li>
+          <li><a href="#traps">Five things that skew the answer</a></li>
+          <li><a href="#leavers">Before someone leaves</a></li>
+          <li><a href="#accesslens">Where AccessLens fits</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Guides
+        </p>
+
+        <h1>Which Jira projects can a user access?</h1>
+        <p class="manual__meta">Jira Cloud · Updated <time datetime="2026-10-08">8 October 2026</time></p>
+
+        <p class="manual__lede">
+          A manager asks what a contractor can see before their contract ends. Security asks
+          the same about an account that looks compromised. Jira Cloud shows who can reach a
+          project, one project at a time, but nothing lists the projects one person can
+          reach. This guide covers the admin screen that gets closest, a REST call that asks
+          Jira for the answer outright, and how to find out which grant is responsible.
+        </p>
+        <p>
+          AccessLens, which we build, answers this too, so read the last section with that
+          in mind. Everything before it works on any Jira Cloud site with no app installed.
+        </p>
+
+        <h2 id="role-view">The admin screen, and what it leaves out</h2>
+        <p>
+          In <a href="https://admin.atlassian.com">Atlassian Administration</a>, open
+          <strong>Directory → Users</strong>, pick the person, and in the Jira section of their
+          profile choose <strong>View Jira space roles</strong> (older sites say project
+          roles, and on sites still on the original user management the path starts at
+          <strong>Products</strong>). Atlassian documents it in
+          <a href="https://support.atlassian.com/jira/kb/see-all-project-roles-a-jira-cloud-user-belongs-to-across-all-projects/">this knowledge base article</a>.
+        </p>
+        <p>
+          It is the right first look, and on a site where every scheme grants only to roles it
+          may be the whole story. It shows role membership, though, not access. A scheme can
+          grant <em>Browse projects</em> straight to a group the person is in, to them by
+          name, or to every logged-in user, and none of that is a role. In the other
+          direction, a role the scheme grants nothing to gives no access at all, yet it still
+          appears in the list.
+        </p>
+
+        <h2 id="ask-jira">Ask Jira directly</h2>
+        <p>
+          Jira already knows the answer: it works it out every time the person opens a page.
+          The REST API lets a Jira administrator ask for it on someone else’s behalf, so you
+          don’t have to rebuild the permission logic yourself.
+        </p>
+        <ol>
+          <li>
+            Get the person’s account ID. It is the last part of the URL when you open their
+            profile in Atlassian Administration, or use
+            <code>GET /rest/api/3/user/search?query=&lt;email or name&gt;</code>.
+          </li>
+          <li>
+            List the project IDs with <code>GET /rest/api/3/project/search</code>, following
+            <code>nextPage</code> until it runs out.
+          </li>
+          <li>
+            Send them, a batch at a time, to the bulk permission check:
+            <pre><code>POST /rest/api/3/permissions/check
+{
+  "accountId": "5b10a2844c20165700ede21g",
+  "projectPermissions": [
+    { "permissions": ["BROWSE_PROJECTS"], "projects": [10000, 10001, 10002] }
+  ]
+}</code></pre>
+          </li>
+          <li>
+            The response repeats the permission with the subset of projects where Jira says
+            yes. Collect those across batches and you have the list.
+          </li>
+        </ol>
+        <p>
+          Checking another person needs the <em>Administer Jira</em> global permission;
+          without an <code>accountId</code> the call answers for whoever is signed in. Add
+          more keys to <code>permissions</code> if you care about more than seeing the
+          project: <code>EDIT_ISSUES</code>, <code>DELETE_ISSUES</code> or
+          <code>ADMINISTER_PROJECTS</code> are the usual ones in a review.
+        </p>
+        <p>
+          What you get is a yes or a no per project. It does not say why, and a yes that
+          comes from “any logged-in user” looks exactly like a yes that comes from a
+          personal grant.
+        </p>
+
+        <h2 id="why">Working out why</h2>
+        <p>
+          The why matters as soon as you want to change something. Removing a person from a
+          role does nothing if the same project also lets their whole group in. For each
+          project the check said yes to, open its permission scheme, find who holds
+          <em>Browse projects</em>, and match the person against each holder:
+        </p>
+        <ul>
+          <li><strong>The person by name.</strong> Rare, and easy to forget.</li>
+          <li>
+            <strong>A group.</strong> Look up their groups with
+            <code>GET /rest/api/3/user/groups?accountId=…</code>.
+          </li>
+          <li>
+            <strong>A project role.</strong> The person can be in the role directly or through
+            one of those groups, so check the role’s actors in that project
+            (<code>GET /rest/api/3/project/{key}/role/{id}</code>) for both.
+          </li>
+          <li>
+            <strong>Any logged-in user</strong>, or <strong>Public</strong>. Everyone with Jira
+            access gets in, so there is nothing to remove for this one person. Fix it in the
+            scheme or leave it.
+          </li>
+          <li>
+            <strong>Reporter, assignee, project lead, or a user picker field.</strong> These
+            depend on the issue or the project setup rather than on who the person is.
+          </li>
+        </ul>
+        <p>
+          More than one of these can be true for the same project. Write them all down, or
+          the first fix you try will not be the last.
+        </p>
+
+        <h2 id="traps">Five things that skew the answer</h2>
+        <ol>
+          <li>
+            <strong>Product access comes first.</strong> Without access to Jira, none of the
+            grants above apply. A person who lost their licence still shows up in groups and
+            roles, which makes a scheme-by-scheme check look worse than reality.
+          </li>
+          <li>
+            <strong>Shared schemes.</strong> One grant in one scheme can open every project
+            that uses it. Count projects, not schemes.
+          </li>
+          <li>
+            <strong>Team-managed projects</strong> don’t use the shared permission schemes.
+            Their access setting and roles live in the project itself, so a walk through
+            schemes skips them. The bulk check above covers them because it asks Jira, not
+            the schemes.
+          </li>
+          <li>
+            <strong>Issue-level security.</strong> Being able to browse a project does not mean
+            seeing every issue in it. Security levels can hide some issues from people who can
+            open the project.
+          </li>
+          <li>
+            <strong>Today only.</strong> All of this describes the site as it is when you run
+            it. The audit log keeps changes for 180 days but never records who could reach
+            what on a given date, so if you will need the answer later, save it now.
+          </li>
+        </ol>
+
+        <h2 id="leavers">Before someone leaves</h2>
+        <p>
+          Deactivating an account removes access everywhere at once, and after that the
+          question “what could they see?” is hard to answer. If anyone might ask, run the
+          check first and keep the output with the offboarding ticket. Then look at the things
+          the permission check does not cover: filters and dashboards they own or share,
+          boards they administer, automation rules that run as them, and any project where
+          they are the lead. Those keep working, or break, after they are gone.
+        </p>
+        <p>
+          The same question about a group rather than a person is in
+          <a href="/guides/jira-group-project-access/">Which Jira projects can a group access?</a>,
+          and running it on a schedule for an audit is in the
+          <a href="/guides/jira-permission-audit/">Jira permission audit guide</a>.
+        </p>
+
+        <h2 id="accesslens">Where AccessLens fits</h2>
+        <p>
+          <a href="/accesslens/">AccessLens for Jira</a> reads every project’s permission
+          scheme and roles into a dated snapshot. <strong>Explore → By user</strong> then
+          lists the projects that person can reach, including access they hold through a group,
+          and shows separately what every licensed user can reach. Each row names the path,
+          granted directly or through which group, and whether through a scheme grant or a
+          role, which is the “why” section above done for you. Because the answer is a snapshot, it is still there after the person has
+          left, and you can compare it with an earlier one.
+        </p>
+        <p>
+          It does not check product access, issue security levels or the ownership items in
+          the previous section, and archived projects are not scanned. It runs on Atlassian
+          Forge with no external calls and is free for sites of up to 10 users.
+        </p>
+        <p>
+          <a class="btn" href="https://marketplace.atlassian.com/apps/4182244448/accesslens-for-jira?utm_source=keelapps.app&amp;utm_medium=guide&amp;utm_campaign=guides-jira-user-project-access&amp;utm_content=body">Try AccessLens free</a>
+        </p>
+
+        <nav class="manual__pagination">
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head">Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=guide&amp;utm_campaign=guides-jira-user-project-access&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Published by Keelapps. Not affiliated with Atlassian. Jira and Confluence are
+          trademarks of Atlassian.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
