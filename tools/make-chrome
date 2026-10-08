@@ -18,7 +18,9 @@ from the pages themselves:
   * each product page's "more apps" row, between <!-- related:begin --> and
     <!-- related:end -->;
   * in <head>: the theme colours (the tint the masthead sits on) and the
-    preloads for the two brand faces.
+    preloads for the two brand faces;
+  * the UTM tags on every link to the Atlassian Marketplace, so the
+    Marketplace's own reports say which page and which button sent an install.
 
 A card's words are not in this file. Its headline is the product page's own
 <h1>, its demo length the page's VideoObject duration, its Marketplace link the
@@ -36,6 +38,7 @@ apps") — change those by hand.
 import re
 import sys
 from pathlib import Path
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 SUPPORT = "https://keelapps.atlassian.net/helpcenter/support/"
@@ -107,7 +110,7 @@ class App:
             sys.exit(f"{self.slug}/index.html has no <h1> to put on its card")
         self.problem = " ".join(re.sub(r"<[^>]+>", "", h1.group(1)).split())
         intro = page.split('<section class="intro', 1)[-1].split("</section>", 1)[0]
-        mp = re.search(r'href="(https://marketplace\.atlassian\.com/apps/[^"?]+)"', intro)
+        mp = re.search(r'href="(https://marketplace\.atlassian\.com/apps/[^"?]+)[?"]', intro)
         self.marketplace = mp.group(1) if mp else None
         dur = re.search(r'"duration": "PT(\d+)M(\d+)S"', page)
         self.demo = f"{int(dur.group(1))}:{int(dur.group(2)):02d}" if dur else None
@@ -271,6 +274,76 @@ def region(text, name, body, n):
             f"{pad}<!-- {name}:end -->" + text[m.end():])
 
 
+# --- Marketplace links say where they were clicked ------------------------
+#
+# Every <a> that leads to marketplace.atlassian.com carries four UTM tags,
+# written here and nowhere else, so a hand-written link cannot forget them:
+#
+#   utm_source    keelapps.app
+#   utm_medium    the kind of page: home, product, docs, privacy, guide, page
+#   utm_campaign  the page itself: its path with / as -, e.g. accesslens-docs,
+#                 guides-jira-permission-audit; home for the home page
+#   utm_content   where on the page: masthead, hero, pricing, cta, body, footer
+#
+# Links elsewhere use the same names with their own source and medium (an
+# Atlassian Community answer: utm_source=atlassian-community,
+# utm_medium=qa-answer, utm_campaign=<the thread's number>), so one report
+# reads across all of them. The structured data in <head> is left untagged:
+# it is a description of the app, not a link anyone clicks.
+
+MARKETPLACE_LINK = re.compile(r'<a\b[^>]*\bhref="(https://marketplace\.atlassian\.com/[^"]*)"[^>]*>')
+
+
+def page_kind(rel):
+    if not rel:
+        return "home"
+    if rel[0] == "guides":
+        return "guide"
+    if rel[0] in BY_SLUG:
+        return rel[1] if len(rel) > 1 else "product"
+    return "page"
+
+
+def tagged(url, kind, page, place):
+    parts = urlsplit(url.replace("&amp;", "&"))
+    query = [(k, v) for k, v in parse_qsl(parts.query) if not k.startswith("utm_")]
+    query += [("utm_source", "keelapps.app"), ("utm_medium", kind),
+              ("utm_campaign", page), ("utm_content", place)]
+    return urlunsplit(parts._replace(query=urlencode(query))).replace("&", "&amp;")
+
+
+def tag_marketplace_links(text, rel):
+    kind, page = page_kind(rel), "-".join(rel) or "home"
+
+    def span(pattern):
+        m = re.search(pattern, text, re.S)
+        return (m.start(), m.end()) if m else (0, 0)
+
+    masthead_at = span(r'<header class="masthead">.*?</header>')
+    footer_at = span(r'<footer class="footer">.*?</footer>')
+    intro_at = span(r'<section class="intro.*?</section>')
+
+    def place(m):
+        at, tag, url = m.start(), m.group(0), m.group(1)
+        if masthead_at[0] <= at < masthead_at[1]:
+            return "masthead"
+        if footer_at[0] <= at < footer_at[1]:
+            return "footer"
+        if "tab=pricing" in url:
+            return "pricing"
+        if "btn--inverse" in tag:
+            return "cta"
+        if intro_at[0] <= at < intro_at[1]:
+            return "hero"
+        return "body"
+
+    def retag(m):
+        url = m.group(1)
+        return m.group(0).replace(f'href="{url}"', f'href="{tagged(url, kind, page, place(m))}"', 1)
+
+    return MARKETPLACE_LINK.sub(retag, text)
+
+
 def render(path):
     text = path.read_text()
     rel = path.parent.relative_to(ROOT).parts
@@ -306,7 +379,7 @@ def render(path):
         text = region(text, "fleet", fleet(), 8)
     if app:
         text = region(text, "related", related(app), 6)
-    return text
+    return tag_marketplace_links(text, rel)
 
 
 def main():

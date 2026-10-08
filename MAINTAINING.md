@@ -38,7 +38,8 @@ than by hand.
 - the home page's catalog, between `<!-- fleet:begin -->` and `<!-- fleet:end -->`;
 - each product page's "more apps" row, between `<!-- related:begin -->` and
   `<!-- related:end -->`;
-- the theme colours and the two font preloads in every `<head>`.
+- the theme colours and the two font preloads in every `<head>`;
+- the UTM tags on every link to the Atlassian Marketplace (below).
 
 A card carries no copy of its own. Its headline is the product page's `<h1>`,
 its demo length the page's `VideoObject` duration, its status — and its Runs on Atlassian
@@ -76,6 +77,27 @@ Adding an app is a row in `APPS` at the top of `tools/make-chrome`, its three
 pages, a card source, and those two scripts. The home page counts the fleet in words ("Eleven
 apps. One job each.", "See all eleven apps") — those are copy, and change by
 hand.
+
+## Marketplace links carry UTM tags
+
+Every `<a>` that leads to `marketplace.atlassian.com` gets four tags from
+`tools/make-chrome`, so the Marketplace's attribution reports and GA say which
+page, and which button on it, sent a visitor:
+
+| Tag | Value |
+| --- | --- |
+| `utm_source` | `keelapps.app` |
+| `utm_medium` | the kind of page: `home`, `product`, `docs`, `privacy`, `guide`, `page` |
+| `utm_campaign` | the page: its path with `/` as `-` (`accesslens-docs`, `guides-jira-permission-audit`), or `home` |
+| `utm_content` | where on the page: `masthead`, `hero`, `pricing`, `cta`, `body`, `footer` |
+
+Write Marketplace links in a page without tags and run `tools/make-chrome`; it
+replaces whatever tags a link already has, and `--check` fails on a link that
+is missing them. The JSON-LD in `<head>` stays untagged.
+
+Links posted elsewhere use the same four names. An Atlassian Community answer:
+`utm_source=atlassian-community&utm_medium=qa-answer&utm_campaign=<thread number>`,
+plus `utm_content` naming the app when the answer links a listing.
 
 ## The page is a cross-section
 
