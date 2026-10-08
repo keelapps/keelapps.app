@@ -167,11 +167,13 @@ def masthead(app=None, home=False):
             nav.append(f'<a class="btn" href="{app.marketplace}">Try it free</a>')
     elif home:
         nav = ['<a href="#apps">Apps</a>',
+               '<a href="/pricing/">Pricing</a>',
                '<a href="/security/">Security</a>',
                f'<a href="{SUPPORT}">Support</a>',
                f'<a class="btn btn--quiet" href="{VENDOR}">On the Marketplace</a>']
     else:
-        nav = ['<a href="/#apps">All apps</a>', f'<a href="{SUPPORT}">Support</a>']
+        nav = ['<a href="/#apps">All apps</a>', '<a href="/pricing/">Pricing</a>',
+               f'<a href="{SUPPORT}">Support</a>']
     return f"""<header class="masthead">
   <div class="masthead__brand">
 {indent(brand, 4)}
@@ -196,6 +198,7 @@ def footer(fine):
     cols.append(f"""<div>
   <p class="footer__head">Keelapps</p>
   <ul class="footer__list">
+    <li><a href="/pricing/">Pricing</a></li>
     <li><a href="/security/">Security</a></li>
     <li><a href="{SUPPORT}">Support</a></li>
     <li><a href="{VENDOR}">Marketplace</a></li>

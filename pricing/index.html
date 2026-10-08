@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#E5DECF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
+    <title>Pricing for every keelapps app, with a calculator — keelapps</title>
+    <meta
+      name="description"
+      content="What each keelapps app for Jira and Confluence Cloud costs per user, a calculator for your site size, and how early customers can ask for a discount."
+    />
+    <link rel="canonical" href="https://keelapps.app/pricing/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/pricing/" />
+    <meta property="og:title" content="Pricing — keelapps" />
+    <meta
+      property="og:description"
+      content="Free for sites up to 10 users. Per-user prices for every app, and a calculator for your site size."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Sections">
+        <p class="manual__toc-title">keelapps</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/">All apps</a></li>
+          <li><a href="/pricing/" aria-current="page">Pricing</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#calculator">Calculator</a></li>
+          <li><a href="#jira">Jira apps</a></li>
+          <li><a href="#confluence">Confluence apps</a></li>
+          <li><a href="#how-billing-works">How billing works</a></li>
+          <li><a href="#early-customers">Early customers</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Pricing
+        </p>
+
+        <h1>Pricing</h1>
+        <p class="manual__meta">Prices in US dollars, as listed on the Atlassian Marketplace on <time datetime="2026-10-08">8 October 2026</time></p>
+
+        <p class="manual__lede">
+          Every app is free for sites of up to 10 users. Above that each one is priced per
+          user per month, the rate falls as the site grows, and Atlassian does the billing.
+        </p>
+
+        <h2 id="calculator">Calculator</h2>
+        <form class="pricing__form" id="pricing-form">
+          <label for="pricing-users">Users on your Jira or Confluence site</label>
+          <input id="pricing-users" name="users" type="number" inputmode="numeric" min="1" max="50000" step="1" value="50" />
+        </form>
+        <p id="pricing-note" class="pricing__note">
+          Enter a number and the last two columns of each table show what that site pays.
+        </p>
+
+        <h2 id="jira">Jira apps</h2>
+        <div class="table-wrap">
+        <table class="pricing__table">
+          <thead>
+            <tr>
+              <th scope="col">Jira app</th>
+              <th scope="col">Users 11–100</th>
+              <th scope="col">101–250</th>
+              <th scope="col">251–1,000</th>
+              <th scope="col" class="pricing__calc">Per month</th>
+              <th scope="col" class="pricing__calc">Per year</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr data-app="accesslens">
+                <th scope="row"><a href="/accesslens/">AccessLens</a><span class="pricing__what">Permission audit</span></th>
+                <td>$0.90</td>
+                <td>$0.60</td>
+                <td>$0.32</td>
+                <td class="pricing__calc" data-monthly>–</td>
+                <td class="pricing__calc" data-annual>–</td>
+              </tr>
+              <tr data-app="recur">
+                <th scope="row"><a href="/recur/">Recur</a><span class="pricing__what">Recurring tasks</span></th>
+                <td>$0.45</td>
+                <td>$0.38</td>
+                <td>$0.32</td>
+                <td class="pricing__calc" data-monthly>–</td>
+                <td class="pricing__calc" data-annual>–</td>
+              </tr>
+              <tr data-app="digest">
+                <th scope="row"><a href="/digest/">Digest</a><span class="pricing__what">Scheduled reporting</span></th>
+                <td>$0.45</td>
+                <td>$0.38</td>
+                <td>$0.32</td>
+                <td class="pricing__calc" data-monthly>–</td>
+                <td class="pricing__calc" data-annual>–</td>
+              </tr>
+              <tr data-app="mail-templates">
+                <th scope="row"><a href="/mail-templates/">Mail Templates</a><span class="pricing__what">Notification templates</span></th>
+                <td>$0.45</td>
+                <td>$0.38</td>
+                <td>$0.32</td>
+                <td class="pricing__calc" data-monthly>–</td>
+                <td class="pricing__calc" data-annual>–</td>
+              </tr>
+              <tr data-app="prefill">
+                <th scope="row"><a href="/prefill/">Prefill</a><span class="pricing__what">Intake links</span></th>
+                <td>$0.90</td>
+                <td>$0.65</td>
+                <td>$0.40</td>
+                <td class="pricing__calc" data-monthly>–</td>
+                <td class="pricing__calc" data-annual>–</td>
+              </tr>
+              <tr data-app="satchel">
+                <th scope="row"><a href="/satchel/">Satchel</a><span class="pricing__what">Bulk attachments</span></th>
+                <td>$0.90</td>
+                <td>$0.65</td>
+                <td>$0.40</td>
+                <td class="pricing__calc" data-monthly>–</td>
+                <td class="pricing__calc" data-annual>–</td>
+              </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h2 id="confluence">Confluence apps</h2>
+        <div class="table-wrap">
+        <table class="pricing__table">
+          <thead>
+            <tr>
+              <th scope="col">Confluence app</th>
+              <th scope="col">Users 11–100</th>
+              <th scope="col">101–250</th>
+              <th scope="col">251–1,000</th>
+              <th scope="col" class="pricing__calc">Per month</th>
+              <th scope="col" class="pricing__calc">Per year</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr data-app="accesslens-confluence">
+                <th scope="row"><a href="/accesslens-confluence/">AccessLens</a><span class="pricing__what">Permission audit</span></th>
+                <td>$0.90</td>
+                <td>$0.60</td>
+                <td>$0.32</td>
+                <td class="pricing__calc" data-monthly>–</td>
+                <td class="pricing__calc" data-annual>–</td>
+              </tr>
+              <tr data-app="signoff">
+                <th scope="row"><a href="/signoff/">Signoff</a><span class="pricing__what">Page approvals</span></th>
+                <td>$1.00</td>
+                <td>$0.80</td>
+                <td>$0.50</td>
+                <td class="pricing__calc" data-monthly>–</td>
+                <td class="pricing__calc" data-annual>–</td>
+              </tr>
+              <tr data-app="evergreen">
+                <th scope="row"><a href="/evergreen/">Evergreen</a><span class="pricing__what">Content freshness</span></th>
+                <td>$0.34</td>
+                <td>$0.26</td>
+                <td>$0.19</td>
+                <td class="pricing__calc" data-monthly>–</td>
+                <td class="pricing__calc" data-annual>–</td>
+              </tr>
+              <tr data-app="curator">
+                <th scope="row"><a href="/curator/">Curator</a><span class="pricing__what">Bulk page governance</span></th>
+                <td>$1.10</td>
+                <td>$0.90</td>
+                <td>$0.50</td>
+                <td class="pricing__calc" data-monthly>–</td>
+                <td class="pricing__calc" data-annual>–</td>
+              </tr>
+              <tr data-app="satchel-confluence">
+                <th scope="row"><a href="/satchel-confluence/">Satchel</a><span class="pricing__what">Bulk attachments</span></th>
+                <td>$0.90</td>
+                <td>$0.65</td>
+                <td>$0.40</td>
+                <td class="pricing__calc" data-monthly>–</td>
+                <td class="pricing__calc" data-annual>–</td>
+              </tr>
+          </tbody>
+        </table>
+        </div>
+        <p>
+          The three middle columns are the price per user per month in that band.
+          <a href="/sort-pages/">Sort Pages</a> is in Marketplace review and has no price yet.
+        </p>
+
+        <h2 id="how-billing-works">How billing works</h2>
+        <ul>
+          <li>
+            <strong>Users means the product’s users.</strong> A Jira app is billed for the
+            number of Jira users on the site and a Confluence app for the number of
+            Confluence users, whether or not they all use the app.
+          </li>
+          <li>
+            <strong>The bands add up.</strong> A site with 150 users pays the first rate for
+            100 of them and the second rate for the other 50. It is not the lower rate for
+            everyone.
+          </li>
+          <li>
+            <strong>Monthly follows your user count.</strong> Each month is charged for the
+            users you have that month.
+          </li>
+          <li>
+            <strong>Annual is ten months’ price for twelve.</strong> You pick a user tier
+            (15, 25, 50, 100, 200 and so on) and pay for that tier up front, so the calculator
+            rounds your number up to the next tier.
+          </li>
+          <li>
+            <strong>Every app starts with a free trial</strong> of at least 30 days, run by
+            Atlassian. Nothing is charged until it ends.
+          </li>
+          <li>
+            <strong>Some things stay free on bigger sites.</strong> One
+            <a href="/digest/">Digest</a> subscription, and the single-issue zip and direct
+            download in <a href="/satchel/">Satchel for Jira</a>, work without a licence.
+          </li>
+        </ul>
+        <p>
+          Atlassian sets the invoice, the currency and the tax, and its figure is the one
+          that counts. Each app’s Marketplace listing has the full table for larger sites.
+        </p>
+
+        <h2 id="early-customers">Early customers</h2>
+        <p>
+          These apps are new, and the first sites to rely on one are doing us a favour. If
+          you are evaluating an app or have just started paying for one, ask for a discount
+          through <a href="https://keelapps.atlassian.net/helpcenter/support/">the support portal</a>.
+          Say which app and roughly how many users, and we will reply with a Marketplace
+          promotion code you apply at checkout. The same goes for a site that wants several
+          of the apps.
+        </p>
+
+        <nav class="manual__pagination">
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <script>
+      // Per-user monthly rates by band: [last user in the band, rate]. 0 = no upper limit.
+      // Copied from each listing's Marketplace pricing on 8 October 2026.
+      const RATES = {
+        "accesslens": [[100, 0.9], [250, 0.6], [1000, 0.32], [2500, 0.18], [5000, 0.12], [7500, 0.1], [10000, 0.09], [15000, 0.08], [20000, 0.07], [25000, 0.06], [30000, 0.06], [35000, 0.05], [40000, 0.05], [45000, 0.04], [50000, 0.04], [60000, 0.04], [70000, 0.03], [80000, 0.03], [90000, 0.03], [0, 0.02]],
+        "recur": [[100, 0.45], [250, 0.38], [1000, 0.32], [2500, 0.29], [5000, 0.27], [7500, 0.26], [10000, 0.24], [15000, 0.21], [20000, 0.19], [25000, 0.18], [30000, 0.17], [35000, 0.13], [40000, 0.13], [45000, 0.13], [50000, 0.12], [60000, 0.12], [70000, 0.12], [80000, 0.12], [90000, 0.12], [0, 0.12]],
+        "digest": [[100, 0.45], [250, 0.38], [1000, 0.32], [2500, 0.29], [5000, 0.27], [7500, 0.26], [10000, 0.24], [15000, 0.21], [20000, 0.19], [25000, 0.18], [30000, 0.17], [35000, 0.13], [40000, 0.13], [45000, 0.13], [50000, 0.12], [60000, 0.12], [70000, 0.12], [80000, 0.12], [90000, 0.12], [0, 0.12]],
+        "mail-templates": [[100, 0.45], [250, 0.38], [1000, 0.32], [2500, 0.29], [5000, 0.27], [7500, 0.26], [10000, 0.24], [15000, 0.21], [20000, 0.19], [25000, 0.18], [30000, 0.17], [35000, 0.13], [40000, 0.13], [45000, 0.13], [50000, 0.12], [60000, 0.12], [70000, 0.12], [80000, 0.12], [90000, 0.12], [0, 0.12]],
+        "prefill": [[100, 0.9], [250, 0.65], [1000, 0.4], [2500, 0.28], [5000, 0.2], [7500, 0.17], [10000, 0.15], [15000, 0.13], [20000, 0.12], [25000, 0.11], [30000, 0.1], [35000, 0.09], [40000, 0.09], [45000, 0.08], [50000, 0.08], [60000, 0.07], [70000, 0.07], [80000, 0.06], [90000, 0.06], [0, 0.05]],
+        "satchel": [[100, 0.9], [250, 0.65], [1000, 0.4], [2500, 0.28], [5000, 0.2], [7500, 0.17], [10000, 0.15], [15000, 0.13], [20000, 0.12], [25000, 0.11], [30000, 0.1], [35000, 0.09], [40000, 0.09], [45000, 0.08], [50000, 0.08], [60000, 0.07], [70000, 0.07], [80000, 0.06], [90000, 0.06], [0, 0.05]],
+        "accesslens-confluence": [[100, 0.9], [250, 0.6], [1000, 0.32], [2500, 0.18], [5000, 0.12], [7500, 0.1], [10000, 0.09], [15000, 0.08], [20000, 0.07], [25000, 0.06], [30000, 0.06], [35000, 0.05], [40000, 0.05], [45000, 0.04], [50000, 0.04], [60000, 0.04], [70000, 0.03], [80000, 0.03], [90000, 0.03], [100000, 0.02], [110000, 0.02], [120000, 0.02], [130000, 0.02], [140000, 0.02], [150000, 0.02], [160000, 0.01], [170000, 0.01], [180000, 0.01], [190000, 0.01], [200000, 0.01], [210000, 0.01], [220000, 0.01], [230000, 0.01], [240000, 0.01], [0, 0.01]],
+        "signoff": [[100, 1.0], [250, 0.8], [1000, 0.5], [2500, 0.3], [5000, 0.25], [7500, 0.2], [10000, 0.2], [15000, 0.2], [20000, 0.2], [25000, 0.2], [30000, 0.2], [35000, 0.2], [40000, 0.2], [45000, 0.2], [50000, 0.2], [60000, 0.2], [70000, 0.2], [80000, 0.2], [90000, 0.2], [100000, 0.2], [110000, 0.2], [120000, 0.2], [130000, 0.2], [140000, 0.2], [150000, 0.2], [160000, 0.2], [170000, 0.2], [180000, 0.2], [190000, 0.2], [200000, 0.2], [210000, 0.2], [220000, 0.2], [230000, 0.2], [240000, 0.2], [0, 0.2]],
+        "evergreen": [[100, 0.34], [250, 0.26], [1000, 0.19], [2500, 0.18], [5000, 0.16], [7500, 0.16], [10000, 0.14], [15000, 0.13], [20000, 0.12], [25000, 0.11], [30000, 0.1], [35000, 0.08], [40000, 0.07], [45000, 0.07], [50000, 0.06], [60000, 0.06], [70000, 0.06], [80000, 0.06], [90000, 0.06], [100000, 0.06], [110000, 0.06], [120000, 0.06], [130000, 0.06], [140000, 0.06], [150000, 0.06], [160000, 0.06], [170000, 0.06], [180000, 0.06], [190000, 0.06], [200000, 0.06], [210000, 0.06], [220000, 0.06], [230000, 0.06], [240000, 0.06], [0, 0.06]],
+        "curator": [[100, 1.1], [250, 0.9], [1000, 0.5], [2500, 0.35], [5000, 0.28], [7500, 0.22], [10000, 0.2], [15000, 0.18], [20000, 0.16], [25000, 0.14], [30000, 0.13], [35000, 0.12], [40000, 0.11], [45000, 0.1], [50000, 0.1], [60000, 0.09], [70000, 0.09], [80000, 0.08], [90000, 0.07], [100000, 0.06], [110000, 0.06], [120000, 0.06], [130000, 0.05], [140000, 0.05], [150000, 0.05], [160000, 0.05], [170000, 0.04], [180000, 0.04], [190000, 0.04], [200000, 0.04], [210000, 0.03], [220000, 0.03], [230000, 0.03], [240000, 0.03], [0, 0.03]],
+        "satchel-confluence": [[100, 0.9], [250, 0.65], [1000, 0.4], [2500, 0.28], [5000, 0.2], [7500, 0.17], [10000, 0.15], [15000, 0.13], [20000, 0.12], [25000, 0.11], [30000, 0.1], [35000, 0.09], [40000, 0.09], [45000, 0.08], [50000, 0.08], [60000, 0.07], [70000, 0.07], [80000, 0.06], [90000, 0.06], [100000, 0.05], [110000, 0.05], [120000, 0.05], [130000, 0.04], [140000, 0.04], [150000, 0.04], [160000, 0.04], [170000, 0.03], [180000, 0.03], [190000, 0.03], [200000, 0.03], [210000, 0.03], [220000, 0.02], [230000, 0.02], [240000, 0.02], [0, 0.02]]
+      };
+      const ANNUAL_TIERS = [15, 25, 50, 100, 200, 300, 400, 500, 600, 800, 1000, 1200, 1400, 1600, 1800,
+        2000, 2250, 2500, 2750, 3000, 3250, 3500, 3750, 4000, 4250, 4500, 4750, 5000, 5500, 6000, 6500,
+        7000, 7500, 8000, 8500, 9000, 9500, 10000];
+
+      function monthly(bands, users) {
+        if (users <= 10) return 0;
+        let total = 0, from = 0;
+        for (const [last, rate] of bands) {
+          const to = last === 0 ? users : Math.min(users, last);
+          if (to > from) total += (to - from) * rate;
+          if (last === 0 || users <= last) break;
+          from = last;
+        }
+        return total;
+      }
+
+      const money = (n) => n === 0 ? 'Free' : '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      function render() {
+        const users = Math.floor(Number(document.getElementById('pricing-users').value));
+        const ok = users >= 1 && users <= 50000;
+        const tier = ANNUAL_TIERS.find((t) => t >= users) || Math.ceil(users / 1000) * 1000;
+        for (const row of document.querySelectorAll('tr[data-app]')) {
+          const bands = RATES[row.dataset.app];
+          row.querySelector('[data-monthly]').textContent = ok ? money(monthly(bands, users)) : '–';
+          row.querySelector('[data-annual]').textContent = ok ? money(users <= 10 ? 0 : monthly(bands, tier) * 10) : '–';
+        }
+        const note = document.getElementById('pricing-note');
+        if (!ok) note.textContent = 'Enter a number of users between 1 and 50,000. Larger sites: see the listing, or ask us.';
+        else if (users <= 10) note.textContent = 'With ' + users + (users === 1 ? ' user' : ' users') + ' every app is free.';
+        else note.textContent = 'For ' + users.toLocaleString('en-US') + ' users. The yearly price is for the '
+          + tier.toLocaleString('en-US') + '-user annual tier.';
+      }
+
+      document.getElementById('pricing-form').addEventListener('submit', (e) => e.preventDefault());
+      document.getElementById('pricing-users').addEventListener('input', render);
+      render();
+    </script>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head">Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=page&amp;utm_campaign=pricing&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Published by Keelapps. Not affiliated with Atlassian. Jira and Confluence are
+          trademarks of Atlassian. Prices are set on the Atlassian Marketplace and can
+          change.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

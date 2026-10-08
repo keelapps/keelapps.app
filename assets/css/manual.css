@@ -189,6 +189,59 @@
    navigation, force ink on paper regardless of scheme, and spell out link
    destinations that a printed page would otherwise swallow. */
 
+/* The pricing page: one number in, and the last two columns of each table
+   answer for it. Without script the columns stay as dashes and the per-user
+   rates beside them still say everything. */
+.pricing__form {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-small) var(--space-medium);
+}
+
+.pricing__form input {
+  background: transparent;
+  border: var(--rule-gauge) solid var(--color-rule-strong);
+  color: inherit;
+  font: inherit;
+  font-family: var(--font-family-mono);
+  padding: var(--space-x-small) var(--space-small);
+  width: 9ch;
+}
+
+.pricing__note {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+}
+
+.pricing__table td {
+  font-family: var(--font-family-mono);
+  white-space: nowrap;
+}
+
+.pricing__table tbody th {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.pricing__what {
+  color: var(--color-ink-muted);
+  display: block;
+  font-size: var(--font-size-x-small);
+}
+
+.pricing__table .pricing__calc {
+  text-align: right;
+}
+
+.pricing__table td.pricing__calc {
+  font-weight: 600;
+}
+
+
 @media print {
 
   :root {
