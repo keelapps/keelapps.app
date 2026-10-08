@@ -1,0 +1,19 @@
+wrangler.jsonc
+  s_521dc118a5a07a::t_37d8f506622cb5 13-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3fb6a5c74d987f6c2649922b8386eb13b8a37b23",
+  "prompts": {},
+  "sessions": {
+    "s_521dc118a5a07a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "400b4c37-0f9d-40ae-82e5-81e0c4a27a5a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Xianpeng Shen <3353385+shenxianpeng@users.noreply.github.com>"
+    }
+  }
+}
