@@ -1,0 +1,19 @@
+guides/jira-user-project-access/index.html
+  s_521dc118a5a07a::t_9e327ab0ba88c3 63,142,314
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7336217920b5e7dea8f14c82385bef10e43db807",
+  "prompts": {},
+  "sessions": {
+    "s_521dc118a5a07a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "400b4c37-0f9d-40ae-82e5-81e0c4a27a5a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Xianpeng Shen <3353385+shenxianpeng@users.noreply.github.com>"
+    }
+  }
+}
