@@ -1,0 +1,109 @@
+accesslens-confluence/docs/index.html
+  s_521dc118a5a07a::t_914929f9352eb0 425
+accesslens-confluence/index.html
+  s_521dc118a5a07a::t_ec5a234ad45775 486
+accesslens-confluence/privacy/index.html
+  s_521dc118a5a07a::t_4ff45cc53787db 307
+accesslens/docs/index.html
+  s_521dc118a5a07a::t_4d63157f371aea 326
+accesslens/index.html
+  s_521dc118a5a07a::t_9c671e31869659 403
+accesslens/privacy/index.html
+  s_521dc118a5a07a::t_3691586c4d6563 254
+assets/css/manual.css
+  s_521dc118a5a07a::t_7c20955d813255 192-244
+curator/docs/index.html
+  s_521dc118a5a07a::t_371b21cdae62c9 439
+curator/index.html
+  s_521dc118a5a07a::t_b1d166fbf5e3a5 472
+curator/privacy/index.html
+  s_521dc118a5a07a::t_32cd7f3c637f1b 312
+digest/docs/index.html
+  s_521dc118a5a07a::t_5f11abc8bb5174 396
+digest/index.html
+  s_521dc118a5a07a::t_19884ffb46cefc 436
+digest/privacy/index.html
+  s_521dc118a5a07a::t_4bf3ee20e4d98b 252
+evergreen/docs/index.html
+  s_521dc118a5a07a::t_766b2000077808 396
+evergreen/index.html
+  s_521dc118a5a07a::t_66193c020fbdf6 433
+evergreen/privacy/index.html
+  s_521dc118a5a07a::t_eae99b23988b52 294
+guides/jira-custom-email-notifications/index.html
+  s_521dc118a5a07a::t_b1d4fd9270243a 111,438
+guides/jira-download-all-attachments/index.html
+  s_521dc118a5a07a::t_07c8fce2333aeb 111,441
+guides/jira-group-project-access/index.html
+  s_521dc118a5a07a::t_5bd00f6fa84e05 63,302
+guides/jira-permission-audit/index.html
+  s_521dc118a5a07a::t_ee01e6501c8158 111,473
+index.html
+  s_521dc118a5a07a::t_1b3db2ff135356 77,295,389
+mail-templates/docs/index.html
+  s_521dc118a5a07a::t_35242f3465ce39 367
+mail-templates/index.html
+  s_521dc118a5a07a::t_a69bc5c4639fee 456
+mail-templates/privacy/index.html
+  s_521dc118a5a07a::t_3e2a60c837ac0e 265
+prefill/docs/index.html
+  s_521dc118a5a07a::t_88387600529bde 448
+prefill/index.html
+  s_521dc118a5a07a::t_df47f95c958b6f 474
+prefill/privacy/index.html
+  s_521dc118a5a07a::t_9607e39ef7b248 298
+pricing/index.html
+  s_521dc118a5a07a::t_10a7e31eb86691 1-400
+recur/docs/index.html
+  s_521dc118a5a07a::t_177dcdf5f9dc70 415
+recur/index.html
+  s_521dc118a5a07a::t_4033f657fe1007 423
+recur/privacy/index.html
+  s_521dc118a5a07a::t_10f91bace71366 258
+satchel-confluence/docs/index.html
+  s_521dc118a5a07a::t_61f0fe1211bcb6 450
+satchel-confluence/index.html
+  s_521dc118a5a07a::t_dc1c387cde0aed 494
+satchel-confluence/privacy/index.html
+  s_521dc118a5a07a::t_7aa9484123c2a5 495
+satchel/docs/index.html
+  s_521dc118a5a07a::t_1d7fb8facafbe1 446
+satchel/index.html
+  s_521dc118a5a07a::t_efd83125250725 496
+satchel/privacy/index.html
+  s_521dc118a5a07a::t_4fd3e44bdf5252 403
+security/index.html
+  s_521dc118a5a07a::t_7f639389e7227c 63,213
+signoff/docs/index.html
+  s_521dc118a5a07a::t_31c10ab32471a2 299
+signoff/index.html
+  s_521dc118a5a07a::t_939e0526766809 425
+signoff/privacy/index.html
+  s_521dc118a5a07a::t_8e448e91046cc0 242
+sitemap.xml
+  s_521dc118a5a07a::t_98ee8192b59ed5 11
+sort-pages/docs/index.html
+  s_521dc118a5a07a::t_872c5c9584dfd0 377
+sort-pages/index.html
+  s_521dc118a5a07a::t_234034ec434404 391
+sort-pages/privacy/index.html
+  s_521dc118a5a07a::t_0e71012c860976 286
+tools/make-chrome
+  s_521dc118a5a07a::t_ef982540212015 170,175-176,201
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ea03be347ec393e559e5b8f02800d86dc0c33e4f",
+  "prompts": {},
+  "sessions": {
+    "s_521dc118a5a07a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "400b4c37-0f9d-40ae-82e5-81e0c4a27a5a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Xianpeng Shen <3353385+shenxianpeng@users.noreply.github.com>"
+    }
+  }
+}
