@@ -10,5 +10,9 @@
     "directory": ".",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "none"
-  }
+  },
+  // Workers Builds runs `npx wrangler preview` on every branch but main, and that
+  // command refuses a config with no previews block. Nothing here differs from
+  // production, so the block is empty.
+  "previews": {}
 }
