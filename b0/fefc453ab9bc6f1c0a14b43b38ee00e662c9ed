@@ -1,0 +1,21 @@
+index.html
+  s_521dc118a5a07a::t_fbd665baf449ee 122-123,245,309-310
+sort-pages/index.html
+  s_521dc118a5a07a::t_35592779c42831 23-24,53-61,131,142-161
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b0fefc453ab9bc6f1c0a14b43b38ee00e662c9ed",
+  "prompts": {},
+  "sessions": {
+    "s_521dc118a5a07a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "400b4c37-0f9d-40ae-82e5-81e0c4a27a5a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Xianpeng Shen <3353385+shenxianpeng@users.noreply.github.com>"
+    }
+  }
+}
