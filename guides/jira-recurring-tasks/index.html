@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#E5DECF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
+    <title>How to create recurring tasks in Jira Cloud: monthly, quarterly, yearly (2026) — keelapps</title>
+    <meta
+      name="description"
+      content="Jira Cloud's Set to recur repeats a work item up to monthly. How to set it up, how to build quarterly, yearly or first-Monday tasks with an Automation rule, what each costs, and how to stop recurring tasks piling up."
+    />
+    <link rel="canonical" href="https://keelapps.app/guides/jira-recurring-tasks/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/guides/jira-recurring-tasks/" />
+    <meta property="og:title" content="How to create recurring tasks in Jira Cloud" />
+    <meta
+      property="og:description"
+      content="Weekly, monthly, quarterly and yearly recurring work items in Jira Cloud: the built-in option, an Automation rule, and how to keep them from piling up."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can Jira Cloud create recurring tasks without an app?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Set to recur on a work item repeats it daily, every weekday, weekly, every two weeks or monthly. For anything else, such as quarterly or the first Monday of the month, build an Automation rule with a Scheduled trigger and a Create work item action."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I create a quarterly recurring task in Jira?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Set to recur does not offer quarterly; the request is JRACLOUD-94173. Create an Automation rule with a Scheduled trigger, choose a cron expression such as 0 0 9 1 1,4,7,10 ? * (09:00 on the first day of January, April, July and October), and add a Create work item action."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do recurring tasks count against my Jira automation limit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, both ways. Set to recur is a managed Automation rule, and Atlassian counts its executions toward your plan's usage, the same as a rule you build yourself."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I stop recurring Jira tasks from piling up?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Either create the next one only when the last is done (Set to recur's Completed mode), or add a condition to your Automation rule that looks up open items from the same series with JQL and stops when it finds one."
+            }
+          }
+        ]
+      }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Sections">
+        <p class="manual__toc-title">Guide</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/">All apps</a></li>
+          <li><a href="/recur/">Recur for Jira</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#native">Option 1: Set to recur</a></li>
+          <li><a href="#automation">Option 2: an Automation rule</a></li>
+          <li><a href="#cron">Cron expressions to copy</a></li>
+          <li><a href="#pile-up">Keeping them from piling up</a></li>
+          <li><a href="#app">Option 3: a recurring-task app</a></li>
+          <li><a href="#compare">The options side by side</a></li>
+          <li><a href="#faq">Questions</a></li>
+          <li><a href="#recur">Where Recur fits</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Guides
+        </p>
+
+        <h1>How to create recurring tasks in Jira Cloud</h1>
+        <p class="manual__meta">Jira Cloud · Updated <time datetime="2026-10-12">12 October 2026</time></p>
+
+        <p class="manual__lede">
+          A weekly report, a monthly maintenance check, a quarterly access review, a yearly
+          licence renewal: work that comes back on a calendar. Jira Cloud can repeat a work
+          item on its own up to once a month. For quarterly, yearly or “first Monday” you
+          build an Automation rule. This guide shows both, gives cron expressions you can
+          copy, and explains how to keep a recurring task from piling up when nobody closes
+          the last one.
+        </p>
+        <p>
+          We make <a href="/recur/">Recur</a>, one of the options below, so we are not
+          neutral. The two built-in routes come first and need no app.
+        </p>
+
+        <h2 id="native">Option 1: Set to recur</h2>
+        <p>
+          Jira Cloud has a built-in way to repeat a single work item. Open the work item,
+          open the <strong>Automation</strong> menu (the lightning bolt) and choose
+          <strong>Set to recur</strong>. You then pick:
+        </p>
+        <ul>
+          <li>
+            <strong>How often:</strong> daily, every weekday, weekly, every two weeks or
+            monthly.
+          </li>
+          <li>
+            <strong>When the next one appears:</strong> on the schedule, or only after the
+            current one is completed.
+          </li>
+          <li><strong>When the series ends</strong>, if it ever should.</li>
+        </ul>
+        <p>
+          Behind the scenes this creates a managed Automation rule that clones the work item.
+          It is the quickest answer for a weekly or monthly task. Its limits:
+        </p>
+        <ul>
+          <li>
+            <strong>Nothing longer than a month.</strong> No quarterly, every six weeks or
+            yearly. The request,
+            <a href="https://jira.atlassian.com/browse/JRACLOUD-94173">JRACLOUD-94173</a>, is
+            still gathering interest.
+          </li>
+          <li>
+            <strong>No “first Monday” or “last Friday”.</strong> Monthly means a date.
+          </li>
+          <li>
+            <strong>No time zone choice.</strong> It runs at the time of day you set it up.
+          </li>
+          <li>
+            <strong>It uses your automation allowance.</strong> Atlassian counts the managed
+            rule’s executions toward your plan’s usage.
+          </li>
+        </ul>
+
+        <h2 id="automation">Option 2: an Automation rule</h2>
+        <p>
+          For any schedule Set to recur cannot express, build the rule yourself. A quarterly
+          access review looks like this:
+        </p>
+        <ol>
+          <li><strong>Project settings → Automation → Create rule.</strong></li>
+          <li>
+            Trigger: <strong>Scheduled</strong>. Switch to a cron expression and enter
+            <code>0 0 9 1 1,4,7,10 ? *</code>, which is 09:00 on the first day of each
+            quarter. Check the time zone the rule runs in.
+          </li>
+          <li>
+            Turn off the option to run only on work items found by JQL. You want the rule to
+            run with no search at all.
+          </li>
+          <li>
+            Action: <strong>Create work item</strong>. Set the project, work type, summary,
+            assignee and due date. Smart values help here:
+            <code>Quarterly access review {{now.format("yyyy-MM")}}</code> gives each one
+            its own name.
+          </li>
+          <li>Turn the rule on. Use <strong>Run rule</strong> once to check the result.</li>
+        </ol>
+        <p>This is free and flexible. The costs show up later:</p>
+        <ul>
+          <li>
+            <strong>One rule per task.</strong> Ten recurring tasks is ten rules to keep in
+            step, each with its own cron line.
+          </li>
+          <li>
+            <strong>Usage.</strong> Every run counts toward your plan’s automation allowance,
+            the same as Set to recur.
+          </li>
+          <li>
+            <strong>No calendar preview.</strong> You find out the next date by reading the
+            cron expression, or by waiting.
+          </li>
+          <li>
+            <strong>“Why was there no work item on Monday?”</strong> The answer is in the
+            rule’s audit log, which project members usually cannot see.
+          </li>
+        </ul>
+
+        <h2 id="cron">Cron expressions to copy</h2>
+        <p>
+          Automation’s Scheduled trigger uses the seven-field Quartz format: seconds,
+          minutes, hours, day of month, month, day of week, year.
+        </p>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Schedule</th><th>Cron expression</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Every Monday at 09:00</td><td><code>0 0 9 ? * MON *</code></td></tr>
+              <tr><td>First day of every month at 09:00</td><td><code>0 0 9 1 * ? *</code></td></tr>
+              <tr><td>First Monday of every month</td><td><code>0 0 9 ? * MON#1 *</code></td></tr>
+              <tr><td>Last Friday of every month</td><td><code>0 0 9 ? * 6L *</code></td></tr>
+              <tr><td>Last day of every month</td><td><code>0 0 9 L * ? *</code></td></tr>
+              <tr><td>First day of each quarter</td><td><code>0 0 9 1 1,4,7,10 ? *</code></td></tr>
+              <tr><td>First Monday of each quarter</td><td><code>0 0 9 ? 1,4,7,10 MON#1 *</code></td></tr>
+              <tr><td>Twice a year, 1 January and 1 July</td><td><code>0 0 9 1 1,7 ? *</code></td></tr>
+              <tr><td>Once a year, 15 March</td><td><code>0 0 9 15 3 ? *</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Cron counts calendar months, not intervals from a start date. “Every six weeks” has
+          no cron expression; you need a different approach for that.
+        </p>
+
+        <h2 id="pile-up">Keeping them from piling up</h2>
+        <p>
+          The usual way a recurring task goes wrong: nobody closed last month’s, this month’s
+          arrives anyway, and after a quarter there are three of the same thing in the
+          backlog. Decide up front which of these you want:
+        </p>
+        <ul>
+          <li>
+            <strong>Create it anyway.</strong> Right for reports: not having written last
+            week’s is no reason to skip this week’s.
+          </li>
+          <li>
+            <strong>Skip this round.</strong> Right for checks: one open “Check backups” is
+            enough. In an Automation rule, add a <strong>Lookup work items</strong> action
+            with JQL such as <code>summary ~ "Check backups" AND statusCategory != Done</code>,
+            then an <strong>If</strong> condition that <code>{{lookupIssues.size}}</code>
+            equals 0 before the Create action.
+          </li>
+          <li>
+            <strong>Wait for it to close.</strong> Set to recur’s “after completed” mode does
+            this, but it then drifts: the next date counts from when the last one was closed,
+            not from the calendar.
+          </li>
+        </ul>
+
+        <h2 id="app">Option 3: a recurring-task app</h2>
+        <p>
+          Several Marketplace apps create work items from templates on a schedule. When
+          comparing them, check:
+        </p>
+        <ul>
+          <li>
+            <strong>The schedules you actually need</strong>: every N months, the nth weekday,
+            a fixed hour in a time zone that survives daylight saving.
+          </li>
+          <li>
+            <strong>What happens when the last one is still open</strong>, per task, not one
+            setting for the whole site.
+          </li>
+          <li>
+            <strong>A history that explains silence.</strong> A recurring task that quietly
+            creates nothing is worse than none; the app should say why it skipped.
+          </li>
+          <li>
+            <strong>Where your data goes.</strong> An app on Forge with no external servers
+            keeps issue data inside Atlassian; one with its own backend needs its own review.
+          </li>
+          <li><strong>Whether it uses your automation allowance.</strong></li>
+        </ul>
+
+        <h2 id="compare">The options side by side</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead>
+              <tr><th>Question</th><th>Set to recur</th><th>Automation rule</th><th>Recur</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Quarterly, yearly, every six weeks?</td><td>No, up to monthly</td><td>Quarterly and yearly by cron; not every six weeks</td><td>Any interval</td></tr>
+              <tr><td>First Monday, last Friday?</td><td>No</td><td>Yes, by cron</td><td>Yes</td></tr>
+              <tr><td>A fixed hour in your time zone?</td><td>The time you set it up</td><td>Yes</td><td>Yes, across daylight saving</td></tr>
+              <tr><td>If the last one is still open?</td><td>Scheduled or after completed</td><td>A condition you write</td><td>Create, skip or wait, per task</td></tr>
+              <tr><td>Preview the next dates?</td><td>No</td><td>No</td><td>The next ten</td></tr>
+              <tr><td>Why was nothing created?</td><td>Automation audit log</td><td>Automation audit log</td><td>Each task’s run history</td></tr>
+              <tr><td>Uses your automation allowance?</td><td>Yes, every run</td><td>Yes, every run</td><td>No</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          For one weekly or monthly task, Set to recur is the simple answer. For a few
+          quarterly ones, an Automation rule each is fine. Once a team has many recurring
+          tasks, or the automation allowance is tight, templates in one place are easier to
+          keep in step.
+        </p>
+
+        <h2 id="faq">Questions</h2>
+        <h3>Can Jira Cloud create recurring tasks without an app?</h3>
+        <p>
+          Yes. Set to recur on a work item repeats it daily, every weekday, weekly, every two
+          weeks or monthly. For anything else, such as quarterly or the first Monday of the
+          month, build an Automation rule with a <strong>Scheduled</strong> trigger and a
+          <strong>Create work item</strong> action.
+        </p>
+        <h3>How do I create a quarterly recurring task in Jira?</h3>
+        <p>
+          Set to recur does not offer quarterly; the request is
+          <a href="https://jira.atlassian.com/browse/JRACLOUD-94173">JRACLOUD-94173</a>.
+          Create an Automation rule with a Scheduled trigger, use a cron expression such as
+          <code>0 0 9 1 1,4,7,10 ? *</code> (09:00 on the first day of January, April, July
+          and October), and add a Create work item action.
+        </p>
+        <h3>Do recurring tasks count against my Jira automation limit?</h3>
+        <p>
+          Yes, both ways. Set to recur is a managed Automation rule, and Atlassian counts its
+          executions toward your plan’s usage, the same as a rule you build yourself.
+        </p>
+        <h3>How do I stop recurring Jira tasks from piling up?</h3>
+        <p>
+          Either create the next one only when the last is done (Set to recur’s
+          after-completed mode), or add a condition to your Automation rule that looks up open
+          items from the same series with JQL and stops when it finds one.
+        </p>
+
+        <h2 id="recur">Where Recur fits</h2>
+        <p>
+          <a href="/recur/">Recur for Jira</a> is option 3. Each project gets a
+          <strong>Recurring Tasks</strong> page where you keep templates: work type, summary,
+          description, assignee (fixed, or rotating through a list), priority, labels and a
+          due date. Summaries take <code>{{date}}</code> and <code>{{n}}</code>, so
+          <em>TLS renewal check #4</em> numbers itself.
+        </p>
+        <p>
+          Schedules are every N days, every N weeks on chosen weekdays, every N months on a
+          date, or every N months on the nth weekday, at an hour in a time zone you pick.
+          The editor shows the next ten dates before you save. Each template chooses what
+          happens when the last one is still open: create anyway, skip, or wait for it to
+          close. Its run history names the result of every run, including the ones that
+          created nothing.
+        </p>
+        <p>
+          Recur runs on Atlassian Forge with no external servers, and it uses none of your
+          automation allowance. What it does not do: sub-tasks, rich-text descriptions, or
+          cloning an existing work item with all its fields. It is free for sites of up to
+          10 users.
+        </p>
+        <p>
+          <a class="btn" href="https://marketplace.atlassian.com/apps/3262138887/recur-recurring-tasks-for-jira?utm_source=keelapps.app&amp;utm_medium=guide&amp;utm_campaign=guides-jira-recurring-tasks&amp;utm_content=body">Try Recur free</a>
+        </p>
+
+        <nav class="manual__pagination">
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head">Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=guide&amp;utm_campaign=guides-jira-recurring-tasks&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Published by Keelapps. Not affiliated with Atlassian. Jira and Confluence are
+          trademarks of Atlassian.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
