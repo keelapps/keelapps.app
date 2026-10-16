@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#E5DECF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
+    <title>Before you turn on Rovo: check who can see what in Jira and Confluence (2026) — keelapps</title>
+    <meta
+      name="description"
+      content="Rovo and AI tools connected through the Atlassian MCP server only show what a user can already see. That makes old over-sharing easy to find. What to check in Confluence and Jira before you roll Rovo out, and the settings you have for Rovo itself."
+    />
+    <link rel="canonical" href="https://keelapps.app/guides/rovo-permission-check/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/guides/rovo-permission-check/" />
+    <meta property="og:title" content="Before you turn on Rovo: check who can see what" />
+    <meta
+      property="og:description"
+      content="Rovo respects permissions, it does not fix them. Find the Confluence spaces and Jira projects open to everyone before AI search makes them easy to find."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can Rovo see content a user does not have permission to see?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Atlassian says no: Rovo follows the permissions in Jira, Confluence and connected apps, so users only see content they already have access to. The Atlassian MCP server, which connects tools such as Claude, Cursor and ChatGPT, also only reaches data the user can already view. The risk is content that is already open to more people than it should be, which AI search makes much easier to find."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I check before turning on Rovo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Check which Confluence spaces allow anonymous access or are open to every logged-in user, which Jira projects are open to the public or to every licensed user, who is in the groups that reach sensitive spaces and projects, which spaces have no admin, and whether guests and people who left still have access."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I keep Rovo out of one Confluence space or Jira project?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not as of October 2026. Rovo follows each user's permissions, and there is no setting to exclude a single space or project; the request is ROVO-974. To keep content out of Rovo answers, restrict who can see it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I find every Confluence space with anonymous access?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Confluence administration, Settings, Security, Anonymous access shows whether anonymous access is allowed on the site. Atlassian's documentation describes no site-wide list of the spaces that use it, so you check each space's settings under Users, or use an audit app that reads every space."
+            }
+          }
+        ]
+      }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P880MM0XEG');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+        <div class="manual">
+      <nav class="manual__toc" aria-label="Sections">
+        <p class="manual__toc-title">Guide</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/">All apps</a></li>
+          <li><a href="/accesslens-confluence/">AccessLens for Confluence</a></li>
+          <li><a href="/accesslens/">AccessLens for Jira</a></li>
+          <li><a href="/guides/jira-permission-audit/">Jira permission audit</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#what-rovo-sees">What Rovo can see</a></li>
+          <li><a href="#what-to-check">Five things to check</a></li>
+          <li><a href="#confluence">Check Confluence</a></li>
+          <li><a href="#jira">Check Jira</a></li>
+          <li><a href="#rovo-settings">Settings for Rovo itself</a></li>
+          <li><a href="#order">A rollout checklist</a></li>
+          <li><a href="#accesslens">Where AccessLens fits</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>Guides
+        </p>
+
+        <h1>Before you turn on Rovo: check who can see what in Jira and Confluence</h1>
+        <p class="manual__meta">Jira and Confluence Cloud · Updated <time datetime="2026-10-16">16 October 2026</time></p>
+
+        <p class="manual__lede">
+          Rovo, and AI tools such as Claude, Cursor or ChatGPT connected through the
+          Atlassian MCP server, only show people what they can already see. That sounds
+          safe, and it is, as long as your permissions are right. The problem is old
+          over-sharing: a space that was open to everyone for years, but nobody found it.
+          With AI search, people find it with one question. This guide lists what to check
+          in Confluence and Jira before you roll Rovo out, how to check it with the built-in
+          screens, and which settings you have for Rovo itself.
+        </p>
+        <p>
+          We build AccessLens, a permission audit app, so read the last section with that in
+          mind. Everything before it works without any app.
+        </p>
+
+        <h2 id="what-rovo-sees">What Rovo can see</h2>
+        <p>
+          Atlassian’s
+          <a href="https://support.atlassian.com/rovo/docs/rovo-data-privacy-and-usage-guidelines/">Rovo data, privacy and usage guidelines</a>
+          say Rovo follows the access settings of Atlassian and connected apps, so that
+          “users only see content they have access to”. The
+          <a href="https://github.com/atlassian/atlassian-mcp-server">Atlassian MCP server</a>
+          says the same for outside AI tools: access is granted only to data the user can
+          already view.
+        </p>
+        <p>
+          So Rovo does not open anything new. But it changes how easy it is to find what is
+          already open:
+        </p>
+        <ul>
+          <li>
+            Before, a person had to know a space existed, open it and read. Now they ask
+            “what are this year’s salary bands?” and get an answer from any page they can
+            read, in any space.
+          </li>
+          <li>
+            A space open to every logged-in user is open to every Rovo user, and to every
+            AI tool those users connect.
+          </li>
+          <li>
+            Rovo enforces permissions, it does not repair them. If a page should not be
+            readable by everyone, the fix is the permission, not a Rovo setting.
+          </li>
+        </ul>
+
+        <h2 id="what-to-check">Five things to check</h2>
+        <ol>
+          <li>
+            <strong>Confluence spaces with anonymous access.</strong> Anyone on the web can
+            read them, and so can every user’s AI tools.
+          </li>
+          <li>
+            <strong>Confluence spaces open to all logged-in users.</strong> Often set years
+            ago “so people can find things”. Check that HR, finance, security, legal and
+            customer spaces are not among them.
+          </li>
+          <li>
+            <strong>Jira spaces (projects) open to the public or to everyone with Jira.</strong>
+            Permission schemes are often shared by many spaces and give browse access to
+            everyone with Jira. That is fine for most work and wrong for an HR or security
+            space.
+          </li>
+          <li>
+            <strong>Who is in the groups that reach sensitive content.</strong> A group named
+            “finance” may hold contractors, or people who moved team two years ago.
+          </li>
+          <li>
+            <strong>Spaces with no admin, guests and leavers.</strong> A space nobody owns has
+            nobody to fix it. Guests and accounts of people who left still count as users.
+          </li>
+        </ol>
+
+        <h2 id="confluence">Check Confluence</h2>
+        <p><strong>Anonymous access, site level.</strong></p>
+        <ol>
+          <li>Open Confluence administration from the cog in the top-right corner.</li>
+          <li>Go to <strong>Settings</strong>, then <strong>Security</strong>, then the <strong>Anonymous access</strong> tab.</li>
+          <li>
+            If <strong>Use Confluence</strong> is off, no space can be public. If it is on,
+            each space decides for itself.
+          </li>
+        </ol>
+        <p>
+          Atlassian’s page on
+          <a href="https://support.atlassian.com/confluence-cloud/docs/set-up-public-access/">controlling anonymous access</a>
+          tells you to check which spaces have it before you change the site setting, but it
+          does not describe a list of those spaces. You check them one by one.
+        </p>
+        <p><strong>Each space.</strong></p>
+        <ol>
+          <li>In the space sidebar, open <strong>More actions</strong> (•••), then <strong>Space settings</strong>.</li>
+          <li>
+            Open <strong>Users</strong>. Look for the <strong>Anonymous users</strong> class
+            and for grants to all logged-in users, and check which groups have access.
+          </li>
+          <li>Note any space where nobody holds the admin permission.</li>
+        </ol>
+        <p>
+          Page restrictions only narrow what the space allows; they never open a page to
+          more people. So start with space permissions. The restrictions inside a space
+          matter for the next step: a sensitive page in an open space is only safe if it is
+          restricted. And in Confluence Cloud a view restriction is passed down to child
+          pages, but an edit restriction is not
+          (<a href="https://jira.atlassian.com/browse/CONFCLOUD-5095">CONFCLOUD-5095</a>).
+        </p>
+
+        <h2 id="jira">Check Jira</h2>
+        <p>
+          Jira now calls projects <em>spaces</em> and issues <em>work items</em> in its
+          menus, so the steps use those words.
+        </p>
+        <ol>
+          <li>
+            Select <strong>Settings</strong>, then <strong>Work items</strong>. Under
+            <strong>Work item attributes</strong>, open <strong>Permission schemes</strong>
+            (near the bottom of the list).
+          </li>
+          <li>
+            For each scheme, select <strong>Permissions</strong> and look at who holds
+            <strong>Browse spaces</strong>. Watch for the broad holders:
+            <strong>Public</strong> (anyone on the web), <strong>Any logged in user</strong>
+            and <strong>Application access</strong> (everyone with Jira).
+          </li>
+          <li>
+            Note which spaces use each scheme. One scheme is often shared by many spaces, so
+            one broad grant can cover fifty of them.
+          </li>
+          <li>
+            In each sensitive space, open its settings and check who is in each role.
+          </li>
+        </ol>
+        <p>
+          See Atlassian’s
+          <a href="https://support.atlassian.com/jira-cloud-administration/docs/grant-or-revoke-permissions-in-a-scheme/">Grant or revoke permissions in a scheme</a>.
+          Jira has no screen that starts from a group and lists every space it can reach
+          (<a href="https://jira.atlassian.com/browse/JRACLOUD-71967">JRACLOUD-71967</a>).
+          Our <a href="/guides/jira-permission-audit/">Jira permission audit guide</a> shows the
+          native screens, a REST API script and an app side by side.
+        </p>
+
+        <h2 id="rovo-settings">Settings for Rovo itself</h2>
+        <p>Rovo has a few controls of its own. None of them replace fixing permissions.</p>
+        <ul>
+          <li>
+            <strong>Rovo MCP server.</strong> In Atlassian Administration, open
+            <strong>Rovo</strong>, then <strong>Rovo MCP server</strong>, then
+            <strong>Permissions</strong>. You can allow or block read, write and search, for
+            each app such as Jira or Confluence
+            (<a href="https://support.atlassian.com/security-and-access-policies/docs/Configure-Atlassian-Rovo-MCP-server-permission/">Atlassian’s guide</a>).
+          </li>
+          <li>
+            <strong>Connectors.</strong> For some connectors, such as Google Drive and
+            SharePoint, you can block folders or sites from being indexed.
+          </li>
+          <li>
+            <strong>One space or project.</strong> As of October 2026 there is no setting to
+            keep Rovo out of a single space or project. The request is
+            <a href="https://jira.atlassian.com/browse/ROVO-974">ROVO-974</a>. Until then, the
+            only way to keep a space out of Rovo answers is to limit who can see it.
+          </li>
+          <li>
+            <strong>Sensitive data.</strong> Atlassian Guard Premium, a paid add-on, can scan
+            content for sensitive data and label it. It looks at what pages contain, not at
+            who can open them, so it is a second check, not a replacement for the five above.
+          </li>
+        </ul>
+
+        <h2 id="order">A rollout checklist</h2>
+        <ol>
+          <li>
+            <strong>Record today’s state.</strong> Export or note the permissions of every
+            Confluence and Jira space before you change anything, so you can show what you fixed.
+          </li>
+          <li><strong>Close anonymous access</strong> wherever it is not meant to be public.</li>
+          <li>
+            <strong>Remove “everyone” from sensitive spaces</strong> and give
+            access to named groups instead.
+          </li>
+          <li>
+            <strong>Read the members of those groups</strong> with the owners of the content.
+            Remove guests and leavers.
+          </li>
+          <li><strong>Give each space without an admin an owner.</strong></li>
+          <li>
+            <strong>Restrict the pages that must stay private</strong> inside spaces that stay
+            open.
+          </li>
+          <li>
+            <strong>Record the state again,</strong> compare it with step 1, and keep both.
+          </li>
+          <li>
+            <strong>Then turn on Rovo,</strong> or allow the MCP server, for a pilot group
+            first.
+          </li>
+        </ol>
+
+        <h2 id="accesslens">Where AccessLens fits</h2>
+        <p>
+          <a href="/accesslens-confluence/">AccessLens for Confluence</a> reads every
+          non-personal space in one scan and flags spaces that anonymous users can read,
+          spaces granted to every logged-in user, and spaces with no admin. It answers which
+          spaces a group or a person can reach, with group membership expanded, and lists
+          restricted pages with what locks them.
+          <a href="/accesslens/">AccessLens for Jira</a> flags projects (spaces) that
+          anonymous users can browse or that are granted to every licensed user, and lists
+          every project a group or person can reach.
+        </p>
+        <p>
+          Both take a snapshot before you start and another when you finish, and show the
+          difference one row per space or project and group. That is the “record today’s
+          state” and “record it again” steps above, with a signed review if you need one for
+          an auditor.
+        </p>
+        <p>
+          What they do not do: they do not read page content for sensitive data, they do
+          not change any setting (both are read-only), and they do not control Rovo.
+          Personal spaces are skipped, and on some Confluence sites anonymous access cannot
+          be read through the API; AccessLens then says so instead of reporting “none”. Both
+          run on Atlassian Forge with no external calls and are free for sites of up to 10
+          users.
+        </p>
+        <p>
+          <a class="btn" href="https://marketplace.atlassian.com/apps/2097025605/accesslens-space-page-permission-audit?utm_source=keelapps.app&amp;utm_medium=guide&amp;utm_campaign=guides-rovo-permission-check&amp;utm_content=body">Try AccessLens for Confluence</a>
+          <a class="btn" href="https://marketplace.atlassian.com/apps/4182244448/accesslens-for-jira?utm_source=keelapps.app&amp;utm_medium=guide&amp;utm_campaign=guides-rovo-permission-check&amp;utm_content=body">Try AccessLens for Jira</a>
+        </p>
+
+        <nav class="manual__pagination">
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head">Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=guide&amp;utm_campaign=guides-rovo-permission-check&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Published by Keelapps. Not affiliated with Atlassian. Jira and Confluence are
+          trademarks of Atlassian.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
