@@ -169,6 +169,7 @@
 }
 
 .fleet h2,
+.guides h2,
 .deep h2,
 .support h2 {
   font-size: var(--font-size-title);
@@ -306,6 +307,59 @@
     column-gap: 2rem;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+
+
+/* Start here: the app we put forward first, set apart from the grid on the
+   tint so it reads as a recommendation rather than a thirteenth card. */
+
+.spotlight {
+  background: var(--color-tint);
+  border: var(--rule-gauge) solid var(--color-rule-strong);
+  border-radius: var(--radius-large);
+  margin-top: var(--space-x-large);
+  max-width: 52rem;
+  padding: var(--space-large);
+}
+
+.spotlight h3 {
+  font-size: var(--font-size-heading);
+  line-height: var(--line-height-snug);
+  margin-top: var(--space-x-small);
+}
+
+.spotlight p:not(.eyebrow) {
+  color: var(--color-ink-muted);
+  margin-top: var(--space-small);
+  max-width: 40em;
+}
+
+.spotlight .spotlight__links {
+  color: var(--color-ink);
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 500;
+  gap: var(--space-x-small) var(--space-large);
+  margin-top: var(--space-medium);
+}
+
+
+/* Guides: the newest how-tos, between the fleet and the deep band. */
+
+.guides {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  padding: var(--space-xx-large) var(--bleed) var(--space-xxx-large);
+}
+
+.guides__intro {
+  max-width: 44rem;
+}
+
+.guides__intro p:last-child {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-large);
+  line-height: 1.55;
+  margin-top: var(--space-medium);
 }
 
 

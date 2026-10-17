@@ -15,6 +15,9 @@ from the pages themselves:
   * the footer: every app by product, then the page's own fine print, which is
     read back out of the page and kept as it is;
   * the home page's catalog, between <!-- fleet:begin --> and <!-- fleet:end -->;
+  * the list of guides, between <!-- guides:begin --> and <!-- guides:end -->:
+    every guide on /guides/, the newest six on the home page, each read from
+    the guide's own <h1>, meta description and "Product · Updated" line;
   * each product page's "more apps" row, between <!-- related:begin --> and
     <!-- related:end -->;
   * in <head>: the theme colours (the tint the masthead sits on) and the
@@ -45,22 +48,27 @@ SUPPORT = "https://keelapps.atlassian.net/helpcenter/support/"
 VENDOR = "https://marketplace.atlassian.com/vendors/1003432963/keelapps"
 YOUTUBE = "https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw"
 
-# The fleet, in the order the home page lists it: permissions and approvals,
-# then the work that has to keep happening, then content, then attachments.
+# The fleet, in the order the home page lists it: the apps we are putting
+# forward first (AccessLens, Satchel, Mail Templates, Signoff), then the rest by
+# job: work that has to keep happening, then content.
 # (slug, name, short name, product, what it is, three related slugs)
 APPS = [
     ("accesslens", "AccessLens for Jira", "AccessLens", "Jira", "Permission audit",
      ["recur", "digest", "mail-templates"]),
     ("accesslens-confluence", "AccessLens for Confluence", "AccessLens", "Confluence", "Permission audit",
      ["signoff", "evergreen", "curator"]),
+    ("satchel", "Satchel for Jira", "Satchel", "Jira", "Bulk attachments",
+     ["accesslens", "recur", "prefill"]),
+    ("satchel-confluence", "Satchel for Confluence", "Satchel", "Confluence", "Bulk attachments",
+     ["curator", "evergreen", "signoff"]),
+    ("mail-templates", "Mail Templates for Jira", "Mail Templates", "Jira", "Notification templates",
+     ["recur", "digest", "prefill"]),
     ("signoff", "Signoff for Confluence", "Signoff", "Confluence", "Page approvals",
      ["evergreen", "accesslens-confluence", "curator"]),
     ("recur", "Recur for Jira", "Recur", "Jira", "Recurring tasks",
      ["digest", "prefill", "accesslens"]),
     ("digest", "Digest for Jira", "Digest", "Jira", "Scheduled reporting",
      ["recur", "mail-templates", "prefill"]),
-    ("mail-templates", "Mail Templates for Jira", "Mail Templates", "Jira", "Notification templates",
-     ["recur", "digest", "prefill"]),
     ("prefill", "Prefill for Jira", "Prefill", "Jira", "Intake links",
      ["mail-templates", "recur", "digest"]),
     ("evergreen", "Evergreen for Confluence", "Evergreen", "Confluence", "Content freshness",
@@ -68,10 +76,6 @@ APPS = [
     ("curator", "Curator for Confluence", "Curator", "Confluence", "Bulk page governance",
      ["evergreen", "signoff", "accesslens-confluence"]),
     ("sort-pages", "Sort Pages for Confluence", "Sort Pages", "Confluence", "Page tree order",
-     ["curator", "evergreen", "signoff"]),
-    ("satchel", "Satchel for Jira", "Satchel", "Jira", "Bulk attachments",
-     ["accesslens", "recur", "prefill"]),
-    ("satchel-confluence", "Satchel for Confluence", "Satchel", "Confluence", "Bulk attachments",
      ["curator", "evergreen", "signoff"]),
 ]
 PRODUCTS = ["Jira", "Confluence"]
@@ -167,12 +171,14 @@ def masthead(app=None, home=False):
             nav.append(f'<a class="btn" href="{app.marketplace}">Try it free</a>')
     elif home:
         nav = ['<a href="#apps">Apps</a>',
+               '<a href="/guides/">Guides</a>',
                '<a href="/pricing/">Pricing</a>',
                '<a href="/security/">Security</a>',
                f'<a href="{SUPPORT}">Support</a>',
                f'<a class="btn btn--quiet" href="{VENDOR}">On the Marketplace</a>']
     else:
-        nav = ['<a href="/#apps">All apps</a>', '<a href="/pricing/">Pricing</a>',
+        nav = ['<a href="/#apps">All apps</a>', '<a href="/guides/">Guides</a>',
+               '<a href="/pricing/">Pricing</a>',
                f'<a href="{SUPPORT}">Support</a>']
     return f"""<header class="masthead">
   <div class="masthead__brand">
@@ -198,6 +204,7 @@ def footer(fine):
     cols.append(f"""<div>
   <p class="footer__head">Keelapps</p>
   <ul class="footer__list">
+    <li><a href="/guides/">Guides</a></li>
     <li><a href="/pricing/">Pricing</a></li>
     <li><a href="/security/">Security</a></li>
     <li><a href="{SUPPORT}">Support</a></li>
@@ -263,6 +270,49 @@ def related(app):
 {indent(cards, 4)}
   </ul>
 </section>"""
+
+
+# --- The guides --------------------------------------------------------------
+#
+# Each guide says what it is in its own page: the <h1>, the meta description,
+# and the line under the title ("Jira Cloud · Updated <time>"). The guides
+# index and the home page list them from that, newest first.
+
+class Guide:
+    def __init__(self, path):
+        page = path.read_text()
+        self.slug = path.parent.name
+        self.title = " ".join(re.sub(r"<[^>]+>", "", re.search(r"<h1>(.*?)</h1>", page, re.S).group(1)).split())
+        desc = re.search(r'name="description"\s+content="([^"]*)"', page, re.S)
+        if not desc:
+            sys.exit(f"guides/{self.slug}/index.html has no meta description to list it by")
+        self.summary = " ".join(desc.group(1).split())
+        meta = re.search(r'<p class="manual__meta">(.*?) · Updated <time datetime="([0-9-]+)">(.*?)</time>', page)
+        if not meta:
+            sys.exit(f"guides/{self.slug}/index.html has no 'Product · Updated <time>' line")
+        self.product, self.date, self.date_text = meta.groups()
+
+    def item(self, full):
+        summary = self.summary if full else re.split(r"(?<=\.) ", self.summary, maxsplit=1)[0]
+        return f"""<li class="guide-item">
+  <p class="guide-item__meta">{self.product} · <time datetime="{self.date}">{self.date_text}</time></p>
+  <h3 class="guide-item__title"><a href="/guides/{self.slug}/">{self.title}</a></h3>
+  <p class="guide-item__summary">{summary}</p>
+</li>"""
+
+
+GUIDES = sorted((Guide(p) for p in (ROOT / "guides").glob("*/index.html")),
+                key=lambda g: (g.date, g.title), reverse=True)
+
+
+def guide_list(full):
+    shown = GUIDES if full else GUIDES[:6]
+    items = "\n".join(g.item(full) for g in shown)
+    more = ("" if full else
+            f'\n<p class="guides__more"><a href="/guides/">All {WORDS[len(GUIDES)]} guides</a></p>')
+    return f"""<ol class="guide-list{"" if full else " guide-list--home"}">
+{indent(items, 2)}
+</ol>{more}"""
 
 
 # --- Putting them into a page ----------------------------------------------
@@ -380,6 +430,9 @@ def render(path):
 
     if home:
         text = region(text, "fleet", fleet(), 8)
+        text = region(text, "guides", guide_list(full=False), 8)
+    if rel == ("guides",):
+        text = region(text, "guides", guide_list(full=True), 8)
     if app:
         text = region(text, "related", related(app), 6)
     return tag_marketplace_links(text, rel)

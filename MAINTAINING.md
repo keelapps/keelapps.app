@@ -36,6 +36,10 @@ than by hand.
 - the footer — every app by product, then the page's own fine print, which it
   reads back out of the page and keeps;
 - the home page's catalog, between `<!-- fleet:begin -->` and `<!-- fleet:end -->`;
+- the list of guides, between `<!-- guides:begin -->` and `<!-- guides:end -->`:
+  all of them on `/guides/`, the newest six on the home page. A new guide only
+  needs its `<h1>`, its meta description and its
+  `<p class="manual__meta">Jira Cloud · Updated <time …>` line;
 - each product page's "more apps" row, between `<!-- related:begin -->` and
   `<!-- related:end -->`;
 - the theme colours and the two font preloads in every `<head>`;
