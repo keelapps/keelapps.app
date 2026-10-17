@@ -584,3 +584,68 @@
 .manual__pagination-next {
   text-align: right;
 }
+
+
+/* A list of guides: what it covers, then the title, then the one-line answer.
+   The guides index shows every guide with its full summary; the home page
+   shows the newest six, two or three to a row, with the first sentence. */
+
+.guide-list {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  margin-top: var(--space-x-large);
+  padding: 0;
+}
+
+.guide-item {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  margin: 0;
+  padding-block: var(--space-medium) var(--space-large);
+}
+
+.guide-item__meta {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.guide-list .guide-item__title {
+  font-size: var(--font-size-x-large);
+  line-height: var(--line-height-snug);
+  margin-top: var(--space-x-small);
+}
+
+.guide-item__title a {
+  text-decoration-color: transparent;
+}
+
+.guide-item__title a:hover {
+  text-decoration-color: currentColor;
+}
+
+.guide-item__summary {
+  color: var(--color-ink-muted);
+  margin-top: var(--space-x-small);
+}
+
+@media (min-width: 40em) {
+  .guide-list--home {
+    column-gap: var(--space-large);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64em) {
+  .guide-list--home {
+    column-gap: 2rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.guides__more {
+  font-weight: 500;
+  margin-top: var(--space-medium);
+}
