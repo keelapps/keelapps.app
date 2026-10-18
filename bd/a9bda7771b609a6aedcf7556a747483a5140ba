@@ -1,0 +1,63 @@
+digest/index.html
+  s_34da2eade478c3::t_5532d37e32b4ca 337-339
+sort-pages/index.html
+  s_34da2eade478c3::t_5532d37e32b4ca 356-358
+tools/make-chrome
+  s_34da2eade478c3::t_f11e708b01408c 355-372
+  s_34da2eade478c3::t_9a35920ab1d135 491
+  s_34da2eade478c3::t_1e93d683172b09 328-330
+  s_34da2eade478c3::t_2af73bd3789e40 381-382
+  s_34da2eade478c3::t_078dce10f888a2 21-22
+  s_34da2eade478c3::t_fe07f40b3ff49c 157-160
+recur/index.html
+  s_34da2eade478c3::t_2b9d1c21eaf43b 332-342
+  s_34da2eade478c3::t_5532d37e32b4ca 331,343-344
+evergreen/index.html
+  s_34da2eade478c3::t_5532d37e32b4ca 334-336
+mail-templates/index.html
+  s_34da2eade478c3::t_5532d37e32b4ca 357,369-370
+  s_34da2eade478c3::t_2b9d1c21eaf43b 358-368
+satchel/index.html
+  s_34da2eade478c3::t_5532d37e32b4ca 386,398-399
+  s_34da2eade478c3::t_2b9d1c21eaf43b 387-397
+accesslens-confluence/index.html
+  s_34da2eade478c3::t_2b9d1c21eaf43b 395-405
+  s_34da2eade478c3::t_5532d37e32b4ca 394,406-407
+prefill/index.html
+  s_34da2eade478c3::t_5532d37e32b4ca 375-377
+satchel-confluence/index.html
+  s_34da2eade478c3::t_5532d37e32b4ca 399,411-412
+  s_34da2eade478c3::t_2b9d1c21eaf43b 400-410
+pricing/index.html
+  s_34da2eade478c3::t_2b9d1c21eaf43b 131,139,147,155,163,171,197,205,213,221,229,237
+accesslens/index.html
+  s_34da2eade478c3::t_5532d37e32b4ca 309,336-337
+  s_34da2eade478c3::t_2b9d1c21eaf43b 310-335
+assets/css/manual.css
+  s_34da2eade478c3::t_91fc491e171181 236-243
+MAINTAINING.md
+  s_34da2eade478c3::t_0680062c1b3d1e 43-46
+curator/index.html
+  s_34da2eade478c3::t_5532d37e32b4ca 373-375
+assets/css/product.css
+  s_34da2eade478c3::t_d871d87db2c401 475-482
+signoff/index.html
+  s_34da2eade478c3::t_2b9d1c21eaf43b 334-344
+  s_34da2eade478c3::t_5532d37e32b4ca 333,345-346
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bda9bda7771b609a6aedcf7556a747483a5140ba",
+  "prompts": {},
+  "sessions": {
+    "s_34da2eade478c3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f804ec68-74d2-454c-8593-e914b77a632b",
+        "model": "unknown"
+      },
+      "human_author": "Keelapps <support@keelapps.atlassian.net>"
+    }
+  }
+}
