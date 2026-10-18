@@ -82,8 +82,8 @@ window onto the app, and the window is fixed.
   and bottom edges. Nothing about the frame is baked into the image.
 
 Adding an app is a row in `APPS` at the top of `tools/make-chrome`, its three
-pages, a card source, and those two scripts. The home page counts the fleet in words ("Eleven
-apps. One job each.", "See all eleven apps") — those are copy, and change by
+pages, a card source, and those two scripts. The home page counts the fleet in words ("Twelve
+apps. One job each.", "See all twelve apps") — those are copy, and change by
 hand.
 
 ## Marketplace links carry UTM tags

@@ -28,9 +28,8 @@ is `--tracking-tight` and `--tracking-wide` resolved against each size — an
 edited PNG drifts from all three silently, which is the drift these files exist
 to prevent.
 
-Both brand faces (Outfit, Geist Mono) are fetched at run time. This site ships
-no font files, and a face used only to build an image does not belong in its
-assets — so rebuilding needs a network.
+Both brand faces (Outfit, Geist Mono) are fetched from Google Fonts at run time
+rather than read from `assets/fonts/` — so rebuilding needs a network.
 
 ## The banner's one hard constraint
 
