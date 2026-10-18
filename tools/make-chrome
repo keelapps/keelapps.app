@@ -37,7 +37,7 @@ assets/screenshots/cards/. Edit the product page and re-run this.
     tools/make-chrome --check     # exit non-zero if any page has drifted
 
 Adding an app: a row in APPS, its three pages, then this, tools/make-card-images
-and tools/make-sitemap. The home page's copy counts the fleet in words ("Eleven
+and tools/make-sitemap. The home page's copy counts the fleet in words ("Twelve
 apps") — change those by hand.
 """
 
