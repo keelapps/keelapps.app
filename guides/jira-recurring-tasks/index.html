@@ -77,7 +77,16 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-P880MM0XEG');
+      (function () {
+        var internal = false;
+        try {
+          var mark = new URLSearchParams(location.search).get('internal');
+          if (mark === '1') localStorage.setItem('keelapps-internal', '1');
+          else if (mark === '0') localStorage.removeItem('keelapps-internal');
+          internal = localStorage.getItem('keelapps-internal') === '1';
+        } catch (e) {}
+        gtag('config', 'G-P880MM0XEG', internal ? { traffic_type: 'internal' } : {});
+      })();
     </script>
   </head>
   <body>
@@ -384,7 +393,7 @@
           10 users.
         </p>
         <p>
-          <a class="btn" href="https://marketplace.atlassian.com/apps/3262138887/recur-recurring-tasks-for-jira?utm_source=keelapps.app&amp;utm_medium=guide&amp;utm_campaign=guides-jira-recurring-tasks&amp;utm_content=body">Try Recur free</a>
+          <a class="btn" href="https://marketplace.atlassian.com/apps/3262138887/recur-recurring-tasks-for-jira?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=guides-jira-recurring-tasks&amp;utm_content=body">Try Recur free</a>
         </p>
 
         <nav class="manual__pagination">
@@ -439,7 +448,7 @@
             <li><a href="/pricing/">Pricing</a></li>
             <li><a href="/security/">Security</a></li>
             <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
-            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=guide&amp;utm_campaign=guides-jira-recurring-tasks&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=guides-jira-recurring-tasks&amp;utm_content=footer">Marketplace</a></li>
             <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
           </ul>
         </div>

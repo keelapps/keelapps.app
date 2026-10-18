@@ -85,7 +85,16 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-P880MM0XEG');
+      (function () {
+        var internal = false;
+        try {
+          var mark = new URLSearchParams(location.search).get('internal');
+          if (mark === '1') localStorage.setItem('keelapps-internal', '1');
+          else if (mark === '0') localStorage.removeItem('keelapps-internal');
+          internal = localStorage.getItem('keelapps-internal') === '1';
+        } catch (e) {}
+        gtag('config', 'G-P880MM0XEG', internal ? { traffic_type: 'internal' } : {});
+      })();
     </script>
   </head>
   <body>
@@ -384,7 +393,7 @@ while True:
           to 10 users pay nothing, and the single-issue zip stays free on every install.
         </p>
         <p>
-          <a class="btn" href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager?utm_source=keelapps.app&amp;utm_medium=guide&amp;utm_campaign=guides-jira-download-all-attachments&amp;utm_content=body">Try Satchel free</a>
+          <a class="btn" href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=guides-jira-download-all-attachments&amp;utm_content=body">Try Satchel free</a>
         </p>
         <p>
           Moving files out of Confluence instead?
@@ -444,7 +453,7 @@ while True:
             <li><a href="/pricing/">Pricing</a></li>
             <li><a href="/security/">Security</a></li>
             <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
-            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=guide&amp;utm_campaign=guides-jira-download-all-attachments&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=guides-jira-download-all-attachments&amp;utm_content=footer">Marketplace</a></li>
             <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
           </ul>
         </div>

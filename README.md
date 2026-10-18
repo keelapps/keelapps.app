@@ -4,7 +4,9 @@ Source for the Keelapps site: the vendor page, and the product, documentation
 and legal pages for each Atlassian Marketplace app.
 
 Live at **<https://keelapps.app/>** — a push to `main` publishes. Plain static
-HTML: no build step and no scripts of our own. Every asset is same-origin —
+HTML: no build step, and no script of our own beyond the pricing calculator and
+the few lines that start the Google tag (including the `?internal=1` mark for
+our own visits, see [`MAINTAINING.md`](MAINTAINING.md)). Every asset is same-origin —
 the two brand faces are served from `assets/fonts/` — and the mark in the
 masthead is inline SVG rather than an image.
 Two third parties are contacted: Google Analytics on every page load, and
