@@ -3,9 +3,15 @@
 
 There is no build step, so nothing keeps a sitemap honest except running this.
 Every `index.html` in the tree is a page; its URL is its directory, and its
-`lastmod` is the date of the last commit that touched it — a page edited but
-not yet committed gets today's date, so run this last, in the same commit as
-the edit.
+`lastmod` is the date of the last commit that changed what the page itself
+says — a page edited but not yet committed gets today's date, so run this
+last, in the same commit as the edit.
+
+"What the page itself says" leaves out what tools/make-chrome writes into
+every page alike: the masthead, the footer, the "more apps" row, the <head>
+boilerplate and the UTM tags on Marketplace links. A chrome change rewrites
+all the pages at once; dating them all to that day told search engines that
+every page had changed, and they learn to ignore a lastmod that does that.
 
     tools/make-sitemap            # rewrite sitemap.xml
     tools/make-sitemap --check    # exit non-zero if a page is missing from it
@@ -41,18 +47,45 @@ def url(rel):
     return f"{ORIGIN}/" if parent == "." else f"{ORIGIN}/{parent}/"
 
 
+# What tools/make-chrome writes, removed before two versions of a page are
+# compared. The page's own lists (the home page's catalog and guides, the
+# guides index, a product page's guides) stay in: a new entry there is news.
+CHROME = [
+    re.compile(r'<header class="masthead">.*?</header>', re.S),
+    re.compile(r'<footer class="footer">.*?</footer>', re.S),
+    re.compile(r"<!-- related:begin -->.*?<!-- related:end -->", re.S),
+    re.compile(r"<!-- app-guides:begin -->\s*<!-- app-guides:end -->"),
+    re.compile(r"<!-- Google tag \(gtag\.js\) -->.*?</script>\s*<script>.*?</script>", re.S),
+    re.compile(r'<link rel="preload"[^>]*>'),
+    re.compile(r'<meta name="theme-color"[^>]*>'),
+]
+UTM = re.compile(r"[?&](?:amp;)?utm_[a-z]+=[^&\"]*")
+
+
+def content(text):
+    for pattern in CHROME:
+        text = pattern.sub(" ", text)
+    text = UTM.sub("", text)
+    return " ".join(text.split())
+
+
+def git(*args):
+    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True,
+                          text=True, check=True).stdout
+
+
 def lastmod(rel):
-    dirty = subprocess.run(
-        ["git", "status", "--porcelain", "--", str(rel)],
-        cwd=ROOT, capture_output=True, text=True, check=True,
-    ).stdout.strip()
-    if dirty:
+    path = rel.as_posix()
+    commits = git("log", "--format=%H %cs", "--", path).split()
+    shas, dates = commits[0::2], commits[1::2]
+    versions = [content(git("show", f"{sha}:{path}")) for sha in shas]
+    if content((ROOT / rel).read_text()) != (versions[0] if versions else None):
         return date.today().isoformat()
-    committed = subprocess.run(
-        ["git", "log", "-1", "--format=%cs", "--", str(rel)],
-        cwd=ROOT, capture_output=True, text=True, check=True,
-    ).stdout.strip()
-    return committed or date.today().isoformat()
+    # Newest first: the first commit whose version differs from the one before it.
+    for i, when in enumerate(dates):
+        if i + 1 == len(versions) or versions[i] != versions[i + 1]:
+            return when
+    return date.today().isoformat()
 
 
 def render():
