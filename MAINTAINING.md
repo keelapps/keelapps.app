@@ -42,7 +42,7 @@ than by hand.
   `<p class="manual__meta">Jira Cloud · Updated <time …>` line;
 - each product page's "more apps" row, between `<!-- related:begin -->` and
   `<!-- related:end -->`;
-- the theme colours and the two font preloads in every `<head>`;
+- the theme colours, the two font preloads and the Google tag in every `<head>`;
 - the UTM tags on every link to the Atlassian Marketplace (below).
 
 A card carries no copy of its own. Its headline is the product page's `<h1>`,
@@ -91,17 +91,39 @@ page, and which button on it, sent a visitor:
 | Tag | Value |
 | --- | --- |
 | `utm_source` | `keelapps.app` |
-| `utm_medium` | the kind of page: `home`, `product`, `docs`, `privacy`, `guide`, `page` |
+| `utm_medium` | `referral`, always |
 | `utm_campaign` | the page: its path with `/` as `-` (`accesslens-docs`, `guides-jira-permission-audit`), or `home` |
 | `utm_content` | where on the page: `masthead`, `hero`, `pricing`, `cta`, `body`, `footer` |
+
+The medium is always `referral` because that is a word GA's default channel
+groups know. It used to name the kind of page (`product`, `guide`, `home`), and
+the Marketplace property filed every such visit under "Unassigned". The kind of
+page is still readable from the campaign: an app slug alone is a product page,
+`-docs` and `-privacy` are its documents, `guides-…` is a guide.
 
 Write Marketplace links in a page without tags and run `tools/make-chrome`; it
 replaces whatever tags a link already has, and `--check` fails on a link that
 is missing them. The JSON-LD in `<head>` stays untagged.
 
 Links posted elsewhere use the same four names. An Atlassian Community answer:
-`utm_source=atlassian-community&utm_medium=qa-answer&utm_campaign=<thread number>`,
+`utm_source=atlassian-community&utm_medium=referral&utm_campaign=<thread number>`,
 plus `utm_content` naming the app when the answer links a listing.
+
+## Analytics, and leaving our own visits out
+
+Every page loads the Google tag for `G-P880MM0XEG`. The block in `<head>` is
+written by `tools/make-chrome`, so edit it there, not in a page.
+
+Open any page with `?internal=1` once in a browser you use for the site, and
+that browser is marked as ours: the mark is `keelapps-internal=1` in
+localStorage, and from then on the tag's `config` call carries
+`traffic_type: 'internal'`, which the property's *Internal Traffic* data filter
+excludes. `?internal=0` removes the mark. It is per browser profile, so do it
+once in each browser and on each phone you look at the site from. A browser that
+blocks site data simply stays unmarked.
+
+The mark only reaches keelapps.app. Our own visits to the Marketplace listings
+are measured by Atlassian's page, which this site cannot tag.
 
 ## The page is a cross-section
 

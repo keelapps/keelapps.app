@@ -37,7 +37,16 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-P880MM0XEG');
+      (function () {
+        var internal = false;
+        try {
+          var mark = new URLSearchParams(location.search).get('internal');
+          if (mark === '1') localStorage.setItem('keelapps-internal', '1');
+          else if (mark === '0') localStorage.removeItem('keelapps-internal');
+          internal = localStorage.getItem('keelapps-internal') === '1';
+        } catch (e) {}
+        gtag('config', 'G-P880MM0XEG', internal ? { traffic_type: 'internal' } : {});
+      })();
     </script>
   </head>
   <body>
@@ -65,7 +74,7 @@
         <a href="/accesslens/docs/">Documentation</a>
         <a href="/accesslens/privacy/">Privacy</a>
         <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
-        <a class="btn" href="https://marketplace.atlassian.com/apps/4182244448/accesslens-for-jira?utm_source=keelapps.app&amp;utm_medium=docs&amp;utm_campaign=accesslens-docs&amp;utm_content=masthead">Try it free</a>
+        <a class="btn" href="https://marketplace.atlassian.com/apps/4182244448/accesslens-for-jira?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=accesslens-docs&amp;utm_content=masthead">Try it free</a>
       </nav>
     </header>
 
@@ -327,7 +336,7 @@
             <li><a href="/pricing/">Pricing</a></li>
             <li><a href="/security/">Security</a></li>
             <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
-            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=docs&amp;utm_campaign=accesslens-docs&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=accesslens-docs&amp;utm_content=footer">Marketplace</a></li>
             <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
           </ul>
         </div>
