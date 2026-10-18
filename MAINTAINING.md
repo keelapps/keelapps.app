@@ -40,6 +40,10 @@ than by hand.
   all of them on `/guides/`, the newest six on the home page. A new guide only
   needs its `<h1>`, its meta description and its
   `<p class="manual__meta">Jira Cloud · Updated <time …>` line;
+- each product page's "Guides on …" row, between `<!-- app-guides:begin -->`
+  and `<!-- app-guides:end -->`: every guide that links to that app's
+  Marketplace listing, so a guide reaches its product page by linking to the
+  listing. A page with no such guide keeps the two markers and nothing between;
 - each product page's "more apps" row, between `<!-- related:begin -->` and
   `<!-- related:end -->`;
 - the theme colours, the two font preloads and the Google tag in every `<head>`;

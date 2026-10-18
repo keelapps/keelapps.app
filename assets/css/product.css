@@ -472,6 +472,14 @@
 }
 
 
+/* The guides that link to this app's listing, listed the way the home page
+   lists the newest ones. The heading already sets the gap above the list. */
+
+.app-guides .guide-list {
+  margin-top: 0;
+}
+
+
 /* More apps for the same product, drawn with the home page's card. */
 
 .related {

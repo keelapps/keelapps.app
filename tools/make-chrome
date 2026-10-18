@@ -18,6 +18,8 @@ from the pages themselves:
   * the list of guides, between <!-- guides:begin --> and <!-- guides:end -->:
     every guide on /guides/, the newest six on the home page, each read from
     the guide's own <h1>, meta description and "Product · Updated" line;
+  * each product page's "Guides on ..." row, between <!-- app-guides:begin -->
+    and <!-- app-guides:end -->: the guides that link to the app's listing;
   * each product page's "more apps" row, between <!-- related:begin --> and
     <!-- related:end -->;
   * in <head>: the theme colours (the tint the masthead sits on), the
@@ -151,6 +153,10 @@ class App:
     @property
     def live(self):
         return self.marketplace is not None
+
+    @property
+    def listing_id(self):
+        return self.marketplace.split("/apps/", 1)[1].split("/", 1)[0] if self.live else None
 
     def card(self):
         if self.image.exists():
@@ -319,6 +325,9 @@ class Guide:
         if not meta:
             sys.exit(f"guides/{self.slug}/index.html has no 'Product · Updated <time>' line")
         self.product, self.date, self.date_text = meta.groups()
+        # The apps a guide is about are the ones whose listing it links to.
+        listed = set(re.findall(r'href="https://marketplace\.atlassian\.com/apps/(\d+)', page))
+        self.apps = [a.slug for a in FLEET if a.listing_id in listed]
 
     def item(self, full):
         summary = self.summary if full else re.split(r"(?<=\.) ", self.summary, maxsplit=1)[0]
@@ -343,6 +352,24 @@ def guide_list(full):
 </ol>{more}"""
 
 
+def app_guides(app):
+    """The guides that link to this app's listing, for its product page.
+
+    Empty until a guide links to the listing; the next run of this script
+    puts a new guide on its app's page without anyone editing that page."""
+    shown = [g for g in GUIDES if app.slug in g.apps]
+    if not shown:
+        return ""
+    items = "\n".join(g.item(full=False) for g in shown)
+    return f"""<section class="section app-guides" aria-labelledby="app-guides-title">
+  <p class="eyebrow">Guides</p>
+  <h2 id="app-guides-title">Guides on {app.job.lower()}</h2>
+  <ol class="guide-list guide-list--home">
+{indent(items, 4)}
+  </ol>
+</section>"""
+
+
 # --- Putting them into a page ----------------------------------------------
 
 def region(text, name, body, n):
@@ -351,7 +378,8 @@ def region(text, name, body, n):
     if not m:
         return text
     pad = m.group(1)
-    return (text[:m.start()] + f"{pad}<!-- {name}:begin -->\n{indent(body, n)}\n"
+    inner = f"{indent(body, n)}\n" if body else ""
+    return (text[:m.start()] + f"{pad}<!-- {name}:begin -->\n{inner}"
             f"{pad}<!-- {name}:end -->" + text[m.end():])
 
 
@@ -460,6 +488,7 @@ def render(path):
     if rel == ("guides",):
         text = region(text, "guides", guide_list(full=True), 8)
     if app:
+        text = region(text, "app-guides", app_guides(app), 6)
         text = region(text, "related", related(app), 6)
     return tag_marketplace_links(text, rel)
 
