@@ -174,6 +174,16 @@ tools/make-sitemap              # rewrite sitemap.xml; run last, commit with the
 tools/make-sitemap --check      # non-zero if a page is missing from it
 ```
 
+A page's `<lastmod>` is the date of the last commit that changed what the page
+says, not the last commit that touched the file. The masthead, footer, "more
+apps" row, `<head>` boilerplate and UTM tags are left out of the comparison:
+`tools/make-chrome` rewrites them on every page at once, and a sitemap that
+dates all 49 pages to the same day is one search engines stop trusting.
+
+The title of a product page leads with what people search for, then the app's
+name (`Recurring tasks in Jira Cloud, on any schedule — Recur for Jira`). Its
+`og:title` says the same. The demo's `VideoObject` keeps its own name.
+
 Each live product page carries one `application/ld+json` block in its `<head>`
 — a `SoftwareApplication` with its demo as a `VideoObject` — and the home page
 an `Organization`. It is data, not script: nothing executes and nothing is
