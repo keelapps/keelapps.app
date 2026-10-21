@@ -91,6 +91,7 @@
           <li><a href="#what-the-app-reads">What the app reads</a></li>
           <li><a href="#what-the-app-stores">What the app stores</a></li>
           <li><a href="#what-the-app-writes">What the app writes</a></li>
+          <li><a href="#ai-tools">AI tools (off by default)</a></li>
           <li><a href="#what-it-never-does">What the app never does</a></li>
           <li><a href="#retention-and-deletion">Retention and deletion</a></li>
           <li><a href="#data-residency">Data residency</a></li>
@@ -111,7 +112,7 @@
              NOT ONE WORD between these sentinels may.
         -->
         <h1>Privacy policy — AccessLens for Confluence</h1>
-        <p class="manual__meta">Effective date: <time datetime="2026-09-29">29 September 2026</time></p>
+        <p class="manual__meta">Effective date: <time datetime="2026-10-21">21 October 2026</time></p>
 
         <h2 id="short-version">The short version</h2>
         <p class="manual__lede">
@@ -120,7 +121,9 @@
           restriction, a page or a comment. Everything it stores lives in Atlassian-hosted
           Forge storage inside your own Atlassian site. The app declares no external network
           permissions, which Atlassian enforces at the platform level, so there is no Keelapps
-          server, no analytics, no telemetry and no third party.
+          server, no analytics, no telemetry and no third party. Its AI tools are off by
+          default; if your admins turn them on, the answers a listed person asks for go to the
+          AI that person uses.
         </p>
 
         <h2 id="what-the-app-reads">What the app reads</h2>
@@ -178,6 +181,11 @@
                 <td>scan cadence, shard size, page-restriction mode and budget, the snapshot retention limit, the outcome of the last scheduled run, and whether the site's subscription was active the last time the app was opened</td>
                 <td>so a large site can be scanned within a budget you chose</td>
               </tr>
+              <tr>
+                <td>AI tools list</td>
+                <td>only if a site admin uses it: whether AI tools are on, the account ids of the people allowed to use them, who added each person and when, and the account id of whoever last turned AI tools on or off, with the time; no display names are stored for this list</td>
+                <td>so only the people an admin chose can ask the AI tools</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -196,13 +204,42 @@
           <strong>Nothing.</strong> AccessLens declares no write scopes at all. It cannot
           change a permission, a restriction, a page or a comment even if it were asked to.
         </p>
+        <h2 id="ai-tools">AI tools (off by default)</h2>
+        <p>
+          AccessLens offers three read-only tools to AI agents through Atlassian's Forge MCP
+          support: which spaces are open to everyone, who can access a space, and which spaces a
+          group can reach. They are <strong>off until a Confluence site admin turns them
+          on</strong> in the app's settings, and then they answer <strong>only the people that
+          admin has listed</strong>. Anyone else, and any agent acting for someone else, gets a
+          refusal.
+        </p>
+        <p>
+          The tools read the latest completed snapshot already stored by the app. They do not
+          read anything new from Confluence and do not change anything.
+        </p>
+        <p>When a listed person asks, the answer goes to the AI that person uses:</p>
+        <ul>
+          <li><strong>Rovo</strong> agents run inside Atlassian Cloud.</li>
+          <li>
+            <strong>External AI clients</strong> (such as Claude or Cursor) can reach the tools
+            only after an organization admin turns on external access for the app in Atlassian
+            Administration, and the person connects the client with their own Atlassian sign-in.
+            The answers that person asks for are then delivered to that client and handled under
+            the client provider's terms. Atlassian marks this capability as early access.
+          </li>
+        </ul>
+        <p>
+          The app itself still makes no external calls; Atlassian delivers the answers. Turning
+          AI tools off, or removing a person from the list, stops further answers immediately.
+        </p>
 
         <h2 id="what-it-never-does">What the app never does</h2>
         <ul>
           <li>
-            No data leaves your Atlassian site. There are no external calls, no analytics, no
-            telemetry, and no third-party services. The app declares no external permissions,
-            which Forge enforces at the platform level.
+            The app makes no external calls. There are no analytics, no telemetry, and no
+            third-party services, and the app declares no external permissions, which Forge
+            enforces at the platform level. The only way data reaches anything outside your site
+            is the AI tools above, if your admins turn them on, or a CSV that someone exports.
           </li>
           <li>
             CSV exports are assembled in your own browser from data delivered over the Forge
@@ -244,11 +281,15 @@
         <h2 id="data-residency">Data residency</h2>
         <p>
           Because everything is stored in Forge hosted storage, data residency follows your
-          Atlassian site's data residency configuration automatically.
+          Atlassian site's data residency configuration automatically. Answers delivered to an
+          external AI client through the AI tools are held wherever that client keeps them.
         </p>
 
         <h2 id="sub-processors">Sub-processors</h2>
-        <p>None. Atlassian hosts everything; there is no other party involved.</p>
+        <p>
+          None. Atlassian hosts everything, including Rovo. An external AI client connected
+          through the AI tools is chosen and authorised by your organization, not by Keelapps.
+        </p>
 
         <h2 id="changes">Changes</h2>
         <p>

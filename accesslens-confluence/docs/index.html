@@ -97,6 +97,7 @@
           <li><a href="#cost">Cost estimates and the API budget</a></li>
           <li><a href="#exports">CSV export</a></li>
           <li><a href="#settings">Settings</a></li>
+          <li><a href="#ai-tools">AI tools (Rovo and MCP)</a></li>
           <li><a href="#permissions">Permissions the app requests</a></li>
           <li><a href="#not-in-this-release">Not in this release</a></li>
           <li><a href="#support">Support</a></li>
@@ -339,7 +340,49 @@
             deleting an old one. Delete one yourself if you want room; the app will not make that
             decision for you.
           </li>
+          <li>
+            <strong>AI tools</strong> — off by default. See below.
+          </li>
         </ul>
+
+        <h2 id="ai-tools">AI tools (Rovo and MCP)</h2>
+        <p>
+          AccessLens can answer three questions for a Rovo agent or for an AI client such as
+          Claude, through Atlassian's Forge MCP support:
+        </p>
+        <ul>
+          <li><strong>Open spaces</strong> — which spaces anonymous users or every logged-in user can open.</li>
+          <li><strong>Space access</strong> — who can access a space, at what level and through which group, with its risk flags.</li>
+          <li><strong>Group access</strong> — which spaces a group can reach.</li>
+        </ul>
+        <p>
+          An AI tool runs as the person asking, but the answer comes from the whole site's
+          permission map. So the tools are <strong>off by default</strong> and answer only the
+          people a site admin lists. To turn them on, open
+          <strong>Confluence administration → Apps → AccessLens → Settings → AI tools</strong>,
+          select <em>Turn on</em> (you are added to the list) and add anyone else who may see the
+          whole map, such as other admins or auditors. Anyone not on the list gets a refusal.
+        </p>
+        <ul>
+          <li>
+            <strong>Rovo</strong> — create an agent and add the AccessLens tools under Tools,
+            Connected apps.
+          </li>
+          <li>
+            <strong>Claude and other MCP clients</strong> — an organization admin also allows
+            external clients for AccessLens in Atlassian Administration, under Apps, Sites, your
+            site, Connected apps. Then connect the client to
+            <code>https://mcp.atlassian.com/forge/37327ae6-aa25-4973-a1e8-f58a302f9622</code>.
+            Atlassian marks this part as early access.
+          </li>
+        </ul>
+        <p>
+          The tools are read-only and read the latest completed snapshot, so they cost no API
+          budget and need no extra scope. Every answer states when that snapshot was taken and
+          what it could not read, and long answers are capped and say so; the full view and the
+          CSV stay here in the app. Answers go to the AI the person uses; see the
+          <a href="/accesslens-confluence/privacy/#ai-tools">privacy policy</a>.
+        </p>
 
         <h2 id="permissions">Permissions the app requests</h2>
         <p>Eight scopes, and <strong>not one of them is a write</strong>:</p>
