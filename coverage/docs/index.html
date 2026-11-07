@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Documentation — Coverage for Bitbucket</title>
+    <meta
+      name="description"
+      content="How to set up Coverage for Bitbucket: the pipeline pipe and its variables, the pull request panel, card and diff annotations, the coverage merge check, supported formats and the permissions the app requests."
+    />
+    <link rel="canonical" href="https://keelapps.app/coverage/docs/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/coverage/docs/" />
+    <meta property="og:title" content="Documentation — Coverage for Bitbucket" />
+    <meta
+      property="og:description"
+      content="One pipe in after-script; coverage, changed-line coverage and every test on the pull request; a merge check with thresholds and an allowed drop."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      (function () {
+        var internal = false;
+        try {
+          var mark = new URLSearchParams(location.search).get('internal');
+          if (mark === '1') localStorage.setItem('keelapps-internal', '1');
+          else if (mark === '0') localStorage.removeItem('keelapps-internal');
+          internal = localStorage.getItem('keelapps-internal') === '1';
+        } catch (e) {}
+        gtag('config', 'G-P880MM0XEG', internal ? { traffic_type: 'internal' } : {});
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+        <span class="masthead__sep" aria-hidden="true"></span>
+        <a class="masthead__app" href="/coverage/">Coverage for Bitbucket</a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="/coverage/docs/">Documentation</a>
+        <a href="/coverage/privacy/">Privacy</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Coverage for Bitbucket pages and sections">
+        <p class="manual__toc-title">Coverage for Bitbucket</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/coverage/">Product</a></li>
+          <li><a href="/coverage/docs/" aria-current="page">Documentation</a></li>
+          <li><a href="/coverage/privacy/">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#setup">Setting it up</a></li>
+          <li><a href="#variables">Pipe variables</a></li>
+          <li><a href="#formats">Coverage formats</a></li>
+          <li><a href="#tests">Test results</a></li>
+          <li><a href="#pull-request">On the pull request</a></li>
+          <li><a href="#merge-check">The merge check</a></li>
+          <li><a href="#other-ci">Outside Bitbucket Pipelines</a></li>
+          <li><a href="#limits">Limits</a></li>
+          <li><a href="#permissions">Permissions the app requests</a></li>
+          <li><a href="#support">Support</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/coverage/">Coverage for Bitbucket</a><span>/</span>Documentation
+        </p>
+
+        <h1>Documentation</h1>
+        <p class="manual__lede">
+          Coverage for Bitbucket shows line coverage, the coverage of the lines a pull request
+          changed, and every test result on the Bitbucket Cloud pull request. A pipe in your
+          pipeline writes the results onto the commit; the app reads them and shows them to
+          reviewers. Nothing leaves Bitbucket.
+        </p>
+
+        <h2 id="how-it-works">How it works</h2>
+        <ul>
+          <li>
+            <strong>The pipe</strong> (<code>ghcr.io/keelapps/coverage-for-bitbucket:1</code>)
+            runs in your pipeline after your tests. It reads your coverage file and your JUnit
+            XML, compares the commit with the target branch using git, and writes two Code
+            Insights reports on the commit: <em>Coverage</em> and <em>Tests</em>. It writes them
+            through the Pipelines proxy, so it needs no token.
+          </li>
+          <li>
+            <strong>The app</strong> reads those reports and shows them on the pull request: a
+            panel on the Overview tab, a card in the sidebar, and a merge check. It only reads.
+          </li>
+        </ul>
+
+        <h2 id="setup">Setting it up</h2>
+        <ol>
+          <li>Install Coverage for Bitbucket on your workspace from the Atlassian Marketplace.</li>
+          <li>
+            In <code>bitbucket-pipelines.yml</code>, add the pipe to the <code>after-script</code>
+            of the step that runs your tests:
+          </li>
+        </ol>
+        <pre><code>- step:
+    name: Test
+    script:
+      - pytest --junitxml=test-results/junit.xml --cov=app --cov-report=xml:coverage.xml
+    after-script:
+      - pipe: docker://ghcr.io/keelapps/coverage-for-bitbucket:1
+        variables:
+          COVERAGE_FILE: coverage.xml
+          MIN_CHANGED_COVERAGE: '80'
+          MAX_DROP: '1'</code></pre>
+        <p>
+          Use <code>after-script</code>, not <code>script</code>: a failing test stops the
+          script, and the pull request should still show which test failed.
+        </p>
+        <p>
+          Open a pull request, or push to one. When the pipeline finishes, the results are on
+          the pull request. Workspace settings → Coverage for Bitbucket shows the same steps.
+        </p>
+
+        <h2 id="variables">Pipe variables</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Variable</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td><code>COVERAGE_FILE</code></td><td>the coverage file: a path, a glob, or several separated by commas. Needed for the coverage report.</td></tr>
+              <tr><td><code>TEST_RESULTS</code></td><td>JUnit XML files. By default the folders Pipelines itself scans: <code>test-results</code>, <code>test-reports</code>, <code>surefire-reports</code>, <code>failsafe-reports</code> and <code>TestResults</code>. <code>none</code> skips the test report.</td></tr>
+              <tr><td><code>COVERAGE_FORMAT</code></td><td><code>cobertura</code>, <code>jacoco</code>, <code>lcov</code> or <code>go</code>. Detected from the file when unset.</td></tr>
+              <tr><td><code>MIN_COVERAGE</code></td><td>the coverage report fails below this line coverage, in percent</td></tr>
+              <tr><td><code>MIN_CHANGED_COVERAGE</code></td><td>the coverage report fails below this coverage of the changed lines, in percent</td></tr>
+              <tr><td><code>MAX_DROP</code></td><td>the merge check fails when coverage drops more than this many points against the target branch</td></tr>
+              <tr><td><code>DIFF_BASE</code></td><td>the branch or commit to compare with. By default the pull request's destination in pull-request pipelines, otherwise <code>main</code>, then <code>master</code>.</td></tr>
+              <tr><td><code>REPORT_LINK</code></td><td>a URL the coverage report links to, such as an HTML coverage report you publish</td></tr>
+              <tr><td><code>FAIL_STEP</code></td><td><code>true</code> also fails the pipeline step when the coverage report fails</td></tr>
+              <tr><td><code>DRY_RUN</code></td><td><code>true</code> prints the reports instead of sending them</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          A threshold you leave out is not checked. With no thresholds at all the report shows the
+          numbers and always passes.
+        </p>
+
+        <h2 id="formats">Coverage formats</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Format</th><th>Written by, for example</th></tr></thead>
+            <tbody>
+              <tr><td>Cobertura XML</td><td>coverage.py and pytest-cov (<code>--cov-report=xml</code>), gcovr, Istanbul and nyc (<code>cobertura</code> reporter), coverlet</td></tr>
+              <tr><td>JaCoCo XML</td><td>the JaCoCo Maven and Gradle plugins, Kover</td></tr>
+              <tr><td>LCOV</td><td>Istanbul, c8 and Vitest (<code>lcov</code> reporter), lcov for C and C++, Flutter</td></tr>
+              <tr><td>Go coverprofile</td><td><code>go test -coverprofile=cover.out</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Paths in the coverage file are matched to the files in your repository, so reports that
+          name files relative to a source folder or by Go module path still line up with the
+          diff. Several coverage files are merged into one report.
+        </p>
+
+        <h2 id="tests">Test results</h2>
+        <p>
+          The pipe reads JUnit XML, the format almost every test runner can write, and lists every
+          test case in the <em>Tests</em> report: failed ones first, then skipped, then passed,
+          each with what it printed. Bitbucket Pipelines also collects JUnit XML itself, but its
+          API lists failed cases only. When a commit has no Tests report, the panel falls back to
+          the counts Pipelines collected and the failed cases it lists.
+        </p>
+
+        <h2 id="pull-request">On the pull request</h2>
+        <ul>
+          <li>
+            <strong>In the diff</strong>, each range of changed lines that no test ran is marked
+            by the Coverage report, and each changed file carries its changed-line totals.
+          </li>
+          <li>
+            <strong>The Coverage and tests panel</strong> on the Overview tab: line coverage,
+            coverage of the changed lines, the change against the target branch, each changed
+            file with the lines not covered, and the tests, with an Output button on each.
+          </li>
+          <li>
+            <strong>The Coverage card</strong> in the sidebar: line coverage and changed-line
+            coverage.
+          </li>
+        </ul>
+        <p>
+          The change against the target branch compares the pull request with the coverage
+          report on the target branch's latest commit, or on one of the five commits before it
+          when the latest has none yet. Run the pipe on your main branch too, so there is
+          something to compare with.
+        </p>
+        <p>
+          The panel reads as the person viewing it, so Bitbucket's own repository permissions
+          apply: someone who cannot see the repository sees nothing.
+        </p>
+
+        <h2 id="merge-check">The merge check</h2>
+        <p>
+          In Repository settings → Custom merge checks, turn on <em>Coverage meets the bar</em>.
+          It runs when someone merges, on the pull request's source commit, and fails when:
+        </p>
+        <ul>
+          <li>the commit has no Coverage report yet, or the report is still pending;</li>
+          <li>the report failed <code>MIN_COVERAGE</code> or <code>MIN_CHANGED_COVERAGE</code>; or</li>
+          <li>coverage dropped more than <code>MAX_DROP</code> points against the target branch.</li>
+        </ul>
+        <p>
+          Its message says which, with the numbers. On Bitbucket Premium, tick
+          <em>required</em> to block the merge until the check passes; on other plans the result
+          is shown on the pull request but does not block it. Premium also lets you turn the
+          check on for a whole workspace or project. Turn it on only where the pipeline runs the
+          pipe, since a commit without a report fails it.
+        </p>
+
+        <h2 id="other-ci">Outside Bitbucket Pipelines</h2>
+        <p>
+          The pipe is a container image, so another CI can run it against a Bitbucket Cloud
+          repository. Set <code>BITBUCKET_REPO_FULL_NAME</code> (<code>workspace/repository</code>),
+          <code>BITBUCKET_COMMIT</code>, and <code>BITBUCKET_ACCESS_TOKEN</code>: a repository
+          access token with <em>Pull requests: Write</em>. Run it in a full clone, so it can
+          compare with the target branch.
+        </p>
+
+        <h2 id="limits">Limits</h2>
+        <ul>
+          <li>
+            <strong>1,000 annotations per report</strong>, a Code Insights limit. The Coverage
+            report marks files and uncovered ranges up to that number; the Tests report lists the
+            first 1,000 tests, failures first. Either says so when it stops.
+          </li>
+          <li><strong>Line coverage only.</strong> Branch coverage is not reported in this release.</li>
+          <li>
+            <strong>Merged line numbers.</strong> In pull-request pipelines Bitbucket builds the
+            merge of source and target. The marked lines match the source commit unless the
+            target changed the same file; the totals are right either way.
+          </li>
+        </ul>
+
+        <h2 id="permissions">Permissions the app requests</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Scope</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td><code>read:pullrequest:bitbucket</code></td><td>a pull request's source and destination commits and branches</td></tr>
+              <tr><td><code>read:repository:bitbucket</code></td><td>the Coverage and Tests reports and their annotations on a commit, and the target branch's recent commits for the comparison</td></tr>
+              <tr><td><code>read:pipeline:bitbucket</code></td><td>the test counts and failed cases Pipelines collected, when a commit has no Tests report</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          The app has no write scope and no storage, and there is no
+          <code>permissions.external</code> block: it cannot make an outbound call, which
+          Atlassian enforces at the platform level. The reports are written by the pipe in your
+          own pipeline, not by the app.
+        </p>
+
+        <h2 id="support">Support</h2>
+        <p>
+          Questions, bug reports and feature requests:
+          <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
+          Security issues: <a href="/security/">report privately</a>.
+        </p>
+
+        <nav class="manual__pagination">
+          <span><a href="/coverage/">← Product page</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/coverage/privacy/">Privacy policy →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head">Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Bitbucket</p>
+          <ul class="footer__list">
+            <li><a href="/coverage/">Coverage</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/guides/">Guides</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=coverage-docs&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Coverage for Bitbucket is published by Keelapps. Not affiliated with Atlassian.
+          Bitbucket is a trademark of Atlassian.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

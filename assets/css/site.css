@@ -512,7 +512,7 @@
 
 @media (min-width: 48em) {
   .footer__grid {
-    grid-template-columns: 2fr repeat(3, minmax(0, 1fr));
+    grid-template-columns: 2fr repeat(4, minmax(0, 1fr));
   }
 
   .footer__brand {
