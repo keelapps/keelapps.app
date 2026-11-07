@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Install Coverage for Bitbucket</title>
+    <meta name="description" content="Install Coverage for Bitbucket on your Bitbucket Cloud workspace from Atlassian's install page." />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content="1; url=https://developer.atlassian.com/console/install/5615cb89-7af0-4fec-8bed-6693a1676c57?signature=AYABeFymA%2Ftfq1H5Prla4M%2FbtKEAAAADAAdhd3Mta21zAEthcm46YXdzOmttczp1cy13ZXN0LTI6NzA5NTg3ODM1MjQzOmtleS83MDVlZDY3MC1mNTdjLTQxYjUtOWY5Yi1lM2YyZGNjMTQ2ZTcAuAECAQB4CxqLTo9l4lqXuFjNim1xJM%2Bp%2F3TVP9xHS2BrU5DRRucBzO%2BTOMzdAk3QdXAEniF9RgAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDFVT4nngWg11quY5OgIBEIA7UYxrzz2ihpCC64Wc1AN3L0V7njV9MVhkKNdHKPMdcbEATBIrDyeEi%2BTTOI%2BaHnZvEKz%2F7LkLF7uwaYYAB2F3cy1rbXMAS2Fybjphd3M6a21zOmV1LXdlc3QtMTo3MDk1ODc4MzUyNDM6a2V5LzQ2MzBjZTZiLTAwYzMtNGRlMi04NzdiLTYyN2UyMDYwZTVjYwC4AQICAHi9bVMAkme4qVQX1fQHo6ePw3H40A7cGfz7yrmSfBWMXgHcMwi9oTHTjxk2l3khh7FSAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM0zgqzMsrgCMsJ%2FOPAgEQgDtggb%2FaRm%2FjboLXRCGfpDvxaVgttP5inPCF87weY%2FICU4OUVE1rlRz4FmMqwSv87t7QHV5qoUTsV7c7RAAHYXdzLWttcwBLYXJuOmF3czprbXM6dXMtZWFzdC0xOjcwOTU4NzgzNTI0MzprZXkvNmMxMjBiYTAtNGNkNS00OTg1LWI4MmUtNDBhMDQ5NTJjYzU3ALgBAgIAeDYASx0XCjkny4iLV6vz%2BKtEGSGT6kdt0QRpkn6D%2FlVEASd5tu3wmkmUyj27aChDOHkAAAB%2BMHwGCSqGSIb3DQEHBqBvMG0CAQAwaAYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAxlJCnvF4l7Xk7KvGgCARCAO%2B52JrNFeVvrYNUluQj3cMiNixPxCmlnzNhGCJ52Y4xzJzXKmmcUkY%2FJ9qPHsz0yrUHfcbPuyrpK9oyiAgAAAAAMAAAQAAAAAAAAAAAAAAAAAN7CfyUmtUj6CE8BjeUqECr%2F%2F%2F%2F%2FAAAAAQAAAAAAAAAAAAAAAQAAADJxn%2Fj%2Fzg0%2F1C5gUjF%2F8g9rAxLl%2FeArH2Reqc8GF0w%2FOUsMix8rNvc1ZY04LTs1b3W%2BGqeSpb3Y9qtfSSWBbfQuOe4%3D&amp;product=bitbucket" />
+    <link rel="canonical" href="https://keelapps.app/coverage/install/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://keelapps.app/coverage/install/" />
+    <meta property="og:title" content="Install Coverage for Bitbucket" />
+    <meta property="og:description" content="Free, read-only, one pipeline step. A workspace administrator installs it in one click." />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/product.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      (function () {
+        var internal = false;
+        try {
+          var mark = new URLSearchParams(location.search).get('internal');
+          if (mark === '1') localStorage.setItem('keelapps-internal', '1');
+          else if (mark === '0') localStorage.removeItem('keelapps-internal');
+          internal = localStorage.getItem('keelapps-internal') === '1';
+        } catch (e) {}
+        gtag('config', 'G-P880MM0XEG', internal ? { traffic_type: 'internal' } : {});
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+        <span class="masthead__sep" aria-hidden="true"></span>
+        <a class="masthead__app" href="/coverage/">Coverage for Bitbucket</a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="/coverage/docs/">Documentation</a>
+        <a href="/coverage/privacy/">Privacy</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <main class="product" id="main">
+      <section class="intro">
+        <p class="eyebrow">Install</p>
+        <h1>Taking you to Atlassian's install page.</h1>
+        <div class="intro__split">
+          <p class="lede">
+            Bitbucket Cloud apps install from Atlassian's developer console rather than the
+            Marketplace. Sign in as a workspace administrator, pick the workspace, and approve
+            the read-only access the app asks for.
+          </p>
+          <div class="intro__act">
+            <a class="btn btn--large btn--block" href="https://developer.atlassian.com/console/install/5615cb89-7af0-4fec-8bed-6693a1676c57?signature=AYABeFymA%2Ftfq1H5Prla4M%2FbtKEAAAADAAdhd3Mta21zAEthcm46YXdzOmttczp1cy13ZXN0LTI6NzA5NTg3ODM1MjQzOmtleS83MDVlZDY3MC1mNTdjLTQxYjUtOWY5Yi1lM2YyZGNjMTQ2ZTcAuAECAQB4CxqLTo9l4lqXuFjNim1xJM%2Bp%2F3TVP9xHS2BrU5DRRucBzO%2BTOMzdAk3QdXAEniF9RgAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDFVT4nngWg11quY5OgIBEIA7UYxrzz2ihpCC64Wc1AN3L0V7njV9MVhkKNdHKPMdcbEATBIrDyeEi%2BTTOI%2BaHnZvEKz%2F7LkLF7uwaYYAB2F3cy1rbXMAS2Fybjphd3M6a21zOmV1LXdlc3QtMTo3MDk1ODc4MzUyNDM6a2V5LzQ2MzBjZTZiLTAwYzMtNGRlMi04NzdiLTYyN2UyMDYwZTVjYwC4AQICAHi9bVMAkme4qVQX1fQHo6ePw3H40A7cGfz7yrmSfBWMXgHcMwi9oTHTjxk2l3khh7FSAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM0zgqzMsrgCMsJ%2FOPAgEQgDtggb%2FaRm%2FjboLXRCGfpDvxaVgttP5inPCF87weY%2FICU4OUVE1rlRz4FmMqwSv87t7QHV5qoUTsV7c7RAAHYXdzLWttcwBLYXJuOmF3czprbXM6dXMtZWFzdC0xOjcwOTU4NzgzNTI0MzprZXkvNmMxMjBiYTAtNGNkNS00OTg1LWI4MmUtNDBhMDQ5NTJjYzU3ALgBAgIAeDYASx0XCjkny4iLV6vz%2BKtEGSGT6kdt0QRpkn6D%2FlVEASd5tu3wmkmUyj27aChDOHkAAAB%2BMHwGCSqGSIb3DQEHBqBvMG0CAQAwaAYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAxlJCnvF4l7Xk7KvGgCARCAO%2B52JrNFeVvrYNUluQj3cMiNixPxCmlnzNhGCJ52Y4xzJzXKmmcUkY%2FJ9qPHsz0yrUHfcbPuyrpK9oyiAgAAAAAMAAAQAAAAAAAAAAAAAAAAAN7CfyUmtUj6CE8BjeUqECr%2F%2F%2F%2F%2FAAAAAQAAAAAAAAAAAAAAAQAAADJxn%2Fj%2Fzg0%2F1C5gUjF%2F8g9rAxLl%2FeArH2Reqc8GF0w%2FOUsMix8rNvc1ZY04LTs1b3W%2BGqeSpb3Y9qtfSSWBbfQuOe4%3D&amp;product=bitbucket">Continue to Atlassian</a>
+            <p class="intro__note">Then add the pipe to your test step: <a href="/coverage/docs/#setup">setup guide</a>.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head">Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Bitbucket</p>
+          <ul class="footer__list">
+            <li><a href="/coverage/">Coverage</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/guides/">Guides</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=coverage-install&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Coverage for Bitbucket is published by Keelapps. Not affiliated with Atlassian.
+          Bitbucket is a trademark of Atlassian.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
