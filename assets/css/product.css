@@ -145,6 +145,24 @@
   width: 100%;
 }
 
+/* A still screenshot further down a product page, framed like the showcase. */
+
+.shot img {
+  background: #fff;
+  border: var(--rule-gauge) solid var(--color-rule-strong);
+  border-radius: var(--radius-large);
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.shot figcaption {
+  color: var(--color-ink-muted);
+  font-size: var(--font-size-small);
+  margin-top: var(--space-small);
+  max-width: var(--measure);
+}
+
 /* An iframe takes no size from its content the way an image does. */
 
 .showcase iframe {

@@ -128,7 +128,10 @@
 
         <h2 id="setup">Setting it up</h2>
         <ol>
-          <li>Install Coverage for Bitbucket on your workspace from the Atlassian Marketplace.</li>
+          <li>
+            As a workspace administrator, <a href="/coverage/install/">install Coverage for
+            Bitbucket</a> on your workspace. Atlassian's install page asks which workspace.
+          </li>
           <li>
             In <code>bitbucket-pipelines.yml</code>, add the pipe to the <code>after-script</code>
             of the step that runs your tests:
@@ -232,8 +235,11 @@
 
         <h2 id="merge-check">The merge check</h2>
         <p>
-          In Repository settings → Custom merge checks, turn on <em>Coverage meets the bar</em>.
-          It runs when someone merges, on the pull request's source commit, and fails when:
+          Custom merge checks are off in a new workspace. A workspace administrator turns them on
+          once, in Workspace settings → Custom merge checks → <em>Enable</em>. Then, in Repository
+          settings → Custom merge checks, add <em>Coverage meets the bar</em>.
+          It checks the pull request's source commit when someone pushes to it, when a reviewer
+          approves or asks for changes, and again at merge. It fails when:
         </p>
         <ul>
           <li>the commit has no Coverage report yet, or the report is still pending;</li>
@@ -246,6 +252,11 @@
           is shown on the pull request but does not block it. Premium also lets you turn the
           check on for a whole workspace or project. Turn it on only where the pipeline runs the
           pipe, since a commit without a report fails it.
+        </p>
+        <p>
+          Right after a push the pipeline is usually still running, so the first result says
+          there is no report yet. Bitbucket checks again when a reviewer approves, and you can
+          press <em>Rerun</em> on the check once the pipeline has finished.
         </p>
 
         <h2 id="other-ci">Outside Bitbucket Pipelines</h2>

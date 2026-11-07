@@ -19,7 +19,9 @@
       property="og:description"
       content="Bitbucket shows whether the build passed. Coverage for Bitbucket shows which new lines no test ran, right in the diff, and every test with its output."
     />
-    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta property="og:image" content="https://keelapps.app/assets/screenshots/coverage-preview.png" />
+    <meta property="og:image:width" content="1840" />
+    <meta property="og:image:height" content="900" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -103,6 +105,19 @@
         </dl>
       </section>
 
+      <figure class="showcase" id="demo">
+        <img
+          src="/assets/screenshots/coverage-preview.png"
+          width="1840"
+          height="900"
+          alt="A Bitbucket pull request diff. Above app/calc.py the Coverage report says 6 of 7 changed lines are covered; under line 13 it says the line is not covered by tests."
+        />
+        <figcaption>
+          A pull request diff on Bitbucket Cloud: the file's changed-line coverage at the top,
+          and the one new line no test ran marked where the reviewer reads it.
+        </figcaption>
+      </figure>
+
       <section class="section">
         <p class="eyebrow">The gap this fills</p>
         <div class="gap">
@@ -155,9 +170,9 @@
           <div class="card">
             <h3>A merge check for coverage</h3>
             <p>
-              "Coverage meets the bar" fails when coverage is under the thresholds you set in the
-              pipeline, or drops more points than you allow. On Bitbucket Premium, make it
-              required and it blocks the merge.
+              "Coverage meets the bar" shows on the pull request whether coverage is under the
+              thresholds you set in the pipeline, or dropped more points than you allow. On
+              Bitbucket Premium, make it required and it blocks the merge.
             </p>
           </div>
           <div class="card">
@@ -171,13 +186,31 @@
       </section>
 
       <section class="section">
+        <p class="eyebrow">On the pull request</p>
+        <h2>Every test, with what it printed</h2>
+        <figure class="shot">
+          <img
+            src="/assets/screenshots/coverage-tests.png"
+            width="1840"
+            height="900"
+            loading="lazy"
+            alt="The Coverage and tests panel on a pull request: 3 tests passed and 1 failed, the failed test listed first, and its output open, showing the failed assertion."
+          />
+          <figcaption>
+            The Coverage and tests panel on the Overview tab. The failed test comes first;
+            Output opens what it printed, and passed tests have the same button.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="section">
         <p class="eyebrow">Walkthrough</p>
         <h2>From a green build to a reviewed one</h2>
         <ol class="steps">
           <li>
             <h3>Install the app on your workspace</h3>
             <p>
-              It adds a panel and a card to every pull request in the workspace, and a merge check
+              <a href="/coverage/install/">Install it</a> as a workspace administrator. It adds a panel and a card to every pull request in the workspace, and a merge check
               that stays off until you turn it on.
             </p>
           </li>
@@ -199,7 +232,8 @@
           <li>
             <h3>Optional: block merges</h3>
             <p>
-              In Repository settings → Custom merge checks, turn on "Coverage meets the bar". On
+              Enable custom merge checks once in Workspace settings, then add "Coverage meets the
+              bar" in Repository settings → Custom merge checks. On
               Bitbucket Premium, tick required to block merges that fail it.
             </p>
           </li>
@@ -275,12 +309,13 @@
           <p class="eyebrow">Availability</p>
           <h2 id="availability-title">Free, on every Bitbucket Cloud workspace.</h2>
           <p>
-            Coverage for Bitbucket installs into your workspace from the Atlassian Marketplace.
-            There is no paid tier: Bitbucket Cloud apps are not billed through the Marketplace.
+            A workspace administrator installs Coverage for Bitbucket from Atlassian's install
+            page in one click. There is no paid tier: Bitbucket Cloud apps are not billed through
+            the Marketplace.
           </p>
         </div>
         <div class="availability__act">
-          <a class="btn btn--large btn--block btn--inverse" href="/coverage/docs/#setup">Read the setup guide</a>
+          <a class="btn btn--large btn--block btn--inverse" href="/coverage/install/">Install on your workspace</a>
           <p class="availability__links">
             <a href="/coverage/docs/">Documentation</a>
             <a href="/coverage/privacy/">Privacy policy</a>

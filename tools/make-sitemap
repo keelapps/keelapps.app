@@ -37,6 +37,10 @@ def pages():
         rel = path.relative_to(ROOT)
         if rel.parts[0] in SKIP:
             continue
+        # A page that asks search engines not to index it (a redirect, say)
+        # has no business in the sitemap either.
+        if '<meta name="robots" content="noindex" />' in path.read_text():
+            continue
         found.append(rel)
     # Home first, then each app's product page ahead of its documents.
     return sorted(found, key=lambda rel: (len(rel.parts), str(rel)))
