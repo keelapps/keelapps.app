@@ -32,7 +32,9 @@ than by hand.
 `tools/make-chrome` writes the parts more than one page carries:
 
 - the masthead — the lockup, the app a page belongs to and that app's three
-  pages, and its "Try it free" button once it has a Marketplace listing;
+  pages, and its "Try it free" button once it has a Marketplace listing (or
+  "Install free" when the app has an `<slug>/install/` page instead, as
+  Bitbucket apps do: they install from the developer console);
 - the footer — every app by product, then the page's own fine print, which it
   reads back out of the page and keeps;
 - the home page's catalog, between `<!-- fleet:begin -->` and `<!-- fleet:end -->`;
