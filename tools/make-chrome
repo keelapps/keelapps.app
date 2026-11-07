@@ -148,6 +148,10 @@ class App:
         intro = page.split('<section class="intro', 1)[-1].split("</section>", 1)[0]
         mp = re.search(r'href="(https://marketplace\.atlassian\.com/apps/[^"?]+)[?"]', intro)
         self.marketplace = mp.group(1) if mp else None
+        # Bitbucket Forge apps install from the developer console, not the
+        # Marketplace; such an app has its own /<slug>/install/ page instead.
+        has_install = (ROOT / self.slug / "install" / "index.html").exists()
+        self.install = f"/{self.slug}/install/" if has_install else None
         dur = re.search(r'"duration": "PT(\d+)M(\d+)S"', page)
         self.demo = f"{int(dur.group(1))}:{int(dur.group(2)):02d}" if dur else None
         self.image = ROOT / "assets" / "screenshots" / "cards" / f"{self.slug}.webp"
@@ -166,7 +170,7 @@ class App:
                     f'height="480" loading="lazy" decoding="async" />')
         else:
             shot = "<span>Screenshot at launch</span>"
-        status = ('<span class="app-card__status">Live</span>' if self.live else
+        status = ('<span class="app-card__status">Live</span>' if self.live or self.install else
                   '<span class="app-card__status app-card__status--soon">Coming soon</span>')
         demo = (f'\n    <a href="/{self.slug}/#demo">{PLAY}Demo {self.demo}</a>'
                 if self.demo else "")
@@ -205,6 +209,8 @@ def masthead(app=None, home=False):
                f'<a href="{SUPPORT}">Support</a>']
         if app.live:
             nav.append(f'<a class="btn" href="{app.marketplace}">Try it free</a>')
+        elif app.install:
+            nav.append(f'<a class="btn" href="{app.install}">Install free</a>')
     elif home:
         nav = ['<a href="#apps">Apps</a>',
                '<a href="/guides/">Guides</a>',
