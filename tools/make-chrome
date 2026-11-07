@@ -80,8 +80,10 @@ APPS = [
      ["evergreen", "signoff", "accesslens-confluence"]),
     ("sort-pages", "Sort Pages for Confluence", "Sort Pages", "Confluence", "Page tree order",
      ["curator", "evergreen", "signoff"]),
+    ("coverage", "Coverage for Bitbucket", "Coverage", "Bitbucket", "PR coverage",
+     ["accesslens", "recur", "digest"]),
 ]
-PRODUCTS = ["Jira", "Confluence"]
+PRODUCTS = ["Jira", "Confluence", "Bitbucket"]
 WORDS = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen \
 fifteen sixteen seventeen eighteen nineteen twenty".split()
 
@@ -295,9 +297,13 @@ def fleet():
 
 def related(app):
     cards = "\n".join(BY_SLUG[s].card() for s in app.related)
+    # An app alone on its product (Bitbucket, for now) is followed by apps for
+    # another product, so the heading cannot say they are for the same people.
+    same = all(BY_SLUG[s].product == app.product for s in app.related)
+    title = f"More for the people who run {app.product}" if same else "More from Keelapps"
     return f"""<section class="section related" aria-labelledby="related-title">
   <div class="related__head">
-    <h2 id="related-title">More for the people who run {app.product}</h2>
+    <h2 id="related-title">{title}</h2>
     <a href="/#apps">All {WORDS[len(FLEET)]} apps</a>
   </div>
   <ul class="related__grid">

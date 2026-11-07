@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Code coverage in Bitbucket pull requests — Coverage for Bitbucket</title>
+    <meta
+      name="description"
+      content="Changed-line coverage, uncovered lines marked in the diff, the change against the target branch and every test result, passed ones too, on the Bitbucket Cloud pull request. One pipeline step; nothing leaves Bitbucket."
+    />
+    <link rel="canonical" href="https://keelapps.app/coverage/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://keelapps.app/coverage/" />
+    <meta property="og:title" content="Code coverage in Bitbucket pull requests — Coverage for Bitbucket" />
+    <meta
+      property="og:description"
+      content="Bitbucket shows whether the build passed. Coverage for Bitbucket shows which new lines no test ran, right in the diff, and every test with its output."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/product.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      (function () {
+        var internal = false;
+        try {
+          var mark = new URLSearchParams(location.search).get('internal');
+          if (mark === '1') localStorage.setItem('keelapps-internal', '1');
+          else if (mark === '0') localStorage.removeItem('keelapps-internal');
+          internal = localStorage.getItem('keelapps-internal') === '1';
+        } catch (e) {}
+        gtag('config', 'G-P880MM0XEG', internal ? { traffic_type: 'internal' } : {});
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+        <span class="masthead__sep" aria-hidden="true"></span>
+        <a class="masthead__app" href="/coverage/">Coverage for Bitbucket</a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="/coverage/docs/">Documentation</a>
+        <a href="/coverage/privacy/">Privacy</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <main class="product" id="main">
+      <section class="intro">
+        <p class="eyebrow">For the pull request that says nothing about tests</p>
+        <h1>A pull request should say which of its new lines no test ran.</h1>
+        <div class="intro__split">
+          <p class="lede">
+            Bitbucket Pipelines runs your tests and the pull request shows a green or red build.
+            It does not show coverage, which changed lines were tested, or the tests that passed.
+            Coverage for Bitbucket adds one pipe to your test step. On the pull request you then
+            see changed-line coverage, the change against the target branch, the uncovered lines
+            marked in the diff, and every test with its output. Nothing leaves Bitbucket.
+          </p>
+          <div class="intro__act">
+            <a class="btn btn--large btn--block" href="/coverage/docs/#setup">Set it up in one step</a>
+            <p class="pricing-line">
+              Free on every workspace. Bitbucket Cloud apps are not billed through the Marketplace.
+            </p>
+            <p class="intro__note">Read-only. No token in your pipeline, and the app declares no external network access.</p>
+          </div>
+        </div>
+        <dl class="facts">
+          <div><dt>Works in</dt><dd>Bitbucket Cloud</dd></div>
+          <div><dt>Runs on</dt><dd>Atlassian Forge</dd></div>
+          <div><dt>Your data</dt><dd>Never sent to us</dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+        </dl>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">The gap this fills</p>
+        <div class="gap">
+          <p>
+            <strong>BCLOUD-15935 — show code coverage in pull requests — has 429 votes.</strong>
+            Its neighbours ask to see the output of tests that passed, not only the failures
+            (BCLOUD-15716, 357 votes), and for test reports beyond the first 100 failures
+            (BCLOUD-20312). Bitbucket's own test report still lists failed cases only.
+          </p>
+          <p>
+            So reviewers approve a change without knowing whether anything tested it. Coverage
+            lives in a CI log or an HTML report nobody opens, and it slides a point at a time
+            until someone notices.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">Capabilities</p>
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Untested lines, marked in the diff</h3>
+            <p>
+              Each range of changed lines that no test ran is marked where the reviewer reads the
+              code, with the file's changed-line totals beside it.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Coverage of the change, not just the repository</h3>
+            <p>
+              Line coverage for the whole build and for the lines this pull request changed, so a
+              small, untested change in a big, well-tested codebase still shows.
+            </p>
+          </div>
+          <div class="card">
+            <h3>The change against the target branch</h3>
+            <p>
+              The panel compares the pull request with the latest report on the branch it merges
+              into, and says how many points coverage moves.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Every test, with its output</h3>
+            <p>
+              Every test from your JUnit XML, failures first, passed and skipped ones too. Open any
+              of them to read what it printed.
+            </p>
+          </div>
+          <div class="card">
+            <h3>A merge check for coverage</h3>
+            <p>
+              "Coverage meets the bar" fails when coverage is under the thresholds you set in the
+              pipeline, or drops more points than you allow. On Bitbucket Premium, make it
+              required and it blocks the merge.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Four coverage formats, no token</h3>
+            <p>
+              Cobertura, JaCoCo, LCOV and Go coverprofiles. The pipe writes through the Pipelines
+              proxy, so there is no secret to create or rotate.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">Walkthrough</p>
+        <h2>From a green build to a reviewed one</h2>
+        <ol class="steps">
+          <li>
+            <h3>Install the app on your workspace</h3>
+            <p>
+              It adds a panel and a card to every pull request in the workspace, and a merge check
+              that stays off until you turn it on.
+            </p>
+          </li>
+          <li>
+            <h3>Add the pipe to your test step</h3>
+            <p>
+              Put it in the step's <code>after-script</code>, so it still runs when a test fails,
+              and point <code>COVERAGE_FILE</code> at your coverage report. JUnit XML in the usual
+              folders is found by itself.
+            </p>
+          </li>
+          <li>
+            <h3>Open a pull request</h3>
+            <p>
+              The diff marks untested changed lines. The Coverage and tests panel on the Overview
+              tab has the numbers, the files and the tests.
+            </p>
+          </li>
+          <li>
+            <h3>Optional: block merges</h3>
+            <p>
+              In Repository settings → Custom merge checks, turn on "Coverage meets the bar". On
+              Bitbucket Premium, tick required to block merges that fail it.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">Compared honestly</p>
+        <h2>Against what Bitbucket does today</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Bitbucket Cloud</th>
+                <th>Coverage for Bitbucket</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Coverage on the pull request?</td>
+                <td class="absent">No — a Code Insights report only if you build one</td>
+                <td><span class="answer">Overall and changed-line coverage, in a panel and a card</span></td>
+              </tr>
+              <tr>
+                <td>Which changed lines no test ran?</td>
+                <td class="absent">No</td>
+                <td><span class="answer">Marked in the diff</span></td>
+              </tr>
+              <tr>
+                <td>Tests that passed?</td>
+                <td class="absent">A count; only failed cases are listed</td>
+                <td><span class="answer">Every test, with its output</span></td>
+              </tr>
+              <tr>
+                <td>Block a merge on coverage?</td>
+                <td class="absent">No</td>
+                <td><span class="answer">A merge check, with thresholds and an allowed drop (blocking on Premium)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">Limits</p>
+        <h2>Limits we state up front</h2>
+        <div class="prose">
+          <p>
+            <strong>It reads what your build writes.</strong> Coverage comes from the coverage file
+            your tests produce; the app does not run your tests or instrument your code.
+          </p>
+          <p>
+            <strong>Bitbucket Pipelines, or a token.</strong> In Pipelines the pipe needs no
+            credentials. Another CI can run the same image with a repository access token.
+          </p>
+          <p>
+            <strong>Code Insights limits apply.</strong> A report carries at most 1,000 annotations,
+            so a change with more uncovered ranges than that, or a build with more than 1,000
+            tests, shows the first 1,000 and says so. Failures come first.
+          </p>
+          <p>
+            <strong>Line coverage only.</strong> Branch coverage is not reported in this release.
+          </p>
+        </div>
+      </section>
+
+      <!-- app-guides:begin -->
+      <!-- app-guides:end -->
+
+      <section class="deep availability" id="availability" aria-labelledby="availability-title">
+        <div class="availability__text">
+          <p class="eyebrow">Availability</p>
+          <h2 id="availability-title">Free, on every Bitbucket Cloud workspace.</h2>
+          <p>
+            Coverage for Bitbucket installs into your workspace from the Atlassian Marketplace.
+            There is no paid tier: Bitbucket Cloud apps are not billed through the Marketplace.
+          </p>
+        </div>
+        <div class="availability__act">
+          <a class="btn btn--large btn--block btn--inverse" href="/coverage/docs/#setup">Read the setup guide</a>
+          <p class="availability__links">
+            <a href="/coverage/docs/">Documentation</a>
+            <a href="/coverage/privacy/">Privacy policy</a>
+            <a href="https://keelapps.atlassian.net/helpcenter/support/">Ask a question</a>
+            <a href="/security/">Report a security issue</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- related:begin -->
+      <section class="section related" aria-labelledby="related-title">
+        <div class="related__head">
+          <h2 id="related-title">More from Keelapps</h2>
+          <a href="/#apps">All thirteen apps</a>
+        </div>
+        <ul class="related__grid">
+          <li class="app-card" data-host="jira">
+            <a class="app-card__shot" href="/accesslens/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/accesslens.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Jira · Permission audit</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/accesslens/">Prove who can access what in Jira — at a point in time.</a></h3>
+            <p class="app-card__name">AccessLens for Jira <span class="app-card__badge">Runs on Atlassian</span></p>
+            <p class="app-card__links">
+              <a href="/accesslens/">Product page</a>
+              <a href="/accesslens/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:06</a>
+              <a href="/accesslens/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="jira">
+            <a class="app-card__shot" href="/recur/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/recur.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Jira · Recurring tasks</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/recur/">The work that has to happen every month, happening every month.</a></h3>
+            <p class="app-card__name">Recur for Jira <span class="app-card__badge">Runs on Atlassian</span></p>
+            <p class="app-card__links">
+              <a href="/recur/">Product page</a>
+              <a href="/recur/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:00</a>
+              <a href="/recur/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="jira">
+            <a class="app-card__shot" href="/digest/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/digest.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span>Jira · Scheduled reporting</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/digest/">Six emails about one issue, folded into one summary.</a></h3>
+            <p class="app-card__name">Digest for Jira <span class="app-card__badge">Runs on Atlassian</span></p>
+            <p class="app-card__links">
+              <a href="/digest/">Product page</a>
+              <a href="/digest/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:01</a>
+              <a href="/digest/docs/">Docs</a>
+            </p>
+          </li>
+        </ul>
+      </section>
+      <!-- related:end -->
+    </main>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head">Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Bitbucket</p>
+          <ul class="footer__list">
+            <li><a href="/coverage/">Coverage</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/guides/">Guides</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=coverage&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Coverage for Bitbucket is an Atlassian Forge app. It runs entirely inside
+          Atlassian's infrastructure and declares no external network access — your data is
+          never sent to us or to anyone else. Not affiliated with Atlassian. Bitbucket is a
+          trademark of Atlassian.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

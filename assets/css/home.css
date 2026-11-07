@@ -251,8 +251,9 @@
   }
 }
 
-.fleet:has(#host-jira:checked) .app-card[data-host="confluence"],
-.fleet:has(#host-confluence:checked) .app-card[data-host="jira"] {
+.fleet:has(#host-jira:checked) .app-card:not([data-host="jira"]),
+.fleet:has(#host-confluence:checked) .app-card:not([data-host="confluence"]),
+.fleet:has(#host-bitbucket:checked) .app-card:not([data-host="bitbucket"]) {
   display: none;
 }
 

@@ -6,10 +6,10 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#E5DECF" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
-    <title>Keelapps — apps for Jira and Confluence Cloud admins</title>
+    <title>Keelapps — apps for Jira, Confluence and Bitbucket Cloud admins</title>
     <meta
       name="description"
-      content="Keelapps builds single-purpose apps for Jira and Confluence Cloud admins: permission audits, recurring tasks, page approvals, stale pages and bulk clean-up."
+      content="Keelapps builds single-purpose apps for Jira, Confluence and Bitbucket Cloud admins: permission audits, recurring tasks, page approvals, stale pages, bulk clean-up and pull request coverage."
     />
     <link rel="canonical" href="https://keelapps.app/" />
     <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
@@ -30,7 +30,7 @@
         "name": "Keelapps",
         "url": "https://keelapps.app/",
         "logo": "https://keelapps.app/assets/icon.png",
-        "description": "Keelapps builds single-purpose apps for Jira and Confluence Cloud admins: permission audits, recurring tasks, page approvals, stale pages and bulk clean-up.",
+        "description": "Keelapps builds single-purpose apps for Jira, Confluence and Bitbucket Cloud admins: permission audits, recurring tasks, page approvals, stale pages, bulk clean-up and pull request coverage.",
         "sameAs": [
           "https://marketplace.atlassian.com/vendors/1003432963/keelapps",
           "https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw"
@@ -93,15 +93,16 @@
 
     <main class="home" id="main">
       <section class="hero">
-        <p class="eyebrow">Apps for Jira &amp; Confluence Cloud · Built on Atlassian Forge</p>
+        <p class="eyebrow">Apps for Jira, Confluence &amp; Bitbucket Cloud · Built on Atlassian Forge</p>
         <h1 class="hero__title">Pass the access audit. Automate the routine. Clean up in bulk.</h1>
         <p class="hero__lede">
-          Twelve single-purpose apps for the people who run Jira and Confluence Cloud —
-          permission audits, recurring tasks, page approvals, stale pages, bulk clean-up.
+          Thirteen single-purpose apps for the people who run Jira, Confluence and Bitbucket
+          Cloud — permission audits, recurring tasks, page approvals, stale pages, bulk clean-up,
+          coverage on pull requests.
           Each does one job precisely, and runs entirely inside your own Atlassian tenant.
         </p>
         <p class="hero__actions">
-          <a class="btn btn--large" href="#apps">See all twelve apps<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10" /><path d="M3.5 8.5 8 13l4.5-4.5" /></svg></a>
+          <a class="btn btn--large" href="#apps">See all thirteen apps<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10" /><path d="M3.5 8.5 8 13l4.5-4.5" /></svg></a>
           <a href="/guides/">Read the how-to guides</a>
         </p>
         <ul class="hero__facts" aria-label="Every app">
@@ -127,7 +128,7 @@
       <section class="fleet" id="apps" aria-labelledby="apps-title">
         <div class="fleet__intro">
           <p class="eyebrow">The fleet</p>
-          <h2 id="apps-title">Twelve apps. One job each.</h2>
+          <h2 id="apps-title">Thirteen apps. One job each.</h2>
           <p>
             Start from the gap you are trying to close. Every live app comes with a
             one-minute demo, its own documentation and its own privacy policy.
@@ -154,11 +155,13 @@
         <fieldset class="filter">
           <legend>Show apps for</legend>
           <input type="radio" name="host" id="host-all" checked />
-          <label for="host-all">All <span>12</span></label>
+          <label for="host-all">All <span>13</span></label>
           <input type="radio" name="host" id="host-jira" />
           <label for="host-jira">Jira <span>6</span></label>
           <input type="radio" name="host" id="host-confluence" />
           <label for="host-confluence">Confluence <span>6</span></label>
+          <input type="radio" name="host" id="host-bitbucket" />
+          <label for="host-bitbucket">Bitbucket <span>1</span></label>
         </fieldset>
 
         <ol class="fleet__grid">
@@ -292,6 +295,16 @@
               <a href="/sort-pages/">Product page</a>
               <a href="/sort-pages/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:04</a>
               <a href="/sort-pages/docs/">Docs</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="bitbucket">
+            <a class="app-card__shot" href="/coverage/" tabindex="-1" aria-hidden="true"><span>Screenshot at launch</span></a>
+            <p class="app-card__meta"><span>Bitbucket · PR coverage</span><span class="app-card__status app-card__status--soon">Coming soon</span></p>
+            <h3 class="app-card__problem"><a href="/coverage/">A pull request should say which of its new lines no test ran.</a></h3>
+            <p class="app-card__name">Coverage for Bitbucket</p>
+            <p class="app-card__links">
+              <a href="/coverage/">Product page</a>
+              <a href="/coverage/docs/">Docs</a>
             </p>
           </li>
         </ol>
@@ -458,6 +471,12 @@
           </ul>
         </div>
         <div>
+          <p class="footer__head">Bitbucket</p>
+          <ul class="footer__list">
+            <li><a href="/coverage/">Coverage</a></li>
+          </ul>
+        </div>
+        <div>
           <p class="footer__head">Keelapps</p>
           <ul class="footer__list">
             <li><a href="/guides/">Guides</a></li>
@@ -472,7 +491,8 @@
       <div class="footer__base">
         <p class="footer__fine">
           Keelapps builds administration and compliance apps for Atlassian Cloud. Not
-          affiliated with Atlassian. Jira and Confluence are trademarks of Atlassian.
+          affiliated with Atlassian. Jira, Confluence and Bitbucket are trademarks of
+          Atlassian.
         </p>
       </div>
     </footer>
