@@ -223,9 +223,10 @@
 }
 
 
-/* The deep band: one per page, below everything the page is about, where the
-   plate inverts. Emphasis on this site is carried by inversion rather than by
-   a colour, and this is the largest inversion there is. */
+/* The deep band, where the plate inverts. Emphasis on this site is carried by
+   inversion rather than by a colour, and this is the largest inversion there
+   is: one per page, below everything the page is about. The home page has a
+   second, directly under the waterline, for the app it puts forward first. */
 
 .deep {
   background: var(--color-ink);

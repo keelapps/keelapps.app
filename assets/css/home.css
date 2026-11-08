@@ -1,34 +1,52 @@
-/* Home page. The composition is a cross-section: the promise above the
-   waterline on the tint, the mark sitting on the waterline with its keel
-   hanging into the water, the fleet below it, and the deep band — what every
-   hull shares — at the bottom. */
+/* Home page. The composition is a lines plan: the promise above the
+   waterline on the tint, beside the hull it is drawn from; the one app we put
+   forward first on the deep plate; the fleet; what every hull shares; and the
+   offer once more, inverted, before support. */
 
 .home {
-  --mark-w: clamp(13.75rem, 34vw, 25rem);
   width: 100%;
 }
 
 
 /* Above the waterline. The masthead carries the lockup, so the hero opens on
-   the offer: who these apps are for, and what they do. */
+   the offer: who these apps are for, and what they do. From 64em the drawing
+   stands beside it, and the terms every app shares run underneath both. */
 
 .hero {
   background: var(--color-tint);
   border-bottom: var(--rule-gauge) solid var(--color-rule-strong);
-  padding: var(--space-xx-large) var(--bleed) var(--space-xxx-large);
+  display: grid;
+  gap: var(--space-x-large) var(--space-xx-large);
+  padding: var(--space-xx-large) var(--bleed) var(--space-xx-large);
 }
 
 @media (min-width: 64em) {
   .hero {
+    align-items: end;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     padding-top: var(--space-xxx-large);
+  }
+
+  .hero__facts {
+    grid-column: 1 / -1;
   }
 }
 
 .hero__title {
-  font-size: clamp(2.5rem, 1.2rem + 5vw, 4.75rem);
+  font-size: clamp(2.4rem, 0.9rem + 3.3vw, 3.6rem);
   letter-spacing: -0.025em;
   line-height: 1.02;
-  max-width: 16em;
+}
+
+/* One clause a line: the three jobs read as a list, the last in muted ink so
+   the eye settles on the first two. */
+
+.hero__title span {
+  display: block;
+}
+
+.hero__title span:last-child {
+  color: var(--color-ink-muted);
 }
 
 .hero__lede {
@@ -47,114 +65,190 @@
   margin-top: var(--space-x-large);
 }
 
-/* What holds for every app, as a row of station labels under the offer: the
-   terms a buyer checks before reading any further. Text, so muted, not faint. */
+/* The drawing: the half-breadth plan of one hull, twelve waterlines held fair
+   by thirteen weights, one for each app. Ink at dilutions, like every other
+   line on the plate; the heaviest weight is the bulb's coral, the only place
+   the colour appears outside the mark. */
 
-.hero__facts {
+.hero__plan {
+  color: var(--color-ink);
+  margin: 0;
+  max-width: 36rem;
+}
+
+.hero__plan-drawing {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.hero__plan-weight {
+  fill: var(--color-coral);
+  stroke: var(--color-coral);
+}
+
+.hero__plan figcaption {
+  border-top: var(--rule-gauge) solid var(--color-rule-strong);
   color: var(--color-ink-muted);
   display: flex;
   flex-wrap: wrap;
   font-family: var(--font-family-mono);
   font-size: var(--font-size-x-small);
-  gap: var(--space-small) var(--space-large);
+  gap: var(--space-x-small) var(--space-large);
+  justify-content: space-between;
   letter-spacing: var(--tracking-wide);
-  list-style: none;
-  margin-top: var(--space-large);
-  padding: 0;
+  margin-top: var(--space-small);
+  padding-top: var(--space-small);
   text-transform: uppercase;
 }
 
+/* What holds for every app: four numbered stations under the offer, the
+   terms a buyer checks before reading any further. */
+
+.hero__facts {
+  border-top: var(--rule-gauge) solid var(--color-rule-strong);
+  counter-reset: fact;
+  display: grid;
+  gap: var(--space-medium) var(--space-large);
+  list-style: none;
+  padding: var(--space-medium) 0 0;
+}
+
+@media (min-width: 40em) {
+  .hero__facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64em) {
+  .hero__facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 .hero__facts li {
-  align-items: flex-start;
-  display: flex;
-  gap: var(--space-x-small);
+  counter-increment: fact;
+  font-weight: 500;
   margin: 0;
 }
 
-/* A short rule before each, the gauge every line on the plate is drawn at. */
-
 .hero__facts li::before {
-  background: var(--color-rule-strong);
-  content: "";
-  flex: none;
-  height: var(--rule-gauge);
-  margin-top: 0.6em;
-  width: 0.9em;
+  color: var(--color-ink-faint);
+  content: counter(fact, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  font-weight: 400;
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: 0.3em;
 }
 
 
-/* The waterline itself is the hero's bottom rule. The mark sits on it: its
-   own waterline strokes centred on the rule, the hull and keel below. The
-   offset is the mark's waterline (32 of its 672 viewBox units down) at
-   whatever width the mark is drawn. Centred on a narrow screen, where the
-   fleet opens underneath it; on the right from 64em, beside the fleet's
-   heading. */
+/* Start here: the app we put forward first, on the deep plate directly below
+   the waterline, so it reads as a recommendation rather than a fourteenth
+   card. Copy and the app's own screen side by side from 64em. */
 
-.waterline {
-  height: 0;
-  position: relative;
-}
-
-.waterline__mark {
-  color: var(--color-ink);
-  height: auto;
-  left: 50%;
-  position: absolute;
-  top: calc(var(--mark-w) * -0.0476);
-  transform: translateX(-50%);
-  width: var(--mark-w);
+.start {
+  display: grid;
+  gap: var(--space-x-large) var(--space-xx-large);
+  padding-block: var(--space-xx-large) var(--space-xxx-large);
 }
 
 @media (min-width: 64em) {
-  .waterline__mark {
-    left: auto;
-    right: var(--bleed);
-    transform: none;
+  .start {
+    align-items: center;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   }
 }
 
-/* Station marks at the two ends of the datum, where the margins are wide
-   enough to hold them — the same marginalia as the share card. Generated
-   content, so they repeat the drawing's vocabulary without being read out. */
+.start h2 {
+  font-size: var(--font-size-title);
+  line-height: var(--line-height-tight);
+}
 
-@media (min-width: 90em) {
-  .waterline::before,
-  .waterline::after {
-    bottom: 0.6rem;
-    color: var(--color-ink-faint);
-    font-family: var(--font-family-mono);
-    font-size: var(--font-size-x-small);
-    letter-spacing: var(--tracking-wide);
-    position: absolute;
-  }
+.start__lede {
+  color: var(--color-canvas-muted);
+  font-size: var(--font-size-large);
+  line-height: 1.55;
+  margin-top: var(--space-medium);
+  max-width: 32em;
+}
 
-  .waterline::before {
-    content: "st.00";
-    left: 3rem;
-  }
+.start__checks {
+  border-top: var(--rule-gauge) solid var(--color-canvas-rule);
+  counter-reset: check;
+  list-style: none;
+  margin-top: var(--space-large);
+  padding: 0;
+}
 
-  .waterline::after {
-    content: "wl +0";
-    right: 3rem;
-  }
+.start__checks li {
+  border-bottom: var(--rule-gauge) solid var(--color-canvas-rule);
+  counter-increment: check;
+  display: flex;
+  gap: var(--space-medium);
+  margin: 0;
+  padding-block: var(--space-small);
+}
+
+.start__checks li::before {
+  color: var(--color-canvas-faint);
+  content: counter(check, upper-alpha);
+  flex: none;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  padding-top: 0.3em;
+}
+
+.start__links {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 500;
+  gap: var(--space-small) var(--space-large);
+  margin-top: var(--space-large);
+}
+
+.start .btn--quiet {
+  border-color: var(--color-canvas-faint);
+  color: var(--color-canvas);
+}
+
+.start .btn--quiet:hover {
+  background: rgb(var(--rgb-canvas) / 0.08);
+  border-color: var(--color-canvas);
+}
+
+/* The screen sits in a window of the above-waterline tint on the dark plate,
+   the same frame the cards and demo posters use. */
+
+.start__shot {
+  margin: 0;
+}
+
+.start__shot img {
+  background: var(--color-canvas);
+  border: 0.625rem solid rgb(var(--rgb-canvas) / 0.1);
+  border-radius: var(--radius-large);
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.start__shot figcaption {
+  color: var(--color-canvas-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  margin-top: var(--space-small);
+  text-transform: uppercase;
 }
 
 
-/* Below the waterline: the fleet. On a narrow screen the heading waits until
-   the keel has cleared it. */
+/* The fleet. */
 
 .fleet {
-  padding: calc(var(--mark-w) * 0.55 + var(--space-x-large)) var(--bleed) var(--space-xxx-large);
-}
-
-@media (min-width: 64em) {
-  .fleet {
-    padding-top: var(--space-xxx-large);
-  }
-
-  .fleet__intro {
-    max-width: calc(100% - var(--mark-w) - var(--space-x-large));
-  }
+  padding: var(--space-xxx-large) var(--bleed);
 }
 
 .fleet__intro {
@@ -170,7 +264,8 @@
 
 .fleet h2,
 .guides h2,
-.deep h2,
+.built h2,
+.cta h2,
 .support h2 {
   font-size: var(--font-size-title);
 }
@@ -311,41 +406,7 @@
 }
 
 
-/* Start here: the app we put forward first, set apart from the grid on the
-   tint so it reads as a recommendation rather than a thirteenth card. */
-
-.spotlight {
-  background: var(--color-tint);
-  border: var(--rule-gauge) solid var(--color-rule-strong);
-  border-radius: var(--radius-large);
-  margin-top: var(--space-x-large);
-  max-width: 52rem;
-  padding: var(--space-large);
-}
-
-.spotlight h3 {
-  font-size: var(--font-size-heading);
-  line-height: var(--line-height-snug);
-  margin-top: var(--space-x-small);
-}
-
-.spotlight p:not(.eyebrow) {
-  color: var(--color-ink-muted);
-  margin-top: var(--space-small);
-  max-width: 40em;
-}
-
-.spotlight .spotlight__links {
-  color: var(--color-ink);
-  display: flex;
-  flex-wrap: wrap;
-  font-weight: 500;
-  gap: var(--space-x-small) var(--space-large);
-  margin-top: var(--space-medium);
-}
-
-
-/* Guides: the newest how-tos, between the fleet and the deep band. */
+/* Guides: the newest how-tos, between the fleet and the shared stations. */
 
 .guides {
   border-top: var(--rule-gauge) solid var(--color-rule);
@@ -364,14 +425,21 @@
 }
 
 
-/* The deep band: four things every app shares, numbered as stations. */
+/* What every hull shares: four stations on the tint, between the guides and
+   the closing offer. */
 
-.deep__intro {
+.built {
+  background: var(--color-tint);
+  border-block: var(--rule-gauge) solid var(--color-rule-strong);
+  padding: var(--space-xx-large) var(--bleed) var(--space-xxx-large);
+}
+
+.built__intro {
   max-width: 44rem;
 }
 
-.deep__intro p:last-child {
-  color: var(--color-canvas-muted);
+.built__intro p:last-child {
+  color: var(--color-ink-muted);
   font-size: var(--font-size-large);
   line-height: 1.55;
   margin-top: var(--space-medium);
@@ -401,14 +469,14 @@
 }
 
 .principles li {
-  border-top: var(--rule-gauge) solid var(--color-canvas-rule);
+  border-top: var(--rule-gauge) solid var(--color-rule-strong);
   counter-increment: principle;
   margin: 0;
   padding-top: var(--space-medium);
 }
 
 .principles li::before {
-  color: var(--color-canvas-faint);
+  color: var(--color-ink-faint);
   content: "st." counter(principle, decimal-leading-zero);
   display: block;
   font-family: var(--font-family-mono);
@@ -423,8 +491,46 @@
 }
 
 .principles p {
-  color: var(--color-canvas-muted);
+  color: var(--color-ink-muted);
   margin-top: var(--space-x-small);
+}
+
+
+/* The offer once more, inverted: price, trial and the way in. */
+
+.cta {
+  align-items: end;
+  display: grid;
+  gap: var(--space-large) var(--space-xx-large);
+  padding-block: var(--space-xxx-large);
+}
+
+@media (min-width: 64em) {
+  .cta {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+.cta h2 {
+  font-size: var(--font-size-display);
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+}
+
+.cta__copy p:last-child {
+  color: var(--color-canvas-muted);
+  font-size: var(--font-size-large);
+  line-height: 1.55;
+  margin-top: var(--space-medium);
+  max-width: 34em;
+}
+
+.cta__actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 500;
+  gap: var(--space-small) var(--space-large);
 }
 
 
@@ -491,23 +597,22 @@
 }
 
 
-/* Motion. The offer settles in line by line on load, the mark last, as if
-   coming to rest on the waterline; the stations in the deep band rise like the
-   cards above them (the keyframes are in site.css). Only opacity and position
-   move — no colour changes — and none of it runs for a visitor who has asked
-   for less motion. */
+/* Motion. The offer settles in line by line on load, the drawing last, as if
+   coming to rest on the waterline; the stations below rise as they scroll in
+   (the keyframes are in site.css). Only opacity and position move, no
+   colour changes, and none of it runs for a visitor who has asked for less
+   motion. */
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero > * {
+  .hero__copy > * {
     animation: settle 0.7s cubic-bezier(0.33, 1, 0.68, 1) both;
   }
 
-  .hero > :nth-child(2) { animation-delay: 0.07s; }
-  .hero > :nth-child(3) { animation-delay: 0.14s; }
-  .hero > :nth-child(4) { animation-delay: 0.21s; }
-  .hero > :nth-child(5) { animation-delay: 0.28s; }
+  .hero__copy > :nth-child(2) { animation-delay: 0.07s; }
+  .hero__copy > :nth-child(3) { animation-delay: 0.14s; }
+  .hero__copy > :nth-child(4) { animation-delay: 0.21s; }
 
-  .waterline__mark {
+  .hero__plan {
     animation: settle 0.9s 0.3s cubic-bezier(0.33, 1, 0.68, 1) both;
   }
 
