@@ -1,7 +1,6 @@
 /* Home page. The composition is a lines plan: the promise above the
-   waterline on the tint, beside the hull it is drawn from; the one app we put
-   forward first on the deep plate; the fleet; what every hull shares; and the
-   offer once more, inverted, before support. */
+   waterline on the tint, beside the hull it is drawn from; the fleet; what
+   every hull shares; and the offer once more, inverted, before support. */
 
 .home {
   width: 100%;
@@ -141,107 +140,6 @@
   font-weight: 400;
   letter-spacing: var(--tracking-wide);
   margin-bottom: 0.3em;
-}
-
-
-/* Start here: the app we put forward first, on the deep plate directly below
-   the waterline, so it reads as a recommendation rather than a fourteenth
-   card. Copy and the app's own screen side by side from 64em. */
-
-.start {
-  display: grid;
-  gap: var(--space-x-large) var(--space-xx-large);
-  padding-block: var(--space-xx-large) var(--space-xxx-large);
-}
-
-@media (min-width: 64em) {
-  .start {
-    align-items: center;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  }
-}
-
-.start h2 {
-  font-size: var(--font-size-title);
-  line-height: var(--line-height-tight);
-}
-
-.start__lede {
-  color: var(--color-canvas-muted);
-  font-size: var(--font-size-large);
-  line-height: 1.55;
-  margin-top: var(--space-medium);
-  max-width: 32em;
-}
-
-.start__checks {
-  border-top: var(--rule-gauge) solid var(--color-canvas-rule);
-  counter-reset: check;
-  list-style: none;
-  margin-top: var(--space-large);
-  padding: 0;
-}
-
-.start__checks li {
-  border-bottom: var(--rule-gauge) solid var(--color-canvas-rule);
-  counter-increment: check;
-  display: flex;
-  gap: var(--space-medium);
-  margin: 0;
-  padding-block: var(--space-small);
-}
-
-.start__checks li::before {
-  color: var(--color-canvas-faint);
-  content: counter(check, upper-alpha);
-  flex: none;
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-x-small);
-  padding-top: 0.3em;
-}
-
-.start__links {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  font-weight: 500;
-  gap: var(--space-small) var(--space-large);
-  margin-top: var(--space-large);
-}
-
-.start .btn--quiet {
-  border-color: var(--color-canvas-faint);
-  color: var(--color-canvas);
-}
-
-.start .btn--quiet:hover {
-  background: rgb(var(--rgb-canvas) / 0.08);
-  border-color: var(--color-canvas);
-}
-
-/* The screen sits in a window of the above-waterline tint on the dark plate,
-   the same frame the cards and demo posters use. */
-
-.start__shot {
-  margin: 0;
-}
-
-.start__shot img {
-  background: var(--color-canvas);
-  border: 0.625rem solid rgb(var(--rgb-canvas) / 0.1);
-  border-radius: var(--radius-large);
-  display: block;
-  height: auto;
-  width: 100%;
-}
-
-.start__shot figcaption {
-  color: var(--color-canvas-muted);
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-x-small);
-  letter-spacing: var(--tracking-wide);
-  margin-top: var(--space-small);
-  text-transform: uppercase;
 }
 
 
