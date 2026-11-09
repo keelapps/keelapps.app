@@ -23,6 +23,44 @@
     <meta property="og:image:width" content="1840" />
     <meta property="og:image:height" content="900" />
     <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Coverage — PR Code Coverage & Test Results for Bitbucket",
+        "alternateName": "Coverage for Bitbucket",
+        "description": "Code coverage and test results on Bitbucket Cloud pull requests: changed-line coverage, the change against the target branch, uncovered lines marked in the diff, every test with its output, and a merge check. One pipe in your pipeline; nothing leaves Bitbucket.",
+        "url": "https://keelapps.app/coverage/",
+        "image": "https://keelapps.app/assets/screenshots/coverage-preview.png",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Bitbucket Cloud",
+        "installUrl": "https://keelapps.app/coverage/install/",
+        "softwareHelp": {
+          "@type": "CreativeWork",
+          "url": "https://keelapps.app/coverage/docs/"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free on every Bitbucket Cloud workspace."
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Keelapps",
+          "url": "https://keelapps.app/"
+        },
+        "video": {
+          "@type": "VideoObject",
+          "name": "Coverage for Bitbucket — code coverage and test results on every pull request",
+          "description": "Code coverage and test results on Bitbucket Cloud pull requests: changed-line coverage, the change against the target branch, uncovered lines marked in the diff, every test with its output, and a merge check. One pipe in your pipeline; nothing leaves Bitbucket.",
+          "thumbnailUrl": "https://keelapps.app/assets/screenshots/coverage-preview.png",
+          "uploadDate": "2026-11-08",
+          "duration": "PT0M48S",
+          "embedUrl": "https://www.youtube-nocookie.com/embed/3DpI5S5Nnn4"
+        }
+      }
+    </script>
     <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/assets/css/reset.css" />
@@ -107,15 +145,22 @@
       </section>
 
       <figure class="showcase" id="demo">
-        <img
-          src="/assets/screenshots/coverage-preview.png"
+        <iframe
+          class="showcase__player"
+          src="https://www.youtube-nocookie.com/embed/3DpI5S5Nnn4"
+          srcdoc="<style>*{margin:0;padding:0}html,body{height:100%;overflow:hidden;background:#0F2536}a{display:block;height:100%;position:relative}img{display:block;width:100%;height:100%;object-fit:cover}span{position:absolute;inset:0;margin:auto;width:5rem;height:5rem;border-radius:50%;background:rgba(15,37,54,.86);color:#F4EFE6;display:grid;place-items:center;font:2rem/1 sans-serif}a:hover span{background:rgba(15,37,54,1)}</style><a href='https://www.youtube-nocookie.com/embed/3DpI5S5Nnn4?autoplay=1' aria-label='Play the Coverage for Bitbucket product demo'><img src='/assets/screenshots/coverage-preview.png' alt=''><span>&#9654;</span></a>"
           width="1840"
           height="900"
-          alt="A Bitbucket pull request diff. Above app/calc.py the Coverage report says 6 of 7 changed lines are covered; under line 13 it says the line is not covered by tests."
-        />
+          title="Coverage for Bitbucket — code coverage and test results on every pull request (product demo)"
+          loading="lazy"
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
         <figcaption>
-          A pull request diff on Bitbucket Cloud: the file's changed-line coverage at the top,
-          and the one new line no test ran marked where the reviewer reads it.
+          48 seconds, start to finish: install it, add the pipe to your test step, then see
+          coverage, the uncovered lines, every test and the merge check on a pull request.
+          <a href="https://www.youtube.com/watch?v=3DpI5S5Nnn4">Watch on YouTube</a>.
         </figcaption>
       </figure>
 
