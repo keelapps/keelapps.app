@@ -117,9 +117,36 @@
 }
 
 .facts dd {
+  align-items: center;
+  display: flex;
   font-size: 106%;
   font-weight: 500;
+  gap: 0.5em;
   margin: 0.25em 0 0;
+}
+
+.facts .product-icon {
+  flex: none;
+  height: 1.2em;
+  width: 1.2em;
+}
+
+/* The app as the Marketplace shows it: its icon and its listing name, above
+   the line that says who it is for. */
+
+.intro__app {
+  align-items: center;
+  display: flex;
+  font-weight: 600;
+  gap: 0.75em;
+  margin-bottom: var(--space-medium);
+}
+
+.intro__app .app-icon {
+  border-radius: 22%;
+  flex: none;
+  height: 3rem;
+  width: 3rem;
 }
 
 

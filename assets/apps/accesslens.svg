@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AccessLens">
+  <rect width="512" height="512" rx="114" fill="#0052cc"/>
+  <g fill="#ffffff">
+    <rect x="158" y="158" width="56" height="56" rx="12"/>
+    <rect x="228" y="158" width="56" height="56" rx="12" fill-opacity="0.38"/>
+    <rect x="158" y="228" width="56" height="56" rx="12" fill-opacity="0.38"/>
+    <rect x="228" y="228" width="56" height="56" rx="12"/>
+  </g>
+  <circle cx="221" cy="221" r="122" fill="none" stroke="#ffffff" stroke-width="34"/>
+  <path d="M309 309 L412 412" stroke="#ffffff" stroke-width="46" stroke-linecap="round"/>
+</svg>

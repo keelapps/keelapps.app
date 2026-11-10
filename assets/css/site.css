@@ -81,8 +81,17 @@
 }
 
 .masthead__app {
+  align-items: center;
+  display: inline-flex;
   font-weight: 500;
+  gap: 0.5em;
   text-decoration-color: transparent;
+}
+
+.masthead__app .app-icon {
+  border-radius: 22%;
+  height: 1.5em;
+  width: 1.5em;
 }
 
 .masthead__app:hover {
@@ -362,6 +371,7 @@
 }
 
 .app-card__meta {
+  align-items: center;
   color: var(--color-ink-muted);
   display: flex;
   font-family: var(--font-family-mono);
@@ -371,6 +381,18 @@
   letter-spacing: var(--tracking-wide);
   margin-top: var(--space-medium);
   text-transform: uppercase;
+}
+
+.app-card__meta > span:first-child {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.6em;
+}
+
+.app-card__meta .product-icon {
+  flex: none;
+  height: 1.35em;
+  width: 1.35em;
 }
 
 .app-card__status {
@@ -424,7 +446,23 @@
   text-transform: uppercase;
 }
 
+.app-card__id {
+  align-items: center;
+  color: var(--color-ink);
+  display: inline-flex;
+  font-weight: 500;
+  gap: 0.6em;
+}
+
+.app-card__id .app-icon {
+  border-radius: 22%;
+  flex: none;
+  height: 1.75em;
+  width: 1.75em;
+}
+
 .app-card__links {
+  align-items: baseline;
   display: flex;
   flex-wrap: wrap;
   font-size: var(--font-size-small);
@@ -436,6 +474,18 @@
 .app-card__links a {
   align-items: baseline;
   display: inline-flex;
+}
+
+/* The way in sits last and reads as the card's one action: ink, set heavier,
+   with an arrow. Still a link, not a button, so twelve cards do not shout. */
+
+.app-card__get {
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.app-card__get::after {
+  content: "\2009\2197";
 }
 
 .app-card__links svg {
@@ -521,11 +571,19 @@
 }
 
 .footer__head {
+  align-items: center;
+  display: flex;
   font-family: var(--font-family-mono);
+  gap: 0.6em;
   font-size: var(--font-size-x-small);
   letter-spacing: var(--tracking-wide);
   margin-bottom: var(--space-small);
   text-transform: uppercase;
+}
+
+.footer__head .product-icon {
+  height: 1.4em;
+  width: 1.4em;
 }
 
 .footer__list {

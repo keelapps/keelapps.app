@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Sort Pages">
+  <rect width="512" height="512" rx="114" fill="#0052cc"/>
+
+  <path d="M142 112 V 360" stroke="#ffffff" stroke-width="34" stroke-linecap="round" fill="none"/>
+  <path d="M86 318 L142 390 L198 318" stroke="#ffffff" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <rect x="240" y="112" width="120" height="52" rx="26" fill="#ffffff"/>
+  <rect x="240" y="230" width="170" height="52" rx="26" fill="#ffffff"/>
+  <rect x="240" y="348" width="210" height="52" rx="26" fill="#ffffff"/>
+</svg>
