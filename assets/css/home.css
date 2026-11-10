@@ -1,6 +1,6 @@
-/* Home page. The composition is a lines plan: the promise above the
-   waterline on the tint, beside the hull it is drawn from; the fleet; what
-   every hull shares; and the offer once more, inverted, before support. */
+/* Home page. The promise above the waterline on the tint, beside every app's
+   Marketplace icon by product; the fleet; what every hull shares, beside the
+   hull it is drawn from; and the offer once more, inverted, before support. */
 
 .home {
   width: 100%;
@@ -8,8 +8,9 @@
 
 
 /* Above the waterline. The masthead carries the lockup, so the hero opens on
-   the offer: who these apps are for, and what they do. From 64em the drawing
-   stands beside it, and the terms every app shares run underneath both. */
+   the offer: who these apps are for, and what they do. From 64em the shelf of
+   app icons stands beside it, and the terms every app shares run underneath
+   both. */
 
 .hero {
   background: var(--color-tint);
@@ -64,42 +65,95 @@
   margin-top: var(--space-x-large);
 }
 
-/* The drawing: the half-breadth plan of one hull, twelve waterlines held fair
-   by thirteen weights, one for each app. Ink at dilutions, like every other
-   line on the plate; the heaviest weight is the bulb's coral, the only place
-   the colour appears outside the mark. */
+/* The shelf: every app's Marketplace icon, grouped under the Atlassian
+   product it runs in — the same tiles a buyer meets in Marketplace search.
+   A white panel, the ground the listings and the products themselves use. */
 
-.hero__plan {
-  color: var(--color-ink);
-  margin: 0;
-  max-width: 36rem;
+.hero__shelf {
+  background: rgb(var(--rgb-white));
+  border: var(--rule-gauge) solid var(--color-rule);
+  border-radius: var(--radius-large);
+  box-shadow: 0 1.25rem 2.5rem -1.75rem rgb(var(--rgb-navy) / 0.45);
+  color: rgb(var(--rgb-navy));
+  display: grid;
+  gap: var(--space-medium);
+  padding: var(--space-large);
 }
 
-.hero__plan-drawing {
-  display: block;
-  height: auto;
-  width: 100%;
+@media (prefers-color-scheme: dark) {
+  .hero__shelf {
+    background: rgb(var(--rgb-navy));
+    border-color: var(--color-rule-strong);
+    color: rgb(var(--rgb-cream));
+  }
 }
 
-.hero__plan-weight {
-  fill: var(--color-coral);
-  stroke: var(--color-coral);
+.shelf__group + .shelf__group {
+  border-top: var(--rule-gauge) solid var(--color-rule);
+  padding-top: var(--space-medium);
 }
 
-.hero__plan figcaption {
-  border-top: var(--rule-gauge) solid var(--color-rule-strong);
-  color: var(--color-ink-muted);
+.shelf__head {
+  align-items: center;
   display: flex;
-  flex-wrap: wrap;
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-x-small);
-  gap: var(--space-x-small) var(--space-large);
-  justify-content: space-between;
-  letter-spacing: var(--tracking-wide);
-  margin-top: var(--space-small);
-  padding-top: var(--space-small);
-  text-transform: uppercase;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  gap: 0.5em;
 }
+
+.shelf__head .product-icon {
+  height: 1.25em;
+  width: 1.25em;
+}
+
+.shelf__apps {
+  display: grid;
+  gap: var(--space-small) var(--space-x-small);
+  grid-template-columns: repeat(auto-fill, minmax(4.25rem, 1fr));
+  list-style: none;
+  margin-top: var(--space-small);
+  padding: 0;
+}
+
+.shelf__apps li {
+  margin: 0;
+}
+
+.shelf__apps a {
+  align-items: center;
+  border-radius: var(--radius-large);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-x-small);
+  gap: 0.45em;
+  line-height: 1.2;
+  padding: 0.4em 0.2em;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--transition);
+}
+
+.shelf__apps a:hover {
+  background: rgb(var(--rgb-navy) / 0.06);
+}
+
+@media (min-width: 64em) {
+  .shelf__apps {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+.shelf__apps .app-icon {
+  border-radius: 22%;
+  height: 2.5rem;
+  transition: translate var(--transition);
+  width: 2.5rem;
+}
+
+.shelf__apps a:hover .app-icon {
+  translate: 0 -0.15rem;
+}
+
 
 /* What holds for every app: four numbered stations under the offer, the
    terms a buyer checks before reading any further. */
@@ -126,9 +180,18 @@
 }
 
 .hero__facts li {
+  color: var(--color-ink-muted);
   counter-increment: fact;
-  font-weight: 500;
+  font-size: var(--font-size-small);
   margin: 0;
+}
+
+.hero__facts strong {
+  color: var(--color-ink);
+  display: block;
+  font-size: calc(1em / 0.84);
+  font-weight: 600;
+  margin-bottom: 0.2em;
 }
 
 .hero__facts li::before {
@@ -215,6 +278,11 @@
 
 .filter label:hover {
   border-color: currentColor;
+}
+
+.filter label .product-icon {
+  height: 1.1em;
+  width: 1.1em;
 }
 
 .filter label span {
@@ -329,7 +397,57 @@
 .built {
   background: var(--color-tint);
   border-block: var(--rule-gauge) solid var(--color-rule-strong);
+  display: grid;
+  gap: var(--space-large) var(--space-xx-large);
   padding: var(--space-xx-large) var(--bleed) var(--space-xxx-large);
+}
+
+@media (min-width: 64em) {
+  .built {
+    align-items: end;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+
+  .principles {
+    grid-column: 1 / -1;
+  }
+}
+
+/* The drawing the brand is named for: the half-breadth plan of one hull,
+   twelve waterlines held fair by thirteen weights, one for each app. Ink at
+   dilutions, like every other line on the plate; one weight is the bulb's
+   coral, the only place the colour appears outside the mark. */
+
+.built__plan {
+  color: var(--color-ink);
+  margin: 0;
+  max-width: 32rem;
+}
+
+.built__plan-drawing {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.built__plan-weight {
+  fill: var(--color-coral);
+  stroke: var(--color-coral);
+}
+
+.built__plan figcaption {
+  border-top: var(--rule-gauge) solid var(--color-rule-strong);
+  color: var(--color-ink-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  gap: var(--space-x-small) var(--space-large);
+  justify-content: space-between;
+  letter-spacing: var(--tracking-wide);
+  margin-top: var(--space-small);
+  padding-top: var(--space-small);
+  text-transform: uppercase;
 }
 
 .built__intro {
@@ -510,7 +628,7 @@
   .hero__copy > :nth-child(3) { animation-delay: 0.14s; }
   .hero__copy > :nth-child(4) { animation-delay: 0.21s; }
 
-  .hero__plan {
+  .hero__shelf {
     animation: settle 0.9s 0.3s cubic-bezier(0.33, 1, 0.68, 1) both;
   }
 

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Signoff">
+  <rect width="512" height="512" rx="114" fill="#0052cc"/>
+  <rect x="136" y="84" width="240" height="344" rx="28"
+        fill="none" stroke="#ffffff" stroke-width="30"/>
+  <g fill="#ffffff">
+    <rect x="188" y="148" width="136" height="26" rx="13"/>
+    <rect x="188" y="208" width="96" height="26" rx="13"/>
+  </g>
+  <path d="M190 322 L242 370 L 338 258"
+        fill="none" stroke="#ffffff" stroke-width="40"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

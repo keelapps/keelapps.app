@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Curator">
+  <rect width="512" height="512" rx="114" fill="#0052cc"/>
+
+  <rect x="84" y="82" width="180" height="248" rx="26"
+        fill="#0052cc" stroke="#ffffff" stroke-width="26"/>
+  <rect x="124" y="122" width="180" height="248" rx="26"
+        fill="#0052cc" stroke="#ffffff" stroke-width="26"/>
+
+  <g transform="translate(258 262) scale(7.6)">
+    <path fill-rule="evenodd"
+          d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"
+          fill="none" stroke="#0052cc" stroke-width="6" stroke-linejoin="round"/>
+    <path fill-rule="evenodd" fill="#ffffff"
+          d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/>
+  </g>
+</svg>

@@ -27,6 +27,8 @@ from the pages themselves:
     ?internal=1 mark for our own visits;
   * the UTM tags on every link to the Atlassian Marketplace, so the
     Marketplace's own reports say which page and which button sent an install.
+  * the home hero's shelf, between <!-- shelf:begin --> and <!-- shelf:end -->:
+    every app's Marketplace icon under the Atlassian product it runs in.
 
 A card's words are not in this file. Its headline is the product page's own
 <h1>, its demo length the page's VideoObject duration, its Marketplace link the
@@ -97,6 +99,21 @@ MARK = """<svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
   <circle cx="512" cy="708" r="30" fill="#E8664A" />
 </svg>"""
 PLAY = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>'
+
+
+# Atlassian's own product icons, unmodified (see assets/atlassian/README.md),
+# set beside the product's name wherever a page says which product an app is
+# for. Decorative: the name is always written next to it.
+def product_icon(product):
+    return (f'<img class="product-icon" src="/assets/atlassian/{product.lower()}.svg" '
+            f'alt="" width="16" height="16" />')
+
+
+# An app's own Marketplace icon. Decorative for the same reason: the app's
+# name is always beside it.
+def app_icon(slug, size=40):
+    return (f'<img class="app-icon" src="/assets/apps/{slug}.svg" alt="" '
+            f'width="{size}" height="{size}" />')
 
 PRELOADS = """    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -174,17 +191,25 @@ class App:
                   '<span class="app-card__status app-card__status--soon">Coming soon</span>')
         demo = (f'\n    <a href="/{self.slug}/#demo">{PLAY}Demo {self.demo}</a>'
                 if self.demo else "")
+        # The way in, on every card: the listing for a live app, the install
+        # page for a Bitbucket app.
+        if self.live:
+            get = f'\n    <a class="app-card__get" href="{self.marketplace}">Get it on Marketplace</a>'
+        elif self.install:
+            get = f'\n    <a class="app-card__get" href="{self.install}">Install free</a>'
+        else:
+            get = ""
         # Every live listing carries Atlassian's Runs on Atlassian badge: each app
         # is Forge with no external permission, which is what earns it.
         badge = ' <span class="app-card__badge">Runs on Atlassian</span>' if self.live else ""
         return f"""<li class="app-card" data-host="{self.product.lower()}">
   <a class="app-card__shot" href="/{self.slug}/" tabindex="-1" aria-hidden="true">{shot}</a>
-  <p class="app-card__meta"><span>{self.product} · {self.job}</span>{status}</p>
+  <p class="app-card__meta"><span>{product_icon(self.product)}{self.product} · {self.job}</span>{status}</p>
   <h3 class="app-card__problem"><a href="/{self.slug}/">{self.problem}</a></h3>
-  <p class="app-card__name">{self.name}{badge}</p>
+  <p class="app-card__name"><span class="app-card__id">{app_icon(self.slug, 28)}{self.name}</span>{badge}</p>
   <p class="app-card__links">
     <a href="/{self.slug}/">Product page</a>{demo}
-    <a href="/{self.slug}/docs/">Docs</a>
+    <a href="/{self.slug}/docs/">Docs</a>{get}
   </p>
 </li>"""
 
@@ -202,7 +227,7 @@ def masthead(app=None, home=False):
 </a>"""
     if app:
         brand += (f'\n<span class="masthead__sep" aria-hidden="true"></span>'
-                  f'\n<a class="masthead__app" href="/{app.slug}/">{app.name}</a>')
+                  f'\n<a class="masthead__app" href="/{app.slug}/">{app_icon(app.slug, 24)}{app.name}</a>')
         nav = [f'<a href="/#apps">All apps</a>',
                f'<a href="/{app.slug}/docs/">Documentation</a>',
                f'<a href="/{app.slug}/privacy/">Privacy</a>',
@@ -217,7 +242,7 @@ def masthead(app=None, home=False):
                '<a href="/pricing/">Pricing</a>',
                '<a href="/security/">Security</a>',
                f'<a href="{SUPPORT}">Support</a>',
-               f'<a class="btn btn--quiet" href="{VENDOR}">On the Marketplace</a>']
+               f'<a class="btn btn--quiet" href="{VENDOR}">Atlassian Marketplace</a>']
     else:
         nav = ['<a href="/#apps">All apps</a>', '<a href="/guides/">Guides</a>',
                '<a href="/pricing/">Pricing</a>',
@@ -238,7 +263,7 @@ def footer(fine):
         items = "\n".join(f'<li><a href="/{a.slug}/">{a.short}</a></li>'
                           for a in FLEET if a.product == product)
         cols.append(f"""<div>
-  <p class="footer__head">{product}</p>
+  <p class="footer__head">{product_icon(product)}{product}</p>
   <ul class="footer__list">
 {indent(items, 4)}
   </ul>
@@ -289,7 +314,8 @@ def fleet():
         (p.lower(), p, sum(a.product == p for a in FLEET)) for p in PRODUCTS]
     radios = "\n".join(
         f'<input type="radio" name="host" id="host-{key}"{" checked" if key == "all" else ""} />\n'
-        f'<label for="host-{key}">{label} <span>{n}</span></label>' for key, label, n in counts)
+        f'<label for="host-{key}">{"" if key == "all" else product_icon(label)}{label} <span>{n}</span></label>'
+        for key, label, n in counts)
     cards = "\n".join(a.card() for a in FLEET)
     return f"""<fieldset class="filter">
   <legend>Show apps for</legend>
@@ -299,6 +325,25 @@ def fleet():
 <ol class="fleet__grid">
 {indent(cards, 2)}
 </ol>"""
+
+
+def shelf():
+    """The home page's hero panel: every app's Marketplace icon, by product.
+
+    The same icons a buyer sees in Marketplace search, so the site and the
+    listings read as one vendor. Every app gets the same tile; none leads."""
+    groups = []
+    for product in PRODUCTS:
+        tiles = "\n".join(
+            f'<li><a href="/{a.slug}/">{app_icon(a.slug)}<span>{a.short}</span></a></li>'
+            for a in FLEET if a.product == product)
+        groups.append(f"""<div class="shelf__group">
+  <p class="shelf__head">{product_icon(product)}{product} Cloud</p>
+  <ul class="shelf__apps">
+{indent(tiles, 4)}
+  </ul>
+</div>""")
+    return "\n".join(groups)
 
 
 def related(app):
@@ -404,7 +449,8 @@ def region(text, name, body, n):
 #   utm_medium    referral, always
 #   utm_campaign  the page itself: its path with / as -, e.g. accesslens-docs,
 #                 guides-jira-permission-audit; home for the home page
-#   utm_content   where on the page: masthead, hero, pricing, cta, body, footer
+#   utm_content   where on the page: masthead, hero, pricing, cta, card, body,
+#                 footer (card: the "Get it on Marketplace" link on an app card)
 #
 # The medium is GA's own word for a link from another site. Anything else
 # (it used to be the kind of page: product, guide, home) is a medium GA has
@@ -447,6 +493,8 @@ def tag_marketplace_links(text, rel):
             return "footer"
         if "tab=pricing" in url:
             return "pricing"
+        if "app-card__get" in tag:
+            return "card"
         if "btn--inverse" in tag:
             return "cta"
         if intro_at[0] <= at < intro_at[1]:
@@ -467,8 +515,8 @@ def render(path):
     home = not rel
 
     # <head>
-    text = text.replace('content="#F4EFE6" media="(prefers-color-scheme: light)"',
-                        'content="#E5DECF" media="(prefers-color-scheme: light)"')
+    text = text.replace('content="#E5DECF" media="(prefers-color-scheme: light)"',
+                        'content="#F4EFE6" media="(prefers-color-scheme: light)"')
     text = text.replace('content="#0F2536" media="(prefers-color-scheme: dark)"',
                         'content="#1C3A52" media="(prefers-color-scheme: dark)"')
     if "/assets/fonts/outfit-latin.woff2" not in text:
@@ -496,6 +544,7 @@ def render(path):
 
     if home:
         text = region(text, "fleet", fleet(), 8)
+        text = region(text, "shelf", shelf(), 10)
         text = region(text, "guides", guide_list(full=False), 8)
     if rel == ("guides",):
         text = region(text, "guides", guide_list(full=True), 8)

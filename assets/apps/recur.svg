@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Recur">
+  <rect width="512" height="512" rx="114" fill="#0052cc"/>
+  <g fill="#ffffff">
+    <rect x="178" y="100" width="28" height="66" rx="14"/>
+    <rect x="306" y="100" width="28" height="66" rx="14"/>
+  </g>
+  <rect x="100" y="140" width="312" height="272" rx="34" fill="none" stroke="#ffffff" stroke-width="32"/>
+  <path d="M 116 212 H 396" stroke="#ffffff" stroke-width="22"/>
+  <g fill="#ffffff">
+    <rect x="136" y="252" width="44" height="44" rx="10" fill-opacity="0.38"/>
+    <rect x="234" y="252" width="44" height="44" rx="10"/>
+    <rect x="332" y="252" width="44" height="44" rx="10" fill-opacity="0.38"/>
+    <rect x="136" y="332" width="44" height="44" rx="10" fill-opacity="0.38"/>
+    <rect x="234" y="332" width="44" height="44" rx="10"/>
+    <rect x="332" y="332" width="44" height="44" rx="10" fill-opacity="0.38"/>
+  </g>
+</svg>

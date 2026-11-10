@@ -6,7 +6,12 @@
    materials and one signal. Navy and cream swap between figure and ground
    depending on the light, which is why dark mode here is a role swap rather
    than a second palette. Coral marks the ballast bulb in the mark and nothing
-   else — never links, buttons, or emphasis. */
+   else — never links, buttons, or emphasis.
+
+   On the light plate cream is the accent rather than the page: the bands
+   above the waterline (masthead, hero, the shared principles) are cream, and
+   everything a buyer reads at length sits on white, the ground of the
+   Marketplace listings and of Jira and Confluence themselves. */
 
 /* The brand faces, served from this site. Latin subsets of the variable fonts
    from Google Fonts, both under the SIL Open Font License (the licence files
@@ -43,14 +48,15 @@
   --rgb-navy: 15 37 54;          /* #0F2536 — water at forty fathoms */
   --rgb-navy-soft: 28 58 82;     /* #1C3A52 — above-waterline tint on dark */
   --rgb-cream: 244 239 230;      /* #F4EFE6 — chart paper */
-  --rgb-cream-soft: 229 222 207; /* #E5DECF — above-waterline tint on light */
+  --rgb-white: 255 255 255;      /* #FFFFFF — the reading ground on light */
   --rgb-coral: 232 102 74;       /* #E8664A — the ballast bulb, one drop only */
 
-  /* Roles. Light is the default plate: cream ground, navy ink. */
+  /* Roles. Light is the default plate: white ground, navy ink, cream above
+     the waterline. */
 
-  --rgb-canvas: var(--rgb-cream);
+  --rgb-canvas: var(--rgb-white);
   --rgb-ink: var(--rgb-navy);
-  --rgb-tint: var(--rgb-cream-soft);
+  --rgb-tint: var(--rgb-cream);
 
   --color-canvas: rgb(var(--rgb-canvas));
   --color-ink: rgb(var(--rgb-ink));

@@ -49,7 +49,24 @@ than by hand.
 - each product page's "more apps" row, between `<!-- related:begin -->` and
   `<!-- related:end -->`;
 - the theme colours, the two font preloads and the Google tag in every `<head>`;
-- the UTM tags on every link to the Atlassian Marketplace (below).
+- the UTM tags on every link to the Atlassian Marketplace (below);
+- the home hero's shelf of app icons by product, between `<!-- shelf:begin -->`
+  and `<!-- shelf:end -->`.
+
+## Atlassian's icons and ours
+
+Two kinds of icon tie the site to the Marketplace, and neither is drawn here:
+
+- **Product icons** (`assets/atlassian/`): Jira, Confluence and Bitbucket, as
+  Atlassian ships them in `@atlaskit/logo`. They sit beside the product's name
+  — filters, card product lines, footer headings, a product page's "Works in" —
+  and nowhere else. Never recolour them or set them next to the Keelapps mark;
+  `assets/atlassian/README.md` has the source and the rules.
+- **App icons** (`assets/apps/<slug>.svg`): each app's Marketplace icon, copied
+  from its repository's `docs/brand/app-icon.svg`. They appear on the app's
+  card, in its masthead crumb, at the top of its product page and on the home
+  page's shelf, so a buyer who found the app in Marketplace search sees the
+  same tile here. A new app needs its icon copied in.
 
 A card carries no copy of its own. Its headline is the product page's `<h1>`,
 its demo length the page's `VideoObject` duration, its status — and its Runs on Atlassian
@@ -99,7 +116,7 @@ page, and which button on it, sent a visitor:
 | `utm_source` | `keelapps.app` |
 | `utm_medium` | `referral`, always |
 | `utm_campaign` | the page: its path with `/` as `-` (`accesslens-docs`, `guides-jira-permission-audit`), or `home` |
-| `utm_content` | where on the page: `masthead`, `hero`, `pricing`, `cta`, `body`, `footer` |
+| `utm_content` | where on the page: `masthead`, `hero`, `pricing`, `cta`, `card` (an app card's "Get it on Marketplace"), `body`, `footer` |
 
 The medium is always `referral` because that is a word GA's default channel
 groups know. It used to name the kind of page (`product`, `guide`, `home`), and
@@ -164,6 +181,8 @@ rules:
 
 The `srcdoc` document cannot see `root.css`, so its two colours are written out:
 `#0F2536` (navy) and `#F4EFE6` (cream) — the same two materials, nothing new.
+Cream is the tint the hero sits on, so the poster still matches the band it
+straddles.
 
 ## Search engines
 
@@ -223,13 +242,14 @@ Open Font License. `root.css` declares them, every page preloads both, and
 Characters outside the subset — the arrows in pagination — come from the
 fallback face. Nothing is fetched from Google at run time.
 
-### The palette is two colours
+### The palette is two colours, on white
 
-From the Keelapps brand guide: navy and cream, swapping between
-figure and ground with the colour scheme, plus coral for the ballast bulb in the
-mark and **nothing else** — not links, not buttons, not emphasis. Every neutral
-on the site is ink at an alpha, which is why there is no third hex value in
-`root.css`.
+From the Keelapps brand guide: navy and cream, plus coral for the ballast bulb
+in the mark and **nothing else** — not links, not buttons, not emphasis. On the
+light plate the reading ground is white, the ground of the Marketplace and of
+Jira and Confluence themselves, and cream is the accent: the masthead, the hero
+and the one principles band sit on it. On the dark plate navy is the ground and
+cream the ink, as before. Every neutral on the site is ink at an alpha.
 
 Two consequences worth knowing before editing:
 

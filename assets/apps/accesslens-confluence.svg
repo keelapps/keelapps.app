@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AccessLens for Confluence">
+  <rect width="512" height="512" rx="114" fill="#0052cc"/>
+  <rect x="196" y="144" width="92" height="124" rx="14" fill="#ffffff" fill-opacity="0.38"/>
+  <rect x="156" y="164" width="106" height="136" rx="16" fill="#ffffff"/>
+  <g fill="#0052cc">
+    <rect x="176" y="198" width="64" height="18" rx="9"/>
+    <rect x="176" y="234" width="42" height="18" rx="9"/>
+  </g>
+  <circle cx="221" cy="221" r="122" fill="none" stroke="#ffffff" stroke-width="34"/>
+  <path d="M309 309 L412 412" stroke="#ffffff" stroke-width="46" stroke-linecap="round"/>
+</svg>
