@@ -30,6 +30,46 @@
     <link rel="stylesheet" href="/assets/css/elements.css" />
     <link rel="stylesheet" href="/assets/css/site.css" />
     <link rel="stylesheet" href="/assets/css/manual.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can Jira Cloud show which projects a group can access?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not on one screen. Jira shows who can reach a project, one project at a time. The request for a view that starts from the group, JRACLOUD-71967, has been open since 2019. You can work it out with the REST API by checking each permission scheme's grants and each project's role members for the group."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does a group appear in no permission scheme but still have access?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most schemes grant permissions to project roles, and groups are added to roles in each project. Check the roles of every project, not only the schemes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it safe to delete a Jira group that no project uses?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Check more than projects first: product access, global permissions, filter and dashboard shares, issue security levels, notification schemes, workflow conditions, automation rules and, if the group is shared, Confluence permissions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a Jira app that lists every project a group can access?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. AccessLens for Jira, which we make, reads every project's permission scheme and roles into a dated snapshot and lists each project a group can reach, through a scheme grant or a role, with nested groups expanded. It is read-only."
+            }
+          }
+        ]
+      }
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
     <script>
@@ -90,6 +130,7 @@
           <li><a href="#traps">Four traps</a></li>
           <li><a href="#everything-else">What else a group is wired into</a></li>
           <li><a href="#access-reviews">For SOC 2 and ISO 27001 reviews</a></li>
+          <li><a href="#faq">Questions</a></li>
           <li><a href="#accesslens">Where AccessLens fits</a></li>
         </ol>
       </nav>
@@ -237,6 +278,37 @@
         <p>
           The procedure above gives you the first one if you save its output each quarter.
           The other two are a spreadsheet and a ticket, kept together.
+        </p>
+
+        <h2 id="faq">Questions</h2>
+        <h3>Can Jira Cloud show which projects a group can access?</h3>
+        <p>
+          Not on one screen. Jira shows who can reach a project, one project at a
+          time. The request for a view that starts from the group,
+          <a href="https://jira.atlassian.com/browse/JRACLOUD-71967">JRACLOUD-71967</a>,
+          has been open since 2019. You can work it out with the REST API by checking
+          each permission scheme’s grants and each project’s role members for the
+          group.
+        </p>
+        <h3>Why does a group appear in no permission scheme but still have access?</h3>
+        <p>
+          Most schemes grant permissions to project roles, and groups are added to
+          roles in each project. Check the roles of every project, not only the
+          schemes.
+        </p>
+        <h3>Is it safe to delete a Jira group that no project uses?</h3>
+        <p>
+          Check more than projects first: product access, global permissions, filter
+          and dashboard shares, issue security levels, notification schemes, workflow
+          conditions, automation rules and, if the group is shared, Confluence
+          permissions.
+        </p>
+        <h3>Is there a Jira app that lists every project a group can access?</h3>
+        <p>
+          Yes. <a href="/accesslens/">AccessLens for Jira</a>, which we make, reads
+          every project’s permission scheme and roles into a dated snapshot and lists
+          each project a group can reach, through a scheme grant or a role, with
+          nested groups expanded. It is read-only.
         </p>
 
         <h2 id="accesslens">Where AccessLens fits</h2>

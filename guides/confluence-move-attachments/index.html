@@ -30,6 +30,46 @@
     <link rel="stylesheet" href="/assets/css/elements.css" />
     <link rel="stylesheet" href="/assets/css/site.css" />
     <link rel="stylesheet" href="/assets/css/manual.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can Confluence Cloud move several attachments at once?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Confluence Cloud moves one attachment at a time, from the file's Properties dialog. A bulk move has been requested since 2009 in CONFCLOUD-15025."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I move an attachment and keep its version history?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use the file's Properties dialog, or the v1 REST call that changes an attachment's container. Both keep the attachment's ID and history. Downloading the file and uploading it again creates a new file whose history starts at version 1."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why are images broken after I moved an attachment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Confluence finds a file by its page and its name. After a move, the old page shows a broken item where the file was embedded, and the new page lists the file but does not show it until someone adds it to the page text."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a Confluence app that moves attachments in bulk?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Satchel for Confluence, which we make, lists every attachment in a space and moves files from many pages to a target page in one go, after a dry run that shows what will move and why anything will not. It keeps IDs and history where Confluence allows it, and a move can be undone for 30 days. It does not fix embeds in the page text."
+            }
+          }
+        ]
+      }
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
     <script>
@@ -90,6 +130,7 @@
           <li><a href="#api">Move many with the REST API</a></li>
           <li><a href="#copy">Download and upload again</a></li>
           <li><a href="#page">Sometimes, move the page</a></li>
+          <li><a href="#faq">Questions</a></li>
           <li><a href="#satchel">Where Satchel fits</a></li>
         </ol>
       </nav>
@@ -245,6 +286,35 @@ Content-Type: application/json
           files go with it, and the page still shows them. If the real problem is that the page is in
           the wrong place, move the page. If only some of its files belong somewhere else,
           move those files.
+        </p>
+
+        <h2 id="faq">Questions</h2>
+        <h3>Can Confluence Cloud move several attachments at once?</h3>
+        <p>
+          No. Confluence Cloud moves one attachment at a time, from the file’s
+          Properties dialog. A bulk move has been requested since 2009 in
+          <a href="https://jira.atlassian.com/browse/CONFCLOUD-15025">CONFCLOUD-15025</a>.
+        </p>
+        <h3>How do I move an attachment and keep its version history?</h3>
+        <p>
+          Use the file’s Properties dialog, or the <a href="#api">v1 REST call</a>
+          that changes an attachment’s container. Both keep the attachment’s ID and
+          history. Downloading the file and uploading it again creates a new file
+          whose history starts at version 1.
+        </p>
+        <h3>Why are images broken after I moved an attachment?</h3>
+        <p>
+          Confluence finds a file by its page and its name. After a move, the old page
+          shows a broken item where the file was embedded, and the new page lists the
+          file but does not show it until someone adds it to the page text.
+        </p>
+        <h3>Is there a Confluence app that moves attachments in bulk?</h3>
+        <p>
+          Yes. <a href="/satchel-confluence/">Satchel for Confluence</a>, which we
+          make, lists every attachment in a space and moves files from many pages to a
+          target page in one go, after a dry run that shows what will move and why
+          anything will not. It keeps IDs and history where Confluence allows it, and
+          a move can be undone for 30 days. It does not fix embeds in the page text.
         </p>
 
         <h2 id="satchel">Where Satchel fits</h2>

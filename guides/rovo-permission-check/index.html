@@ -64,7 +64,15 @@
             "name": "How do I find every Confluence space with anonymous access?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Confluence administration, Settings, Security, Anonymous access shows whether anonymous access is allowed on the site. Atlassian's documentation describes no site-wide list of the spaces that use it, so you check each space's settings under Users, or use an audit app that reads every space."
+              "text": "Confluence administration, Settings, Security, Anonymous access shows whether anonymous access is allowed on the site. Atlassian's documentation describes no site-wide list of the spaces that use it, so you check each space's settings under Users, or use an audit app that reads every space, such as AccessLens for Confluence, which we make."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there an app that shows who can see what in Jira and Confluence before turning on Rovo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. AccessLens for Confluence and AccessLens for Jira, which we make, are read-only permission audits. They flag Confluence spaces open to anonymous users or to every logged-in user, spaces with no admin, and Jira projects open to everyone; list what a group or a person can reach; and snapshot the result before and after you tighten access. They do not read page content and do not control Rovo."
             }
           }
         ]
@@ -132,6 +140,7 @@
           <li><a href="#jira">Check Jira</a></li>
           <li><a href="#rovo-settings">Settings for Rovo itself</a></li>
           <li><a href="#order">A rollout checklist</a></li>
+          <li><a href="#faq">Questions</a></li>
           <li><a href="#accesslens">Where AccessLens fits</a></li>
         </ol>
       </nav>
@@ -338,6 +347,50 @@
             first.
           </li>
         </ol>
+
+        <h2 id="faq">Questions</h2>
+        <h3>Can Rovo see content a user does not have permission to see?</h3>
+        <p>
+          Atlassian says no: Rovo follows the permissions in Jira, Confluence and
+          connected apps, so users only see content they already have access to. The
+          Atlassian MCP server, which connects tools such as Claude, Cursor and
+          ChatGPT, also only reaches data the user can already view. The risk is
+          content that is already open to more people than it should be, which AI
+          search makes much easier to find.
+        </p>
+        <h3>What should I check before turning on Rovo?</h3>
+        <p>
+          Check which Confluence spaces allow anonymous access or are open to every
+          logged-in user, which Jira projects are open to the public or to every
+          licensed user, who is in the groups that reach sensitive spaces and
+          projects, which spaces have no admin, and whether guests and people who left
+          still have access.
+        </p>
+        <h3>Can I keep Rovo out of one Confluence space or Jira project?</h3>
+        <p>
+          Not as of October 2026. Rovo follows each user’s permissions, and there is
+          no setting to exclude a single space or project; the request is ROVO-974. To
+          keep content out of Rovo answers, restrict who can see it.
+        </p>
+        <h3>How do I find every Confluence space with anonymous access?</h3>
+        <p>
+          Confluence administration, Settings, Security, Anonymous access shows
+          whether anonymous access is allowed on the site. Atlassian’s documentation
+          describes no site-wide list of the spaces that use it, so you check each
+          space’s settings under Users, or use an audit app that reads every space,
+          such as <a href="/accesslens-confluence/">AccessLens for Confluence</a>,
+          which we make.
+        </p>
+        <h3>Is there an app that shows who can see what in Jira and Confluence before turning on Rovo?</h3>
+        <p>
+          Yes. <a href="/accesslens-confluence/">AccessLens for Confluence</a> and
+          <a href="/accesslens/">AccessLens for Jira</a>, which we make, are read-only
+          permission audits. They flag Confluence spaces open to anonymous users or to
+          every logged-in user, spaces with no admin, and Jira projects open to
+          everyone; list what a group or a person can reach; and snapshot the result
+          before and after you tighten access. They do not read page content and do
+          not control Rovo.
+        </p>
 
         <h2 id="accesslens">Where AccessLens fits</h2>
         <p>

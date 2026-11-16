@@ -1,0 +1,45 @@
+# Keelapps
+
+> Keelapps makes small, single-purpose apps for Jira, Confluence and Bitbucket Cloud admins. Every app runs on Atlassian Forge, most are free for sites of up to 10 users, and none sends customer data outside Atlassian (Coverage for Bitbucket keeps it inside Bitbucket). Apps install from the Atlassian Marketplace.
+
+Each app below answers one question that the Atlassian product does not answer on its own. The guides explain how to do the same job without any app first, then where our app fits.
+
+## Jira Cloud apps
+
+- [AccessLens for Jira](https://keelapps.app/accesslens/): read-only permission audit. Which projects can a user or a group access, through which scheme grant, role or group; dated snapshots, diffs between quarters, signed-off access reviews for SOC 2 and ISO 27001. Marketplace: https://marketplace.atlassian.com/apps/4182244448
+- [Satchel for Jira](https://keelapps.app/satchel/): download every attachment from a JQL search or a whole project as one zip, foldered by issue key, built in the browser; storage by uploader, file type and age, and duplicate candidates. Marketplace: https://marketplace.atlassian.com/apps/788499894
+- [Mail Templates for Jira](https://keelapps.app/mail-templates/): custom notification emails in your own words, one template per event (issue created, status changed, comment added), sent through Jira's own notification service with no automation usage. Marketplace: https://marketplace.atlassian.com/apps/948167511
+- [Recur for Jira](https://keelapps.app/recur/): recurring tasks on any schedule (every N days, weeks or months, the nth weekday), time-zone and daylight-saving correct, with a per-template rule for when the last one is still open. Marketplace: https://marketplace.atlassian.com/apps/3262138887
+- [Digest for Jira](https://keelapps.app/digest/): a day or a week of Jira changes folded into one summary in an in-app inbox. Marketplace: https://marketplace.atlassian.com/apps/978618646
+- [Prefill for Jira](https://keelapps.app/prefill/): prefilled create-issue links and short request forms for colleagues who do not know Jira. Marketplace: https://marketplace.atlassian.com/apps/3380543121
+
+## Confluence Cloud apps
+
+- [AccessLens for Confluence](https://keelapps.app/accesslens-confluence/): read-only permission audit. Which spaces a group or person can reach, spaces open to anonymous users or every logged-in user, spaces with no admin, restricted pages and what locks them. Useful before turning on Rovo. Marketplace: https://marketplace.atlassian.com/apps/2097025605
+- [Satchel for Confluence](https://keelapps.app/satchel-confluence/): move attachments between pages in bulk (Confluence Cloud moves one at a time, CONFCLOUD-15025), download a space's attachments as one zip, find orphans and duplicate candidates. Marketplace: https://marketplace.atlassian.com/apps/2701230997
+- [Signoff for Confluence](https://keelapps.app/signoff/): page approvals on every plan, Free and Standard included; each approval pins the page version it covered and shows when the page changed afterwards. Marketplace: https://marketplace.atlassian.com/apps/2487832225
+- [Evergreen for Confluence](https://keelapps.app/evergreen/): find stale pages; every page gets a Fresh, Aging or Stale badge and owners can vouch for pages that are still right. Marketplace: https://marketplace.atlassian.com/apps/1279909983
+- [Sort Pages for Confluence](https://keelapps.app/sort-pages/): sort a page tree alphabetically (natural numbers), by date, and keep it sorted as pages are added, renamed or moved. Marketplace: https://marketplace.atlassian.com/apps/2662088941
+- [Curator for Confluence](https://keelapps.app/curator/): bulk re-label, move or archive pages in a space or page tree, previewed page by page and undoable. Marketplace: https://marketplace.atlassian.com/apps/33303578
+
+## Bitbucket Cloud apps
+
+- [Coverage for Bitbucket](https://keelapps.app/coverage/): code coverage and test results on Bitbucket Cloud pull requests: changed-line coverage, uncovered lines in the diff, every test with its output, and a merge check. Free. Install: https://keelapps.app/coverage/install/
+
+## Guides
+
+- [Before you turn on Rovo: check who can see what in Jira and Confluence](https://keelapps.app/guides/rovo-permission-check/)
+- [Which Jira projects can a user access?](https://keelapps.app/guides/jira-user-project-access/)
+- [Which Jira projects can a group access?](https://keelapps.app/guides/jira-group-project-access/)
+- [Jira permission audit: who can access what in Jira Cloud](https://keelapps.app/guides/jira-permission-audit/)
+- [How to download all attachments from Jira Cloud](https://keelapps.app/guides/jira-download-all-attachments/)
+- [How to move attachments between pages in Confluence Cloud](https://keelapps.app/guides/confluence-move-attachments/)
+- [How to customize Jira Cloud notification emails](https://keelapps.app/guides/jira-custom-email-notifications/)
+- [How to create recurring tasks in Jira Cloud](https://keelapps.app/guides/jira-recurring-tasks/)
+- [How to get a page approved in Confluence Cloud, on any plan](https://keelapps.app/guides/confluence-page-approval/)
+
+## Optional
+
+- [Pricing for every app](https://keelapps.app/pricing/)
+- [Security policy](https://keelapps.app/security/)
+- Each app has documentation at /<app>/docs/ and a privacy policy at /<app>/privacy/, for example https://keelapps.app/accesslens/docs/

@@ -30,6 +30,38 @@
     <link rel="stylesheet" href="/assets/css/elements.css" />
     <link rel="stylesheet" href="/assets/css/site.css" />
     <link rel="stylesheet" href="/assets/css/manual.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I see which Jira projects a user can access?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Send the project IDs to POST /rest/api/3/permissions/check with the person's account ID and the BROWSE_PROJECTS permission; Jira returns the projects they can browse. Checking another person needs the Administer Jira global permission. The admin screen in Atlassian Administration shows their roles, which is not the same thing."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does View Jira space roles show everything a user can access?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. It lists role membership, not access. Grants to a group, to the person by name or to every logged-in user are not roles and do not appear, and a role the scheme grants nothing to appears without giving any access."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a Jira app that shows every project a user can access?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. AccessLens for Jira, which we make, lists the projects a person can reach, including through groups, and names the path for each: granted directly or through which group, by a scheme grant or a role. The answer is kept as a dated snapshot, so it is still there after the person has left."
+            }
+          }
+        ]
+      }
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
     <script>
@@ -91,6 +123,7 @@
           <li><a href="#why">Working out why</a></li>
           <li><a href="#traps">Five things that skew the answer</a></li>
           <li><a href="#leavers">Before someone leaves</a></li>
+          <li><a href="#faq">Questions</a></li>
           <li><a href="#accesslens">Where AccessLens fits</a></li>
         </ol>
       </nav>
@@ -253,6 +286,30 @@
           <a href="/guides/jira-group-project-access/">Which Jira projects can a group access?</a>,
           and running it on a schedule for an audit is in the
           <a href="/guides/jira-permission-audit/">Jira permission audit guide</a>.
+        </p>
+
+        <h2 id="faq">Questions</h2>
+        <h3>How do I see which Jira projects a user can access?</h3>
+        <p>
+          Send the project IDs to <code>POST /rest/api/3/permissions/check</code> with
+          the person’s account ID and the <code>BROWSE_PROJECTS</code> permission;
+          Jira returns the projects they can browse. Checking another person needs the
+          Administer Jira global permission. The admin screen in Atlassian
+          Administration shows their roles, which is not the same thing.
+        </p>
+        <h3>Does View Jira space roles show everything a user can access?</h3>
+        <p>
+          No. It lists role membership, not access. Grants to a group, to the person
+          by name or to every logged-in user are not roles and do not appear, and a
+          role the scheme grants nothing to appears without giving any access.
+        </p>
+        <h3>Is there a Jira app that shows every project a user can access?</h3>
+        <p>
+          Yes. <a href="/accesslens/">AccessLens for Jira</a>, which we make, lists
+          the projects a person can reach, including through groups, and names the
+          path for each: granted directly or through which group, by a scheme grant or
+          a role. The answer is kept as a dated snapshot, so it is still there after
+          the person has left.
         </p>
 
         <h2 id="accesslens">Where AccessLens fits</h2>
