@@ -74,6 +74,14 @@
               "@type": "Answer",
               "text": "Not when it is delivered by Jira. Jira sends from its own address, and attachments or a custom sender need an external mail service, which means your issue data leaves Atlassian."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a Jira Cloud app for custom notification email templates?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, several on the Atlassian Marketplace. Mail Templates for Jira, which we make, gives each project one template for issue created, status changed and comment added, in your own words, and sends it through Jira's own notification service, so it uses none of your automation allowance and nothing leaves Atlassian. Some other apps send through the vendor's own mail server; check that before installing."
+            }
           }
         ]
       }
@@ -279,6 +287,12 @@
           </li>
         </ul>
 
+        <p>
+          <a href="/mail-templates/">Mail Templates for Jira</a>, which we make, is
+          one of these apps. How it answers each point is in
+          <a href="#mail-templates">the last section</a>.
+        </p>
+
         <h2 id="external">Option 3: an external mail service</h2>
         <p>
           A webhook or Automation’s <strong>Send web request</strong> can hand issue data to
@@ -370,6 +384,16 @@
           Not when it is delivered by Jira. Jira sends from its own address, and attachments
           or a custom sender need an external mail service, which means your issue data
           leaves Atlassian.
+        </p>
+
+        <h3>Is there a Jira Cloud app for custom notification email templates?</h3>
+        <p>
+          Yes, several on the Atlassian Marketplace. <a href="/mail-templates/">Mail
+          Templates for Jira</a>, which we make, gives each project one template for
+          issue created, status changed and comment added, in your own words, and
+          sends it through Jira’s own notification service, so it uses none of your
+          automation allowance and nothing leaves Atlassian. Some other apps send
+          through the vendor’s own mail server; check that before installing.
         </p>
 
         <h2 id="mail-templates">Where Mail Templates fits</h2>

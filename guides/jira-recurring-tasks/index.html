@@ -66,6 +66,14 @@
               "@type": "Answer",
               "text": "Either create the next one only when the last is done (Set to recur's Completed mode), or add a condition to your Automation rule that looks up open items from the same series with JQL and stops when it finds one."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a Jira Cloud app for recurring tasks on any schedule?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, several. Recur for Jira, which we make, creates work items from templates every N days, weeks or months, or on the nth weekday of a month, at an hour in your time zone, and uses none of your automation allowance. Each template decides what happens when the last one is still open: create anyway, skip, or wait for it to close."
+            }
           }
         ]
       }
@@ -318,6 +326,11 @@
           <li><strong>Whether it uses your automation allowance.</strong></li>
         </ul>
 
+        <p>
+          <a href="/recur/">Recur for Jira</a>, which we make, is one of these apps.
+          How it answers each point is in <a href="#recur">the last section</a>.
+        </p>
+
         <h2 id="compare">The options side by side</h2>
         <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
           <table>
@@ -368,6 +381,15 @@
           Either create the next one only when the last is done (Set to recur’s
           after-completed mode), or add a condition to your Automation rule that looks up open
           items from the same series with JQL and stops when it finds one.
+        </p>
+
+        <h3>Is there a Jira Cloud app for recurring tasks on any schedule?</h3>
+        <p>
+          Yes, several. <a href="/recur/">Recur for Jira</a>, which we make, creates
+          work items from templates every N days, weeks or months, or on the nth
+          weekday of a month, at an hour in your time zone, and uses none of your
+          automation allowance. Each template decides what happens when the last one
+          is still open: create anyway, skip, or wait for it to close.
         </p>
 
         <h2 id="recur">Where Recur fits</h2>

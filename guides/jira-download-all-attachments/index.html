@@ -74,6 +74,14 @@
               "@type": "Answer",
               "text": "Jira reports storage for the whole site, not per project. To see where it goes, list every attachment with its size, type, uploader and date, from the REST API or with an app that builds that inventory, and sort."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a Jira Cloud app that downloads all attachments from a JQL search as one zip?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Satchel for Jira, which we make, zips the attachments of a JQL result or a whole project, foldered by issue key, and builds the archive in your browser, so the files never pass through a vendor's server. Other Marketplace apps download in bulk too; check where each one builds the zip."
+            }
           }
         ]
       }
@@ -282,6 +290,12 @@ while True:
           </li>
         </ul>
 
+        <p>
+          <a href="/satchel/">Satchel for Jira</a>, which we make, is one of these
+          apps. How it answers each point is in <a href="#satchel">the last
+          section</a>.
+        </p>
+
         <h2 id="compare">The options side by side</h2>
         <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
           <table>
@@ -369,6 +383,15 @@ while True:
           Jira reports storage for the whole site, not per project. To see where it goes, list
           every attachment with its size, type, uploader and date, from the REST API or with
           an app that builds that inventory, and sort.
+        </p>
+
+        <h3>Is there a Jira Cloud app that downloads all attachments from a JQL search as one zip?</h3>
+        <p>
+          Yes. <a href="/satchel/">Satchel for Jira</a>, which we make, zips the
+          attachments of a JQL result or a whole project, foldered by issue key, and
+          builds the archive in your browser, so the files never pass through a
+          vendor’s server. Other Marketplace apps download in bulk too; check where
+          each one builds the zip.
         </p>
 
         <h2 id="satchel">Where Satchel fits</h2>
