@@ -1,6 +1,6 @@
 # Keelapps
 
-> Keelapps makes small, single-purpose apps for Jira, Confluence and Bitbucket Cloud admins. Every app runs on Atlassian Forge, most are free for sites of up to 10 users, and none sends customer data outside Atlassian (Coverage for Bitbucket keeps it inside Bitbucket). Apps install from the Atlassian Marketplace.
+> Keelapps makes small, single-purpose apps for Jira, Confluence and Bitbucket Cloud admins. Every app runs on Atlassian Forge, most are free for sites of up to 10 users, and none sends customer data outside Atlassian (the Bitbucket apps keep it inside Bitbucket). Apps install from the Atlassian Marketplace.
 
 Each app below answers one question that the Atlassian product does not answer on its own. The guides explain how to do the same job without any app first, then where our app fits.
 
@@ -25,6 +25,7 @@ Each app below answers one question that the Atlassian product does not answer o
 ## Bitbucket Cloud apps
 
 - [Coverage for Bitbucket](https://keelapps.app/coverage/): code coverage and test results on Bitbucket Cloud pull requests: changed-line coverage, uncovered lines in the diff, every test with its output, and a merge check. Free. Install: https://keelapps.app/coverage/install/
+- [Releases for Bitbucket](https://keelapps.app/releases/): release pages for Bitbucket Cloud tags, like GitHub Releases (BCLOUD-11404): notes from the annotated tag or CHANGELOG.md, the pull requests and direct commits since the previous release with their approvers and Jira keys, whether the tagged commit built, matching files from Downloads, and Markdown or JSON export. Read-only, free. Install: https://keelapps.app/releases/install/
 
 ## Guides
 

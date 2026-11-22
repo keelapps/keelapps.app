@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Documentation — Releases for Bitbucket</title>
+    <meta
+      name="description"
+      content="How Releases for Bitbucket works: the Releases page and Latest release card, where release notes come from, which release a release is compared with, the evidence it shows, artifacts, export, limits and the permissions the app requests."
+    />
+    <link rel="canonical" href="https://keelapps.app/releases/docs/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/releases/docs/" />
+    <meta property="og:title" content="Documentation — Releases for Bitbucket" />
+    <meta
+      property="og:description"
+      content="Every tag as a release: notes from git, the pull requests and approvals behind it, builds and reports, files in Downloads, Markdown and JSON export."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      (function () {
+        var internal = false;
+        try {
+          var mark = new URLSearchParams(location.search).get('internal');
+          if (mark === '1') localStorage.setItem('keelapps-internal', '1');
+          else if (mark === '0') localStorage.removeItem('keelapps-internal');
+          internal = localStorage.getItem('keelapps-internal') === '1';
+        } catch (e) {}
+        gtag('config', 'G-P880MM0XEG', internal ? { traffic_type: 'internal' } : {});
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+        <span class="masthead__sep" aria-hidden="true"></span>
+        <a class="masthead__app" href="/releases/"><img class="app-icon" src="/assets/apps/releases.svg" alt="" width="24" height="24" />Releases for Bitbucket</a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="/releases/docs/">Documentation</a>
+        <a href="/releases/privacy/">Privacy</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a class="btn" href="/releases/install/">Install free</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Releases for Bitbucket pages and sections">
+        <p class="manual__toc-title">Releases for Bitbucket</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/releases/">Product</a></li>
+          <li><a href="/releases/docs/" aria-current="page">Documentation</a></li>
+          <li><a href="/releases/privacy/">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#setup">Setting it up</a></li>
+          <li><a href="#notes">Where the notes come from</a></li>
+          <li><a href="#previous">Which release a release is compared with</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#evidence">Evidence</a></li>
+          <li><a href="#artifacts">Artifacts</a></li>
+          <li><a href="#export">Export</a></li>
+          <li><a href="#limits">Limits</a></li>
+          <li><a href="#permissions">Permissions the app requests</a></li>
+          <li><a href="#support">Support</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/releases/">Releases for Bitbucket</a><span>/</span>Documentation
+        </p>
+
+        <h1>Documentation</h1>
+        <p class="manual__lede">
+          Releases for Bitbucket turns every git tag in a Bitbucket Cloud repository into a
+          release: its notes, the pull requests it brought, the evidence behind it, and its files
+          in Downloads. It reads what git and Bitbucket already recorded, as the person looking,
+          and stores nothing.
+        </p>
+
+        <h2 id="how-it-works">How it works</h2>
+        <ul>
+          <li>
+            <strong>The Releases page</strong>, under Apps in the repository sidebar: every tag,
+            newest first, with the latest final release and pre-releases marked. Open one to see
+            its notes, changes, evidence, artifacts and export.
+          </li>
+          <li>
+            <strong>The Latest release card</strong> on the repository's Source page: the newest
+            final release, its date, its headline and how many tags the repository has.
+          </li>
+        </ul>
+        <p>
+          A release here is a git tag. There is nothing to create in the app and nothing to
+          configure: tag a commit, push the tag, and it is on the page.
+        </p>
+
+        <h2 id="setup">Setting it up</h2>
+        <ol>
+          <li>
+            As a workspace administrator, <a href="/releases/install/">install Releases for
+            Bitbucket</a> on your workspace. Atlassian's install page asks which workspace.
+          </li>
+          <li>Open any repository and choose <em>Releases</em> under Apps in its sidebar.</li>
+        </ol>
+        <p>A repository with no tags yet shows the two commands for a first release:</p>
+        <pre><code>git tag -a v1.0.0 -m "First release"
+git push origin v1.0.0</code></pre>
+
+        <h2 id="notes">Where the notes come from</h2>
+        <p>Notes come from git, never from the app, so nobody can change them after the fact. In order:</p>
+        <ol>
+          <li>
+            <strong>The annotated tag's message</strong> (<code>git tag -a</code>). Messages that
+            only repeat the version, such as <em>Tagging for release 1.2.0</em>, and signatures
+            are skipped.
+          </li>
+          <li>
+            <strong>The version's section of the changelog</strong> at the tagged commit:
+            <code>CHANGELOG.md</code>, <code>CHANGES.md</code>, <code>HISTORY.md</code>,
+            <code>RELEASE_NOTES.md</code> or <code>NEWS.md</code>. The section is the one whose
+            heading carries the version, with or without a leading <code>v</code>.
+          </li>
+          <li>
+            <strong>Neither:</strong> the page says so, and lists the titles of the pull requests
+            in the release instead.
+          </li>
+        </ol>
+
+        <h2 id="previous">Which release a release is compared with</h2>
+        <p>
+          Changes are counted from the previous release: the next lower version on the same line.
+        </p>
+        <ul>
+          <li><code>2.0.0</code> counts from <code>1.9.0</code>, not from <code>2.0.0-rc.3</code>.</li>
+          <li>A <code>1.4.2</code> tagged after <code>2.0.0</code> counts from <code>1.4.1</code>.</li>
+          <li>
+            Tags with a different prefix are separate lines: <code>pipe-v1.3.0</code> and
+            <code>v1.3.0</code> never count from each other.
+          </li>
+          <li>The first tag on a line counts every commit up to it.</li>
+        </ul>
+
+        <h2 id="changes">Changes</h2>
+        <p>
+          The pull requests whose commits are in the release, each with its author, who approved
+          it, and the Jira work item keys in its title or branch name. Then the commits
+          that went in without a pull request, with commits from release bots (Bitbucket
+          Pipelines, Dependabot, Renovate and the like) told apart.
+        </p>
+
+        <h2 id="evidence">Evidence</h2>
+        <p>Plain findings a reviewer or an auditor asks for, each marked good, to check, or a note:</p>
+        <ul>
+          <li>how many pull requests were approved by someone other than their author;</li>
+          <li>
+            which were merged by their author with no other approval, or while a reviewer was
+            still asking for changes;
+          </li>
+          <li>commits without a pull request, release automation counted separately;</li>
+          <li>whether the tagged commit built, from its build statuses;</li>
+          <li>every Code Insights report on the tagged commit, such as coverage or a security scan;</li>
+          <li>a lightweight tag, which records neither who tagged it nor when.</li>
+        </ul>
+
+        <h2 id="artifacts">Artifacts</h2>
+        <p>
+          The files in the repository's Downloads whose names carry the version:
+          <code>app-1.2.0.zip</code> belongs to <code>v1.2.0</code>, <code>app-11.2.0.zip</code>
+          does not. Upload them from your pipeline, for example with the
+          <code>atlassian/bitbucket-upload-file</code> pipe, and they show on the release.
+        </p>
+
+        <h2 id="export">Export</h2>
+        <p>
+          Each release copies out as Markdown, for a wiki page, a customer or a change ticket, or
+          as JSON, for an audit file. Both say which repository it came from and when it was read.
+        </p>
+
+        <h2 id="limits">Limits</h2>
+        <ul>
+          <li><strong>The newest 1,000 tags</strong> are listed.</li>
+          <li>
+            <strong>500 commits and 60 pull requests per release.</strong> Past that, the release
+            says it was cut short.
+          </li>
+          <li>
+            <strong>Bitbucket Cloud only.</strong> Bitbucket Data Center has no Forge apps.
+          </li>
+        </ul>
+
+        <h2 id="permissions">Permissions the app requests</h2>
+        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
+          <table>
+            <thead><tr><th>Scope</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td><code>read:repository:bitbucket</code></td><td>tags, commits, the changelog at a tag, Downloads, build statuses and Code Insights reports</td></tr>
+              <tr><td><code>read:pullrequest:bitbucket</code></td><td>merged pull requests, their approvals and their commits</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Everything is read as the person viewing the page, so Bitbucket's own repository
+          permissions decide what each person sees. The app has no write scope and no storage,
+          and there is no <code>permissions.external</code> block: it cannot make an outbound
+          call, which Atlassian enforces at the platform level.
+        </p>
+
+        <h2 id="support">Support</h2>
+        <p>
+          Questions, bug reports and feature requests:
+          <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
+          Security issues: <a href="/security/">report privately</a>.
+        </p>
+
+        <nav class="manual__pagination">
+          <span><a href="/releases/">← Product page</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/releases/privacy/">Privacy policy →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/jira.svg" alt="" width="16" height="16" />Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/confluence.svg" alt="" width="16" height="16" />Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/bitbucket.svg" alt="" width="16" height="16" />Bitbucket</p>
+          <ul class="footer__list">
+            <li><a href="/coverage/">Coverage</a></li>
+            <li><a href="/releases/">Releases</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/guides/">Guides</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=releases-docs&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Releases for Bitbucket is published by Keelapps. Not affiliated with Atlassian.
+          Bitbucket is a trademark of Atlassian.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

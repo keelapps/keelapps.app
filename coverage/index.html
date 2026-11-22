@@ -117,7 +117,7 @@
     </header>
 
     <main class="product" id="main">
-      <section class="intro">
+      <section class="intro intro--straddle">
         <p class="intro__app"><img class="app-icon" src="/assets/apps/coverage.svg" alt="" width="48" height="48" />Coverage for Bitbucket</p>
         <p class="eyebrow">For the pull request that says nothing about tests</p>
         <h1>A pull request should say which of its new lines no test ran.</h1>
@@ -376,9 +376,20 @@
       <section class="section related" aria-labelledby="related-title">
         <div class="related__head">
           <h2 id="related-title">More from Keelapps</h2>
-          <a href="/#apps">All thirteen apps</a>
+          <a href="/#apps">All fourteen apps</a>
         </div>
         <ul class="related__grid">
+          <li class="app-card" data-host="bitbucket">
+            <a class="app-card__shot" href="/releases/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/releases.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span><img class="product-icon" src="/assets/atlassian/bitbucket.svg" alt="" width="16" height="16" />Bitbucket · Release notes</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/releases/">A tag should say what shipped, and who approved it.</a></h3>
+            <p class="app-card__name"><span class="app-card__id"><img class="app-icon" src="/assets/apps/releases.svg" alt="" width="28" height="28" />Releases for Bitbucket</span></p>
+            <p class="app-card__links">
+              <a href="/releases/">Product page</a>
+              <a href="/releases/docs/">Docs</a>
+              <a class="app-card__get" href="/releases/install/">Install free</a>
+            </p>
+          </li>
           <li class="app-card" data-host="jira">
             <a class="app-card__shot" href="/accesslens/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/accesslens.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
             <p class="app-card__meta"><span><img class="product-icon" src="/assets/atlassian/jira.svg" alt="" width="16" height="16" />Jira · Permission audit</span><span class="app-card__status">Live</span></p>
@@ -401,18 +412,6 @@
               <a href="/recur/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:00</a>
               <a href="/recur/docs/">Docs</a>
               <a class="app-card__get" href="https://marketplace.atlassian.com/apps/3262138887/recur-recurring-tasks-for-jira?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=coverage&amp;utm_content=card">Get it on Marketplace</a>
-            </p>
-          </li>
-          <li class="app-card" data-host="jira">
-            <a class="app-card__shot" href="/digest/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/digest.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
-            <p class="app-card__meta"><span><img class="product-icon" src="/assets/atlassian/jira.svg" alt="" width="16" height="16" />Jira · Scheduled reporting</span><span class="app-card__status">Live</span></p>
-            <h3 class="app-card__problem"><a href="/digest/">Six emails about one issue, folded into one summary.</a></h3>
-            <p class="app-card__name"><span class="app-card__id"><img class="app-icon" src="/assets/apps/digest.svg" alt="" width="28" height="28" />Digest for Jira</span> <span class="app-card__badge">Runs on Atlassian</span></p>
-            <p class="app-card__links">
-              <a href="/digest/">Product page</a>
-              <a href="/digest/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:01</a>
-              <a href="/digest/docs/">Docs</a>
-              <a class="app-card__get" href="https://marketplace.atlassian.com/apps/978618646/digest-daily-weekly-summaries-for-jira?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=coverage&amp;utm_content=card">Get it on Marketplace</a>
             </p>
           </li>
         </ul>
@@ -463,6 +462,7 @@
           <p class="footer__head"><img class="product-icon" src="/assets/atlassian/bitbucket.svg" alt="" width="16" height="16" />Bitbucket</p>
           <ul class="footer__list">
             <li><a href="/coverage/">Coverage</a></li>
+            <li><a href="/releases/">Releases</a></li>
           </ul>
         </div>
         <div>

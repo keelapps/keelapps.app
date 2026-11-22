@@ -83,7 +83,9 @@ APPS = [
     ("sort-pages", "Sort Pages for Confluence", "Sort Pages", "Confluence", "Page tree order",
      ["curator", "evergreen", "signoff"]),
     ("coverage", "Coverage for Bitbucket", "Coverage", "Bitbucket", "PR coverage",
-     ["accesslens", "recur", "digest"]),
+     ["releases", "accesslens", "recur"]),
+    ("releases", "Releases for Bitbucket", "Releases", "Bitbucket", "Release notes",
+     ["coverage", "accesslens", "digest"]),
 ]
 PRODUCTS = ["Jira", "Confluence", "Bitbucket"]
 WORDS = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen \

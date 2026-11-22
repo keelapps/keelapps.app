@@ -33,6 +33,7 @@ PAGES = [
     "mail-templates/privacy/index.html",
     "prefill/privacy/index.html",
     "recur/privacy/index.html",
+    "releases/privacy/index.html",
     "satchel/privacy/index.html",
     "satchel-confluence/privacy/index.html",
     "signoff/privacy/index.html",
