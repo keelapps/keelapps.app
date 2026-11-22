@@ -95,19 +95,19 @@
           <span class="masthead__wordmark">keelapps</span>
         </a>
         <span class="masthead__sep" aria-hidden="true"></span>
-        <a class="masthead__app" href="/coverage/"><img class="app-icon" src="/assets/apps/coverage.svg" alt="" width="24" height="24" />Coverage for Bitbucket</a>
+        <a class="masthead__app" href="/releases/"><img class="app-icon" src="/assets/apps/releases.svg" alt="" width="24" height="24" />Releases for Bitbucket</a>
       </div>
       <nav class="masthead__nav" aria-label="Site">
         <a href="/#apps">All apps</a>
-        <a href="/coverage/docs/">Documentation</a>
-        <a href="/coverage/privacy/">Privacy</a>
+        <a href="/releases/docs/">Documentation</a>
+        <a href="/releases/privacy/">Privacy</a>
         <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
-        <a class="btn" href="/coverage/install/">Install free</a>
+        <a class="btn" href="/releases/install/">Install free</a>
       </nav>
     </header>
 
     <main class="product" id="main">
-      <section class="intro">
+      <section class="intro intro--straddle">
         <p class="intro__app"><img class="app-icon" src="/assets/apps/releases.svg" alt="" width="48" height="48" />Releases for Bitbucket</p>
         <p class="eyebrow">For the tag that says nothing about what shipped</p>
         <h1>A tag should say what shipped, and who approved it.</h1>
@@ -135,7 +135,18 @@
         </dl>
       </section>
 
-      <!-- showcase -->
+      <figure class="showcase" id="demo">
+        <img
+          src="/assets/screenshots/releases-preview.png"
+          width="1840"
+          height="900"
+          alt="A release opened from the Releases page: v1.2.0, tagged at ac0fc84, with the Evidence tab showing three things to check (a pull request merged by its own author with no other approval, and two commits that went in without a pull request) and three that passed: the build, coverage and tests."
+        />
+        <figcaption>
+          The Evidence tab on a release. What someone should look at comes first; what passed
+          follows, read from Bitbucket the moment you open it.
+        </figcaption>
+      </figure>
 
       <section class="section">
         <p class="eyebrow">The gap this fills</p>
@@ -202,7 +213,23 @@
         </div>
       </section>
 
-      <!-- evidence-shot -->
+      <section class="section">
+        <p class="eyebrow">On the release</p>
+        <h2>Every pull request since the last tag</h2>
+        <figure class="shot">
+          <img
+            src="/assets/screenshots/releases-changes.png"
+            width="1840"
+            height="1048"
+            loading="lazy"
+            alt="The Changes tab of release v1.1.0: two pull requests with their author, approvers and Jira work item keys TAL-12 and TAL-15, then four commits that went in without a pull request."
+          />
+          <figcaption>
+            The Changes tab. Pull requests with who wrote and who approved them, the Jira work
+            items they name, and every commit that skipped review.
+          </figcaption>
+        </figure>
+      </section>
 
       <section class="section">
         <p class="eyebrow">Walkthrough</p>
@@ -322,6 +349,50 @@
       </section>
 
       <!-- related:begin -->
+      <section class="section related" aria-labelledby="related-title">
+        <div class="related__head">
+          <h2 id="related-title">More from Keelapps</h2>
+          <a href="/#apps">All fourteen apps</a>
+        </div>
+        <ul class="related__grid">
+          <li class="app-card" data-host="bitbucket">
+            <a class="app-card__shot" href="/coverage/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/coverage.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span><img class="product-icon" src="/assets/atlassian/bitbucket.svg" alt="" width="16" height="16" />Bitbucket · PR coverage</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/coverage/">A pull request should say which of its new lines no test ran.</a></h3>
+            <p class="app-card__name"><span class="app-card__id"><img class="app-icon" src="/assets/apps/coverage.svg" alt="" width="28" height="28" />Coverage for Bitbucket</span></p>
+            <p class="app-card__links">
+              <a href="/coverage/">Product page</a>
+              <a href="/coverage/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 0:48</a>
+              <a href="/coverage/docs/">Docs</a>
+              <a class="app-card__get" href="/coverage/install/">Install free</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="jira">
+            <a class="app-card__shot" href="/accesslens/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/accesslens.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span><img class="product-icon" src="/assets/atlassian/jira.svg" alt="" width="16" height="16" />Jira · Permission audit</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/accesslens/">Prove who can access what in Jira — at a point in time.</a></h3>
+            <p class="app-card__name"><span class="app-card__id"><img class="app-icon" src="/assets/apps/accesslens.svg" alt="" width="28" height="28" />AccessLens for Jira</span> <span class="app-card__badge">Runs on Atlassian</span></p>
+            <p class="app-card__links">
+              <a href="/accesslens/">Product page</a>
+              <a href="/accesslens/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:06</a>
+              <a href="/accesslens/docs/">Docs</a>
+              <a class="app-card__get" href="https://marketplace.atlassian.com/apps/4182244448/accesslens-for-jira?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=releases&amp;utm_content=card">Get it on Marketplace</a>
+            </p>
+          </li>
+          <li class="app-card" data-host="jira">
+            <a class="app-card__shot" href="/digest/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/digest.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
+            <p class="app-card__meta"><span><img class="product-icon" src="/assets/atlassian/jira.svg" alt="" width="16" height="16" />Jira · Scheduled reporting</span><span class="app-card__status">Live</span></p>
+            <h3 class="app-card__problem"><a href="/digest/">Six emails about one issue, folded into one summary.</a></h3>
+            <p class="app-card__name"><span class="app-card__id"><img class="app-icon" src="/assets/apps/digest.svg" alt="" width="28" height="28" />Digest for Jira</span> <span class="app-card__badge">Runs on Atlassian</span></p>
+            <p class="app-card__links">
+              <a href="/digest/">Product page</a>
+              <a href="/digest/#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Demo 1:01</a>
+              <a href="/digest/docs/">Docs</a>
+              <a class="app-card__get" href="https://marketplace.atlassian.com/apps/978618646/digest-daily-weekly-summaries-for-jira?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=releases&amp;utm_content=card">Get it on Marketplace</a>
+            </p>
+          </li>
+        </ul>
+      </section>
       <!-- related:end -->
     </main>
 
@@ -368,6 +439,7 @@
           <p class="footer__head"><img class="product-icon" src="/assets/atlassian/bitbucket.svg" alt="" width="16" height="16" />Bitbucket</p>
           <ul class="footer__list">
             <li><a href="/coverage/">Coverage</a></li>
+            <li><a href="/releases/">Releases</a></li>
           </ul>
         </div>
         <div>
@@ -377,14 +449,14 @@
             <li><a href="/pricing/">Pricing</a></li>
             <li><a href="/security/">Security</a></li>
             <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
-            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=coverage&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=releases&amp;utm_content=footer">Marketplace</a></li>
             <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
           </ul>
         </div>
       </div>
       <div class="footer__base">
         <p class="footer__fine">
-          Coverage for Bitbucket is an Atlassian Forge app. It runs entirely inside
+          Releases for Bitbucket is an Atlassian Forge app. It runs entirely inside
           Atlassian's infrastructure and declares no external network access — your data is
           never sent to us or to anyone else. Not affiliated with Atlassian. Bitbucket is a
           trademark of Atlassian.
