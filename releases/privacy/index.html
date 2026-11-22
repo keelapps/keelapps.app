@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Privacy policy — Releases for Bitbucket</title>
+    <meta
+      name="description"
+      content="Privacy policy for Releases for Bitbucket: what the app reads, that it stores nothing and sends nothing outside Bitbucket, and how to contact us."
+    />
+    <link rel="canonical" href="https://keelapps.app/releases/privacy/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/releases/privacy/" />
+    <meta property="og:title" content="Privacy policy — Releases for Bitbucket" />
+    <meta
+      property="og:description"
+      content="Read-only, no storage, no egress. What Releases for Bitbucket reads, and what it never does."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      (function () {
+        var internal = false;
+        try {
+          var mark = new URLSearchParams(location.search).get('internal');
+          if (mark === '1') localStorage.setItem('keelapps-internal', '1');
+          else if (mark === '0') localStorage.removeItem('keelapps-internal');
+          internal = localStorage.getItem('keelapps-internal') === '1';
+        } catch (e) {}
+        gtag('config', 'G-P880MM0XEG', internal ? { traffic_type: 'internal' } : {});
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+        <span class="masthead__sep" aria-hidden="true"></span>
+        <a class="masthead__app" href="/coverage/"><img class="app-icon" src="/assets/apps/coverage.svg" alt="" width="24" height="24" />Coverage for Bitbucket</a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="/coverage/docs/">Documentation</a>
+        <a href="/coverage/privacy/">Privacy</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a class="btn" href="/coverage/install/">Install free</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Coverage for Bitbucket pages and sections">
+        <p class="manual__toc-title">Coverage for Bitbucket</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/coverage/">Product</a></li>
+          <li><a href="/coverage/docs/">Documentation</a></li>
+          <li><a href="/coverage/privacy/" aria-current="page">Privacy policy</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#short-version">The short version</a></li>
+          <li><a href="#what-the-app-reads">What the app reads</a></li>
+          <li><a href="#what-the-pipe-writes">What the pipe writes</a></li>
+          <li><a href="#what-it-never-does">What it never does</a></li>
+          <li><a href="#retention-and-deletion">Retention and deletion</a></li>
+          <li><a href="#data-residency">Data residency</a></li>
+          <li><a href="#sub-processors">Sub-processors</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+            <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/releases/">Releases for Bitbucket</a><span>/</span>Privacy policy
+        </p>
+
+        <!-- legal:begin
+             In-force text. This document is submitted to the Atlassian
+             Marketplace. Structure, classes, ids and attributes may change;
+             NOT ONE WORD between these sentinels may.
+        -->
+        <h1>Privacy policy — Releases for Bitbucket</h1>
+        <p class="manual__meta">Effective date: <time datetime="2026-11-22">22 November 2026</time></p>
+
+        <h2 id="short-version">The short version</h2>
+        <p class="manual__lede">
+          Releases for Bitbucket (“the app”) is published by Keelapps. It is a Forge app that
+          reads a repository's tags, commits, pull requests, build results and Downloads, and
+          shows them as releases inside Bitbucket. It sends nothing anywhere outside Bitbucket.
+          The app stores nothing and declares no external network permissions, which Atlassian
+          enforces at the platform level. There is no Keelapps server, no analytics, no
+          telemetry and no third party.
+        </p>
+
+        <h2 id="what-the-app-reads">What the app reads</h2>
+        <p>
+          When someone opens the Releases page, a release, or a repository's Source page, the app
+          reads, as that person and with their Bitbucket permissions:
+        </p>
+        <ul>
+          <li>the repository's tags, with their messages, dates and taggers;</li>
+          <li>the commits between a release and the one before it, with their authors and messages;</li>
+          <li>the changelog file at the tagged commit, when there is one;</li>
+          <li>the merged pull requests behind those commits, with their authors, participants and approvals;</li>
+          <li>the build statuses and Code Insights reports on the tagged commit;</li>
+          <li>the names, sizes and dates of the files in the repository's Downloads.</li>
+        </ul>
+        <p>
+          What it reads is shown on the page and then discarded. The app has no storage of any
+          kind. It reads one changelog file at a tag and never reads the rest of your source code.
+        </p>
+
+        <h2 id="what-it-never-does">What it never does</h2>
+        <ul>
+          <li>
+            <strong>No data leaves Bitbucket.</strong> The app cannot make an outbound call. There
+            is no analytics, no telemetry and no third-party service.
+          </li>
+          <li>
+            <strong>Nothing is written.</strong> It requests read scopes only: no write to
+            repositories, tags, pull requests or Downloads, and no storage.
+          </li>
+          <li>
+            <strong>Exports stay with you.</strong> The Markdown and JSON exports are built in the
+            page and copied by the person viewing it; Keelapps never receives them.
+          </li>
+          <li>
+            <strong>The vendor cannot browse your data.</strong> What Keelapps can see is the
+            app's logs: like every Forge app's, they are shared with the developer by default, and
+            your workspace administrator can switch that off. They hold the error text Bitbucket
+            returns when a request fails, which can name a repository, a tag or a commit, and never
+            release notes, commit messages or code. Support requests are answered from what you
+            tell us, not from your data.
+          </li>
+          <li>
+            The app requests no scope beyond the two
+            <a href="/releases/docs/#permissions">listed in its documentation</a>.
+          </li>
+        </ul>
+
+        <h2 id="retention-and-deletion">Retention and deletion</h2>
+        <p>
+          The app keeps nothing, so there is nothing for it to delete. Uninstalling it removes it
+          from your workspace and leaves your repositories exactly as they were.
+        </p>
+
+        <h2 id="data-residency">Data residency</h2>
+        <p>
+          Whatever your Bitbucket Cloud workspace's is. The app stores nothing, so Releases for
+          Bitbucket introduces no additional residency considerations.
+        </p>
+
+        <h2 id="sub-processors">Sub-processors</h2>
+        <p>None. Atlassian hosts the app.</p>
+
+        <h2 id="changes">Changes</h2>
+        <p>
+          Material changes to what is read, written or where will be reflected here and in the
+          Marketplace listing before they ship.
+        </p>
+
+        <h2 id="contact">Contact</h2>
+        <p>
+          <a href="mailto:support@keelapps.atlassian.net">support@keelapps.atlassian.net</a> — for questions about
+          this policy, and for data access, correction or deletion requests.
+        </p>
+        <!-- legal:end -->
+
+        <nav class="manual__pagination">
+          <span><a href="/releases/docs/">← Documentation</a></span>
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+          <span class="manual__pagination-next"><a href="/releases/">Product page →</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/jira.svg" alt="" width="16" height="16" />Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/confluence.svg" alt="" width="16" height="16" />Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/bitbucket.svg" alt="" width="16" height="16" />Bitbucket</p>
+          <ul class="footer__list">
+            <li><a href="/coverage/">Coverage</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/guides/">Guides</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=coverage-privacy&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Coverage for Bitbucket is published by Keelapps. Not affiliated with Atlassian.
+          Bitbucket is a trademark of Atlassian.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
