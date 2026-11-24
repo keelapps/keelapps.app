@@ -115,7 +115,8 @@
         <h2 id="how-it-works">How it works</h2>
         <ul>
           <li>
-            <strong>The pipe</strong> (<code>ghcr.io/keelapps/coverage-for-bitbucket:1</code>)
+            <strong>The pipe</strong> (<code>keelapps/coverage-for-bitbucket</code>, listed in Bitbucket's official
+            <a href="https://bitbucket.org/product/features/pipelines/integrations">Pipelines integrations</a>)
             runs in your pipeline after your tests. It reads your coverage file and your JUnit
             XML, compares the commit with the target branch using git, and writes two Code
             Insights reports on the commit: <em>Coverage</em> and <em>Tests</em>. It writes them
@@ -143,7 +144,7 @@
     script:
       - pytest --junitxml=test-results/junit.xml --cov=app --cov-report=xml:coverage.xml
     after-script:
-      - pipe: docker://ghcr.io/keelapps/coverage-for-bitbucket:1
+      - pipe: keelapps/coverage-for-bitbucket:1.3.0
         variables:
           COVERAGE_FILE: coverage.xml
           MIN_CHANGED_COVERAGE: '80'
