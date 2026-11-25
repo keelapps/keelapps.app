@@ -102,7 +102,7 @@ window onto the app, and the window is fixed.
 
 Adding an app is a row in `APPS` at the top of `tools/make-chrome`, its three
 pages, a card source, and those two scripts. The home page counts the fleet in words ("Fourteen
-apps. One job each.", "See all fourteen apps") — those are copy, and change by
+apps, each for one job.", "See all fourteen apps"). Those are copy and change by
 hand.
 
 ## Marketplace links carry UTM tags

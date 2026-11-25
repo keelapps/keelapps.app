@@ -106,14 +106,14 @@
           <a href="/">keelapps</a><span>/</span><a href="/mail-templates/">Mail Templates</a><span>/</span>Documentation
         </p>
 
-        <h1>Mail Templates for Jira — documentation</h1>
+        <h1>Documentation</h1>
 
         <h2 id="before-you-start">Before you start</h2>
         <p class="manual__lede">
           Mail Templates is an <strong>additional</strong> notification channel. Jira keeps
           sending whatever its own notification scheme is configured to send; this app adds
           a templated message on top, aimed at people who would otherwise receive nothing.
-          It cannot suppress Jira's own mail — Forge gives apps no hook for that. Plan
+          It cannot suppress Jira's own mail, because Forge gives apps no hook for that. Plan
           around that from the start, and see <a href="#duplicates">avoiding duplicate
           mail</a>.
         </p>
@@ -142,7 +142,7 @@
             </thead>
             <tbody>
               <tr><td>Issue created</td><td>a new issue is created in the project</td></tr>
-              <tr><td>Status changed</td><td>an edit moves the issue between statuses — other field edits are ignored</td></tr>
+              <tr><td>Status changed</td><td>an edit moves the issue between statuses; other field edits are ignored</td></tr>
               <tr><td>Comment added</td><td>a comment is added to an issue</td></tr>
             </tbody>
           </table>
@@ -155,7 +155,7 @@
         <h2 id="variables">Template variables</h2>
         <p>
           Both the subject and the body interpolate these. Anything that is not a known
-          variable is left exactly as typed — so a typo shows up in the message as
+          variable is left exactly as typed, so a typo shows up in the message as
           <code>{{isue.key}}</code> rather than silently vanishing.
         </p>
         <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
@@ -179,10 +179,10 @@
               <tr><td><code>{{project.key}}</code></td><td>ENG</td></tr>
               <tr><td><code>{{project.name}}</code></td><td>Engineering</td></tr>
               <tr><td><code>{{actor.name}}</code></td><td>who triggered the event</td></tr>
-              <tr><td><code>{{transition.from}}</code></td><td>previous status — status-change rules only</td></tr>
-              <tr><td><code>{{transition.to}}</code></td><td>new status — status-change rules only</td></tr>
-              <tr><td><code>{{comment.body}}</code></td><td>the comment text — comment rules only</td></tr>
-              <tr><td><code>{{comment.author}}</code></td><td>who commented — comment rules only</td></tr>
+              <tr><td><code>{{transition.from}}</code></td><td>previous status (status-change rules only)</td></tr>
+              <tr><td><code>{{transition.to}}</code></td><td>new status (status-change rules only)</td></tr>
+              <tr><td><code>{{comment.body}}</code></td><td>the comment text (comment rules only)</td></tr>
+              <tr><td><code>{{comment.author}}</code></td><td>who commented (comment rules only)</td></tr>
             </tbody>
           </table>
         </div>
@@ -201,8 +201,8 @@
         <p>
           Tick any combination of <strong>Reporter</strong>, <strong>Assignee</strong>,
           <strong>Watchers</strong> and <strong>Voters</strong>, add named people under
-          <strong>Specific people</strong>, and Jira groups under <strong>Groups</strong> —
-          searched by name as you type, among the groups you yourself can see.
+          <strong>Specific people</strong>, and Jira groups under <strong>Groups</strong>,
+          searched by name as you type among the groups you yourself can see.
         </p>
         <p>
           A comment restricted to a group or a project role, and a service project's internal
@@ -250,7 +250,7 @@
               <tr><td>Already sent</td><td>a duplicate delivery of the same event; one event, one email</td></tr>
               <tr><td>Hourly limit reached</td><td>the project or site quota was exhausted for that hour</td></tr>
               <tr><td>Nobody to send to</td><td>the rule addressed no one, or Jira dropped everyone for lack of access</td></tr>
-              <tr><td>No subscription</td><td>the site's subscription has lapsed — see below</td></tr>
+              <tr><td>No subscription</td><td>the site's subscription has lapsed (see below)</td></tr>
               <tr><td>Blocked by Jira</td><td>Jira refused the send; the detail column carries its reason</td></tr>
               <tr><td>Failed</td><td>a transient error; these are retried</td></tr>
             </tbody>
@@ -269,7 +269,7 @@
           <li><strong>Is the rule on?</strong> Each event tab has its own tick box.</li>
           <li><strong>Is the site switch on?</strong> Check the admin page.</li>
           <li><strong>Did the event actually match?</strong> A status change needs a real status transition; editing a summary is not one.</li>
-          <li><strong>Can the recipient see the issue?</strong> Jira drops those who cannot — the log says <strong>Nobody to send to</strong>.</li>
+          <li><strong>Can the recipient see the issue?</strong> Jira drops those who cannot, and the log says <strong>Nobody to send to</strong>.</li>
           <li><strong>Was the hourly limit hit?</strong> The log says so.</li>
           <li><strong>Is the subscription active?</strong> The log says <strong>No subscription</strong>.</li>
         </ol>
@@ -281,7 +281,7 @@
 
         <h2 id="duplicates">Avoiding duplicate mail</h2>
         <p>
-          Someone who is already notified by Jira's own scheme — a watcher, say — will get
+          Someone who is already notified by Jira's own scheme, such as a watcher, will get
           two messages: Jira's and yours. To stop that, switch the matching event off in the
           project's notification scheme in Jira.
         </p>
@@ -307,7 +307,7 @@
         </div>
         <p>
           There is no <code>external</code> permission, so the app cannot reach any host
-          outside Atlassian — Forge enforces that at the platform level, not on our word.
+          outside Atlassian. Forge enforces that at the platform level, so you don't have to take our word for it.
         </p>
 
         <h2 id="limits">What it will never do</h2>
@@ -317,9 +317,9 @@
         </p>
         <ul>
           <li>No attachments</li>
-          <li>No custom sender address — mail comes from Jira</li>
+          <li>No custom sender address: mail comes from Jira</li>
           <li>No unsubscribe management</li>
-          <li>No rich-text editor — the markdown subset above is the whole of it</li>
+          <li>No rich-text editor: the markdown subset above is the whole of it</li>
           <li>No suppressing or replacing Jira's own notifications</li>
         </ul>
 

@@ -19,7 +19,7 @@
     <meta property="og:title" content="AccessLens for Confluence — space and page permission audit" />
     <meta
       property="og:description"
-      content="Which spaces can this group reach, which pages are locked, and what changed since last quarter? AccessLens answers it in full — read-only, snapshotted, diffed and signed off, without anything leaving your tenant."
+      content="Which spaces can this group reach, which pages are locked, and what changed since last quarter? AccessLens answers all three. It is read-only, keeps dated snapshots and signed-off reviews, and nothing leaves your tenant."
     />
     <meta property="og:image" content="https://keelapps.app/assets/screenshots/accesslens-confluence-restrictions.png" />
     <meta property="og:image:width" content="1840" />
@@ -127,17 +127,17 @@
         <div class="intro__split">
           <p class="lede">
             Confluence's User access report lists a group's spaces as admin or user, and on
-            Premium checks one page at a time. AccessLens answers in full — by group, by user or by space, with group
-            membership expanded so what you see is <em>effective</em> access — then adds the
-            part Confluence makes hardest to self-check: page restrictions, and what inherits
-            them. Freeze the result as a snapshot, diff any two quarters, sign the review off.
+            Premium checks one page at a time. AccessLens answers by group, by user or by space,
+            with group membership expanded so you see <em>effective</em> access. It also covers
+            the part Confluence makes hardest to check yourself: page restrictions, and what
+            inherits them. Freeze the result as a snapshot, diff any two quarters, sign the review off.
             Read-only, and nothing leaves Atlassian.
           </p>
           <div class="intro__act">
             <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/2097025605/accesslens-space-page-permission-audit?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=accesslens-confluence&amp;utm_content=hero">Try it free on the Atlassian Marketplace</a>
             <p class="pricing-line">
               Free for sites up to 10 users. Above that it is priced per user per month and billed by
-              Atlassian — <a href="https://marketplace.atlassian.com/apps/2097025605/accesslens-space-page-permission-audit?tab=pricing&amp;utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=accesslens-confluence&amp;utm_content=pricing">see pricing on the Marketplace</a>.
+              Atlassian. <a href="https://marketplace.atlassian.com/apps/2097025605/accesslens-space-page-permission-audit?tab=pricing&amp;utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=accesslens-confluence&amp;utm_content=pricing">See pricing on the Marketplace</a>.
             </p>
             <p class="intro__note">Read-only: no write scopes at all. Audit data never leaves your Atlassian tenant.</p>
             <a class="intro__demo" href="#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Watch the 1:10 demo</a>
@@ -181,9 +181,9 @@
             given day?</strong> The native audit log is an event stream, not a state.
             <strong>Which pages are locked, and why can I not see one?</strong> Restricted pages
             are listed one space at a time, view restrictions inherit downwards, and
-            restrictions can only narrow space permissions and never widen them — so a
-            restriction naming a group with no space access grants nothing at all, the
-            reverse of what the admin who typed it believed.
+            restrictions can only narrow space permissions and never widen them. A restriction
+            naming a group with no space access therefore grants nothing at all, the reverse of
+            what the admin who typed it believed.
           </p>
           <p>
             The first exists on the Jira side too, where the request has been open since 2019
@@ -201,7 +201,7 @@
           <div class="card">
             <h3>Answer who can reach what</h3>
             <p>
-              Reverse lookup in three directions — by group, by user or by space — with group
+              Reverse lookup in three directions (by group, by user or by space), with group
               membership expanded to effective access. A lookup by user keeps
               <em>every</em> inheritance path, not just the first one found, and a lookup by
               group or user lists the restricted pages that name them, with whether that lets
@@ -212,7 +212,7 @@
             <h3>Find locked pages, and what locks them</h3>
             <p>
               Restricted pages per space, the restriction type, and the
-              <strong>inheritance source</strong> — because a page is often hidden by an
+              <strong>inheritance source</strong>, because a page is often hidden by an
               ancestor rather than by itself.
             </p>
           </div>
@@ -228,17 +228,16 @@
             <h3>A snapshot is audit evidence</h3>
             <p>
               Capture every current space's permission state, manually or on a schedule. Large
-              sites finish because the scan is sharded and resumable — the cursor reaches
-              inside a single space, page by page — and a space it cannot read stays in the
-              snapshot with the reason, never silently dropped.
+              sites finish because the scan is sharded and can resume, page by page, even inside
+              a single space. A space it cannot read stays in the snapshot with the reason.
             </p>
           </div>
           <div class="card">
             <h3>Diffs an admin can read</h3>
             <p>
               Compare any two snapshots, reported one row per space and subject. Five
-              administrative changes read as five rows, never as fifty permission lines — and
-              what either side could not read is listed as not comparable, not as a change.
+              administrative changes read as five rows instead of fifty permission lines.
+              Anything either side could not read is listed as not comparable.
             </p>
           </div>
           <div class="card">
@@ -261,7 +260,7 @@
             <p>
               A scheduled scan captured the site last night. Before it ran, AccessLens said
               what it would cost in Confluence API points and what share of the shared hourly
-              quota that is — so nothing surprises anyone.
+              quota that is.
             </p>
           </li>
           <li>
@@ -277,7 +276,7 @@
             <p>
               The restriction audit lists the locked pages it can read in the spaces under
               review (200 per space by default, or all of them), including the ones hidden by an
-              ancestor rather than themselves — and flags the
+              ancestor rather than themselves. It also flags the
               restrictions that grant nothing because the group named in them cannot see the
               space.
             </p>
@@ -344,7 +343,7 @@
               <tr>
                 <td>Does audit data leave Atlassian?</td>
                 <td>—</td>
-                <td><span class="answer">Never — and read-only</span></td>
+                <td><span class="answer">Never, and read-only</span></td>
               </tr>
             </tbody>
           </table>
@@ -379,7 +378,7 @@
           </p>
           <p>
             <strong>Where a tenant cannot expose anonymous access at all, it says the
-            access is not observable here</strong> — not “none found”. Confluence's tenant
+            access is not observable here</strong> instead of reporting “none found”. Confluence's tenant
             permission models differ, and on some of them the API this app can use does not
             expose anonymous access. AccessLens measures whether it could
             observe it, and reports that measurement rather than an absence.
@@ -437,7 +436,7 @@
           <li class="app-card" data-host="confluence">
             <a class="app-card__shot" href="/signoff/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/signoff.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
             <p class="app-card__meta"><span><img class="product-icon" src="/assets/atlassian/confluence.svg" alt="" width="16" height="16" />Confluence · Page approvals</span><span class="app-card__status">Live</span></p>
-            <h3 class="app-card__problem"><a href="/signoff/">Who approved this version of this page — and is that still good?</a></h3>
+            <h3 class="app-card__problem"><a href="/signoff/">Who approved this version of this page, and does that approval still hold?</a></h3>
             <p class="app-card__name"><span class="app-card__id"><img class="app-icon" src="/assets/apps/signoff.svg" alt="" width="28" height="28" />Signoff for Confluence</span> <span class="app-card__badge">Runs on Atlassian</span></p>
             <p class="app-card__links">
               <a href="/signoff/">Product page</a>
@@ -461,7 +460,7 @@
           <li class="app-card" data-host="confluence">
             <a class="app-card__shot" href="/curator/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/curator.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
             <p class="app-card__meta"><span><img class="product-icon" src="/assets/atlassian/confluence.svg" alt="" width="16" height="16" />Confluence · Bulk page governance</span><span class="app-card__status">Live</span></p>
-            <h3 class="app-card__problem"><a href="/curator/">Change three hundred pages at once — and put them back if it was wrong</a></h3>
+            <h3 class="app-card__problem"><a href="/curator/">Change three hundred pages at once, and put them back if it went wrong.</a></h3>
             <p class="app-card__name"><span class="app-card__id"><img class="app-icon" src="/assets/apps/curator.svg" alt="" width="28" height="28" />Curator for Confluence</span> <span class="app-card__badge">Runs on Atlassian</span></p>
             <p class="app-card__links">
               <a href="/curator/">Product page</a>
@@ -536,9 +535,9 @@
       <div class="footer__base">
         <p class="footer__fine">
           AccessLens for Confluence is an Atlassian Forge app. It runs entirely inside your
-          Atlassian tenant and declares no external network access — your data is never sent
-          to us or to anyone else. Not affiliated with Atlassian. Confluence is a trademark
-          of Atlassian.
+          Atlassian tenant and declares no external network access, so your data is never
+          sent to us or to anyone else. Not affiliated with Atlassian. Confluence is a
+          trademark of Atlassian.
         </p>
       </div>
     </footer>

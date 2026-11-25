@@ -38,8 +38,8 @@
   line-height: 1.02;
 }
 
-/* One clause a line: the three jobs read as a list, the last in muted ink so
-   the eye settles on the first two. */
+/* Two lines: what the apps are, then whose work they take on, the second in
+   muted ink so the eye settles on the first. */
 
 .hero__title span {
   display: block;

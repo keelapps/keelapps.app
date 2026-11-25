@@ -123,7 +123,7 @@
       <section class="intro intro--straddle">
         <p class="intro__app"><img class="app-icon" src="/assets/apps/accesslens.svg" alt="" width="48" height="48" />AccessLens for Jira</p>
         <p class="eyebrow">For Jira Cloud admins in regulated industries</p>
-        <h1>Prove who can access what in Jira — at a point in time.</h1>
+        <h1>Prove who had access to what in Jira, with dated snapshots.</h1>
         <div class="intro__split">
           <p class="lede">
             Jira can tell you who is in a project. It cannot tell you which projects a group can
@@ -134,7 +134,7 @@
             <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/4182244448/accesslens-for-jira?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=accesslens&amp;utm_content=hero">Try it free on the Atlassian Marketplace</a>
             <p class="pricing-line">
               Free for sites up to 10 users. Above that it is priced per user per month and billed by
-              Atlassian — <a href="https://marketplace.atlassian.com/apps/4182244448/accesslens-for-jira?tab=pricing&amp;utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=accesslens&amp;utm_content=pricing">see pricing on the Marketplace</a>.
+              Atlassian. <a href="https://marketplace.atlassian.com/apps/4182244448/accesslens-for-jira?tab=pricing&amp;utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=accesslens&amp;utm_content=pricing">See pricing on the Marketplace</a>.
             </p>
             <p class="intro__note">Read-only: it never changes a permission. Your permission data never leaves Atlassian.</p>
             <a class="intro__demo" href="#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Watch the 1:06 demo</a>
@@ -173,8 +173,8 @@
           <p>
             Reverse permission lookup has been an open Jira Cloud request since 2019
             (<a href="https://jira.atlassian.com/browse/JRACLOUD-71967"><code>JRACLOUD-71967</code></a>, over a thousand votes) and is still unresolved.
-            Meanwhile the native audit log retains 180 days and is an event stream — it cannot
-            reconstruct who held access on a given date, or show that anyone signed off on it.
+            Meanwhile the native audit log keeps 180 days of events. It cannot reconstruct who
+            held access on a given date, or show that anyone signed off on it.
           </p>
         </div>
       </section>
@@ -186,7 +186,7 @@
           <div class="card">
             <h3>Reverse lookup, three ways</h3>
             <p>
-              Pick a group, a user, or a project. Get the flattened answer — including access
+              Pick a group, a user, or a project. Get the flattened answer, including access
               inherited through project roles and, where your site permits reading group members,
               through group membership. Both are expanded for you.
             </p>
@@ -201,8 +201,8 @@
           <div class="card">
             <h3>Quarter-over-quarter diff</h3>
             <p>
-              Compare two snapshots and get exactly what changed — “the Contractors group gained
-              admin on Payments” — not a wall of raw events to read.
+              Compare two snapshots and get a list of what changed, such as “the Contractors group
+              gained admin on Payments”, instead of a wall of raw events.
             </p>
           </div>
           <div class="card">
@@ -235,7 +235,7 @@
         <ol class="steps">
           <li>
             <h3>Snapshot on the last day of the quarter</h3>
-            <p>Scheduled weekly, or monthly on the 1st–28th, or taken by hand on the day itself — so the evidence exists before anyone asks for it.</p>
+            <p>Schedule it weekly or monthly (any day from the 1st to the 28th), or take one by hand on the day. The evidence then exists before anyone asks for it.</p>
           </li>
           <li>
             <h3>Diff against last quarter</h3>
@@ -466,8 +466,8 @@
       <div class="footer__base">
         <p class="footer__fine">
           AccessLens is an Atlassian Forge app. It runs entirely inside your Atlassian
-          tenant and declares no external network access — permission data is never sent to
-          us or to anyone else. Not affiliated with Atlassian. Jira is a trademark of
+          tenant and declares no external network access, so permission data is never sent
+          to us or to anyone else. Not affiliated with Atlassian. Jira is a trademark of
           Atlassian.
         </p>
       </div>

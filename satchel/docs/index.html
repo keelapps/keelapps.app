@@ -118,10 +118,9 @@
 
         <div class="aside" data-label="Read this first">
           <p>
-            <strong>Jira's issue view does not show app panels automatically.</strong> On an
-            issue, open the <strong>View app actions</strong> button under the issue title — the
-            round icon, not the “+” — and choose <strong>Satchel</strong>. The panel then
-            stays visible on that issue.
+            On an issue, Satchel is in the right column under <strong>Apps</strong>: open it there.
+            The same panel is also under the <strong>View app actions</strong> button below the
+            issue title (the round icon, not the “+”).
           </p>
           <p>
             This is the single most common “is the app broken?” moment after installing, and it
@@ -133,15 +132,15 @@
         <p>Satchel has three surfaces:</p>
         <ul>
           <li>
-            <strong>The issue panel</strong> — <em>View app actions → Satchel</em> on any
+            <strong>The issue panel:</strong> <em>Apps → Satchel</em> in the right column of any
             issue. Lists the issue's attachments and downloads them, individually or as one zip.
           </li>
           <li>
-            <strong>The project page</strong> — <em>Project → Satchel</em>. Browse, JQL, the
+            <strong>The project page:</strong> <em>Project → Satchel</em>. Browse, JQL, the
             inventory, duplicates and storage reports for that project.
           </li>
           <li>
-            <strong>The admin page</strong> — <em>Apps → Satchel</em>, for site administrators:
+            <strong>The admin page:</strong> <em>Apps → Satchel</em>, for site administrators:
             settings, the deletion switch and the audit trail.
           </li>
         </ul>
@@ -154,12 +153,12 @@
         <p>From the issue panel:</p>
         <ul>
           <li>
-            <strong>Download all as zip</strong> — every attachment on the issue in one archive of
-            up to 1 GB and 5,000 files, including past 150, where Jira falls back to a list
-            without previews or thumbnails.
+            <strong>Download as zip:</strong> every attachment on the issue in one archive of
+            up to 1 GB and 5,000 files. This works past 150 attachments too, where Jira falls back
+            to a list without previews or thumbnails.
           </li>
           <li>
-            <strong>Download one file</strong> — straight to your disk, without opening the preview.
+            <strong>Download one file:</strong> straight to your disk, without opening the preview.
           </li>
         </ul>
         <p>Two things the archive guarantees:</p>
@@ -178,8 +177,8 @@
         <h2 id="project-download">A JQL result, or a project</h2>
         <p>
           The project page's browser lists the project's issues and their attachments, filterable
-          and searchable, with JQL for anything more specific. Select rows — or take the whole
-          result — and download one archive foldered by <code>ISSUE-KEY/</code>, so the files
+          and searchable, with JQL for anything more specific. Select rows, or take the whole
+          result, and download one archive foldered by <code>ISSUE-KEY/</code>, so the files
           arrive already sorted by the issue they belong to.
         </p>
         <p>
@@ -195,9 +194,9 @@
         </p>
         <p>
           The archive is assembled <strong>in your browser tab</strong>. The compression library
-          is part of the app's own bundle rather than fetched from a content delivery network —
-          a CDN would need an external network permission, and that permission is exactly what
-          the app does not have. Bytes go Jira → your tab → your disk. Nothing is written to app
+          is part of the app's own bundle rather than fetched from a content delivery network,
+          because a CDN would need an external network permission and the app does not have
+          one. Bytes go Jira → your tab → your disk. Nothing is written to app
           storage, and nothing reaches any server we operate, because we operate none.
         </p>
         <p>
@@ -211,7 +210,7 @@
               <tr>
                 <td>Bridge</td>
                 <td>the browser calls Jira directly, as you</td>
-                <td>fastest, and no backend function runs at all — but the platform bridge can mangle non-text payloads on some sites</td>
+                <td>fastest, and no backend function runs at all, but the platform bridge can mangle non-text payloads on some sites</td>
               </tr>
               <tr>
                 <td>Relay</td>
@@ -231,7 +230,7 @@
         <p>
           A scan records, for every attachment in the project: filename, byte size, media type,
           upload date, uploader, and the issue and issue type it belongs to.
-          <strong>Metadata only — never file content.</strong> That inventory is what the
+          <strong>It stores metadata only, never file content.</strong> That inventory is what the
           duplicate and storage reports are computed from, and what the CSV export writes out.
         </p>
         <p>
@@ -243,7 +242,7 @@
         <p>
           The inventory itself runs as the app rather than as you, because a queued background
           job has no signed-in user, so it can reach issues some project members cannot see.
-          Every time its rows are read — the list, the reports and the numbers — they are
+          Every time its rows are read (the list, the reports and the numbers), they are
           filtered to the issues the person reading can see in Jira, and if Jira cannot be asked
           in time, nothing is shown. Anything you then download is fetched as <em>you</em>.
         </p>
@@ -255,8 +254,8 @@
         </p>
         <p>
           They are called <em>candidates</em> on purpose. Jira exposes no content hash for an
-          attachment, so proving two files byte-identical would mean downloading both — across a
-          project, every byte in it. What Satchel can honestly say is “same name, same size”,
+          attachment, so proving two files byte-identical would mean downloading both, which
+          across a project is every byte in it. What Satchel can honestly say is “same name, same size”,
           and that qualification travels with the number in the data itself, so no screen can
           render a reclaimable figure without the sentence that limits it.
         </p>
@@ -275,11 +274,11 @@
         <h2 id="storage">Storage reports</h2>
         <p>Today Jira reports storage for the whole site, not per project. Satchel breaks the project's share of it down by:</p>
         <ul>
-          <li><strong>Uploader</strong> — who put it there.</li>
-          <li><strong>File type</strong> — the screenshots-versus-videos question.</li>
-          <li><strong>Issue type</strong> — where in the workflow the weight accumulates.</li>
-          <li><strong>Age</strong> — how much of it predates anyone who still works here.</li>
-          <li><strong>The biggest files</strong> — the short list that usually accounts for most of it.</li>
+          <li><strong>Uploader:</strong> who put it there.</li>
+          <li><strong>File type:</strong> the screenshots-versus-videos question.</li>
+          <li><strong>Issue type:</strong> where in the workflow the weight accumulates.</li>
+          <li><strong>Age:</strong> how much of it predates anyone who still works here.</li>
+          <li><strong>The biggest files:</strong> the short list that usually accounts for most of it.</li>
         </ul>
 
         <h2 id="csv">CSV export</h2>
@@ -303,8 +302,8 @@
             anyone who can delete the attachment in Jira.
           </li>
           <li>
-            It requires a <strong>preview</strong> — Jira confirms every file, and the dialog lists
-            each one with the total — and then a <strong>typed confirmation</strong>. Only the files
+            It requires a <strong>preview</strong>, in which Jira confirms every file and the
+            dialog lists each one with the total, and then a <strong>typed confirmation</strong>. Only the files
             in that preview, in that project, can be deleted, by whoever previewed them.
           </li>
           <li>
@@ -314,8 +313,8 @@
         </ul>
         <p>
           Each file's record is written before it is deleted. Records are kept for 400 days and
-          are deliberately <strong>not deletable from the interface</strong> — an audit trail a
-          user can erase is not an audit trail. The project's trail is for project and Jira
+          are deliberately <strong>not deletable from the interface</strong>, since a trail that
+          users can erase proves nothing. The project's trail is for project and Jira
           administrators; the admin page shows every settings change and every deletion.
         </p>
         <p>Download what you are deleting first. That is what the zip is for.</p>
@@ -323,15 +322,15 @@
         <h2 id="as-you">What runs as you</h2>
         <p>
           Every attachment read and every deletion runs as <strong>you</strong>, using your own
-          Atlassian identity. If you cannot open a file in Jira, Satchel cannot hand it to you —
-          including attachments on issues hidden by issue security. (Jira does not restrict an
+          Atlassian identity. If you cannot open a file in Jira, Satchel cannot hand it to you,
+          and that includes attachments on issues hidden by issue security. (Jira does not restrict an
           attachment added in a restricted comment: anyone who can view the issue can open it, in
           Jira and in Satchel.)
         </p>
         <p>
           The one exception is the background project inventory described above, which runs as
-          the app because a queued job has no signed-in user — and whose rows are filtered to what
-          the reader can see every time they are read.
+          the app because a queued job has no signed-in user. Its rows are filtered to what the
+          reader can see every time they are read.
         </p>
 
         <h2 id="permissions">Permissions the app requests</h2>
@@ -339,8 +338,8 @@
           <table>
             <thead><tr><th>Scope</th><th>Why</th></tr></thead>
             <tbody>
-              <tr><td><code>read:jira-work</code></td><td>read issues, run JQL, read attachment metadata and attachment content — how the app finds and downloads files</td></tr>
-              <tr><td><code>read:jira-user</code></td><td>look up display names for account ids, as you, when a screen shows one — uploaders in an inventory, people in an audit record; names are not stored</td></tr>
+              <tr><td><code>read:jira-work</code></td><td>read issues, run JQL, read attachment metadata and attachment content, which is how the app finds and downloads files</td></tr>
+              <tr><td><code>read:jira-user</code></td><td>look up display names for account ids, as you, when a screen shows one (uploaders in an inventory, people in an audit record); names are not stored</td></tr>
               <tr><td><code>write:jira-work</code></td><td>held only because deleting an attachment needs it; the only write call in the code is <code>DELETE /rest/api/3/attachment/{id}</code></td></tr>
               <tr><td><code>storage:app</code></td><td>scan records, audit records and settings, in Atlassian-hosted storage on your own site</td></tr>
             </tbody>
@@ -351,8 +350,8 @@
           deserves stating plainly. Atlassian's consent text for it mentions creating and editing
           issues, posting comments, creating worklogs and deleting issues. <strong>Satchel does
           none of those things</strong>, and never uploads anything. It is the only classic Jira
-          scope that includes deleting an attachment — the granular scope that would say exactly
-          that is still in Beta — and a test in the build fails if any code path reaches a mutating
+          scope that includes deleting an attachment (the granular scope that would say exactly
+          that is still in Beta), and a test in the build fails if any code path reaches a mutating
           call other than the single attachment delete. That test exists to stop the gap between
           the consent prompt and the behaviour from widening silently.
         </p>
@@ -392,7 +391,7 @@
             <strong>Content-hash duplicate detection.</strong> Not possible without downloading
             every byte; see <a href="#duplicates">duplicate candidates</a>.
           </li>
-          <li>Confluence attachments — those are <a href="/satchel-confluence/">Satchel for Confluence</a>.</li>
+          <li>Confluence attachments. For those, use <a href="/satchel-confluence/">Satchel for Confluence</a>.</li>
         </ul>
 
         <h2 id="support">Support</h2>

@@ -125,12 +125,12 @@
         <h1>Jira's notification email, in your words.</h1>
         <div class="intro__split">
           <p class="lede">
-            Jira Cloud's own notification emails cannot be rewritten — not the subject, not
-            the body, not per project; the
+            Jira Cloud's own notification emails cannot be rewritten: not the subject, not
+            the body, not per project. The
             <a href="https://jira.atlassian.com/browse/JRACLOUD-7266">request to change that</a>
             has been open since 2005. Automation's Send email can, one rule at a time, and every
             run spends automation steps from your plan. Mail Templates gives each project one
-            template per event — issue created, status changed, comment added — with a preview
+            template per event (issue created, status changed, comment added), with a preview
             of the exact email and a log of every send, delivered by Jira's own notification
             service. Nothing leaves Atlassian.
           </p>
@@ -138,7 +138,7 @@
             <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/948167511/mail-templates-for-jira?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=mail-templates&amp;utm_content=hero">Try it free on the Atlassian Marketplace</a>
             <p class="pricing-line">
               Free for sites up to 10 users. Above that it is priced per user per month and billed by
-              Atlassian — <a href="https://marketplace.atlassian.com/apps/948167511/mail-templates-for-jira?tab=pricing&amp;utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=mail-templates&amp;utm_content=pricing">see pricing on the Marketplace</a>.
+              Atlassian. <a href="https://marketplace.atlassian.com/apps/948167511/mail-templates-for-jira?tab=pricing&amp;utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=mail-templates&amp;utm_content=pricing">See pricing on the Marketplace</a>.
             </p>
             <p class="intro__note">Zero egress. No external mail server, no vendor copy of your issue data.</p>
             <a class="intro__demo" href="#demo"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2 8.6 5 2 8.8Z" fill="currentColor" /></svg>Watch the 1:07 demo</a>
@@ -166,7 +166,7 @@
           referrerpolicy="strict-origin-when-cross-origin"
         ></iframe>
         <figcaption>
-          Recipients chosen by role, by name or by group, and a preview that is the email itself — bold,
+          Recipients chosen by role, by name or by group, and a preview that is the email itself: bold,
           lists and the link to the issue, rendered by the same code that sends it.
           <a href="https://www.youtube.com/watch?v=t2TiWYGTXLY">Watch on YouTube</a>.
         </figcaption>
@@ -188,7 +188,7 @@
             <p class="isnot__label">It is not</p>
             <p>
               A replacement for Jira's own mail. Forge gives an app no way to suppress what
-              the notification scheme already sent — so to stop a duplicate for someone who
+              the notification scheme already sent. To stop a duplicate for someone who
               already gets Jira's mail, switch that event off in the project's notification
               scheme, and check what else shares that scheme first.
             </p>
@@ -211,8 +211,8 @@
           <div class="card">
             <h3>Recipients you choose</h3>
             <p>
-              Reporter, assignee, watchers, voters, named people or Jira groups — set per
-              rule, per event. Comments restricted to a group or role, and internal notes, are
+              Reporter, assignee, watchers, voters, named people or Jira groups, set per
+              rule and per event. Comments restricted to a group or role, and internal notes, are
               never mailed.
             </p>
           </div>
@@ -226,8 +226,8 @@
           <div class="card">
             <h3>Templates that fill themselves in</h3>
             <p>
-              Nineteen issue fields interpolate into subject and body — key, summary,
-              status, assignee, priority, the transition that just happened. One template
+              Nineteen issue fields can go into the subject and body, among them key, summary,
+              status, assignee, priority and the transition that just happened. One template
               serves every issue in the project.
             </p>
           </div>
@@ -241,8 +241,8 @@
           <div class="card">
             <h3>Every send accounted for</h3>
             <p>
-              A per-project log records each event handled — including the ones that sent
-              nothing, and why. "Why was there no email" always has an answer.
+              A per-project log records each event handled, including the ones that sent
+              nothing and the reason why.
             </p>
           </div>
           <div class="card">
@@ -250,7 +250,7 @@
             <p>
               Built on Forge with no external network access. Mail goes out through Jira's
               own notification endpoint, not an Automation rule, so it spends none of your
-              automation allowance — and nothing leaving Atlassian is what earns the Runs on
+              automation allowance. Because nothing leaves Atlassian, it carries the Runs on
               Atlassian badge.
             </p>
           </div>
@@ -281,7 +281,7 @@
             <h3>The people on the list get the mail</h3>
             <p>
               Jira delivers it through its own notification service. Everyone on the list
-              still has to be able to see the issue — Jira drops anyone who cannot, so the
+              still has to be able to see the issue. Jira drops anyone who cannot, so the
               app can never widen access.
             </p>
           </li>
@@ -311,7 +311,7 @@
             <tbody>
               <tr>
                 <td>Can you write the subject and body?</td>
-                <td class="absent">No — Jira Cloud's templates are fixed</td>
+                <td class="absent">No, Jira Cloud's templates are fixed</td>
                 <td>Yes, with smart values</td>
                 <td><span class="answer">Yes, 19 issue variables</span></td>
               </tr>
@@ -324,7 +324,7 @@
               <tr>
                 <td>Does it use your automation allowance?</td>
                 <td>No</td>
-                <td class="absent">Yes — every trigger, condition and action is a step</td>
+                <td class="absent">Yes, every trigger, condition and action is a step</td>
                 <td><span class="answer">No</span></td>
               </tr>
               <tr>
@@ -337,7 +337,7 @@
                 <td>Can it stop Jira's own email?</td>
                 <td>—</td>
                 <td class="absent">No</td>
-                <td class="absent">No — turn the event off in the scheme</td>
+                <td class="absent">No, turn the event off in the scheme</td>
               </tr>
             </tbody>
           </table>
@@ -499,8 +499,9 @@
       <div class="footer__base">
         <p class="footer__fine">
           Mail Templates is an Atlassian Forge app. It runs entirely inside your Atlassian
-          tenant and declares no external network access — your data is never sent to us or
-          to anyone else. Not affiliated with Atlassian. Jira is a trademark of Atlassian.
+          tenant and declares no external network access, so your data is never sent to us
+          or to anyone else. Not affiliated with Atlassian. Jira is a trademark of
+          Atlassian.
         </p>
       </div>
     </footer>
