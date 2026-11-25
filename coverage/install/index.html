@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <title>Install Coverage for Bitbucket</title>
-    <meta name="description" content="Install Coverage for Bitbucket on your Bitbucket Cloud workspace from Atlassian's install page." />
+    <meta name="description" content="Install Coverage for Bitbucket in two steps: install the app on your Bitbucket Cloud workspace, then add one pipe to your test step." />
     <meta name="robots" content="noindex" />
-    <meta http-equiv="refresh" content="1; url=https://developer.atlassian.com/console/install/5615cb89-7af0-4fec-8bed-6693a1676c57?signature=AYABeFymA%2Ftfq1H5Prla4M%2FbtKEAAAADAAdhd3Mta21zAEthcm46YXdzOmttczp1cy13ZXN0LTI6NzA5NTg3ODM1MjQzOmtleS83MDVlZDY3MC1mNTdjLTQxYjUtOWY5Yi1lM2YyZGNjMTQ2ZTcAuAECAQB4CxqLTo9l4lqXuFjNim1xJM%2Bp%2F3TVP9xHS2BrU5DRRucBzO%2BTOMzdAk3QdXAEniF9RgAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDFVT4nngWg11quY5OgIBEIA7UYxrzz2ihpCC64Wc1AN3L0V7njV9MVhkKNdHKPMdcbEATBIrDyeEi%2BTTOI%2BaHnZvEKz%2F7LkLF7uwaYYAB2F3cy1rbXMAS2Fybjphd3M6a21zOmV1LXdlc3QtMTo3MDk1ODc4MzUyNDM6a2V5LzQ2MzBjZTZiLTAwYzMtNGRlMi04NzdiLTYyN2UyMDYwZTVjYwC4AQICAHi9bVMAkme4qVQX1fQHo6ePw3H40A7cGfz7yrmSfBWMXgHcMwi9oTHTjxk2l3khh7FSAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM0zgqzMsrgCMsJ%2FOPAgEQgDtggb%2FaRm%2FjboLXRCGfpDvxaVgttP5inPCF87weY%2FICU4OUVE1rlRz4FmMqwSv87t7QHV5qoUTsV7c7RAAHYXdzLWttcwBLYXJuOmF3czprbXM6dXMtZWFzdC0xOjcwOTU4NzgzNTI0MzprZXkvNmMxMjBiYTAtNGNkNS00OTg1LWI4MmUtNDBhMDQ5NTJjYzU3ALgBAgIAeDYASx0XCjkny4iLV6vz%2BKtEGSGT6kdt0QRpkn6D%2FlVEASd5tu3wmkmUyj27aChDOHkAAAB%2BMHwGCSqGSIb3DQEHBqBvMG0CAQAwaAYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAxlJCnvF4l7Xk7KvGgCARCAO%2B52JrNFeVvrYNUluQj3cMiNixPxCmlnzNhGCJ52Y4xzJzXKmmcUkY%2FJ9qPHsz0yrUHfcbPuyrpK9oyiAgAAAAAMAAAQAAAAAAAAAAAAAAAAAN7CfyUmtUj6CE8BjeUqECr%2F%2F%2F%2F%2FAAAAAQAAAAAAAAAAAAAAAQAAADJxn%2Fj%2Fzg0%2F1C5gUjF%2F8g9rAxLl%2FeArH2Reqc8GF0w%2FOUsMix8rNvc1ZY04LTs1b3W%2BGqeSpb3Y9qtfSSWBbfQuOe4%3D&amp;product=bitbucket" />
     <link rel="canonical" href="https://keelapps.app/coverage/install/" />
     <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/assets/icon.png" />
@@ -75,17 +74,56 @@
     <main class="product" id="main">
       <section class="intro">
         <p class="eyebrow">Install</p>
-        <h1>Taking you to Atlassian's install page.</h1>
+        <h1>Two steps to coverage on your pull requests.</h1>
         <div class="intro__split">
           <p class="lede">
-            Bitbucket Cloud apps install from Atlassian's developer console rather than the
-            Marketplace. Sign in as a workspace administrator, pick the workspace, and approve
-            the read-only access the app asks for.
+            Install the app on your workspace, then add one pipe to your test step. The
+            pull request shows nothing until both are done.
           </p>
           <div class="intro__act">
-            <a class="btn btn--large btn--block" href="https://developer.atlassian.com/console/install/5615cb89-7af0-4fec-8bed-6693a1676c57?signature=AYABeFymA%2Ftfq1H5Prla4M%2FbtKEAAAADAAdhd3Mta21zAEthcm46YXdzOmttczp1cy13ZXN0LTI6NzA5NTg3ODM1MjQzOmtleS83MDVlZDY3MC1mNTdjLTQxYjUtOWY5Yi1lM2YyZGNjMTQ2ZTcAuAECAQB4CxqLTo9l4lqXuFjNim1xJM%2Bp%2F3TVP9xHS2BrU5DRRucBzO%2BTOMzdAk3QdXAEniF9RgAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDFVT4nngWg11quY5OgIBEIA7UYxrzz2ihpCC64Wc1AN3L0V7njV9MVhkKNdHKPMdcbEATBIrDyeEi%2BTTOI%2BaHnZvEKz%2F7LkLF7uwaYYAB2F3cy1rbXMAS2Fybjphd3M6a21zOmV1LXdlc3QtMTo3MDk1ODc4MzUyNDM6a2V5LzQ2MzBjZTZiLTAwYzMtNGRlMi04NzdiLTYyN2UyMDYwZTVjYwC4AQICAHi9bVMAkme4qVQX1fQHo6ePw3H40A7cGfz7yrmSfBWMXgHcMwi9oTHTjxk2l3khh7FSAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM0zgqzMsrgCMsJ%2FOPAgEQgDtggb%2FaRm%2FjboLXRCGfpDvxaVgttP5inPCF87weY%2FICU4OUVE1rlRz4FmMqwSv87t7QHV5qoUTsV7c7RAAHYXdzLWttcwBLYXJuOmF3czprbXM6dXMtZWFzdC0xOjcwOTU4NzgzNTI0MzprZXkvNmMxMjBiYTAtNGNkNS00OTg1LWI4MmUtNDBhMDQ5NTJjYzU3ALgBAgIAeDYASx0XCjkny4iLV6vz%2BKtEGSGT6kdt0QRpkn6D%2FlVEASd5tu3wmkmUyj27aChDOHkAAAB%2BMHwGCSqGSIb3DQEHBqBvMG0CAQAwaAYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAxlJCnvF4l7Xk7KvGgCARCAO%2B52JrNFeVvrYNUluQj3cMiNixPxCmlnzNhGCJ52Y4xzJzXKmmcUkY%2FJ9qPHsz0yrUHfcbPuyrpK9oyiAgAAAAAMAAAQAAAAAAAAAAAAAAAAAN7CfyUmtUj6CE8BjeUqECr%2F%2F%2F%2F%2FAAAAAQAAAAAAAAAAAAAAAQAAADJxn%2Fj%2Fzg0%2F1C5gUjF%2F8g9rAxLl%2FeArH2Reqc8GF0w%2FOUsMix8rNvc1ZY04LTs1b3W%2BGqeSpb3Y9qtfSSWBbfQuOe4%3D&amp;product=bitbucket">Continue to Atlassian</a>
-            <p class="intro__note">Then add the pipe to your test step: <a href="/coverage/docs/#setup">setup guide</a>.</p>
+            <a class="btn btn--large btn--block" href="https://developer.atlassian.com/console/install/5615cb89-7af0-4fec-8bed-6693a1676c57?signature=AYABeFymA%2Ftfq1H5Prla4M%2FbtKEAAAADAAdhd3Mta21zAEthcm46YXdzOmttczp1cy13ZXN0LTI6NzA5NTg3ODM1MjQzOmtleS83MDVlZDY3MC1mNTdjLTQxYjUtOWY5Yi1lM2YyZGNjMTQ2ZTcAuAECAQB4CxqLTo9l4lqXuFjNim1xJM%2Bp%2F3TVP9xHS2BrU5DRRucBzO%2BTOMzdAk3QdXAEniF9RgAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDFVT4nngWg11quY5OgIBEIA7UYxrzz2ihpCC64Wc1AN3L0V7njV9MVhkKNdHKPMdcbEATBIrDyeEi%2BTTOI%2BaHnZvEKz%2F7LkLF7uwaYYAB2F3cy1rbXMAS2Fybjphd3M6a21zOmV1LXdlc3QtMTo3MDk1ODc4MzUyNDM6a2V5LzQ2MzBjZTZiLTAwYzMtNGRlMi04NzdiLTYyN2UyMDYwZTVjYwC4AQICAHi9bVMAkme4qVQX1fQHo6ePw3H40A7cGfz7yrmSfBWMXgHcMwi9oTHTjxk2l3khh7FSAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM0zgqzMsrgCMsJ%2FOPAgEQgDtggb%2FaRm%2FjboLXRCGfpDvxaVgttP5inPCF87weY%2FICU4OUVE1rlRz4FmMqwSv87t7QHV5qoUTsV7c7RAAHYXdzLWttcwBLYXJuOmF3czprbXM6dXMtZWFzdC0xOjcwOTU4NzgzNTI0MzprZXkvNmMxMjBiYTAtNGNkNS00OTg1LWI4MmUtNDBhMDQ5NTJjYzU3ALgBAgIAeDYASx0XCjkny4iLV6vz%2BKtEGSGT6kdt0QRpkn6D%2FlVEASd5tu3wmkmUyj27aChDOHkAAAB%2BMHwGCSqGSIb3DQEHBqBvMG0CAQAwaAYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAxlJCnvF4l7Xk7KvGgCARCAO%2B52JrNFeVvrYNUluQj3cMiNixPxCmlnzNhGCJ52Y4xzJzXKmmcUkY%2FJ9qPHsz0yrUHfcbPuyrpK9oyiAgAAAAAMAAAQAAAAAAAAAAAAAAAAAN7CfyUmtUj6CE8BjeUqECr%2F%2F%2F%2F%2FAAAAAQAAAAAAAAAAAAAAAQAAADJxn%2Fj%2Fzg0%2F1C5gUjF%2F8g9rAxLl%2FeArH2Reqc8GF0w%2FOUsMix8rNvc1ZY04LTs1b3W%2BGqeSpb3Y9qtfSSWBbfQuOe4%3D&amp;product=bitbucket">Step 1: install on Atlassian</a>
+            <p class="intro__note">Free. Bitbucket Cloud apps install from Atlassian's developer console, not the Marketplace.</p>
           </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">After you press the button</p>
+        <div class="prose">
+        <h3>Step 1. Install the app</h3>
+        <p>
+          Press the button above and sign in as a workspace administrator. Pick the workspace
+          and approve the read-only access the app asks for. Atlassian's page does not send
+          you back here, so read step 2 first or keep this tab open.
+        </p>
+
+        <h3>Step 2. Add the pipe to your test step</h3>
+        <p>
+          In <code>bitbucket-pipelines.yml</code>, add the pipe to the <code>after-script</code>
+          of the step that runs your tests and writes a coverage file (Cobertura, JaCoCo, LCOV
+          or Go). No token is needed.
+        </p>
+        <pre><code>- step:
+    name: Test
+    script:
+      - pytest --junitxml=test-results/junit.xml --cov=app --cov-report=xml:coverage.xml
+    after-script:
+      - pipe: keelapps/coverage-for-bitbucket:1.3.0
+        variables:
+          COVERAGE_FILE: coverage.xml</code></pre>
+        <p>
+          The example is for Python. After you install, the Coverage page of each repository
+          (Apps, then Coverage, in the sidebar) shows a step for that repository's own build
+          tool. Steps for Java, .NET, Go, JavaScript and others are in the
+          <a href="/coverage/docs/#setup">setup guide</a>.
+        </p>
+
+        <h3>Then open a pull request</h3>
+        <p>
+          When the pipeline finishes, the Coverage and tests panel on the pull request's
+          Overview tab shows the coverage and every test, and uncovered changed lines are
+          marked in the diff.
+        </p>
         </div>
       </section>
     </main>
