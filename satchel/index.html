@@ -127,17 +127,16 @@
         <div class="intro__split">
           <p class="lede">
             Jira Cloud’s own Download all works one issue at a time. Satchel zips a JQL result or
-            a whole project, foldered by issue key, in archives of up to 1 GB and 5,000 files —
-            and then answers the question
-            that always follows: what is actually in there, and how much of it can go? The
+            a whole project, foldered by issue key, in archives of up to 1 GB and 5,000 files. It
+            also shows what is in there and how much of it can go. The
             archive is assembled in your own browser from your own Jira session, so attachment
-            bytes never touch a server of ours. There is not one.
+            bytes never touch a server of ours (we don't run one).
           </p>
           <div class="intro__act">
             <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=satchel&amp;utm_content=hero">Try it free on the Atlassian Marketplace</a>
             <p class="pricing-line">
               Free for sites up to 10 users. Above that it is priced per user per month and billed by
-              Atlassian — <a href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager?tab=pricing&amp;utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=satchel&amp;utm_content=pricing">see pricing on the Marketplace</a>.
+              Atlassian. <a href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager?tab=pricing&amp;utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=satchel&amp;utm_content=pricing">See pricing on the Marketplace</a>.
             </p>
             <p class="intro__note">Zero egress. No external server, no egress permission in the manifest, no copy of your files anywhere.</p>
           </div>
@@ -177,8 +176,8 @@
             Jira Cloud can download every attachment on one issue. Across issues it cannot:
             collecting the files behind a quarter's close means opening every issue and
             downloading each one's attachments separately. The request has been open on
-            Atlassian's own tracker since 2018 — JRACLOUD-68871, 113 votes, still
-            <em>Gathering Interest</em> — and past 150 attachments on one issue Jira stops
+            Atlassian's own tracker since 2018 (JRACLOUD-68871, 113 votes, still
+            <em>Gathering Interest</em>), and past 150 attachments on one issue Jira stops
             showing previews and thumbnails (JRACLOUD-81747).
           </p>
           <p>
@@ -197,7 +196,7 @@
             <h3>One zip for the whole issue</h3>
             <p>
               Every attachment on an issue in a single archive of up to 1 GB, from a panel on the
-              issue itself — including past 150, where Jira falls back to a list without previews
+              issue itself. That includes issues with more than 150, where Jira falls back to a list without previews
               or thumbnails.
             </p>
           </div>
@@ -227,7 +226,7 @@
             <h3>Duplicate candidates</h3>
             <p>
               Files grouped by filename and exact byte size, with the bytes each group would
-              reclaim. Candidates, not verdicts — Jira exposes no content hash, and Satchel
+              reclaim. These are likely duplicates only: Jira exposes no content hash, and Satchel
               says so wherever it shows a number.
             </p>
           </div>
@@ -236,7 +235,7 @@
             <p>
               Jira confirms every file, the dialog lists them, you type the confirmation, and each
               file is recorded before it goes. It ships switched off and, once on, is limited to
-              Jira administrators unless they widen it — because Jira has no recycle bin for
+              Jira administrators unless they widen it, because Jira has no recycle bin for
               attachments.
             </p>
           </div>
@@ -266,9 +265,9 @@
           <li>
             <h3>Take a copy first</h3>
             <p>
-              Zip what you are about to remove — the archive is built in your browser and
-              lands on your disk, not on anybody's server — so “deleted” means “out of Jira”,
-              not “gone”.
+              Zip what you are about to remove first. The archive is built in your browser and
+              saved to your disk, not to anybody's server, so a deleted file is out of Jira but
+              still in your copy.
             </p>
           </li>
           <li>
@@ -299,7 +298,7 @@
             <tbody>
               <tr>
                 <td>Download every attachment on an issue?</td>
-                <td>Yes — Download all</td>
+                <td>Yes, with Download all</td>
                 <td>Yes</td>
                 <td><span class="answer">One zip</span></td>
               </tr>
@@ -323,7 +322,7 @@
               </tr>
               <tr>
                 <td>Delete in bulk, with a record?</td>
-                <td class="absent">Per issue, or by an Automation rule — no preview or confirmation</td>
+                <td class="absent">Per issue, or by an Automation rule, with no preview or confirmation</td>
                 <td class="absent">—</td>
                 <td><span class="answer">Dry run, confirmation, audit</span></td>
               </tr>
@@ -331,7 +330,7 @@
                 <td>Do the files pass through a vendor server?</td>
                 <td>—</td>
                 <td class="absent">Often</td>
-                <td><span class="answer">Never — built in your browser</span></td>
+                <td><span class="answer">Never: built in your browser</span></td>
               </tr>
             </tbody>
           </table>
@@ -352,7 +351,7 @@
           <p>
             <strong>Duplicate detection finds candidates, not proven duplicates.</strong> Jira
             exposes no content hash for an attachment, and proving two files identical would
-            mean downloading both — for a whole project, every byte in it. Satchel therefore
+            mean downloading both, which for a whole project is every byte in it. Satchel therefore
             matches on <em>filename and exact byte size</em>, and that qualification travels
             with the number in the payload, so no screen can show you reclaimable bytes without
             the sentence explaining what they are based on. Two files with the same name and
@@ -372,7 +371,7 @@
             needs Jira's classic <code>write:jira-work</code> scope, whose consent text mentions
             creating and editing issues, posting comments and deleting issues. Satchel does none
             of those, and it never uploads. It is the only classic Jira scope that includes deleting
-            an attachment — the granular one that would say exactly that is still in Beta — and
+            an attachment (the granular one that would say exactly that is still in Beta), and
             an automated test fails the build if any code path reaches a mutating call other
             than the single attachment delete.
           </p>
@@ -409,7 +408,7 @@
           <p>
             Licensing is handled by Atlassian. Sites with 10 users or fewer pay nothing at all,
             and above that the single-issue zip and the direct download stay free forever on
-            every install — the no-preview download CLOUD-12448 asks for is never behind a licence check. What a
+            every install. The no-preview download CLOUD-12448 asks for is never behind a licence check. What a
             licence buys is scale and governance: cross-issue archives, the project inventory,
             the duplicate and storage reports, CSV export and deletion.
           </p>
@@ -440,7 +439,7 @@
           <li class="app-card" data-host="jira">
             <a class="app-card__shot" href="/accesslens/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/accesslens.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
             <p class="app-card__meta"><span><img class="product-icon" src="/assets/atlassian/jira.svg" alt="" width="16" height="16" />Jira · Permission audit</span><span class="app-card__status">Live</span></p>
-            <h3 class="app-card__problem"><a href="/accesslens/">Prove who can access what in Jira — at a point in time.</a></h3>
+            <h3 class="app-card__problem"><a href="/accesslens/">Prove who had access to what in Jira, with dated snapshots.</a></h3>
             <p class="app-card__name"><span class="app-card__id"><img class="app-icon" src="/assets/apps/accesslens.svg" alt="" width="28" height="28" />AccessLens for Jira</span> <span class="app-card__badge">Runs on Atlassian</span></p>
             <p class="app-card__links">
               <a href="/accesslens/">Product page</a>
@@ -539,8 +538,9 @@
       <div class="footer__base">
         <p class="footer__fine">
           Satchel for Jira is an Atlassian Forge app. It runs entirely inside your Atlassian
-          tenant and declares no external network access — your data is never sent to us or
-          to anyone else. Not affiliated with Atlassian. Jira is a trademark of Atlassian.
+          tenant and declares no external network access, so your data is never sent to us
+          or to anyone else. Not affiliated with Atlassian. Jira is a trademark of
+          Atlassian.
         </p>
       </div>
     </footer>

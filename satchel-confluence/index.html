@@ -9,7 +9,7 @@
     <title>Satchel for Confluence — bulk attachments, and the bulk move Cloud never got</title>
     <meta
       name="description"
-      content="See every attachment in a Confluence space, download them as one zip, find orphans and duplicate candidates, and move files between pages in bulk — the gap CONFCLOUD-15025 left open in 2009. Built on Forge, nothing leaves Atlassian."
+      content="See every attachment in a Confluence space, download them as one zip, find orphans and duplicate candidates, and move files between pages in bulk, which CONFCLOUD-15025 has asked for since 2009. Built on Forge, nothing leaves Atlassian."
     />
     <link rel="canonical" href="https://keelapps.app/satchel-confluence/" />
     <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
@@ -31,7 +31,7 @@
         "@type": "SoftwareApplication",
         "name": "Satchel — Bulk Attachments for Confluence",
         "alternateName": "Satchel for Confluence",
-        "description": "See every attachment in a Confluence space, download them as one zip, find orphans and duplicate candidates, and move files between pages in bulk — the gap CONFCLOUD-15025 left open in 2009. Built on Forge, nothing leaves Atlassian.",
+        "description": "See every attachment in a Confluence space, download them as one zip, find orphans and duplicate candidates, and move files between pages in bulk, which CONFCLOUD-15025 has asked for since 2009. Built on Forge, nothing leaves Atlassian.",
         "url": "https://keelapps.app/satchel-confluence/",
         "image": "https://keelapps.app/assets/screenshots/satchel-confluence-move.png",
         "applicationCategory": "BusinessApplication",
@@ -129,14 +129,14 @@
             Confluence moves attachments one at a time, from each file’s Properties, and
             downloads them one page at a time. Satchel indexes the whole space instead: search
             every file, download a structured zip, spot orphans and duplicate candidates, and move
-            attachments between pages in bulk — with a dry run before, an undo after, and a
+            attachments between pages in bulk, with a dry run before, an undo after, and a
             per-file report of what actually happened. Nothing leaves Atlassian.
           </p>
           <div class="intro__act">
             <a class="btn btn--large btn--block" href="https://marketplace.atlassian.com/apps/2701230997/satchel-bulk-attachments-for-confluence?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=satchel-confluence&amp;utm_content=hero">Try it free on the Atlassian Marketplace</a>
             <p class="pricing-line">
               Free for sites up to 10 users. Above that it is priced per user per month and billed by
-              Atlassian — <a href="https://marketplace.atlassian.com/apps/2701230997/satchel-bulk-attachments-for-confluence?tab=pricing&amp;utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=satchel-confluence&amp;utm_content=pricing">see pricing on the Marketplace</a>.
+              Atlassian. <a href="https://marketplace.atlassian.com/apps/2701230997/satchel-bulk-attachments-for-confluence?tab=pricing&amp;utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=satchel-confluence&amp;utm_content=pricing">See pricing on the Marketplace</a>.
             </p>
             <p class="intro__note">Zero egress. The zip is built in your browser; attachment bytes reach no server of ours.</p>
           </div>
@@ -174,7 +174,7 @@
         <p class="eyebrow">The gap this fills</p>
         <div class="gap">
           <p>
-            <strong>CONFCLOUD-15025 — “Bulk Move of Attachments Between Pages” — has been open
+            <strong>CONFCLOUD-15025, “Bulk Move of Attachments Between Pages”, has been open
             since March 2009</strong>, with 152 votes, and Atlassian's answer in January 2022 was
             that it is “a feature that we don't have plans to prioritize in the near future.”
             Cloud moves a file from its Properties, one file at a time.
@@ -197,15 +197,15 @@
           <div class="card">
             <h3>Move attachments between pages</h3>
             <p>
-              Pick the files, pick the target page, read a dry run that names every consequence
-              — including which route the move will take on your site — and undo it afterwards.
+              Pick the files and the target page, read a dry run that names every consequence
+              (including which route the move will take on your site), and undo it afterwards.
             </p>
           </div>
           <div class="card">
             <h3>Files from any page, one zip</h3>
             <p>
               Select files across pages and download one archive, foldered by page title, with a
-              CSV manifest inside it — up to 2,000 files or 2 GB a zip. Built in your browser:
+              CSV manifest inside it, up to 2,000 files or 2 GB a zip. Built in your browser:
               attachment content never reaches our servers, because we do not have any.
             </p>
           </div>
@@ -227,7 +227,7 @@
             <h3>Duplicate candidates</h3>
             <p>
               Grouped by normalised filename and identical byte count, with the space each group
-              would reclaim. Candidates, not verdicts — Confluence exposes no content hash.
+              would reclaim. These are likely duplicates only, because Confluence exposes no content hash.
             </p>
           </div>
           <div class="card">
@@ -248,8 +248,8 @@
           <li>
             <h3>Index it once</h3>
             <p>
-              A scan builds the space's attachment inventory — metadata only, never file content
-              — resumable, so a space with forty thousand files finishes. Before it runs, Satchel
+              A scan builds the space's attachment inventory from metadata only, never file
+              content. It can resume, so a space with forty thousand files finishes. Before it runs, Satchel
               shows what it will cost in Confluence API points.
             </p>
           </li>
@@ -266,8 +266,9 @@
             <h3>Move what belongs somewhere else</h3>
             <p>
               Select the files, pick the target page, and read the dry run: what will move, what
-              will not and why, and which route the move will take on this site — because one
-              route preserves attachment ids and version history and the other does not.
+              will not and why, and which route the move will take on this site. That last part
+              matters because one route keeps attachment ids and version history and the other
+              does not.
             </p>
           </li>
           <li>
@@ -329,7 +330,7 @@
                 <td>Do attachment bytes pass through a vendor server?</td>
                 <td>—</td>
                 <td class="absent">Often</td>
-                <td><span class="answer">Never — built in your browser</span></td>
+                <td><span class="answer">Never: built in your browser</span></td>
               </tr>
             </tbody>
           </table>
@@ -351,10 +352,10 @@
           <p>
             <strong>The move has two possible routes, and which one your site allows decides what
             it costs you.</strong> Confluence's v2 API has no attachment write path, so
-            Satchel attempts the honest route first: a single call that re-parents the attachment,
-            preserving its id, its file id and its whole version history. Only if the endpoint
-            answers that the operation does not exist does it fall back to copy-then-delete —
-            which works everywhere, but gives the file a new id, a new file id, a version history
+            Satchel tries the better route first: a single call that re-parents the attachment,
+            keeping its id, its file id and its whole version history. Only if the endpoint
+            answers that the operation does not exist does it fall back to copy-then-delete.
+            That works everywhere, but gives the file a new id, a new file id, a version history
             starting at 1, and breaks any page body that embedded the file by its old id.
           </p>
           <p>
@@ -362,13 +363,12 @@
             what it learned for your site, <strong>reports per file which route actually
             ran</strong>, and prints the consequence in the dry run before you commit. On the
             copy route the original is deleted only after the copy has been <em>observed</em> on
-            the target page — there is no path where the original is gone and the copy was never
-            made. And nothing in the interface claims ids were preserved unless a re-parent
+            the target page, so the original is never gone without a copy in place. And nothing in the interface claims ids were preserved unless a re-parent
             actually succeeded.
           </p>
           <p>
             <strong>Duplicate detection finds candidates.</strong> There is no content hash in
-            Confluence's API — the file id identifies the stored file for that one attachment, not
+            Confluence's API: the file id identifies the stored file for that one attachment, not
             a checksum shared across identical uploads. So grouping is by
             <em>normalised filename and identical byte count</em>, every surface says
             “candidates”, and two deliberate exclusions follow: same name with different sizes is
@@ -446,7 +446,7 @@
           <li class="app-card" data-host="confluence">
             <a class="app-card__shot" href="/curator/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/curator.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
             <p class="app-card__meta"><span><img class="product-icon" src="/assets/atlassian/confluence.svg" alt="" width="16" height="16" />Confluence · Bulk page governance</span><span class="app-card__status">Live</span></p>
-            <h3 class="app-card__problem"><a href="/curator/">Change three hundred pages at once — and put them back if it was wrong</a></h3>
+            <h3 class="app-card__problem"><a href="/curator/">Change three hundred pages at once, and put them back if it went wrong.</a></h3>
             <p class="app-card__name"><span class="app-card__id"><img class="app-icon" src="/assets/apps/curator.svg" alt="" width="28" height="28" />Curator for Confluence</span> <span class="app-card__badge">Runs on Atlassian</span></p>
             <p class="app-card__links">
               <a href="/curator/">Product page</a>
@@ -470,7 +470,7 @@
           <li class="app-card" data-host="confluence">
             <a class="app-card__shot" href="/signoff/" tabindex="-1" aria-hidden="true"><img src="/assets/screenshots/cards/signoff.webp" alt="" width="720" height="480" loading="lazy" decoding="async" /></a>
             <p class="app-card__meta"><span><img class="product-icon" src="/assets/atlassian/confluence.svg" alt="" width="16" height="16" />Confluence · Page approvals</span><span class="app-card__status">Live</span></p>
-            <h3 class="app-card__problem"><a href="/signoff/">Who approved this version of this page — and is that still good?</a></h3>
+            <h3 class="app-card__problem"><a href="/signoff/">Who approved this version of this page, and does that approval still hold?</a></h3>
             <p class="app-card__name"><span class="app-card__id"><img class="app-icon" src="/assets/apps/signoff.svg" alt="" width="28" height="28" />Signoff for Confluence</span> <span class="app-card__badge">Runs on Atlassian</span></p>
             <p class="app-card__links">
               <a href="/signoff/">Product page</a>
@@ -545,9 +545,9 @@
       <div class="footer__base">
         <p class="footer__fine">
           Satchel for Confluence is an Atlassian Forge app. It runs entirely inside your
-          Atlassian tenant and declares no external network access — your data is never sent
-          to us or to anyone else. Not affiliated with Atlassian. Confluence is a trademark
-          of Atlassian.
+          Atlassian tenant and declares no external network access, so your data is never
+          sent to us or to anyone else. Not affiliated with Atlassian. Confluence is a
+          trademark of Atlassian.
         </p>
       </div>
     </footer>

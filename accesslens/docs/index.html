@@ -106,7 +106,7 @@
           <a href="/">keelapps</a><span>/</span><a href="/accesslens/">AccessLens</a><span>/</span>Documentation
         </p>
 
-        <h1>AccessLens for Jira — documentation</h1>
+        <h1>Documentation</h1>
 
         <h2 id="where-to-find-it">Where to find it</h2>
         <p>
@@ -121,9 +121,9 @@
           Take snapshot now</strong>.
         </p>
         <p>
-          This is not a workaround. Answering “which projects can this group reach?” requires reading
-          every project's permission scheme anyway, and a point-in-time answer is the one an audit can
-          use — “who had access on 30 September” is a question live data cannot answer at all.
+          Answering “which projects can this group reach?” means reading every project's permission
+          scheme anyway, and an audit needs a dated answer. Live data cannot tell you who had access
+          on 30 September.
         </p>
         <p>
           A scan reads every live project's permission scheme and roles (archived projects are not
@@ -144,11 +144,11 @@
         <h2 id="who-can-access-what">Answer “who can access what”</h2>
         <p>The <strong>Explore</strong> tab offers three directions, all against a chosen snapshot:</p>
         <ul>
-          <li><strong>By group</strong> — every project the group can reach, and with what</li>
-          <li><strong>By user</strong> — including access inherited through group membership, and,
+          <li><strong>By group:</strong> every project the group can reach, and with what</li>
+          <li><strong>By user:</strong> everything the user can reach, including access inherited through group membership, and,
             listed apart, what every licensed user can reach (a snapshot does not record who holds
             Jira access, so those rows say they apply if the person does)</li>
-          <li><strong>By project</strong> — everyone who can reach it, flattened</li>
+          <li><strong>By project:</strong> everyone who can reach it, flattened</li>
         </ul>
         <p>
           Access held through project roles and group membership is expanded for you, so what you see
@@ -168,7 +168,7 @@
           real change, not a stream of events.
         </p>
         <p>
-          Order does not matter — AccessLens compares by capture time, so selecting them the wrong way
+          Order does not matter. AccessLens compares by capture time, so selecting them the wrong way
           round will not invert “granted” and “revoked”. A subject that was only renamed is reported
           as a rename rather than as one subject losing access and another gaining it.
         </p>
@@ -190,7 +190,7 @@
           Every decision records the reviewer's Atlassian account id and a server-side UTC timestamp.
           Both come from the Forge invocation context rather than the browser, so attribution cannot
           be forged. Changing a decision keeps the previous one, and superseded decisions appear in
-          the exported record — a reversal is visible rather than silently overwritten.
+          the exported record, so a reversal stays visible.
         </p>
         <div class="aside" data-label="Important">
           <p>
@@ -204,8 +204,8 @@
 
         <h2 id="schedule-scans">Schedule scans</h2>
         <p>
-          <strong>Settings</strong> → set the cadence to weekly or monthly and pick the day — monthly runs
-          on the 1st–28th, so every month has that day. Scheduled
+          In <strong>Settings</strong>, set the cadence to weekly or monthly and pick the day. Monthly
+          runs can be set from the 1st to the 28th, so every month has that day. Scheduled
           scans run in UTC. A scheduled run that collides with a manual one is skipped rather than
           queued, so two scans never race.
         </p>
@@ -214,7 +214,7 @@
         <p>
           Snapshots are kept until you delete them, up to a limit you set (default 12).
           <strong>At the limit, AccessLens refuses a new snapshot rather than deleting an old
-          one.</strong> Audit evidence is never discarded automatically — export and delete a snapshot
+          one.</strong> Audit evidence is never discarded automatically: export and delete a snapshot
           yourself to make room. A snapshot an open review uses cannot be deleted until the review is
           signed off or deleted; a signed-off review keeps its own copy of what it showed.
         </p>
@@ -245,8 +245,8 @@
         <div class="aside" data-label="Note">
           <p>
             A full-site scan is not transactional. Permissions changed <em>during</em> the scan window
-            may be captured inconsistently, and the snapshot and lookup export headers say so — an auditor
-            should know the window, not just the timestamp.
+            may be captured inconsistently, and the snapshot and lookup export headers say so. An auditor
+            should know the scan window as well as the timestamp.
           </p>
         </div>
 

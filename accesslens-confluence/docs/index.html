@@ -113,19 +113,19 @@
         <p class="manual__lede">
           AccessLens reads your site's permission state and hands it back in the shape an
           auditor asks for: who can reach what, what is locked, what changed, and who signed
-          for it. It writes nothing — there is no write scope in the manifest — so everything
+          for it. It writes nothing (there is no write scope in the manifest), so everything
           below is a read, a stored copy of a read, or a decision recorded about one.
         </p>
 
         <h2 id="where-it-lives">Where AccessLens lives</h2>
         <ul>
           <li>
-            <strong>Confluence administration → Apps → AccessLens</strong> — the main console:
+            <strong>Confluence administration → Apps → AccessLens.</strong> The main console:
             reverse lookup, snapshots, diffs and reviews for the whole site. Only Confluence
             administrators can open it, because it shows the whole site's permission map.
           </li>
           <li>
-            <strong>Space settings → AccessLens</strong> — the same answers narrowed to one
+            <strong>Space settings → AccessLens.</strong> The same answers narrowed to one
             space, including its restriction audit, for the people who administer that space.
           </li>
         </ul>
@@ -141,17 +141,17 @@
         </p>
         <ul>
           <li>
-            <strong>By group</strong> — every space the group reaches, and at what level. The
+            <strong>By group:</strong> every space the group reaches, and at what level. The
             answer an access review actually needs.
           </li>
           <li>
-            <strong>By user</strong> — every space that person reaches, with
+            <strong>By user:</strong> every space that person reaches, with
             <em>every</em> path that grants it. If three group memberships all reach the same
             space, all three are listed, because removing one of them changes nothing and a
             reviewer needs to know that.
           </li>
           <li>
-            <strong>By space</strong> — everyone who reaches it, with group membership
+            <strong>By space:</strong> everyone who reaches it, with group membership
             expanded into people.
           </li>
         </ul>
@@ -163,7 +163,7 @@
         </p>
         <p>
           By group and by user also list the <strong>restricted pages that name</strong> the
-          group or the person — directly, or through a group they are in — and say whether that
+          group or the person (directly, or through a group they are in) and say whether that
           lets them in. A restriction only narrows space access, so naming someone on a page
           opens it to them only if they can view the space and are named on every locked page
           above it. Where that fails, AccessLens says what stands in the way: the space, the
@@ -178,7 +178,7 @@
         </p>
         <p>Per space, AccessLens lists:</p>
         <ul>
-          <li>Every restricted page, with the restriction type — view, edit, or both.</li>
+          <li>Every restricted page, with the restriction type: view, edit, or both.</li>
           <li>
             <strong>Where the restriction comes from.</strong> View restrictions inherit downwards,
             so a page is very often hidden by an ancestor rather than by anything set on
@@ -193,7 +193,7 @@
             <tbody>
               <tr>
                 <td>Restriction grants nothing</td>
-                <td>Restrictions can only narrow space permissions, never widen them. A restriction naming a group none of whose members can view the space, or a person who cannot, gives them nothing — the reverse of what whoever typed it believed. Access through any group counts, and where a group's members were not read in full the finding is not made at all.</td>
+                <td>Restrictions can only narrow space permissions, never widen them. A restriction naming a group none of whose members can view the space, or a person who cannot, gives them nothing, the reverse of what whoever typed it believed. Access through any group counts, and where a group's members were not read in full the finding is not made at all.</td>
               </tr>
               <tr>
                 <td>Only one person can read it</td>
@@ -217,7 +217,7 @@
         <p>
           Reading a page's restrictions is one request per page, which is the only cost in the
           app that grows with the size of your content. The restriction audit therefore has
-          three modes — off, sampled and full — and sampled is the default, with a per-space
+          three modes (off, sampled and full), and sampled is the default, with a per-space
           page ceiling. The interface distinguishes “checked and found nothing” from “not
           checked”; it never lets a sample look like a complete pass.
         </p>
@@ -232,7 +232,7 @@
         </p>
         <p>
           Snapshots run manually or on a schedule. The scan is sharded and checkpointed and
-          the cursor reaches <em>inside</em> a single space, page by page — a space can hold
+          the cursor reaches <em>inside</em> a single space, page by page. A space can hold
           tens of thousands of pages, and a scan that can only resume at space boundaries
           would never finish on one of them.
         </p>
@@ -257,7 +257,7 @@
         </p>
         <p>
           That is a deliberate aggregation. A diff that lists every changed permission
-          separately is technically complete and practically unreadable — the reviewer's job
+          separately is complete but unreadable. The reviewer's job
           is to recognise the change somebody made, not to reassemble it.
         </p>
 
@@ -269,14 +269,14 @@
         <p>Each decision records:</p>
         <ul>
           <li>The reviewer's Atlassian account id.</li>
-          <li>A <strong>server-side</strong> UTC timestamp — not the reviewer's clock.</li>
+          <li>A <strong>server-side</strong> UTC timestamp, not the reviewer's clock.</li>
           <li>The decision and any note.</li>
         </ul>
         <p>
           Changing a decision does not erase the old one: superseded decisions are kept
           alongside the current one. Once a review is signed off it freezes: it cannot be signed
           again or deleted, and it keeps the spaces and counts it showed, so deleting its
-          snapshot later — or a change in how AccessLens counts — does not change it.
+          snapshot later, or a change in how AccessLens counts, does not change it.
         </p>
 
         <h2 id="risk-flags">Risk flags, and what is not observable</h2>
@@ -290,7 +290,7 @@
           The first of these depends on your tenant's permission model. On sites using
           role-based space permissions, anonymous access is readable as an access-class
           principal in the role assignments. On the older model it is
-          <strong>not readable at all</strong> — the API this app can use does not expose
+          <strong>not readable at all</strong>, because the API this app can use does not expose
           it.
         </p>
         <p>
@@ -298,8 +298,8 @@
           site, and where it could not, the interface says
           <strong>“not observable here”</strong> rather than “none found”. Those are different
           statements, and only one of them is true. In the same spirit, when the app cannot
-          recognise any access class on a space, that fact is itself a finding — a permission
-          audit whose risk checks silently never fire is the most dangerous kind of clean
+          recognise any access class on a space, it reports that as a finding. A permission audit
+          whose risk checks silently never fire produces the most dangerous kind of clean
           report.
         </p>
 
@@ -316,8 +316,8 @@
         <h2 id="exports">CSV export</h2>
         <p>
           Every view exports as CSV. The file is assembled <strong>in your own browser</strong>
-          from data delivered over the Forge bridge — it never passes through a server of
-          ours, because there is not one. Exports carry a byte-order mark so spreadsheets open
+          from data delivered over the Forge bridge. It never passes through a server of
+          ours (we don't run one). Exports carry a byte-order mark so spreadsheets open
           them in the right encoding, and leading formula characters are neutralised so a cell
           of your data cannot execute in somebody's spreadsheet.
         </p>
@@ -325,23 +325,23 @@
         <h2 id="settings">Settings</h2>
         <ul>
           <li>
-            <strong>Scheduled snapshots</strong> — off, weekly or monthly. Weekly snapshots are
+            <strong>Scheduled snapshots:</strong> off, weekly or monthly. Weekly snapshots are
             taken on Mondays and monthly ones on the 1st, both in UTC, at a time of day Forge
             chooses. The Snapshots and Settings tabs show the next one, and say so when one was
             refused at the retention limit.
           </li>
           <li>
-            <strong>Page restrictions</strong> — off, sampled or full. Sampled reads up to 200
+            <strong>Page restrictions:</strong> off, sampled or full. Sampled reads up to 200
             pages per space and marks a larger space as partial.
           </li>
           <li>
-            <strong>Retention</strong> — up to twelve snapshots are kept. At the
+            <strong>Retention:</strong> up to twelve snapshots are kept. At the
             limit AccessLens <em>refuses a new snapshot</em>, scheduled or manual, rather than
             deleting an old one. Delete one yourself if you want room; the app will not make that
             decision for you.
           </li>
           <li>
-            <strong>AI tools</strong> — off by default. See below.
+            <strong>AI tools:</strong> off by default. See below.
           </li>
         </ul>
 
@@ -351,9 +351,9 @@
           Claude, through Atlassian's Forge MCP support:
         </p>
         <ul>
-          <li><strong>Open spaces</strong> — which spaces anonymous users or every logged-in user can open.</li>
-          <li><strong>Space access</strong> — who can access a space, at what level and through which group, with its risk flags.</li>
-          <li><strong>Group access</strong> — which spaces a group can reach.</li>
+          <li><strong>Open spaces:</strong> which spaces anonymous users or every logged-in user can open.</li>
+          <li><strong>Space access:</strong> who can access a space, at what level and through which group, with its risk flags.</li>
+          <li><strong>Group access:</strong> which spaces a group can reach.</li>
         </ul>
         <p>
           An AI tool runs as the person asking, but the answer comes from the whole site's
@@ -365,11 +365,11 @@
         </p>
         <ul>
           <li>
-            <strong>Rovo</strong> — create an agent and add the AccessLens tools under Tools,
+            <strong>Rovo:</strong> create an agent and add the AccessLens tools under Tools,
             Connected apps.
           </li>
           <li>
-            <strong>Claude and other MCP clients</strong> — an organization admin also allows
+            <strong>Claude and other MCP clients:</strong> an organization admin also allows
             external clients for AccessLens in Atlassian Administration, under Apps, Sites, your
             site, Connected apps. Then connect the client to
             <code>https://mcp.atlassian.com/forge/37327ae6-aa25-4973-a1e8-f58a302f9622</code>.
@@ -392,7 +392,7 @@
             <tbody>
               <tr><td><code>read:space:confluence</code></td><td>the space list, and space permission grants</td></tr>
               <tr><td><code>read:space.permission:confluence</code></td><td>space roles and role assignments, on tenants that use them</td></tr>
-              <tr><td><code>read:page:confluence</code></td><td>page id, title and parent id, so a restricted page can be named and its inheritance walked — never page content</td></tr>
+              <tr><td><code>read:page:confluence</code></td><td>page id, title and parent id, so a restricted page can be named and its inheritance walked, never page content</td></tr>
               <tr><td><code>read:content-details:confluence</code></td><td>a page's view and edit restrictions</td></tr>
               <tr><td><code>read:content.restriction:confluence</code></td><td>declared alongside the above so the restriction audit works across API shapes</td></tr>
               <tr><td><code>read:user:confluence</code></td><td>resolve account ids to display names</td></tr>
@@ -410,11 +410,11 @@
 
         <h2 id="not-in-this-release">Not in this release</h2>
         <ul>
-          <li>Changing permissions or restrictions — deliberately, and permanently. This is an audit tool.</li>
+          <li>Changing permissions or restrictions. That is deliberate and permanent: this is an audit tool.</li>
           <li>Attachment-level or comment-level permission reporting.</li>
           <li>Email or Slack notifications when access changes.</li>
           <li>Cross-site reporting.</li>
-          <li>Jira permissions — those are <a href="/accesslens/">AccessLens for Jira</a>.</li>
+          <li>Jira permissions. For those, use <a href="/accesslens/">AccessLens for Jira</a>.</li>
         </ul>
 
         <h2 id="support">Support</h2>

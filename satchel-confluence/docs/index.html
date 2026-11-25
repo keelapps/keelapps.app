@@ -112,24 +112,24 @@
         <h1>Documentation</h1>
         <p class="manual__lede">
           Satchel indexes a whole Confluence space so you can see, download, move and clean up
-          every file at once — and move many attachments to another page at once, where
-          Confluence moves them one at a time. Where the platform makes a thing uncertain, Satchel
-          reports the uncertainty rather than rounding it off.
+          every file in it. It moves many attachments to another page in one go, where Confluence
+          moves them one at a time. Where the platform leaves something uncertain, Satchel says
+          so instead of guessing.
         </p>
 
         <h2 id="where-it-lives">Where Satchel lives</h2>
         <ul>
           <li>
-            <strong>In any space: the sidebar → Space apps → Satchel</strong> — the browser: every
+            <strong>In any space: the sidebar → Space apps → Satchel.</strong> The browser: every
             file in the space, with search, filters, selection across pages, and the bulk actions.
             Anyone who can view the space sees it there.
           </li>
           <li>
-            <strong>On a page: ••• (More actions) → Apps → Manage attachments</strong> — one page,
+            <strong>On a page: ••• (More actions) → Apps → Manage attachments.</strong> One page,
             read live rather than from the index.
           </li>
           <li>
-            <strong>Confluence settings (the gear) → Apps → Satchel</strong> — cross-space totals,
+            <strong>Confluence settings (the gear) → Apps → Satchel.</strong> Cross-space totals,
             uploader rankings, the audit trail, and the settings, including the bulk-delete switch.
             Site administrators only.
           </li>
@@ -142,7 +142,7 @@
 
         <h2 id="browser">The space attachment browser</h2>
         <p>
-          A scan builds the space's inventory once — for every attachment: id, file name, size,
+          A scan builds the space's inventory once. For every attachment it records id, file name, size,
           media type, version count, upload timestamp, uploader and status, plus the id, title and
           status of the page it is on. <strong>Metadata only; file content is never
           stored.</strong>
@@ -154,7 +154,7 @@
           and size, select across page boundaries, and then download, move or delete.
         </p>
         <p>
-          Aggregate totals shown on a space page — file count, total size — cover the whole space
+          Aggregate totals shown on a space page (file count, total size) cover the whole space
           and are labelled as such, next to a count of how many rows are hidden from you.
         </p>
 
@@ -218,9 +218,8 @@
         </p>
         <p>
           The archive is assembled <strong>in your browser tab</strong>. The compression library is
-          part of the app's own bundle rather than fetched from a content delivery network — a CDN
-          would require an external network permission, and that permission is precisely what this
-          app does not have. Bytes go Confluence → your tab → your disk, with nothing stored in
+          part of the app's own bundle rather than fetched from a content delivery network, because
+          a CDN would need an external network permission and this app does not have one. Bytes go Confluence → your tab → your disk, with nothing stored in
           between.
         </p>
         <p>
@@ -248,8 +247,8 @@
           The last one is labelled inferred because that is what it is. The check reads the parent
           page's body for a reference to the file; a file may still be linked from another page,
           from a comment, or from somewhere outside Confluence entirely. The interface also
-          distinguishes <em>“checked and found nothing”</em> from <em>“never looked”</em> — a page
-          whose body could not be read is not evidence that its files are unused.
+          distinguishes <em>“checked and found nothing”</em> from <em>“never looked”</em>, because a
+          page whose body could not be read says nothing about whether its files are used.
         </p>
         <p>
           Page bodies are read during a scan to answer this question and are
@@ -275,7 +274,7 @@
           </li>
           <li>
             <strong>Same size, different name is not grouped.</strong> At small sizes that is
-            coincidence — two 31-byte spreadsheets with different names are two spreadsheets.
+            coincidence: two 31-byte spreadsheets with different names are two spreadsheets.
           </li>
         </ul>
 
@@ -287,7 +286,7 @@
         <p>
           One figure is deliberately absent. Confluence reports the <em>current</em> version's size
           and the version <em>count</em>, but not the size of prior versions and no aggregate over
-          them. Multiplying size by count would be a fabrication — a document whose first draft was
+          them. Multiplying size by count would make the number up: a document whose first draft was
           2&nbsp;KB and whose tenth is 8&nbsp;MB is not 80&nbsp;MB. The storage tab therefore reports
           version counts and states what it cannot tell you, rather than printing a confident wrong
           number.
@@ -321,9 +320,9 @@
         </p>
         <p>
           The audit trail is a bounded ring of the 2,000 most recent events; older events age out.
-          Export it as CSV if you need a longer record — the button is in Confluence administration
-          and on each space page. A rescan deliberately does <em>not</em> rewrite it: an audit record
-          that can be edited is not an audit record.
+          Export it as CSV if you need a longer record. The button is in Confluence administration
+          and on each space page. A rescan deliberately does <em>not</em> rewrite it, because an
+          audit record that can be edited proves nothing.
         </p>
 
         <h2 id="undo">Undo</h2>
@@ -334,8 +333,8 @@
 
         <h2 id="quota">API points and pacing</h2>
         <p>
-          Confluence charges apps for API calls in points — a base point per call plus one per
-          object returned — and the hourly allowance belongs to <em>the app</em>, shared across every
+          Confluence charges apps for API calls in points (a base point per call plus one per
+          object returned), and the hourly allowance belongs to <em>the app</em>, shared across every
           tenant running it rather than granted per site. One customer scanning a large space could
           rate-limit every other customer.
         </p>
@@ -350,7 +349,7 @@
         <ul>
           <li>
             The space attachment browser is visible to anyone who can open the space, but by default
-            it <strong>hides rows whose page that person cannot open</strong> — Satchel intersects
+            it <strong>hides rows whose page that person cannot open</strong>. Satchel intersects
             its inventory with the pages Confluence says you may read before any row leaves the
             server. A site administrator can switch this off.
           </li>
@@ -375,7 +374,7 @@
               <tr><td><code>read:page:confluence</code></td><td>page id, title and status, and the page body read during a scan to answer the “is anything referencing this file” question</td></tr>
               <tr><td><code>read:space:confluence</code></td><td>enumerate spaces and resolve the one you are in</td></tr>
               <tr><td><code>read:attachment:confluence</code></td><td>attachment metadata, and the bytes when you download</td></tr>
-              <tr><td><code>write:attachment:confluence</code></td><td>the move — re-parenting an attachment, or uploading the copy when the fallback route runs</td></tr>
+              <tr><td><code>write:attachment:confluence</code></td><td>the move: re-parenting an attachment, or uploading the copy when the fallback route runs</td></tr>
               <tr><td><code>read:content-details:confluence</code></td><td>the details a move and a listing need beyond the basic page record</td></tr>
               <tr><td><code>delete:attachment:confluence</code></td><td>bulk delete, which ships switched off and sends files to the trash</td></tr>
               <tr><td><code>read:user:confluence</code></td><td>resolve uploader account ids to display names</td></tr>
@@ -396,7 +395,7 @@
           <li><strong>Content-hash duplicate detection.</strong> Not possible; see <a href="#duplicates">duplicate candidates</a>.</li>
           <li><strong>Version-history storage totals.</strong> Not computable from what Confluence reports.</li>
           <li><strong>Scheduled scans.</strong> Scans run on demand, and resume automatically if interrupted.</li>
-          <li>Jira attachments — those are <a href="/satchel/">Satchel for Jira</a>.</li>
+          <li>Jira attachments. For those, use <a href="/satchel/">Satchel for Jira</a>.</li>
         </ul>
 
         <h2 id="support">Support</h2>
