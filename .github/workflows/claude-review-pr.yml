@@ -1,0 +1,17 @@
+name: Claude review
+
+# Claude reviews every pull request: inline comments on real problems, one
+# summary comment. The steps, the prompt and what gets skipped (drafts,
+# Dependabot) live in keelapps/.github, shared by every repo in the org.
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+jobs:
+  review:
+    uses: keelapps/.github/.github/workflows/claude-review.yml@main
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+    secrets: inherit
