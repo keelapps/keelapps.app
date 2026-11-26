@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://keelapps.app/</loc><lastmod>2026-11-25</lastmod></url>
-  <url><loc>https://keelapps.app/accesslens-confluence/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens-confluence/</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://keelapps.app/accesslens/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://keelapps.app/coverage/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://keelapps.app/curator/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://keelapps.app/digest/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://keelapps.app/evergreen/</loc><lastmod>2026-11-25</lastmod></url>
-  <url><loc>https://keelapps.app/guides/</loc><lastmod>2026-10-17</lastmod></url>
+  <url><loc>https://keelapps.app/guides/</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://keelapps.app/mail-templates/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://keelapps.app/prefill/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://keelapps.app/pricing/</loc><lastmod>2026-10-18</lastmod></url>
@@ -32,6 +32,7 @@
   <url><loc>https://keelapps.app/evergreen/privacy/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://keelapps.app/guides/confluence-move-attachments/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://keelapps.app/guides/confluence-page-approval/</loc><lastmod>2026-11-16</lastmod></url>
+  <url><loc>https://keelapps.app/guides/confluence-restricted-pages/</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://keelapps.app/guides/jira-custom-email-notifications/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://keelapps.app/guides/jira-download-all-attachments/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://keelapps.app/guides/jira-group-project-access/</loc><lastmod>2026-11-16</lastmod></url>
