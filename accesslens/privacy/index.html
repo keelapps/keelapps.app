@@ -110,7 +110,7 @@
              NOT ONE WORD between these sentinels may.
         -->
         <h1>Privacy policy — AccessLens for Jira</h1>
-        <p class="manual__meta">Last updated: <time datetime="2026-09-28">28 September 2026</time></p>
+        <p class="manual__meta">Last updated: <time datetime="2026-11-26">26 November 2026</time></p>
 
         <h2 id="short-version">The short version</h2>
         <p class="manual__lede">
@@ -149,7 +149,7 @@
               </tr>
               <tr>
                 <td>Settings</td>
-                <td>snapshot retention limit, schedule</td>
+                <td>snapshot retention limit, schedule, whether the project page is on</td>
                 <td>app configuration</td>
               </tr>
             </tbody>
@@ -159,6 +159,11 @@
           Personal data is limited to Atlassian account ids and display names as returned
           by the Jira API. AccessLens does not store issue content, attachments, email
           addresses, or any data you have not explicitly asked it to audit.
+        </p>
+        <p>
+          When an administrator checks a group's members and where it is used, AccessLens
+          reads that from Jira at that moment (members, product access, notification
+          schemes, issue security levels, filters and dashboards) and does not store it.
         </p>
 
         <h2 id="what-is-never-stored">What is never stored</h2>
@@ -170,8 +175,17 @@
 
         <h2 id="who-can-see-it">Who can see it</h2>
         <p>
-          The only UI surface is an admin page, which Jira restricts to site
-          administrators. Review sign-off carries the reviewer's Atlassian account id taken
+          The main UI is an admin page, which Jira restricts to site administrators.
+        </p>
+        <p>
+          A Jira administrator can turn on one more page, in project settings, that shows a
+          project's admins the groups their project uses and who is in them. It is off by
+          default. When it is on, AccessLens checks with Jira, as the person asking, that
+          they administer that project before it shows anything. These names are read live
+          and are not stored.
+        </p>
+        <p>
+          Review sign-off carries the reviewer's Atlassian account id taken
           from the Forge invocation context — never from the browser — so attribution
           cannot be forged.
         </p>
