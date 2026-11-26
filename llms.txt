@@ -43,5 +43,6 @@ Each app below answers one question that the Atlassian product does not answer o
 ## Optional
 
 - [Pricing for every app](https://keelapps.app/pricing/)
+- [About Keelapps](https://keelapps.app/about/): who makes the apps, the public feature requests they answer, and where your data goes
 - [Security policy](https://keelapps.app/security/)
 - Each app has documentation at /<app>/docs/ and a privacy policy at /<app>/privacy/, for example https://keelapps.app/accesslens/docs/
