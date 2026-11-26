@@ -122,11 +122,25 @@
           You need to be a project administrator for that project, or a Jira administrator. The
           check runs as you, not as the app.
         </p>
-        <ol>
-          <li>Open the project, then <strong>Mail Templates</strong> in the project's tab bar (it may be under <strong>More</strong>).</li>
-          <li>Pick one of the three event tabs and tick <strong>Send an email when…</strong></li>
-          <li>Write a subject and body, or press <strong>Start from an example</strong> to load a working template.</li>
-          <li>Choose the recipients, then <strong>Save</strong>.</li>
+        <ol class="steps">
+          <li>
+            <p><strong>Write the email.</strong> Open the project, then <strong>Mail Templates</strong> in the project's tab bar (it may be under <strong>More</strong>). Pick one of the three event tabs, tick <strong>Send an email when…</strong>, and write a subject and body, or press <strong>Start from an example</strong> to load a working template.</p>
+            <figure class="step-shot">
+              <a href="/assets/screenshots/docs/mail-templates-1.webp"><img src="/assets/screenshots/docs/mail-templates-1.webp" alt="The Mail Templates editor on the Issue created tab, with a subject and body built from issue variables." width="1760" height="1010" loading="lazy" decoding="async" /></a>
+            </figure>
+          </li>
+          <li>
+            <p><strong>Choose who receives it, then Save.</strong> Reporter, assignee, watchers and voters, specific people, or groups. The preview below shows the email a recipient reads. See <a href="/mail-templates/docs/recipients/">recipients</a>.</p>
+            <figure class="step-shot">
+              <a href="/assets/screenshots/docs/mail-templates-2.webp"><img src="/assets/screenshots/docs/mail-templates-2.webp" alt="Mail Templates recipients set to reporter, watchers, one person and a group, above a preview of the email." width="1760" height="1320" loading="lazy" decoding="async" /></a>
+            </figure>
+          </li>
+          <li>
+            <p><strong>Try it.</strong> Create a test work item, move it, or comment on it. The <strong>Recent sends</strong> tab lists each event and whether an email went out; when none did, it says why. See <a href="/mail-templates/docs/send-log/">the send log</a>.</p>
+            <figure class="step-shot">
+              <a href="/assets/screenshots/docs/mail-templates-3.webp"><img src="/assets/screenshots/docs/mail-templates-3.webp" alt="The Recent sends tab: four events, three sent and one that reached nobody, with the reason." width="1760" height="880" loading="lazy" decoding="async" /></a>
+            </figure>
+          </li>
         </ol>
         <p>
           A project with no configuration sends nothing. <strong>Remove from this project</strong>
