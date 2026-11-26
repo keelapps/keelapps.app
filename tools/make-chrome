@@ -274,6 +274,7 @@ def footer(fine):
   <p class="footer__head">Keelapps</p>
   <ul class="footer__list">
     <li><a href="/about/">About</a></li>
+    <li><a href="/changelog/">What's new</a></li>
     <li><a href="/guides/">Guides</a></li>
     <li><a href="/pricing/">Pricing</a></li>
     <li><a href="/security/">Security</a></li>
@@ -618,7 +619,11 @@ def render(path):
     text = path.read_text()
     rel = path.parent.relative_to(ROOT).parts
     app = BY_SLUG.get(rel[0]) if rel else None
-    home = not rel
+    # 404.html sits beside the home page but is not it: GitHub Pages serves it
+    # for any address it cannot find, so it gets the plain chrome.
+    home = not rel and path.name == "index.html"
+    if path.name == "404.html":
+        rel = ("404",)
 
     # <head>
     text = text.replace('content="#E5DECF" media="(prefers-color-scheme: light)"',
@@ -652,6 +657,8 @@ def render(path):
         text = region(text, "fleet", fleet(), 8)
         text = region(text, "shelf", shelf(), 10)
         text = region(text, "guides", guide_list(full=False), 8)
+    if rel == ("404",):
+        text = region(text, "shelf", shelf(), 10)
     if rel == ("guides",):
         text = region(text, "guides", guide_list(full=True), 8)
     if app:
@@ -671,7 +678,7 @@ def render(path):
 def main():
     check = "--check" in sys.argv
     drifted = []
-    for path in sorted(ROOT.rglob("index.html")):
+    for path in sorted(ROOT.rglob("index.html")) + [ROOT / "404.html"]:
         if any(part.startswith(".") for part in path.relative_to(ROOT).parts):
             continue
         old = path.read_text()

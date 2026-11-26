@@ -9,7 +9,7 @@
     // The site is the repository root; .assetsignore keeps the tooling out.
     "directory": ".",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "none"
+    "not_found_handling": "404-page"
   },
   // Workers Builds runs `npx wrangler preview` on every branch but main, and that
   // command refuses a config with no previews block. Nothing here differs from
