@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
+    <title>What's new in Keelapps apps</title>
+    <meta
+      name="description"
+      content="Every notable change to the Keelapps apps for Jira, Confluence and Bitbucket Cloud, month by month: new features, fixes and security changes, all live."
+    />
+    <link rel="canonical" href="https://keelapps.app/changelog/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/changelog/" />
+    <meta property="og:title" content="What's new in Keelapps apps" />
+    <meta
+      property="og:description"
+      content="New features, fixes and security changes across the Keelapps apps, month by month."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      (function () {
+        var internal = false;
+        try {
+          var mark = new URLSearchParams(location.search).get('internal');
+          if (mark === '1') localStorage.setItem('keelapps-internal', '1');
+          else if (mark === '0') localStorage.removeItem('keelapps-internal');
+          internal = localStorage.getItem('keelapps-internal') === '1';
+        } catch (e) {}
+        gtag('config', 'G-P880MM0XEG', internal ? { traffic_type: 'internal' } : {});
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="/guides/">Guides</a>
+        <a href="/pricing/">Pricing</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Sections">
+        <p class="manual__toc-title">keelapps</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/">All apps</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/changelog/" aria-current="page">What's new</a></li>
+        </ul>
+        <ol class="manual__toc-chapters">
+          <li><a href="#november-2026">November 2026</a></li>
+          <li><a href="#october-2026">October 2026</a></li>
+          <li><a href="#september-2026">September 2026</a></li>
+        </ol>
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span>What's new
+        </p>
+
+        <h1>What's new</h1>
+        <p class="manual__lede">
+          The changes worth knowing about in every Keelapps app, newest first. Each one is
+          listed in the month we finished it, and every one is live in the version you
+          install today.
+        </p>
+        <p>
+          Small wording fixes and dependency updates are left out. If an app is missing
+          something you need, <a href="https://keelapps.atlassian.net/helpcenter/support/">tell us
+          what it is</a>. Whoever answers your request also writes the code.
+        </p>
+
+        <h2 id="november-2026">November 2026</h2>
+        <ol class="changes">
+          <li class="change">
+            <p class="change__kind">New</p>
+            <div>
+              <p class="change__apps"><a href="/accesslens/"><img class="app-icon" src="/assets/apps/accesslens.svg" alt="" width="20" height="20" />AccessLens for Jira</a></p>
+              <p class="change__text">Explore &rarr; By group shows who is in a group and where else the group is used: product access, notification schemes, filters and dashboards, with a CSV export. A new Groups and members page in project settings shows project admins the same, once a Jira admin turns it on. Answers <a href="https://jira.atlassian.com/browse/JRACLOUD-11009">JRACLOUD-11009</a>.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">New</p>
+            <div>
+              <p class="change__apps"><a href="/releases/"><img class="app-icon" src="/assets/apps/releases.svg" alt="" width="20" height="20" />Releases for Bitbucket</a></p>
+              <p class="change__text">First version. Every tag gets a page with its release notes, the pull requests and approvals since the previous tag, the builds on the tagged commit and the files in Downloads. Answers <a href="https://jira.atlassian.com/browse/BCLOUD-11404">BCLOUD-11404</a>.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">New</p>
+            <div>
+              <p class="change__apps"><a href="/coverage/"><img class="app-icon" src="/assets/apps/coverage.svg" alt="" width="20" height="20" />Coverage for Bitbucket</a></p>
+              <p class="change__text">First version. Coverage and changed-line coverage on every pull request, every test result, a card in the sidebar and a merge check with thresholds. Answers <a href="https://jira.atlassian.com/browse/BCLOUD-15935">BCLOUD-15935</a>.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/coverage/"><img class="app-icon" src="/assets/apps/coverage.svg" alt="" width="20" height="20" />Coverage for Bitbucket</a></p>
+              <p class="change__text">The pipe is listed in Bitbucket's official Pipelines integrations, and the setup steps use it the way that list shows it.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">New</p>
+            <div>
+              <p class="change__apps"><a href="/sort-pages/"><img class="app-icon" src="/assets/apps/sort-pages.svg" alt="" width="20" height="20" />Sort Pages for Confluence</a></p>
+              <p class="change__text">A previous / next page macro. It links to the pages before and after the current one, and to its parent, and never links a page the reader cannot see.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">New</p>
+            <div>
+              <p class="change__apps"><span class="change__all">All Jira and Confluence apps</span><a href="/accesslens/" title="AccessLens for Jira"><img class="app-icon" src="/assets/apps/accesslens.svg" alt="AccessLens for Jira" width="20" height="20" /></a><a href="/satchel/" title="Satchel for Jira"><img class="app-icon" src="/assets/apps/satchel.svg" alt="Satchel for Jira" width="20" height="20" /></a><a href="/mail-templates/" title="Mail Templates for Jira"><img class="app-icon" src="/assets/apps/mail-templates.svg" alt="Mail Templates for Jira" width="20" height="20" /></a><a href="/recur/" title="Recur for Jira"><img class="app-icon" src="/assets/apps/recur.svg" alt="Recur for Jira" width="20" height="20" /></a><a href="/digest/" title="Digest for Jira"><img class="app-icon" src="/assets/apps/digest.svg" alt="Digest for Jira" width="20" height="20" /></a><a href="/prefill/" title="Prefill for Jira"><img class="app-icon" src="/assets/apps/prefill.svg" alt="Prefill for Jira" width="20" height="20" /></a><a href="/accesslens-confluence/" title="AccessLens for Confluence"><img class="app-icon" src="/assets/apps/accesslens-confluence.svg" alt="AccessLens for Confluence" width="20" height="20" /></a><a href="/satchel-confluence/" title="Satchel for Confluence"><img class="app-icon" src="/assets/apps/satchel-confluence.svg" alt="Satchel for Confluence" width="20" height="20" /></a><a href="/signoff/" title="Signoff for Confluence"><img class="app-icon" src="/assets/apps/signoff.svg" alt="Signoff for Confluence" width="20" height="20" /></a><a href="/evergreen/" title="Evergreen for Confluence"><img class="app-icon" src="/assets/apps/evergreen.svg" alt="Evergreen for Confluence" width="20" height="20" /></a><a href="/curator/" title="Curator for Confluence"><img class="app-icon" src="/assets/apps/curator.svg" alt="Curator for Confluence" width="20" height="20" /></a><a href="/sort-pages/" title="Sort Pages for Confluence"><img class="app-icon" src="/assets/apps/sort-pages.svg" alt="Sort Pages for Confluence" width="20" height="20" /></a></p>
+              <p class="change__text">Each Jira and Confluence app has a Get started page inside the app: where to open it, the first thing to set up, and a link to the full documentation.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/recur/"><img class="app-icon" src="/assets/apps/recur.svg" alt="" width="20" height="20" />Recur for Jira</a></p>
+              <p class="change__text">With no templates yet, the admin page lists the projects you can open and takes you straight to the one you pick. Before, it only said that templates live in projects.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/signoff/"><img class="app-icon" src="/assets/apps/signoff.svg" alt="" width="20" height="20" />Signoff for Confluence</a><a href="/evergreen/"><img class="app-icon" src="/assets/apps/evergreen.svg" alt="" width="20" height="20" />Evergreen for Confluence</a><a href="/curator/"><img class="app-icon" src="/assets/apps/curator.svg" alt="" width="20" height="20" />Curator for Confluence</a></p>
+              <p class="change__text">If someone has taken back the app's access to their account, the app asks them to allow it again.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Fixed</p>
+            <div>
+              <p class="change__apps"><a href="/satchel/"><img class="app-icon" src="/assets/apps/satchel.svg" alt="" width="20" height="20" />Satchel for Jira</a></p>
+              <p class="change__text">Find attachments says &ldquo;No attachments found&rdquo; when nothing matches. Before, the page stayed as it was and the button looked broken.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/satchel-confluence/"><img class="app-icon" src="/assets/apps/satchel-confluence.svg" alt="" width="20" height="20" />Satchel for Confluence</a></p>
+              <p class="change__text">The move preview lists the other pages that show a file you are about to move.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/satchel-confluence/"><img class="app-icon" src="/assets/apps/satchel-confluence.svg" alt="" width="20" height="20" />Satchel for Confluence</a></p>
+              <p class="change__text">The page dialog shows its title while it loads and, on a page with no files, offers to open Satchel for the whole space. The Manage attachments dialog has a Close button.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind change__kind--security">Security</p>
+            <div>
+              <p class="change__apps"><a href="/mail-templates/"><img class="app-icon" src="/assets/apps/mail-templates.svg" alt="" width="20" height="20" />Mail Templates for Jira</a></p>
+              <p class="change__text">A project's Mail Templates page reads only that project, and only for people who can see the project.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/accesslens/"><img class="app-icon" src="/assets/apps/accesslens.svg" alt="" width="20" height="20" />AccessLens for Jira</a><a href="/satchel/"><img class="app-icon" src="/assets/apps/satchel.svg" alt="" width="20" height="20" />Satchel for Jira</a></p>
+              <p class="change__text">Follows Jira's light or dark theme.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/accesslens/"><img class="app-icon" src="/assets/apps/accesslens.svg" alt="" width="20" height="20" />AccessLens for Jira</a></p>
+              <p class="change__text">A signed-off review shows the reviewer's name and a readable time instead of an account id and a raw timestamp. The id stays in the CSV export.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/accesslens-confluence/"><img class="app-icon" src="/assets/apps/accesslens-confluence.svg" alt="" width="20" height="20" />AccessLens for Confluence</a></p>
+              <p class="change__text">Snapshot pickers show when each snapshot was taken, without an id tail.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/recur/"><img class="app-icon" src="/assets/apps/recur.svg" alt="" width="20" height="20" />Recur for Jira</a></p>
+              <p class="change__text">The schedule reads &ldquo;every 1 day&rdquo; or &ldquo;every 2 weeks&rdquo; instead of Day(s) and Week(s).</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/digest/" title="Digest for Jira"><img class="app-icon" src="/assets/apps/digest.svg" alt="Digest for Jira" width="20" height="20" /></a><a href="/evergreen/" title="Evergreen for Confluence"><img class="app-icon" src="/assets/apps/evergreen.svg" alt="Evergreen for Confluence" width="20" height="20" /></a><a href="/curator/" title="Curator for Confluence"><img class="app-icon" src="/assets/apps/curator.svg" alt="Curator for Confluence" width="20" height="20" /></a><a href="/accesslens-confluence/" title="AccessLens for Confluence"><img class="app-icon" src="/assets/apps/accesslens-confluence.svg" alt="AccessLens for Confluence" width="20" height="20" /></a><a href="/satchel-confluence/" title="Satchel for Confluence"><img class="app-icon" src="/assets/apps/satchel-confluence.svg" alt="Satchel for Confluence" width="20" height="20" /></a></p>
+              <p class="change__text">Counts read &ldquo;1 page&rdquo; and &ldquo;3 pages&rdquo;, never &ldquo;page(s)&rdquo;.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/accesslens/" title="AccessLens for Jira"><img class="app-icon" src="/assets/apps/accesslens.svg" alt="AccessLens for Jira" width="20" height="20" /></a><a href="/satchel/" title="Satchel for Jira"><img class="app-icon" src="/assets/apps/satchel.svg" alt="Satchel for Jira" width="20" height="20" /></a><a href="/satchel-confluence/" title="Satchel for Confluence"><img class="app-icon" src="/assets/apps/satchel-confluence.svg" alt="Satchel for Confluence" width="20" height="20" /></a><a href="/mail-templates/" title="Mail Templates for Jira"><img class="app-icon" src="/assets/apps/mail-templates.svg" alt="Mail Templates for Jira" width="20" height="20" /></a><a href="/recur/" title="Recur for Jira"><img class="app-icon" src="/assets/apps/recur.svg" alt="Recur for Jira" width="20" height="20" /></a><a href="/digest/" title="Digest for Jira"><img class="app-icon" src="/assets/apps/digest.svg" alt="Digest for Jira" width="20" height="20" /></a><a href="/prefill/" title="Prefill for Jira"><img class="app-icon" src="/assets/apps/prefill.svg" alt="Prefill for Jira" width="20" height="20" /></a><a href="/signoff/" title="Signoff for Confluence"><img class="app-icon" src="/assets/apps/signoff.svg" alt="Signoff for Confluence" width="20" height="20" /></a><a href="/evergreen/" title="Evergreen for Confluence"><img class="app-icon" src="/assets/apps/evergreen.svg" alt="Evergreen for Confluence" width="20" height="20" /></a><a href="/curator/" title="Curator for Confluence"><img class="app-icon" src="/assets/apps/curator.svg" alt="Curator for Confluence" width="20" height="20" /></a><a href="/releases/" title="Releases for Bitbucket"><img class="app-icon" src="/assets/apps/releases.svg" alt="Releases for Bitbucket" width="20" height="20" /></a></p>
+              <p class="change__text">Each app shows its own icon and name in the Jira, Confluence and Bitbucket menus, instead of a generic one.</p>
+            </div>
+          </li>
+        </ol>
+
+        <h2 id="october-2026">October 2026</h2>
+        <ol class="changes">
+          <li class="change">
+            <p class="change__kind">New</p>
+            <div>
+              <p class="change__apps"><a href="/accesslens-confluence/"><img class="app-icon" src="/assets/apps/accesslens-confluence.svg" alt="" width="20" height="20" />AccessLens for Confluence</a></p>
+              <p class="change__text">Read-only AI tools for Rovo agents and for AI clients such as Claude, through Atlassian's Forge MCP support. They stay off until an admin turns them on.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">New</p>
+            <div>
+              <p class="change__apps"><a href="/accesslens-confluence/"><img class="app-icon" src="/assets/apps/accesslens-confluence.svg" alt="" width="20" height="20" />AccessLens for Confluence</a></p>
+              <p class="change__text">Reports pages that an edit restriction higher in the tree does not cover. Confluence does not pass edit restrictions down to child pages.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Fixed</p>
+            <div>
+              <p class="change__apps"><a href="/digest/"><img class="app-icon" src="/assets/apps/digest.svg" alt="" width="20" height="20" />Digest for Jira</a></p>
+              <p class="change__text">In time zones where the clock changes at midnight, a digest set for midnight no longer goes out the evening before.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind change__kind--security">Security</p>
+            <div>
+              <p class="change__apps"><a href="/accesslens/" title="AccessLens for Jira"><img class="app-icon" src="/assets/apps/accesslens.svg" alt="AccessLens for Jira" width="20" height="20" /></a><a href="/accesslens-confluence/" title="AccessLens for Confluence"><img class="app-icon" src="/assets/apps/accesslens-confluence.svg" alt="AccessLens for Confluence" width="20" height="20" /></a><a href="/signoff/" title="Signoff for Confluence"><img class="app-icon" src="/assets/apps/signoff.svg" alt="Signoff for Confluence" width="20" height="20" /></a><a href="/evergreen/" title="Evergreen for Confluence"><img class="app-icon" src="/assets/apps/evergreen.svg" alt="Evergreen for Confluence" width="20" height="20" /></a><a href="/curator/" title="Curator for Confluence"><img class="app-icon" src="/assets/apps/curator.svg" alt="Curator for Confluence" width="20" height="20" /></a></p>
+              <p class="change__text">Every admin function checks that the caller is an admin each time it runs, not only when the page opens.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Fixed</p>
+            <div>
+              <p class="change__apps"><a href="/signoff/"><img class="app-icon" src="/assets/apps/signoff.svg" alt="" width="20" height="20" />Signoff for Confluence</a><a href="/evergreen/"><img class="app-icon" src="/assets/apps/evergreen.svg" alt="" width="20" height="20" />Evergreen for Confluence</a></p>
+              <p class="change__text">Settings pages stop asking for access on every visit.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Fixed</p>
+            <div>
+              <p class="change__apps"><a href="/curator/"><img class="app-icon" src="/assets/apps/curator.svg" alt="" width="20" height="20" />Curator for Confluence</a></p>
+              <p class="change__text">A first-time user can allow the app access, and a page that fails to load says so instead of spinning.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/sort-pages/"><img class="app-icon" src="/assets/apps/sort-pages.svg" alt="" width="20" height="20" />Sort Pages for Confluence</a></p>
+              <p class="change__text">When the app has no access to a page, it says that is why the page cannot be sorted.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Quality</p>
+            <div>
+              <p class="change__apps"><span class="change__all">All Jira and Confluence apps</span><a href="/accesslens/" title="AccessLens for Jira"><img class="app-icon" src="/assets/apps/accesslens.svg" alt="AccessLens for Jira" width="20" height="20" /></a><a href="/satchel/" title="Satchel for Jira"><img class="app-icon" src="/assets/apps/satchel.svg" alt="Satchel for Jira" width="20" height="20" /></a><a href="/mail-templates/" title="Mail Templates for Jira"><img class="app-icon" src="/assets/apps/mail-templates.svg" alt="Mail Templates for Jira" width="20" height="20" /></a><a href="/recur/" title="Recur for Jira"><img class="app-icon" src="/assets/apps/recur.svg" alt="Recur for Jira" width="20" height="20" /></a><a href="/digest/" title="Digest for Jira"><img class="app-icon" src="/assets/apps/digest.svg" alt="Digest for Jira" width="20" height="20" /></a><a href="/prefill/" title="Prefill for Jira"><img class="app-icon" src="/assets/apps/prefill.svg" alt="Prefill for Jira" width="20" height="20" /></a><a href="/accesslens-confluence/" title="AccessLens for Confluence"><img class="app-icon" src="/assets/apps/accesslens-confluence.svg" alt="AccessLens for Confluence" width="20" height="20" /></a><a href="/satchel-confluence/" title="Satchel for Confluence"><img class="app-icon" src="/assets/apps/satchel-confluence.svg" alt="Satchel for Confluence" width="20" height="20" /></a><a href="/signoff/" title="Signoff for Confluence"><img class="app-icon" src="/assets/apps/signoff.svg" alt="Signoff for Confluence" width="20" height="20" /></a><a href="/evergreen/" title="Evergreen for Confluence"><img class="app-icon" src="/assets/apps/evergreen.svg" alt="Evergreen for Confluence" width="20" height="20" /></a><a href="/curator/" title="Curator for Confluence"><img class="app-icon" src="/assets/apps/curator.svg" alt="Curator for Confluence" width="20" height="20" /></a><a href="/sort-pages/" title="Sort Pages for Confluence"><img class="app-icon" src="/assets/apps/sort-pages.svg" alt="Sort Pages for Confluence" width="20" height="20" /></a></p>
+              <p class="change__text">Each app's test check fails if the tests cover less than 100% of the code, counting lines, branches, functions and statements.</p>
+            </div>
+          </li>
+        </ol>
+
+        <h2 id="september-2026">September 2026</h2>
+        <ol class="changes">
+          <li class="change">
+            <p class="change__kind change__kind--security">Security</p>
+            <div>
+              <p class="change__apps"><a href="/mail-templates/"><img class="app-icon" src="/assets/apps/mail-templates.svg" alt="" width="20" height="20" />Mail Templates for Jira</a></p>
+              <p class="change__text">Never emails a comment restricted to a group or role, or a service project's internal note. Jira's own notifications already respect both, and now Mail Templates does too.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/mail-templates/"><img class="app-icon" src="/assets/apps/mail-templates.svg" alt="" width="20" height="20" />Mail Templates for Jira</a></p>
+              <p class="change__text">Rules can send to groups. The preview shows the email the recipient reads, not the template source.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Fixed</p>
+            <div>
+              <p class="change__apps"><a href="/recur/"><img class="app-icon" src="/assets/apps/recur.svg" alt="" width="20" height="20" />Recur for Jira</a></p>
+              <p class="change__text">An issue is never created before its time, and none is lost when a template is saved just before it is due. Every time zone is on offer, and &ldquo;Starting from&rdquo; defaults to today in the template's zone.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Fixed</p>
+            <div>
+              <p class="change__apps"><a href="/recur/"><img class="app-icon" src="/assets/apps/recur.svg" alt="" width="20" height="20" />Recur for Jira</a></p>
+              <p class="change__text">Two templates due in the same hour both keep running. Before, one of them could stop for good while still showing Active.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Fixed</p>
+            <div>
+              <p class="change__apps"><a href="/digest/"><img class="app-icon" src="/assets/apps/digest.svg" alt="" width="20" height="20" />Digest for Jira</a></p>
+              <p class="change__text">Changes are listed oldest first, so an issue that was unassigned and then assigned reads in that order. New subscriptions start in your time zone, not UTC.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/accesslens-confluence/"><img class="app-icon" src="/assets/apps/accesslens-confluence.svg" alt="" width="20" height="20" />AccessLens for Confluence</a></p>
+              <p class="change__text">Group grants show the group's name instead of an id. By group and By user list the restricted pages that name the group or person, and whether that lets them in.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Fixed</p>
+            <div>
+              <p class="change__apps"><a href="/accesslens-confluence/"><img class="app-icon" src="/assets/apps/accesslens-confluence.svg" alt="" width="20" height="20" />AccessLens for Confluence</a></p>
+              <p class="change__text">A signed-off review keeps its rows and its export when its snapshot is deleted.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind change__kind--security">Security</p>
+            <div>
+              <p class="change__apps"><a href="/signoff/"><img class="app-icon" src="/assets/apps/signoff.svg" alt="" width="20" height="20" />Signoff for Confluence</a></p>
+              <p class="change__text">Nobody can approve their own request, and an app account cannot be asked to approve. The audit CSV is safe to open in a spreadsheet.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Fixed</p>
+            <div>
+              <p class="change__apps"><a href="/evergreen/"><img class="app-icon" src="/assets/apps/evergreen.svg" alt="" width="20" height="20" />Evergreen for Confluence</a></p>
+              <p class="change__text">Blog posts and restricted pages work like other pages, and the dashboard shows a change made from the byline straight away instead of after the next daily scan.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Improved</p>
+            <div>
+              <p class="change__apps"><a href="/prefill/"><img class="app-icon" src="/assets/apps/prefill.svg" alt="" width="20" height="20" />Prefill for Jira</a></p>
+              <p class="change__text">A form's page shows its full share link. The builder lists Jira's required fields first and shows each error next to its field.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind">Fixed</p>
+            <div>
+              <p class="change__apps"><a href="/satchel-confluence/"><img class="app-icon" src="/assets/apps/satchel-confluence.svg" alt="" width="20" height="20" />Satchel for Confluence</a></p>
+              <p class="change__text">Moves, deletes and undos run as the person who started them, step by step from the page. Before, they could fail with only a &ldquo;failed&rdquo; row in the activity list.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind change__kind--security">Security</p>
+            <div>
+              <p class="change__apps"><a href="/satchel/"><img class="app-icon" src="/assets/apps/satchel.svg" alt="" width="20" height="20" />Satchel for Jira</a></p>
+              <p class="change__text">An inventory shows only the issues the person looking can open. Deleting removes only the files the preview listed, and the audit trail keeps every record for 400 days.</p>
+            </div>
+          </li>
+          <li class="change">
+            <p class="change__kind change__kind--security">Security</p>
+            <div>
+              <p class="change__apps"><a href="/curator/"><img class="app-icon" src="/assets/apps/curator.svg" alt="" width="20" height="20" />Curator for Confluence</a></p>
+              <p class="change__text">The label catalogue and the history of every batch moved to Confluence settings, which only site admins can open. Archiving and moving check the person's own permissions.</p>
+            </div>
+          </li>
+        </ol>
+        <nav class="manual__pagination">
+          <span class="manual__pagination-mid"><a href="/">All apps</a></span>
+        </nav>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/jira.svg" alt="" width="16" height="16" />Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/confluence.svg" alt="" width="16" height="16" />Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/bitbucket.svg" alt="" width="16" height="16" />Bitbucket</p>
+          <ul class="footer__list">
+            <li><a href="/coverage/">Coverage</a></li>
+            <li><a href="/releases/">Releases</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/about/">About</a></li>
+            <li><a href="/changelog/">What's new</a></li>
+            <li><a href="/guides/">Guides</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=changelog&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Keelapps builds administration and compliance apps for Atlassian Cloud. Not
+          affiliated with Atlassian. Jira, Confluence and Bitbucket are trademarks of
+          Atlassian.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

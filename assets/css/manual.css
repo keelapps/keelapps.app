@@ -341,3 +341,91 @@
   }
 
 }
+
+
+/* What's new: one month per section, one change per row. A row leads with
+   what kind of change it is, set like a station label, then the apps it
+   touched (each with its Marketplace icon, so the row matches the tile the
+   buyer already knows), then one or two plain sentences. */
+
+.changes {
+  display: grid;
+  list-style: none;
+  padding: 0;
+}
+
+.manual__content > * + .changes {
+  margin-top: var(--space-small);
+}
+
+.change {
+  border-bottom: var(--rule-gauge) solid var(--color-rule);
+  display: grid;
+  gap: var(--space-x-small) var(--space-medium);
+  margin: 0;
+  padding-block: var(--space-medium);
+}
+
+@media (min-width: 40em) {
+  .change {
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+  }
+}
+
+.change__kind {
+  color: var(--color-ink-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-x-small);
+  letter-spacing: var(--tracking-wide);
+  line-height: 2.2;
+  text-transform: uppercase;
+}
+
+.change__kind--security {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.change__apps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-x-small) var(--space-medium);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.change__apps a {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.5em;
+  text-decoration-color: transparent;
+}
+
+.change__apps a:hover {
+  text-decoration-color: currentColor;
+}
+
+.change__apps .app-icon {
+  border-radius: 22%;
+  flex: none;
+}
+
+.change__text {
+  margin-top: var(--space-x-small);
+}
+
+.change__text a[href^="https://jira.atlassian.com/"] {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-small);
+  white-space: nowrap;
+}
+
+.change__all {
+  flex-basis: 100%;
+}
+
+/* Rows that touch many apps show the icons alone, named on hover and to
+   screen readers, set closer together. */
+.change__apps:has(> a:nth-of-type(4)) {
+  column-gap: 0.4em;
+}

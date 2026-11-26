@@ -69,6 +69,22 @@ an `index.html` with the two markers, its `<h1>` and a meta description, plus
 a row in `DOCS`; the script refuses a docs page that is not listed. The other
 apps still have one documentation page each.
 
+## What's new and the 404 page
+
+`/changelog/` lists the changes a buyer would care about, newest month first.
+An entry goes in only once it is live: merged and deployed to production, so
+a change sitting on main waiting for a deploy waits here too. Each row is an
+`<li class="change">` with its kind (New, Improved, Fixed, Security,
+Quality), the apps it touched as icon links, and one or two plain sentences;
+link the jira.atlassian.com ticket it answers when there is one. Leave out
+wording tweaks, dependency updates and anything only we would notice.
+
+`404.html` is what GitHub Pages (and the Cloudflare preview) serves for an
+address it cannot find. `tools/make-chrome` writes its masthead, footer and
+shelf of app icons like any other page. Its small script offers the likely
+page for an address that names an app the long way, such as
+`/accesslens-for-jira/` → `/accesslens/`.
+
 ## Atlassian's icons and ours
 
 Two kinds of icon tie the site to the Marketplace, and neither is drawn here:
