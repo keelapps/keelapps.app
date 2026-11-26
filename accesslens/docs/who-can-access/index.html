@@ -131,6 +131,31 @@
           carries a provenance line naming the snapshot and when it was taken.
         </p>
 
+        <h2 id="members-and-other-uses">Who is in a group, and where else it is used</h2>
+        <p>
+          Under <strong>By group</strong>, click <strong>Check members and other uses</strong>. AccessLens
+          reads Jira at that moment and lists the group's members, the products it gives access to,
+          the notification schemes that email it, the filters that are shared with it, editable by it,
+          emailed to it or name it in JQL, and the dashboards shared with it. Run it before you delete
+          or rename a group.
+        </p>
+        <p>
+          Some places can't be checked: global permissions, issue security levels, workflows, group
+          picker fields, board and plan settings, Jira Service Management settings and other apps.
+          They are listed under every result, so an empty list never reads as "not used". The
+          result exports to CSV.
+        </p>
+
+        <h2 id="project-admins">Groups and members for project admins</h2>
+        <p>
+          Jira lets a project admin add a group to a role but only shows site administrators who is
+          in it. Under <strong>Settings → Project settings page</strong>, a site administrator can turn
+          on <strong>Groups and members</strong>. Each project's admins then find it under
+          <strong>Project settings → Apps</strong>. It lists the groups the project uses, what each can
+          do there, and who is in them. It starts off, and AccessLens checks with Jira that the person
+          asking administers that project before it shows anything.
+        </p>
+
         <h2 id="by-hand">Checking by hand</h2>
         <p>
           To do the same thing with Jira's own screens or the REST API, and for what else a group
