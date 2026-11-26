@@ -6,20 +6,20 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
-    <title>Documentation — Satchel for Jira</title>
+    <title>Documentation: get started — Satchel for Jira</title>
     <meta
       name="description"
-      content="How Satchel for Jira works: finding the issue panel, zipping an issue or a JQL result, how the bytes travel, the project inventory, duplicate candidates, storage reports, CSV export and bulk deletion."
+      content="Where Satchel for Jira appears on an issue, a project and the admin page, what stays free, and a page for each job: download, scan, report on or delete attachments."
     />
     <link rel="canonical" href="https://keelapps.app/satchel/docs/" />
     <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/assets/icon.png" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://keelapps.app/satchel/docs/" />
-    <meta property="og:title" content="Documentation — Satchel for Jira" />
+    <meta property="og:title" content="Documentation: get started — Satchel for Jira" />
     <meta
       property="og:description"
-      content="Finding the issue panel, zipping an issue or a JQL result, how the bytes travel, the project inventory, duplicate candidates, storage reports and bulk deletion."
+      content="Where Satchel for Jira appears on an issue, a project and the admin page, what stays free, and a page for each job: download, scan, report on or delete attachments."
     />
     <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -79,41 +79,39 @@
     </header>
 
     <div class="manual">
-      <nav class="manual__toc" aria-label="Satchel for Jira pages and sections">
+      <nav class="manual__toc" aria-label="Satchel documentation">
         <p class="manual__toc-title">Satchel for Jira</p>
         <ul class="manual__toc-pages">
           <li><a href="/satchel/">Product</a></li>
           <li><a href="/satchel/docs/" aria-current="page">Documentation</a></li>
           <li><a href="/satchel/privacy/">Privacy policy</a></li>
         </ul>
+        <!-- docs-toc:begin -->
         <ol class="manual__toc-chapters">
-          <li><a href="#finding-the-panel">Finding the panel</a></li>
-          <li><a href="#issue-download">Downloading one issue</a></li>
-          <li><a href="#project-download">A JQL result, or a project</a></li>
-          <li><a href="#bytes">How the bytes travel</a></li>
-          <li><a href="#inventory">The project inventory</a></li>
-          <li><a href="#duplicates">Duplicate candidates</a></li>
-          <li><a href="#storage">Storage reports</a></li>
-          <li><a href="#csv">CSV export</a></li>
-          <li><a href="#deletion">Bulk deletion</a></li>
-          <li><a href="#as-you">What runs as you</a></li>
-          <li><a href="#permissions">Permissions the app requests</a></li>
-          <li><a href="#licensing">Licensing and the free tier</a></li>
-          <li><a href="#not-in-this-release">Not in this release</a></li>
-          <li><a href="#support">Support</a></li>
+          <li><a href="/satchel/docs/" aria-current="page">Get started</a></li>
+          <li><a href="/satchel/docs/download-issue/">Download one issue</a></li>
+          <li><a href="/satchel/docs/download-jql-project/">Download a JQL result or a project</a></li>
+          <li><a href="/satchel/docs/how-downloads-work/">How the zip is built</a></li>
+          <li><a href="/satchel/docs/inventory/">Scan a project</a></li>
+          <li><a href="/satchel/docs/duplicates/">Duplicate candidates</a></li>
+          <li><a href="/satchel/docs/storage-report/">Storage report</a></li>
+          <li><a href="/satchel/docs/delete-attachments/">Delete attachments</a></li>
+          <li><a href="/satchel/docs/permissions/">Permissions and data</a></li>
+          <li><a href="/satchel/docs/faq/">Questions</a></li>
         </ol>
+        <!-- docs-toc:end -->
       </nav>
 
       <article class="manual__content" id="main">
         <p class="trail">
-          <a href="/">keelapps</a><span>/</span><a href="/satchel/">Satchel for Jira</a><span>/</span>Documentation
+          <a href="/">keelapps</a><span>/</span><a href="/satchel/">Satchel</a><span>/</span>Documentation
         </p>
 
-        <h1>Documentation</h1>
+        <h1>Get started with Satchel</h1>
+
         <p class="manual__lede">
-          Satchel does two things: it gets attachments out of Jira in bulk, and it tells you
-          what is in there. Everything below is one of those two, plus the parts where Jira's
-          own limits decide what is possible.
+          Satchel does two things: it gets attachments out of Jira in bulk, and it tells you what
+          is in there.
         </p>
 
         <div class="aside" data-label="Read this first">
@@ -123,17 +121,16 @@
             issue title (the round icon, not the “+”).
           </p>
           <p>
-            This is the single most common “is the app broken?” moment after installing, and it
-            is Jira's behaviour rather than the app's.
+            This is the most common “is the app broken?” moment after installing, and it is where
+            Jira puts apps, not something Satchel chooses.
           </p>
         </div>
 
-        <h2 id="finding-the-panel">Finding the panel</h2>
-        <p>Satchel has three surfaces:</p>
+        <h2 id="where">Where it lives</h2>
         <ul>
           <li>
             <strong>The issue panel:</strong> <em>Apps → Satchel</em> in the right column of any
-            issue. Lists the issue's attachments and downloads them, individually or as one zip.
+            issue. Lists the issue's attachments and downloads them, one at a time or as one zip.
           </li>
           <li>
             <strong>The project page:</strong> <em>Project → Satchel</em>. Browse, JQL, the
@@ -145,267 +142,74 @@
           </li>
         </ul>
         <p>
-          A panel stuck permanently on “Loading Satchel…” is a bug worth reporting, not
-          slowness: every call the interface makes is timed out and turns into a visible error.
+          A panel stuck on “Loading Satchel…” is a bug worth reporting, not slowness: every call
+          the interface makes has a time limit and turns into a visible error.
         </p>
 
-        <h2 id="issue-download">Downloading one issue</h2>
-        <p>From the issue panel:</p>
-        <ul>
-          <li>
-            <strong>Download as zip:</strong> every attachment on the issue in one archive of
-            up to 1 GB and 5,000 files. This works past 150 attachments too, where Jira falls back
-            to a list without previews or thumbnails.
-          </li>
-          <li>
-            <strong>Download one file:</strong> straight to your disk, without opening the preview.
-          </li>
-        </ul>
-        <p>Two things the archive guarantees:</p>
-        <ul>
-          <li>
-            <strong>Duplicate filenames are renamed, never overwritten.</strong> Three files
-            called <code>screenshot.png</code> arrive as three files.
-          </li>
-          <li>
-            <strong>Anything missing is named.</strong> If a file could not be included, a note
-            inside the zip says which one and why. The archive never quietly comes up short.
-          </li>
-        </ul>
-        <p>A long download shows progress and can be cancelled.</p>
-
-        <h2 id="project-download">A JQL result, or a project</h2>
+        <h2 id="free">What is free</h2>
         <p>
-          The project page's browser lists the project's issues and their attachments, filterable
-          and searchable, with JQL for anything more specific. Select rows, or take the whole
-          result, and download one archive foldered by <code>ISSUE-KEY/</code>, so the files
-          arrive already sorted by the issue they belong to.
-        </p>
-        <p>
-          The scan behind a project-wide result runs as a background job with a checkpoint, so a
-          large project finishes rather than timing out, and closing the tab does not lose the
-          work.
-        </p>
-
-        <h2 id="bytes">How the bytes travel</h2>
-        <p>
-          This is the part worth being precise about, because the app's compliance story rests
-          on it.
-        </p>
-        <p>
-          The archive is assembled <strong>in your browser tab</strong>. The compression library
-          is part of the app's own bundle rather than fetched from a content delivery network,
-          because a CDN would need an external network permission and the app does not have
-          one. Bytes go Jira → your tab → your disk. Nothing is written to app
-          storage, and nothing reaches any server we operate, because we operate none.
-        </p>
-        <p>
-          There are two routes for getting those bytes into the tab, and <strong>which one runs
-          is measured rather than assumed</strong>:
-        </p>
-        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
-          <table>
-            <thead><tr><th>Route</th><th>How</th><th>Trade-off</th></tr></thead>
-            <tbody>
-              <tr>
-                <td>Bridge</td>
-                <td>the browser calls Jira directly, as you</td>
-                <td>fastest, and no backend function runs at all, but the platform bridge can mangle non-text payloads on some sites</td>
-              </tr>
-              <tr>
-                <td>Relay</td>
-                <td>the backend reads the file in slices and hands them to the tab</td>
-                <td>correct for every file type, slower, and subject to a per-file ceiling</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p>
-          On the first download Satchel probes which route returns bytes intact on your site,
-          then uses it and <strong>says on screen which one is in use and why</strong>. Both
-          routes are zero-egress; the relay is slower, not less private.
-        </p>
-
-        <h2 id="inventory">The project inventory</h2>
-        <p>
-          A scan records, for every attachment in the project: filename, byte size, media type,
-          upload date, uploader, and the issue and issue type it belongs to.
-          <strong>It stores metadata only, never file content.</strong> That inventory is what the
-          duplicate and storage reports are computed from, and what the CSV export writes out.
-        </p>
-        <p>
-          The ten most recent inventories per project are kept; creating an eleventh deletes the
-          oldest. Whoever ran one, or a project or Jira administrator, can delete it from the
-          project page. A new inventory can start once the last has finished, at most every ten
-          minutes.
-        </p>
-        <p>
-          The inventory itself runs as the app rather than as you, because a queued background
-          job has no signed-in user, so it can reach issues some project members cannot see.
-          Every time its rows are read (the list, the reports and the numbers), they are
-          filtered to the issues the person reading can see in Jira, and if Jira cannot be asked
-          in time, nothing is shown. Anything you then download is fetched as <em>you</em>.
-        </p>
-
-        <h2 id="duplicates">Duplicate candidates</h2>
-        <p>
-          Satchel groups files by <strong>filename and exact byte size</strong> and reports the
-          bytes each group would reclaim if all but one copy went away.
-        </p>
-        <p>
-          They are called <em>candidates</em> on purpose. Jira exposes no content hash for an
-          attachment, so proving two files byte-identical would mean downloading both, which
-          across a project is every byte in it. What Satchel can honestly say is “same name, same size”,
-          and that qualification travels with the number in the data itself, so no screen can
-          render a reclaimable figure without the sentence that limits it.
-        </p>
-        <p>Two deliberate exclusions follow from the same honesty:</p>
-        <ul>
-          <li>
-            <strong>Same name, different size is not grouped.</strong> That is usually two
-            revisions of a document, and deleting one of them loses work.
-          </li>
-          <li>
-            <strong>Same size, different name is not grouped.</strong> At small sizes that is a
-            coincidence, and a common one.
-          </li>
-        </ul>
-
-        <h2 id="storage">Storage reports</h2>
-        <p>Today Jira reports storage for the whole site, not per project. Satchel breaks the project's share of it down by:</p>
-        <ul>
-          <li><strong>Uploader:</strong> who put it there.</li>
-          <li><strong>File type:</strong> the screenshots-versus-videos question.</li>
-          <li><strong>Issue type:</strong> where in the workflow the weight accumulates.</li>
-          <li><strong>Age:</strong> how much of it predates anyone who still works here.</li>
-          <li><strong>The biggest files:</strong> the short list that usually accounts for most of it.</li>
-        </ul>
-
-        <h2 id="csv">CSV export</h2>
-        <p>
-          The whole inventory exports as CSV: one row per attachment with its metadata. Useful
-          when the person who has to approve a deletion is not the person running the app.
-        </p>
-
-        <h2 id="deletion">Bulk deletion</h2>
-        <p>
-          <strong>Jira has no recycle bin for attachments</strong> (JRACLOUD-81027). A deleted
-          file comes back only from a copy you took beforehand; Atlassian does not undo customer
-          deletions from its own backups. Satchel cannot undo a deletion, and does not pretend it
-          can.
-        </p>
-        <p>So deletion is fenced in four ways:</p>
-        <ul>
-          <li>It <strong>ships switched off.</strong> A Jira administrator has to enable it.</li>
-          <li>
-            Once on, it is <strong>limited to Jira administrators</strong> unless they widen it to
-            anyone who can delete the attachment in Jira.
-          </li>
-          <li>
-            It requires a <strong>preview</strong>, in which Jira confirms every file and the
-            dialog lists each one with the total, and then a <strong>typed confirmation</strong>. Only the files
-            in that preview, in that project, can be deleted, by whoever previewed them.
-          </li>
-          <li>
-            Every deleted file leaves an <strong>audit record</strong>: who, what, when, and the
-            reason they typed.
-          </li>
-        </ul>
-        <p>
-          Each file's record is written before it is deleted. Records are kept for 400 days and
-          are deliberately <strong>not deletable from the interface</strong>, since a trail that
-          users can erase proves nothing. The project's trail is for project and Jira
-          administrators; the admin page shows every settings change and every deletion.
-        </p>
-        <p>Download what you are deleting first. That is what the zip is for.</p>
-
-        <h2 id="as-you">What runs as you</h2>
-        <p>
-          Every attachment read and every deletion runs as <strong>you</strong>, using your own
-          Atlassian identity. If you cannot open a file in Jira, Satchel cannot hand it to you,
-          and that includes attachments on issues hidden by issue security. (Jira does not restrict an
-          attachment added in a restricted comment: anyone who can view the issue can open it, in
-          Jira and in Satchel.)
-        </p>
-        <p>
-          The one exception is the background project inventory described above, which runs as
-          the app because a queued job has no signed-in user. Its rows are filtered to what the
-          reader can see every time they are read.
-        </p>
-
-        <h2 id="permissions">Permissions the app requests</h2>
-        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
-          <table>
-            <thead><tr><th>Scope</th><th>Why</th></tr></thead>
-            <tbody>
-              <tr><td><code>read:jira-work</code></td><td>read issues, run JQL, read attachment metadata and attachment content, which is how the app finds and downloads files</td></tr>
-              <tr><td><code>read:jira-user</code></td><td>look up display names for account ids, as you, when a screen shows one (uploaders in an inventory, people in an audit record); names are not stored</td></tr>
-              <tr><td><code>write:jira-work</code></td><td>held only because deleting an attachment needs it; the only write call in the code is <code>DELETE /rest/api/3/attachment/{id}</code></td></tr>
-              <tr><td><code>storage:app</code></td><td>scan records, audit records and settings, in Atlassian-hosted storage on your own site</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>
-          <code>write:jira-work</code> is broader than what Satchel does with it, and that
-          deserves stating plainly. Atlassian's consent text for it mentions creating and editing
-          issues, posting comments, creating worklogs and deleting issues. <strong>Satchel does
-          none of those things</strong>, and never uploads anything. It is the only classic Jira
-          scope that includes deleting an attachment (the granular scope that would say exactly
-          that is still in Beta), and a test in the build fails if any code path reaches a mutating
-          call other than the single attachment delete. That test exists to stop the gap between
-          the consent prompt and the behaviour from widening silently.
-        </p>
-        <p>
-          There is no <code>permissions.external</code> block: the app cannot make an outbound
-          call even if it tried to, which Atlassian enforces at the platform level.
-        </p>
-
-        <h2 id="licensing">Licensing and the free tier</h2>
-        <p>
-          Sites with 10 users or fewer pay nothing. Above that, two things stay free forever on
-          every install: the <strong>single-issue zip</strong> and the
-          <strong>direct single-file download</strong>. The single-file download is never behind a
-          licence check.
-        </p>
-        <p>
-          A licence buys scale and governance: cross-issue and project-wide archives, the project
+          Sites with 10 users or fewer pay nothing. Above that, two things stay free on every
+          install: the <strong>single-issue zip</strong> and the <strong>direct single-file
+          download</strong>. A licence adds cross-issue and project-wide archives, the project
           inventory, the duplicate and storage reports, CSV export, and deletion.
         </p>
 
-        <h2 id="not-in-this-release">Not in this release</h2>
-        <ul>
-          <li>
-            <strong>Uploading attachments.</strong> No path to it in the interface; the only write
-            call in the code is the attachment delete.
+        <h2 id="pages">Every page</h2>
+        <!-- docs-index:begin -->
+        <ol class="docs-list">
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/satchel/docs/download-issue/">Download all attachments on one Jira issue</a></h3>
+            <p class="docs-item__summary">Zip every attachment on a Jira issue at once, including issues with more than 150 attachments, or save one file without opening the preview.</p>
           </li>
-          <li>
-            <strong>Cross-project inventories.</strong> The JQL box runs any JQL as you, but
-            inventories, reports, deletion and the audit trail are scoped to the page's project; a
-            site-wide inventory is a different permissions conversation.
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/satchel/docs/download-jql-project/">Download attachments from a JQL search or a whole project</a></h3>
+            <p class="docs-item__summary">Download every attachment from a Jira JQL result or a whole project as one zip, foldered by issue key, with the size limits and what happens when a selection is too big.</p>
           </li>
-          <li>
-            <strong>Scheduled inventories.</strong> One more trigger and a daily invocation to
-            usually find nothing. Run one on demand instead.
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/satchel/docs/how-downloads-work/">How Satchel builds the zip in your browser</a></h3>
+            <p class="docs-item__summary">Satchel for Jira builds each zip in your browser tab, so files go from Jira to your disk without passing through any vendor server. Which of two routes it uses, and why.</p>
           </li>
-          <li>
-            <strong>Content-hash duplicate detection.</strong> Not possible without downloading
-            every byte; see <a href="#duplicates">duplicate candidates</a>.
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/satchel/docs/inventory/">Scan a project's attachments</a></h3>
+            <p class="docs-item__summary">A Satchel inventory lists every attachment in a Jira project with its size, type, uploader, date and issue. Metadata only, exportable to CSV.</p>
           </li>
-          <li>Confluence attachments. For those, use <a href="/satchel-confluence/">Satchel for Confluence</a>.</li>
-        </ul>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/satchel/docs/duplicates/">Find duplicate attachments in a Jira project</a></h3>
+            <p class="docs-item__summary">Satchel groups Jira attachments with the same filename and exact byte size and shows how much space removing the extra copies would free. Why they are candidates, not proof.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/satchel/docs/storage-report/">See what uses attachment storage in a Jira project</a></h3>
+            <p class="docs-item__summary">Jira reports storage for the whole site. Satchel breaks one project's attachments down by uploader, file type, issue type and age, and lists the biggest files.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/satchel/docs/delete-attachments/">Delete Jira attachments in bulk</a></h3>
+            <p class="docs-item__summary">How Satchel's bulk delete for Jira attachments is fenced: off by default, admins only, a preview Jira checks file by file, a typed confirmation and a 400-day audit trail.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/satchel/docs/permissions/">Permissions Satchel requests, and what runs as you</a></h3>
+            <p class="docs-item__summary">The four scopes Satchel for Jira requests and why, which actions run as you, and why the one write permission is used only to delete an attachment.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/satchel/docs/faq/">Satchel questions</a></h3>
+            <p class="docs-item__summary">Short answers about Satchel for Jira: project-wide downloads, where the panel is, size limits, what it changes, deleted files, duplicates, price and what is not in it yet.</p>
+          </li>
+        </ol>
+        <!-- docs-index:end -->
 
         <h2 id="support">Support</h2>
         <p>
           Questions, bug reports and feature requests:
           <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
-          Security issues: <a href="/security/">report privately</a>.
+          Security issues: <a href="/security/">report privately</a>, not in a public channel.
         </p>
 
+        <!-- docs-pager:begin -->
         <nav class="manual__pagination">
           <span><a href="/satchel/">← Product page</a></span>
           <span class="manual__pagination-mid"><a href="/">All apps</a></span>
-          <span class="manual__pagination-next"><a href="/satchel/privacy/">Privacy policy →</a></span>
+          <span class="manual__pagination-next"><a href="/satchel/docs/download-issue/">Download one issue →</a></span>
         </nav>
+        <!-- docs-pager:end -->
       </article>
     </div>
 

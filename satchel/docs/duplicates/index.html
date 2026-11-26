@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
+    <title>Find duplicate attachments in Jira — Satchel for Jira</title>
+    <meta
+      name="description"
+      content="Satchel groups Jira attachments with the same filename and exact byte size and shows how much space removing the extra copies would free. Why they are candidates, not proof."
+    />
+    <link rel="canonical" href="https://keelapps.app/satchel/docs/duplicates/" />
+    <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://keelapps.app/satchel/docs/duplicates/" />
+    <meta property="og:title" content="Find duplicate attachments in Jira — Satchel for Jira" />
+    <meta
+      property="og:description"
+      content="Satchel groups Jira attachments with the same filename and exact byte size and shows how much space removing the extra copies would free. Why they are candidates, not proof."
+    />
+    <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/root.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/manual.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P880MM0XEG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      (function () {
+        var internal = false;
+        try {
+          var mark = new URLSearchParams(location.search).get('internal');
+          if (mark === '1') localStorage.setItem('keelapps-internal', '1');
+          else if (mark === '0') localStorage.removeItem('keelapps-internal');
+          internal = localStorage.getItem('keelapps-internal') === '1';
+        } catch (e) {}
+        gtag('config', 'G-P880MM0XEG', internal ? { traffic_type: 'internal' } : {});
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <a class="masthead__home" href="/">
+          <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+              <path d="M 196 392 H 304" />
+              <path d="M 720 392 H 828" />
+              <path d="M 352 392 C 360 584, 664 584, 672 392" />
+              <path d="M 512 552 V 648" />
+            </g>
+            <circle cx="512" cy="708" r="30" fill="#E8664A" />
+          </svg>
+          <span class="masthead__wordmark">keelapps</span>
+        </a>
+        <span class="masthead__sep" aria-hidden="true"></span>
+        <a class="masthead__app" href="/satchel/"><img class="app-icon" src="/assets/apps/satchel.svg" alt="" width="24" height="24" />Satchel for Jira</a>
+      </div>
+      <nav class="masthead__nav" aria-label="Site">
+        <a href="/#apps">All apps</a>
+        <a href="/satchel/docs/">Documentation</a>
+        <a href="/satchel/privacy/">Privacy</a>
+        <a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a>
+        <a class="btn" href="https://marketplace.atlassian.com/apps/788499894/satchel-bulk-attachment-download-manager?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=satchel-docs-duplicates&amp;utm_content=masthead">Try it free</a>
+      </nav>
+    </header>
+
+    <div class="manual">
+      <nav class="manual__toc" aria-label="Satchel documentation">
+        <p class="manual__toc-title">Satchel for Jira</p>
+        <ul class="manual__toc-pages">
+          <li><a href="/satchel/">Product</a></li>
+          <li><a href="/satchel/docs/">Documentation</a></li>
+          <li><a href="/satchel/privacy/">Privacy policy</a></li>
+        </ul>
+        <!-- docs-toc:begin -->
+        <ol class="manual__toc-chapters">
+          <li><a href="/satchel/docs/">Get started</a></li>
+          <li><a href="/satchel/docs/download-issue/">Download one issue</a></li>
+          <li><a href="/satchel/docs/download-jql-project/">Download a JQL result or a project</a></li>
+          <li><a href="/satchel/docs/how-downloads-work/">How the zip is built</a></li>
+          <li><a href="/satchel/docs/inventory/">Scan a project</a></li>
+          <li><a href="/satchel/docs/duplicates/" aria-current="page">Duplicate candidates</a></li>
+          <li><a href="/satchel/docs/storage-report/">Storage report</a></li>
+          <li><a href="/satchel/docs/delete-attachments/">Delete attachments</a></li>
+          <li><a href="/satchel/docs/permissions/">Permissions and data</a></li>
+          <li><a href="/satchel/docs/faq/">Questions</a></li>
+        </ol>
+        <!-- docs-toc:end -->
+      </nav>
+
+      <article class="manual__content" id="main">
+        <p class="trail">
+          <a href="/">keelapps</a><span>/</span><a href="/satchel/">Satchel</a><span>/</span><a href="/satchel/docs/">Documentation</a>
+        </p>
+
+        <h1>Find duplicate attachments in a Jira project</h1>
+
+        <p class="manual__lede">
+          Satchel groups files by <strong>filename and exact byte size</strong> and shows the bytes
+          each group would free if all but one copy went away. It works from a project
+          <a href="/satchel/docs/inventory/">inventory</a>.
+        </p>
+
+        <h2 id="candidates">Why they are called candidates</h2>
+        <p>
+          Jira exposes no content hash for an attachment, so proving two files are byte-identical
+          would mean downloading both, which across a project is every byte in it. What Satchel can
+          honestly say is “same name, same size”, and that sentence is carried with the number, so
+          no screen shows a reclaimable figure without it.
+        </p>
+
+        <h2 id="not-grouped">What is not grouped</h2>
+        <ul>
+          <li>
+            <strong>Same name, different size.</strong> That is usually two revisions of a
+            document, and deleting one of them loses work.
+          </li>
+          <li>
+            <strong>Same size, different name.</strong> At small sizes that is a coincidence, and a
+            common one.
+          </li>
+        </ul>
+        <p>
+          To remove copies, see <a href="/satchel/docs/delete-attachments/">Delete attachments in
+          bulk</a>. Download what you delete first.
+        </p>
+
+        <!-- docs-pager:begin -->
+        <nav class="manual__pagination">
+          <span><a href="/satchel/docs/inventory/">← Scan a project</a></span>
+          <span class="manual__pagination-mid"><a href="/satchel/docs/">All Satchel docs</a></span>
+          <span class="manual__pagination-next"><a href="/satchel/docs/storage-report/">Storage report →</a></span>
+        </nav>
+        <!-- docs-pager:end -->
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="masthead__home" href="/">
+            <svg class="mark" viewBox="176 360 672 396" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round">
+                <path d="M 196 392 H 304" />
+                <path d="M 720 392 H 828" />
+                <path d="M 352 392 C 360 584, 664 584, 672 392" />
+                <path d="M 512 552 V 648" />
+              </g>
+              <circle cx="512" cy="708" r="30" fill="#E8664A" />
+            </svg>
+            <span class="masthead__wordmark">keelapps</span>
+          </a>
+          <p class="footer__tagline">Steady tools, built below the waterline.</p>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/jira.svg" alt="" width="16" height="16" />Jira</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens/">AccessLens</a></li>
+            <li><a href="/satchel/">Satchel</a></li>
+            <li><a href="/mail-templates/">Mail Templates</a></li>
+            <li><a href="/recur/">Recur</a></li>
+            <li><a href="/digest/">Digest</a></li>
+            <li><a href="/prefill/">Prefill</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/confluence.svg" alt="" width="16" height="16" />Confluence</p>
+          <ul class="footer__list">
+            <li><a href="/accesslens-confluence/">AccessLens</a></li>
+            <li><a href="/satchel-confluence/">Satchel</a></li>
+            <li><a href="/signoff/">Signoff</a></li>
+            <li><a href="/evergreen/">Evergreen</a></li>
+            <li><a href="/curator/">Curator</a></li>
+            <li><a href="/sort-pages/">Sort Pages</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head"><img class="product-icon" src="/assets/atlassian/bitbucket.svg" alt="" width="16" height="16" />Bitbucket</p>
+          <ul class="footer__list">
+            <li><a href="/coverage/">Coverage</a></li>
+            <li><a href="/releases/">Releases</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__head">Keelapps</p>
+          <ul class="footer__list">
+            <li><a href="/guides/">Guides</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/security/">Security</a></li>
+            <li><a href="https://keelapps.atlassian.net/helpcenter/support/">Support</a></li>
+            <li><a href="https://marketplace.atlassian.com/vendors/1003432963/keelapps?utm_source=keelapps.app&amp;utm_medium=referral&amp;utm_campaign=satchel-docs-duplicates&amp;utm_content=footer">Marketplace</a></li>
+            <li><a href="https://www.youtube.com/channel/UCoYVeiMyCYpCLdcjC-Twskw">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p class="footer__fine">
+          Satchel for Jira is published by Keelapps. Not affiliated with Atlassian. Jira is
+          a trademark of Atlassian.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

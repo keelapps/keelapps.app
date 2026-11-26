@@ -429,6 +429,109 @@ def app_guides(app):
 </section>"""
 
 
+# --- Documentation, one page per question ----------------------------------
+#
+# An app whose documentation outgrew one page keeps /<slug>/docs/ as its
+# "Get started" page and puts each question on a page of its own under it, so
+# a search for that question lands on the page that answers it. The order
+# below is the reading order: the sidebar numbers the pages in it, and each
+# page's foot links to the one before and after. A page's entry on the
+# Get started page is its own <h1> and meta description, read from the page.
+# (path under /<slug>/docs/, label in the sidebar)
+DOCS = {
+    "accesslens": [
+        ("", "Get started"),
+        ("snapshots", "Take a snapshot"),
+        ("who-can-access", "Who can access what"),
+        ("risk-flags", "Risk flags"),
+        ("compare-snapshots", "Compare two snapshots"),
+        ("access-review", "Run an access review"),
+        ("schedule-and-retention", "Schedule and keep snapshots"),
+        ("incomplete-results", "When results are incomplete"),
+        ("export-csv", "Export to CSV"),
+        ("permissions", "Permissions and data"),
+        ("faq", "Questions"),
+    ],
+    "satchel": [
+        ("", "Get started"),
+        ("download-issue", "Download one issue"),
+        ("download-jql-project", "Download a JQL result or a project"),
+        ("how-downloads-work", "How the zip is built"),
+        ("inventory", "Scan a project"),
+        ("duplicates", "Duplicate candidates"),
+        ("storage-report", "Storage report"),
+        ("delete-attachments", "Delete attachments"),
+        ("permissions", "Permissions and data"),
+        ("faq", "Questions"),
+    ],
+    "mail-templates": [
+        ("", "Get started"),
+        ("events", "The three events"),
+        ("variables", "Variables and formatting"),
+        ("recipients", "Recipients"),
+        ("site-settings", "Site switch and limits"),
+        ("send-log", "The send log"),
+        ("no-email", "Why no email arrived"),
+        ("duplicate-emails", "Duplicate emails"),
+        ("permissions", "Permissions and limits"),
+        ("faq", "Questions"),
+    ],
+}
+
+
+class DocPage:
+    def __init__(self, slug, sub, label):
+        self.href = f"/{slug}/docs/{sub + '/' if sub else ''}"
+        self.sub, self.label = sub, label
+        path = ROOT / slug / "docs" / sub / "index.html"
+        if not path.exists():
+            sys.exit(f"DOCS lists {self.href} but {path.relative_to(ROOT)} does not exist")
+        page = path.read_text()
+        h1 = re.search(r"<h1>(.*?)</h1>", page, re.S)
+        desc = re.search(r'name="description"\s+content="([^"]*)"', page, re.S)
+        if not h1 or not desc:
+            sys.exit(f"{path.relative_to(ROOT)} needs an <h1> and a meta description")
+        self.title = " ".join(re.sub(r"<[^>]+>", "", h1.group(1)).split())
+        self.summary = " ".join(desc.group(1).split())
+
+
+def doc_pages(slug):
+    return [DocPage(slug, sub, label) for sub, label in DOCS[slug]]
+
+
+def docs_toc(slug, current):
+    here = ' aria-current="page"'
+    items = "\n".join(
+        f'<li><a href="{d.href}"{here if d.sub == current else ""}>{d.label}</a></li>'
+        for d in doc_pages(slug))
+    return f'<ol class="manual__toc-chapters">\n{indent(items, 2)}\n</ol>'
+
+
+def docs_pager(slug, current):
+    app = BY_SLUG[slug]
+    pages = doc_pages(slug)
+    i = [d.sub for d in pages].index(current)
+    prev = (f'<a href="{pages[i - 1].href}">← {pages[i - 1].label}</a>' if i else
+            f'<a href="/{slug}/">← Product page</a>')
+    nxt = (f'<a href="{pages[i + 1].href}">{pages[i + 1].label} →</a>' if i + 1 < len(pages) else
+           f'<a href="/{slug}/privacy/">Privacy policy →</a>')
+    mid = ('<a href="/">All apps</a>' if not current else
+           f'<a href="/{slug}/docs/">All {app.short} docs</a>')
+    return f"""<nav class="manual__pagination">
+  <span>{prev}</span>
+  <span class="manual__pagination-mid">{mid}</span>
+  <span class="manual__pagination-next">{nxt}</span>
+</nav>"""
+
+
+def docs_index(slug):
+    items = "\n".join(f"""<li class="docs-item">
+  <h3 class="docs-item__title"><a href="{d.href}">{d.title}</a></h3>
+  <p class="docs-item__summary">{d.summary}</p>
+</li>""" for d in doc_pages(slug)[1:])
+    return f'<ol class="docs-list">\n{indent(items, 2)}\n</ol>'
+
+
 # --- Putting them into a page ----------------------------------------------
 
 def region(text, name, body, n):
@@ -553,6 +656,14 @@ def render(path):
     if app:
         text = region(text, "app-guides", app_guides(app), 6)
         text = region(text, "related", related(app), 6)
+    if app and rel[1:2] == ("docs",) and app.slug in DOCS:
+        current = "/".join(rel[2:])
+        if current not in [sub for sub, _ in DOCS[app.slug]]:
+            sys.exit(f"{path.relative_to(ROOT)} is not listed in DOCS")
+        text = region(text, "docs-toc", docs_toc(app.slug, current), 8)
+        text = region(text, "docs-pager", docs_pager(app.slug, current), 8)
+        if not current:
+            text = region(text, "docs-index", docs_index(app.slug), 8)
     return tag_marketplace_links(text, rel)
 
 

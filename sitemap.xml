@@ -1,58 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://keelapps.app/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://keelapps.app/accesslens-confluence/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://keelapps.app/accesslens/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://keelapps.app/coverage/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://keelapps.app/curator/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://keelapps.app/digest/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://keelapps.app/evergreen/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://keelapps.app/guides/</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://keelapps.app/mail-templates/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://keelapps.app/prefill/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://keelapps.app/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens-confluence/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/coverage/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://keelapps.app/curator/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/digest/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/evergreen/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/guides/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/prefill/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://keelapps.app/pricing/</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://keelapps.app/recur/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://keelapps.app/releases/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://keelapps.app/satchel-confluence/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://keelapps.app/satchel/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://keelapps.app/security/</loc><lastmod>2026-09-28</lastmod></url>
-  <url><loc>https://keelapps.app/signoff/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://keelapps.app/sort-pages/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://keelapps.app/accesslens-confluence/docs/</loc><lastmod>2026-10-21</lastmod></url>
+  <url><loc>https://keelapps.app/recur/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/releases/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://keelapps.app/satchel-confluence/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/satchel/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/security/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://keelapps.app/signoff/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/sort-pages/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens-confluence/docs/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://keelapps.app/accesslens-confluence/privacy/</loc><lastmod>2026-10-21</lastmod></url>
-  <url><loc>https://keelapps.app/accesslens/docs/</loc><lastmod>2026-10-08</lastmod></url>
-  <url><loc>https://keelapps.app/accesslens/privacy/</loc><lastmod>2026-09-28</lastmod></url>
-  <url><loc>https://keelapps.app/coverage/docs/</loc><lastmod>2026-11-07</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/docs/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/privacy/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://keelapps.app/coverage/docs/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://keelapps.app/coverage/privacy/</loc><lastmod>2026-11-07</lastmod></url>
-  <url><loc>https://keelapps.app/curator/docs/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://keelapps.app/curator/docs/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://keelapps.app/curator/privacy/</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://keelapps.app/digest/docs/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://keelapps.app/digest/docs/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://keelapps.app/digest/privacy/</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://keelapps.app/evergreen/docs/</loc><lastmod>2026-09-28</lastmod></url>
-  <url><loc>https://keelapps.app/evergreen/privacy/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://keelapps.app/evergreen/docs/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/evergreen/privacy/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://keelapps.app/guides/confluence-move-attachments/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://keelapps.app/guides/confluence-page-approval/</loc><lastmod>2026-11-16</lastmod></url>
+  <url><loc>https://keelapps.app/guides/confluence-restricted-pages/</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://keelapps.app/guides/jira-custom-email-notifications/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://keelapps.app/guides/jira-download-all-attachments/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://keelapps.app/guides/jira-group-project-access/</loc><lastmod>2026-11-16</lastmod></url>
-  <url><loc>https://keelapps.app/guides/jira-permission-audit/</loc><lastmod>2026-11-16</lastmod></url>
-  <url><loc>https://keelapps.app/guides/jira-recurring-tasks/</loc><lastmod>2026-11-16</lastmod></url>
+  <url><loc>https://keelapps.app/guides/jira-permission-audit/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/guides/jira-recurring-tasks/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://keelapps.app/guides/jira-user-project-access/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://keelapps.app/guides/rovo-permission-check/</loc><lastmod>2026-11-16</lastmod></url>
-  <url><loc>https://keelapps.app/mail-templates/docs/</loc><lastmod>2026-09-28</lastmod></url>
-  <url><loc>https://keelapps.app/mail-templates/privacy/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/docs/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/privacy/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://keelapps.app/prefill/docs/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://keelapps.app/prefill/privacy/</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://keelapps.app/recur/docs/</loc><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://keelapps.app/recur/docs/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://keelapps.app/recur/privacy/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://keelapps.app/releases/docs/</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://keelapps.app/releases/privacy/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://keelapps.app/satchel-confluence/docs/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://keelapps.app/satchel-confluence/docs/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://keelapps.app/satchel-confluence/privacy/</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://keelapps.app/satchel/docs/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://keelapps.app/satchel/docs/</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://keelapps.app/satchel/privacy/</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://keelapps.app/signoff/docs/</loc><lastmod>2026-09-28</lastmod></url>
-  <url><loc>https://keelapps.app/signoff/privacy/</loc><lastmod>2026-09-28</lastmod></url>
-  <url><loc>https://keelapps.app/sort-pages/docs/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://keelapps.app/signoff/docs/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://keelapps.app/signoff/privacy/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://keelapps.app/sort-pages/docs/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://keelapps.app/sort-pages/privacy/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/docs/access-review/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/docs/compare-snapshots/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/docs/export-csv/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/docs/faq/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/docs/incomplete-results/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/docs/permissions/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/docs/risk-flags/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/docs/schedule-and-retention/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/docs/snapshots/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/accesslens/docs/who-can-access/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/docs/duplicate-emails/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/docs/events/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/docs/faq/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/docs/no-email/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/docs/permissions/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/docs/recipients/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/docs/send-log/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/docs/site-settings/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/mail-templates/docs/variables/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/satchel/docs/delete-attachments/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/satchel/docs/download-issue/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/satchel/docs/download-jql-project/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/satchel/docs/duplicates/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/satchel/docs/faq/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/satchel/docs/how-downloads-work/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/satchel/docs/inventory/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/satchel/docs/permissions/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://keelapps.app/satchel/docs/storage-report/</loc><lastmod>2026-11-26</lastmod></url>
 </urlset>

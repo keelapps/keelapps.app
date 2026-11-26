@@ -184,6 +184,45 @@
 }
 
 
+/* The Get started page lists every other page of an app's documentation:
+   the page's question as a link, then its one-line answer. */
+
+.docs-list {
+  display: grid;
+  list-style: none;
+  padding: 0;
+}
+
+.manual__content > * + .docs-list {
+  margin-top: var(--space-small);
+}
+
+.docs-item {
+  border-bottom: var(--rule-gauge) solid var(--color-rule);
+  margin: 0;
+  padding-block: var(--space-small) var(--space-medium);
+}
+
+.manual__content .docs-item__title {
+  font-size: var(--font-size-large);
+  line-height: var(--line-height-snug);
+  margin-top: 0;
+}
+
+.docs-item__title a {
+  text-decoration-color: transparent;
+}
+
+.docs-item__title a:hover {
+  text-decoration-color: currentColor;
+}
+
+.docs-item__summary {
+  color: var(--color-ink-muted);
+  margin-top: var(--space-x-small);
+}
+
+
 /* Print. An auditor reading a privacy policy tends to print it, and a
    reviewer attaching one to an evidence pack certainly does. Drop the
    navigation, force ink on paper regardless of scheme, and spell out link

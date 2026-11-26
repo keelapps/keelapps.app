@@ -34,6 +34,7 @@ Each app below answers one question that the Atlassian product does not answer o
 - [Which Jira projects can a group access?](https://keelapps.app/guides/jira-group-project-access/)
 - [Jira permission audit: who can access what in Jira Cloud](https://keelapps.app/guides/jira-permission-audit/)
 - [How to download all attachments from Jira Cloud](https://keelapps.app/guides/jira-download-all-attachments/)
+- [How to find restricted pages in Confluence Cloud](https://keelapps.app/guides/confluence-restricted-pages/)
 - [How to move attachments between pages in Confluence Cloud](https://keelapps.app/guides/confluence-move-attachments/)
 - [How to customize Jira Cloud notification emails](https://keelapps.app/guides/jira-custom-email-notifications/)
 - [How to create recurring tasks in Jira Cloud](https://keelapps.app/guides/jira-recurring-tasks/)

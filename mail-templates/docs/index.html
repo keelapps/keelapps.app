@@ -6,20 +6,20 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#F4EFE6" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1C3A52" media="(prefers-color-scheme: dark)" />
-    <title>Documentation — Mail Templates for Jira</title>
+    <title>Documentation: get started — Mail Templates for Jira</title>
     <meta
       name="description"
-      content="How to configure Mail Templates for Jira: per-project rules, the three events, all nineteen template variables, recipients, quotas, and how to read the send log."
+      content="Turn on a templated notification email for a Jira project in four steps, and why Mail Templates adds to Jira's own notifications instead of replacing them."
     />
     <link rel="canonical" href="https://keelapps.app/mail-templates/docs/" />
     <link rel="icon" href="/assets/favicon.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/assets/icon.png" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://keelapps.app/mail-templates/docs/" />
-    <meta property="og:title" content="Documentation — Mail Templates for Jira" />
+    <meta property="og:title" content="Documentation: get started — Mail Templates for Jira" />
     <meta
       property="og:description"
-      content="Per-project rules, three events, nineteen variables, recipients, quotas, and the send log that answers 'why was there no email'."
+      content="Turn on a templated notification email for a Jira project in four steps, and why Mail Templates adds to Jira's own notifications instead of replacing them."
     />
     <meta property="og:image" content="https://keelapps.app/assets/banner.png" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -79,26 +79,27 @@
     </header>
 
     <div class="manual">
-      <nav class="manual__toc" aria-label="Mail Templates pages and sections">
+      <nav class="manual__toc" aria-label="Mail Templates documentation">
         <p class="manual__toc-title">Mail Templates for Jira</p>
         <ul class="manual__toc-pages">
           <li><a href="/mail-templates/">Product</a></li>
           <li><a href="/mail-templates/docs/" aria-current="page">Documentation</a></li>
           <li><a href="/mail-templates/privacy/">Privacy policy</a></li>
         </ul>
+        <!-- docs-toc:begin -->
         <ol class="manual__toc-chapters">
-          <li><a href="#before-you-start">Before you start</a></li>
-          <li><a href="#turn-it-on">Turn it on for a project</a></li>
-          <li><a href="#events">The three events</a></li>
-          <li><a href="#variables">Template variables</a></li>
-          <li><a href="#recipients">Recipients</a></li>
-          <li><a href="#site-settings">Site settings and quotas</a></li>
-          <li><a href="#send-log">Reading the send log</a></li>
-          <li><a href="#no-email">Why did no email arrive?</a></li>
-          <li><a href="#duplicates">Avoiding duplicate mail</a></li>
-          <li><a href="#permissions">Permissions</a></li>
-          <li><a href="#limits">What it will never do</a></li>
+          <li><a href="/mail-templates/docs/" aria-current="page">Get started</a></li>
+          <li><a href="/mail-templates/docs/events/">The three events</a></li>
+          <li><a href="/mail-templates/docs/variables/">Variables and formatting</a></li>
+          <li><a href="/mail-templates/docs/recipients/">Recipients</a></li>
+          <li><a href="/mail-templates/docs/site-settings/">Site switch and limits</a></li>
+          <li><a href="/mail-templates/docs/send-log/">The send log</a></li>
+          <li><a href="/mail-templates/docs/no-email/">Why no email arrived</a></li>
+          <li><a href="/mail-templates/docs/duplicate-emails/">Duplicate emails</a></li>
+          <li><a href="/mail-templates/docs/permissions/">Permissions and limits</a></li>
+          <li><a href="/mail-templates/docs/faq/">Questions</a></li>
         </ol>
+        <!-- docs-toc:end -->
       </nav>
 
       <article class="manual__content" id="main">
@@ -106,22 +107,20 @@
           <a href="/">keelapps</a><span>/</span><a href="/mail-templates/">Mail Templates</a><span>/</span>Documentation
         </p>
 
-        <h1>Documentation</h1>
+        <h1>Get started with Mail Templates</h1>
 
-        <h2 id="before-you-start">Before you start</h2>
         <p class="manual__lede">
-          Mail Templates is an <strong>additional</strong> notification channel. Jira keeps
-          sending whatever its own notification scheme is configured to send; this app adds
-          a templated message on top, aimed at people who would otherwise receive nothing.
-          It cannot suppress Jira's own mail, because Forge gives apps no hook for that. Plan
-          around that from the start, and see <a href="#duplicates">avoiding duplicate
-          mail</a>.
+          Mail Templates is an <strong>extra</strong> notification channel. Jira keeps sending
+          whatever its own notification scheme sends; the app adds a templated message on top,
+          aimed at people who would otherwise get nothing. It cannot stop Jira's own mail, because
+          Forge gives apps no way to. Plan around that from the start: see
+          <a href="/mail-templates/docs/duplicate-emails/">duplicate emails</a>.
         </p>
 
         <h2 id="turn-it-on">Turn it on for a project</h2>
         <p>
-          You need to be a project administrator for that project, or a Jira administrator.
-          The check runs as you, not as the app.
+          You need to be a project administrator for that project, or a Jira administrator. The
+          check runs as you, not as the app.
         </p>
         <ol>
           <li>Open the project, then <strong>Mail Templates</strong> in the project's tab bar (it may be under <strong>More</strong>).</li>
@@ -130,204 +129,66 @@
           <li>Choose the recipients, then <strong>Save</strong>.</li>
         </ol>
         <p>
-          A project with no configuration sends nothing. <strong>Remove from this
-          project</strong> deletes that project's rules entirely.
+          A project with no configuration sends nothing. <strong>Remove from this project</strong>
+          deletes that project's rules entirely.
         </p>
 
-        <h2 id="events">The three events</h2>
-        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
-          <table>
-            <thead>
-              <tr><th>Tab</th><th>Fires when</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Issue created</td><td>a new issue is created in the project</td></tr>
-              <tr><td>Status changed</td><td>an edit moves the issue between statuses; other field edits are ignored</td></tr>
-              <tr><td>Comment added</td><td>a comment is added to an issue</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>
-          Each tab has its own subject, body, recipients and on/off switch. Turning one on
-          has no effect on the others.
-        </p>
-
-        <h2 id="variables">Template variables</h2>
-        <p>
-          Both the subject and the body interpolate these. Anything that is not a known
-          variable is left exactly as typed, so a typo shows up in the message as
-          <code>{{isue.key}}</code> rather than silently vanishing.
-        </p>
-        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
-          <table>
-            <thead>
-              <tr><th>Variable</th><th>Value</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>{{issue.key}}</code></td><td>ENG-1234</td></tr>
-              <tr><td><code>{{issue.summary}}</code></td><td>the issue's summary line</td></tr>
-              <tr><td><code>{{issue.status}}</code></td><td>current status name</td></tr>
-              <tr><td><code>{{issue.issuetype}}</code></td><td>Bug, Task, Story…</td></tr>
-              <tr><td><code>{{issue.priority}}</code></td><td>priority name</td></tr>
-              <tr><td><code>{{issue.assignee}}</code></td><td>assignee display name</td></tr>
-              <tr><td><code>{{issue.reporter}}</code></td><td>reporter display name</td></tr>
-              <tr><td><code>{{issue.labels}}</code></td><td>comma-separated labels</td></tr>
-              <tr><td><code>{{issue.duedate}}</code></td><td>due date</td></tr>
-              <tr><td><code>{{issue.created}}</code></td><td>creation timestamp</td></tr>
-              <tr><td><code>{{issue.updated}}</code></td><td>last update timestamp</td></tr>
-              <tr><td><code>{{issue.url}}</code></td><td>link to the issue</td></tr>
-              <tr><td><code>{{project.key}}</code></td><td>ENG</td></tr>
-              <tr><td><code>{{project.name}}</code></td><td>Engineering</td></tr>
-              <tr><td><code>{{actor.name}}</code></td><td>who triggered the event</td></tr>
-              <tr><td><code>{{transition.from}}</code></td><td>previous status (status-change rules only)</td></tr>
-              <tr><td><code>{{transition.to}}</code></td><td>new status (status-change rules only)</td></tr>
-              <tr><td><code>{{comment.body}}</code></td><td>the comment text (comment rules only)</td></tr>
-              <tr><td><code>{{comment.author}}</code></td><td>who commented (comment rules only)</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>
-          The body accepts a small markdown subset: <code>**bold**</code>,
-          <code>*italic*</code>, <code>- bullets</code>, <code>#### headings</code> and
-          <code>[links](https://…)</code>. Anything else is sent as plain text. The preview
-          below the editor is rendered by the same code that sends the real message.
-        </p>
-        <p>
-          The app reads only the issue fields your template actually references. A template
-          that never mentions <code>{{issue.priority}}</code> causes no read of priority.
-        </p>
-
-        <h2 id="recipients">Recipients</h2>
-        <p>
-          Tick any combination of <strong>Reporter</strong>, <strong>Assignee</strong>,
-          <strong>Watchers</strong> and <strong>Voters</strong>, add named people under
-          <strong>Specific people</strong>, and Jira groups under <strong>Groups</strong>,
-          searched by name as you type among the groups you yourself can see.
-        </p>
-        <p>
-          A comment restricted to a group or a project role, and a service project's internal
-          note, is never mailed: Jira's own notifications respect those restrictions and a
-          notification sent through this app could not. The send log records it as
-          <strong>Restricted comment</strong>, with the reason.
-        </p>
-        <p>
-          Everyone on the list still has to be able to see the issue. Jira drops recipients
-          who cannot, so a rule can never widen who has access to what.
-        </p>
-        <p>
-          A rule that addresses nobody sends nothing and records
-          <strong>Nobody to send to</strong> in the log.
-        </p>
-
-        <h2 id="site-settings">Site settings and quotas</h2>
-        <p>
-          Jira administrators get a site page under
-          <strong>Settings → Apps → Mail Templates for Jira</strong>. It carries a site-wide
-          kill switch, hourly send limits per project and for the whole site, and the list
-          of projects that have rules configured.
-        </p>
-        <p>
-          The limits exist because a bulk edit of five hundred issues is five hundred
-          events. When a limit is reached the remaining events are recorded as
-          <strong>Hourly limit reached</strong> rather than being sent.
-        </p>
-
-        <h2 id="send-log">Reading the send log</h2>
-        <p>
-          The <strong>Recent sends</strong> tab lists the most recent events for the
-          project, whatever happened to them. An app that silently does nothing is the most
-          confusing thing it can be, so every outcome is named.
-        </p>
-        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
-          <table>
-            <thead>
-              <tr><th>Result</th><th>Meaning</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Sent</td><td>handed to Jira for delivery</td></tr>
-              <tr><td>Turned off</td><td>the rule, the project or the site switch was off when the event arrived</td></tr>
-              <tr><td>No matching rule</td><td>nothing was configured for that event type</td></tr>
-              <tr><td>Already sent</td><td>a duplicate delivery of the same event; one event, one email</td></tr>
-              <tr><td>Hourly limit reached</td><td>the project or site quota was exhausted for that hour</td></tr>
-              <tr><td>Nobody to send to</td><td>the rule addressed no one, or Jira dropped everyone for lack of access</td></tr>
-              <tr><td>No subscription</td><td>the site's subscription has lapsed (see below)</td></tr>
-              <tr><td>Blocked by Jira</td><td>Jira refused the send; the detail column carries its reason</td></tr>
-              <tr><td>Failed</td><td>a transient error; these are retried</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>
-          If the subscription lapses, the app stops sending and records
-          <strong>No subscription</strong> against each event. Mail goes out under your
-          organisation's name and cannot be recalled, so this is the one thing the app
-          refuses rather than assumes. Your configuration stays readable throughout.
-        </p>
-
-        <h2 id="no-email">Why did no email arrive?</h2>
-        <p>Work down this list; the send log answers most of it.</p>
-        <ol>
-          <li><strong>Is the rule on?</strong> Each event tab has its own tick box.</li>
-          <li><strong>Is the site switch on?</strong> Check the admin page.</li>
-          <li><strong>Did the event actually match?</strong> A status change needs a real status transition; editing a summary is not one.</li>
-          <li><strong>Can the recipient see the issue?</strong> Jira drops those who cannot, and the log says <strong>Nobody to send to</strong>.</li>
-          <li><strong>Was the hourly limit hit?</strong> The log says so.</li>
-          <li><strong>Is the subscription active?</strong> The log says <strong>No subscription</strong>.</li>
+        <h2 id="pages">Every page</h2>
+        <!-- docs-index:begin -->
+        <ol class="docs-list">
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/mail-templates/docs/events/">Which Jira events send an email</a></h3>
+            <p class="docs-item__summary">Mail Templates for Jira sends on three events: issue created, status changed and comment added. Each has its own template, recipients and switch.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/mail-templates/docs/variables/">Template variables and formatting</a></h3>
+            <p class="docs-item__summary">Every variable a Mail Templates subject or body can use, such as {{issue.key}} and {{transition.to}}, and the small markdown subset the body accepts.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/mail-templates/docs/recipients/">Choose who gets the email</a></h3>
+            <p class="docs-item__summary">Send a Mail Templates email to the reporter, assignee, watchers, voters, named people or Jira groups. Each person gets one copy, and nobody who cannot see the issue gets one.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/mail-templates/docs/site-settings/">Site switch and hourly email limits</a></h3>
+            <p class="docs-item__summary">The Mail Templates admin page: a site-wide off switch, hourly email limits per project and for the whole site (200 and 1,000 by default), and the projects that have rules.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/mail-templates/docs/send-log/">Read the send log</a></h3>
+            <p class="docs-item__summary">The Mail Templates send log lists a project's last 50 events and what happened to each: sent, turned off, no matching rule, hourly limit reached, blocked by Jira and more.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/mail-templates/docs/no-email/">Why didn't the email arrive?</a></h3>
+            <p class="docs-item__summary">A checklist for when a Mail Templates email did not arrive: the rule and site switches, whether the event matched, recipient access, hourly limits and the subscription.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/mail-templates/docs/duplicate-emails/">Stop people getting two emails for one change</a></h3>
+            <p class="docs-item__summary">Why a watcher can get both Jira's notification and a Mail Templates email for the same change, and how to turn the matching event off in the notification scheme safely.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/mail-templates/docs/permissions/">Permissions, and what Mail Templates will never do</a></h3>
+            <p class="docs-item__summary">The four scopes Mail Templates for Jira requests, none of which can change Jira data, and the features it will never have: attachments, a custom sender, unsubscribe management.</p>
+          </li>
+          <li class="docs-item">
+            <h3 class="docs-item__title"><a href="/mail-templates/docs/faq/">Mail Templates questions</a></h3>
+            <p class="docs-item__summary">Short answers about Mail Templates for Jira: editing Jira's own emails, duplicates, automation usage, people outside Jira, attachments, restricted comments and subscriptions.</p>
+          </li>
         </ol>
+        <!-- docs-index:end -->
+
+        <h2 id="support">Support</h2>
         <p>
-          Delivery itself is Jira's. Once the log says <strong>Sent</strong>, the message is
-          in Jira's notification pipeline and lands wherever that user's Jira notifications
-          normally land.
+          Questions, bug reports and feature requests:
+          <a href="https://keelapps.atlassian.net/helpcenter/support/">raise a support request</a>.
+          Security issues: <a href="/security/">report privately</a>, not in a public channel.
         </p>
 
-        <h2 id="duplicates">Avoiding duplicate mail</h2>
-        <p>
-          Someone who is already notified by Jira's own scheme, such as a watcher, will get
-          two messages: Jira's and yours. To stop that, switch the matching event off in the
-          project's notification scheme in Jira.
-        </p>
-        <p>
-          Check what else uses that scheme first. Notification schemes are frequently shared
-          between projects, and turning an event off affects all of them.
-        </p>
-
-        <h2 id="permissions">Permissions</h2>
-        <p>The app asks for four things, and none of them can change your Jira data:</p>
-        <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scrolls horizontally">
-          <table>
-            <thead>
-              <tr><th>Scope</th><th>What it is for</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>read:jira-work</code></td><td>read the issue fields a template references, tell a status transition from any other edit, and check whether the caller is a project admin</td></tr>
-              <tr><td><code>read:jira-user</code></td><td>resolve names for the recipient picker</td></tr>
-              <tr><td><code>send:notification:jira</code></td><td>the only write permission, and it permits exactly one call: handing a message to Jira's notification service</td></tr>
-              <tr><td><code>storage:app</code></td><td>rules, send log, quota counters, dedupe claims</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>
-          There is no <code>external</code> permission, so the app cannot reach any host
-          outside Atlassian. Forge enforces that at the platform level, so you don't have to take our word for it.
-        </p>
-
-        <h2 id="limits">What it will never do</h2>
-        <p>
-          These are deliberate and permanent. Each one would require either egress or
-          permissions that this product exists to avoid:
-        </p>
-        <ul>
-          <li>No attachments</li>
-          <li>No custom sender address: mail comes from Jira</li>
-          <li>No unsubscribe management</li>
-          <li>No rich-text editor: the markdown subset above is the whole of it</li>
-          <li>No suppressing or replacing Jira's own notifications</li>
-        </ul>
-
+        <!-- docs-pager:begin -->
         <nav class="manual__pagination">
           <span><a href="/mail-templates/">← Product page</a></span>
           <span class="manual__pagination-mid"><a href="/">All apps</a></span>
-          <span class="manual__pagination-next"><a href="/mail-templates/privacy/">Privacy policy →</a></span>
+          <span class="manual__pagination-next"><a href="/mail-templates/docs/events/">The three events →</a></span>
         </nav>
+        <!-- docs-pager:end -->
       </article>
     </div>
 
