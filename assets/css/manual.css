@@ -429,3 +429,39 @@
 .change__apps:has(> a:nth-of-type(4)) {
   column-gap: 0.4em;
 }
+
+
+/* Get started in three steps: one numbered step, then the production
+   screenshot of what that step looks like. The screenshot is a 2x capture
+   framed like the product pages' stills; a click opens it full size. */
+
+.steps > li + li {
+  margin-top: var(--space-large);
+}
+
+.manual__content > * + .steps {
+  margin-top: var(--space-medium);
+}
+
+.step-shot {
+  margin-top: var(--space-small);
+}
+
+.step-shot a {
+  display: block;
+}
+
+.step-shot img {
+  background: #fff;
+  border: var(--rule-gauge) solid var(--color-rule-strong);
+  border-radius: var(--radius-large);
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+@media print {
+  .step-shot {
+    break-inside: avoid;
+  }
+}

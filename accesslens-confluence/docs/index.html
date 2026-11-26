@@ -87,6 +87,7 @@
           <li><a href="/accesslens-confluence/privacy/">Privacy policy</a></li>
         </ul>
         <ol class="manual__toc-chapters">
+          <li><a href="#three-steps">Get started in three steps</a></li>
           <li><a href="#where-it-lives">Where AccessLens lives</a></li>
           <li><a href="#reverse-lookup">Reverse lookup</a></li>
           <li><a href="#restrictions">The page restriction audit</a></li>
@@ -116,6 +117,28 @@
           for it. It writes nothing (there is no write scope in the manifest), so everything
           below is a read, a stored copy of a read, or a decision recorded about one.
         </p>
+
+        <h2 id="three-steps">Get started in three steps</h2>
+        <ol class="steps">
+          <li>
+            <p><strong>Take a snapshot.</strong> Go to <strong>Confluence administration → Apps → AccessLens</strong>, open the Snapshots tab and press <strong>Take snapshot now</strong>. AccessLens reads every space's permissions once and answers from that copy. Later, <strong>Compare two snapshots</strong> on the same tab shows what changed. See <a href="#snapshots">Snapshots</a> and <a href="#diffs">Diffs</a>.</p>
+            <figure class="step-shot">
+              <a href="/assets/screenshots/docs/accesslens-confluence-1.webp"><img src="/assets/screenshots/docs/accesslens-confluence-1.webp" alt="AccessLens comparing two snapshots: External Contractors was granted access to two spaces." width="2100" height="720" loading="lazy" decoding="async" /></a>
+            </figure>
+          </li>
+          <li>
+            <p><strong>Ask who can access what.</strong> On Explore, choose <strong>By group</strong>, <strong>By user</strong> or <strong>By space</strong>. Groups are expanded into people, so you see each person's effective access. See <a href="#reverse-lookup">Reverse lookup</a>.</p>
+            <figure class="step-shot">
+              <a href="/assets/screenshots/docs/accesslens-confluence-2.webp"><img src="/assets/screenshots/docs/accesslens-confluence-2.webp" alt="AccessLens Explore by group: the spaces External Contractors reaches, and the access it has in each." width="1760" height="1300" loading="lazy" decoding="async" /></a>
+            </figure>
+          </li>
+          <li>
+            <p><strong>Check the locked pages.</strong> The <strong>Restrictions</strong> tab lists restricted pages space by space, and the pages an edit restriction above them does not cover. See <a href="#restrictions">The page restriction audit</a>.</p>
+            <figure class="step-shot">
+              <a href="/assets/screenshots/docs/accesslens-confluence-3.webp"><img src="/assets/screenshots/docs/accesslens-confluence-3.webp" alt="The AccessLens Restrictions tab: restricted pages per space, and pages under an edit-restricted page that are still editable." width="1760" height="1420" loading="lazy" decoding="async" /></a>
+            </figure>
+          </li>
+        </ol>
 
         <h2 id="where-it-lives">Where AccessLens lives</h2>
         <ul>

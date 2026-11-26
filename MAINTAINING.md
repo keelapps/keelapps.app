@@ -69,6 +69,20 @@ an `index.html` with the two markers, its `<h1>` and a meta description, plus
 a row in `DOCS`; the script refuses a docs page that is not listed. The other
 apps still have one documentation page each.
 
+### Get started in three steps
+
+Every app's documentation opens with three numbered steps (`<ol class="steps">`),
+worded like the app's own Get started page so the site and the app say the
+same thing. Each step carries the production screenshot of that screen in a
+`<figure class="step-shot">`, linked to the file so a click opens it full size.
+The files are `assets/screenshots/docs/<slug>-<n>.webp`: cropped from the 2x
+production captures in the app repo's `docs/brand/screenshots/production/`,
+about 1760 px wide, webp quality 82. Give each `<img>` its real `width` and
+`height`, `loading="lazy"`, and alt text that says what the screen shows. Only
+production captures with demo data: never a dev site, and never a screen that
+shows something the app no longer allows. A step with no such capture yet goes
+without a picture.
+
 ## What's new and the 404 page
 
 `/changelog/` lists the changes a buyer would care about, newest month first.
