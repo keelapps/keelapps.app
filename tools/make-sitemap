@@ -59,6 +59,8 @@ CHROME = [
     re.compile(r'<footer class="footer">.*?</footer>', re.S),
     re.compile(r"<!-- related:begin -->.*?<!-- related:end -->", re.S),
     re.compile(r"<!-- app-guides:begin -->\s*<!-- app-guides:end -->"),
+    re.compile(r"<!-- docs-toc:begin -->.*?<!-- docs-toc:end -->", re.S),
+    re.compile(r"<!-- docs-pager:begin -->.*?<!-- docs-pager:end -->", re.S),
     re.compile(r"<!-- Google tag \(gtag\.js\) -->.*?</script>\s*<script>.*?</script>", re.S),
     re.compile(r'<link rel="preload"[^>]*>'),
     re.compile(r'<meta name="theme-color"[^>]*>'),

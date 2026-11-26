@@ -643,6 +643,20 @@
   text-align: right;
 }
 
+/* On a phone the two page names need the width: the middle link takes a row
+   of its own above them. */
+@media (max-width: 39.99em) {
+  .manual__pagination {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .manual__pagination-mid {
+    grid-column: 1 / -1;
+    order: -1;
+    text-align: left;
+  }
+}
+
 
 /* A list of guides: what it covers, then the title, then the one-line answer.
    The guides index shows every guide with its full summary; the home page

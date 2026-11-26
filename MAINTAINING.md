@@ -52,6 +52,22 @@ than by hand.
 - the UTM tags on every link to the Atlassian Marketplace (below);
 - the home hero's shelf of app icons by product, between `<!-- shelf:begin -->`
   and `<!-- shelf:end -->`.
+- for an app listed in `DOCS` (AccessLens, Satchel and Mail Templates for
+  Jira), the documentation sidebar between `<!-- docs-toc:begin -->` and
+  `<!-- docs-toc:end -->`, the previous/next links between `<!-- docs-pager:begin -->`
+  and `<!-- docs-pager:end -->`, and on `/<slug>/docs/` the list of every page
+  between `<!-- docs-index:begin -->` and `<!-- docs-index:end -->`.
+
+### Documentation split into one page per question
+
+AccessLens, Satchel and Mail Templates for Jira keep `/<slug>/docs/` as a
+Get started page and put each question on its own page under it
+(`/satchel/docs/delete-attachments/`), so a search for that question lands on
+the page that answers it. `DOCS` at the top of the docs section in
+`tools/make-chrome` is the reading order and the sidebar labels. A new page is
+an `index.html` with the two markers, its `<h1>` and a meta description, plus
+a row in `DOCS`; the script refuses a docs page that is not listed. The other
+apps still have one documentation page each.
 
 ## Atlassian's icons and ours
 
