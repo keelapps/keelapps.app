@@ -554,3 +554,13 @@
 @media (min-width: 44em) {
   .related__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+
+
+/* "Coming from Data Center?": one short note, only on a product page whose
+   app fills a gap that Data Center does not have, with the JAC ticket that
+   proves it. */
+
+.dc-note {
+  margin-top: var(--space-large);
+  max-width: var(--measure);
+}

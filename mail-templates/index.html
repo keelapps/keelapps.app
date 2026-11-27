@@ -202,6 +202,15 @@
           <li>A rich-text editor</li>
         </ul>
         <p>All four need egress or permissions this product exists to avoid.</p>
+        <div class="aside dc-note" data-label="Coming from Data Center?">
+          <p>
+            On Jira Data Center, admins can edit the templates of Jira's own emails. Jira Cloud
+            does not let anyone do that
+            (<a href="https://jira.atlassian.com/browse/JRACLOUD-7266">JRACLOUD-7266</a>).
+            Mail Templates cannot change Jira's own emails either: it sends your own templated
+            email alongside them, per project and per event.
+          </p>
+        </div>
       </section>
 
       <section class="section">
